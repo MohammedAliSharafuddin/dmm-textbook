@@ -1,0 +1,76 @@
+:root {
+  --dmm-ink: #111827;
+  --dmm-muted: #4b5563;
+  --dmm-border: #d1d5db;
+  --dmm-soft: #f8fafc;
+}
+body { color: var(--dmm-ink); line-height: 1.65; }
+h1, h2, h3 { letter-spacing: -0.01em; }
+.callout { border-radius: 10px; }
+.screenshot-placeholder, .video-placeholder, .student-task, .reporting-box {
+  border: 1px solid var(--dmm-border);
+  background: var(--dmm-soft);
+  border-radius: 12px;
+  padding: 1rem 1.2rem;
+  margin: 1.2rem 0;
+}
+.screenshot-placeholder strong, .video-placeholder strong { display: block; margin-bottom: 0.4rem; }
+.table-caption, figcaption { color: var(--dmm-muted); font-size: 0.92rem; }
+.copy-template {
+  border: 1px dashed var(--dmm-border);
+  background: #ffffff;
+  padding: 0.8rem;
+  border-radius: 8px;
+}
+
+
+.chapter-source-note, .worked-example, .teaching-plan, .review-box, .solution-box {
+  border: 1px solid var(--dmm-border);
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 1rem 1.2rem;
+  margin: 1.2rem 0;
+}
+.chapter-source-note {
+  background: #f9fafb;
+  font-size: 0.95rem;
+}
+.worked-example {
+  background: #fbfdff;
+}
+.copy-template {
+  white-space: normal;
+}
+blockquote {
+  border-left: 4px solid var(--dmm-border);
+  padding-left: 1rem;
+  color: var(--dmm-muted);
+}
+
+/* V9 Quarto table styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.1rem 0 1.4rem 0;
+  font-size: 0.96rem;
+}
+table caption {
+  caption-side: top;
+  text-align: left;
+  color: var(--dmm-muted);
+  font-weight: 600;
+  margin-bottom: 0.45rem;
+}
+thead th {
+  background: var(--dmm-soft);
+  border-top: 1px solid var(--dmm-border);
+  border-bottom: 1px solid var(--dmm-border);
+}
+th, td {
+  border-bottom: 1px solid var(--dmm-border);
+  padding: 0.55rem 0.65rem;
+  vertical-align: top;
+}
+tbody tr:nth-child(even) {
+  background: #fcfcfd;
+}

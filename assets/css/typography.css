@@ -1,0 +1,211 @@
+/* assets/css/typography.css
+   Typography for the BUSS2111 student textbook.
+
+   Two families, self-hosted as variable fonts by R/fetch_fonts.R:
+
+   - Literata for body prose. Drawn for long-form reading on screen, which is
+     what this book is: the active config renders HTML only, and students read
+     it in a browser and in Moodle. Its large x-height also keeps small table
+     text legible, which matters in a book this dense with tables and figures.
+   - Inter for headings, tables, figures, code and numerals. Already the face
+     of the cover artwork and all 15 slide decks, so the system reads as one.
+
+   Crimson Pro was considered and rejected: it is modelled on classic book
+   printing and renders thin at body sizes on screen. EB Garamond was
+   considered and rejected on x-height, which is costly in a book full of
+   small numbers.
+
+   Numerals: Inter's tabular figures are switched on for tables and code so
+   that columns of statistics align and a 3 cannot be mistaken for an 8.
+*/
+
+:root {
+  --dmm-serif: "Literata", Georgia, "Times New Roman", serif;
+  --dmm-sans:  "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --dmm-measure: 68ch;
+}
+
+/* ---- body prose -------------------------------------------------------- */
+
+body,
+.quarto-container {
+  font-family: var(--dmm-serif);
+  font-size: 1.06rem;
+  line-height: 1.62;          /* generous, per the dense-information note */
+  font-feature-settings: "kern" 1, "liga" 1, "onum" 1;
+}
+
+/* Keep the reading measure comfortable. Long lines are the most common
+   readability fault in a full-width Quarto book. */
+main p,
+main ul,
+main ol,
+main blockquote {
+  max-width: var(--dmm-measure);
+}
+
+/* ---- structure --------------------------------------------------------- */
+
+h1, h2, h3, h4, h5, h6,
+.sidebar, #quarto-sidebar, #TOC, .toc-actions,
+.navbar, .quarto-title-banner {
+  font-family: var(--dmm-sans);
+  font-feature-settings: "kern" 1, "liga" 1, "tnum" 1;
+}
+
+h1, h2, h3 { letter-spacing: -0.018em; line-height: 1.18; }
+h1 { font-weight: 800; }
+h2 { font-weight: 700; }
+h3 { font-weight: 600; }
+
+/* Chapter and section numbers sit in the sans, with tabular figures so the
+   sidebar numbers line up. */
+.chapter-number, .header-section-number { font-variant-numeric: tabular-nums; }
+
+/* ---- data: tables, figures, code --------------------------------------- */
+
+table, .table, figcaption, caption,
+.cell-output, pre, code, kbd {
+  font-family: var(--dmm-sans);
+  font-variant-numeric: tabular-nums;
+}
+
+table { font-size: 0.94rem; }
+figcaption, caption { font-size: 0.9rem; }
+
+/* Callout titles and the solution boxes read as structure, not prose. */
+.callout .callout-title-container,
+.callout-title { font-family: var(--dmm-sans); font-weight: 600; }
+
+/* ---- maths ------------------------------------------------------------- */
+
+/* MathJax supplies its own face. Nudge it up very slightly so inline maths
+   does not look small beside Literata, which has a large x-height. */
+mjx-container[jax="CHTML"] { font-size: 1.03em; }
+
+/* ---- front matter ------------------------------------------------------ */
+
+/* Front-matter pages carry no chapter number and read as preliminary. */
+.dmm-frontmatter-note {
+  font-family: var(--dmm-sans);
+  font-size: 0.92rem;
+  color: #4b5563;
+  border-left: 3px solid #D9A441;
+  padding: 0.1rem 0 0.1rem 0.9rem;
+  margin: 1.2rem 0 1.6rem;
+}
+
+/* ---- print ------------------------------------------------------------- */
+
+@media print {
+  body { font-size: 11pt; line-height: 1.5; }
+  main p, main ul, main ol { max-width: none; }
+}
+
+/* ---- cover ------------------------------------------------------------- */
+
+/* The cover artwork is a generated PNG (R/fig_cover_artwork.R) carrying the
+   scramble field and the 12 analysis tiles. It reserves an empty text column
+   on its right: x 0.525 to 0.962, a title band in the top 25% and an author
+   band in the bottom 25%. The text below sits in those bands as live HTML,
+   so it stays selectable, translatable and readable by assistive technology.
+
+   Measured contrast against the artwork ground #15263A: white 15.33:1,
+   #D9E8F5 12.27:1, #D9A441 6.81:1. All meet WCAG 2.2 AA, the first two AAA.
+
+   The title is set in Literata, the book's own voice, which also separates
+   this cover from the sibling digital marketing book. Metadata stays in Inter
+   because it is structural. */
+
+.dmm-cover {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  background: #15263A url('../images/cover-portrait.png') center / cover no-repeat;
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 0 0 2.4rem;
+  container-type: inline-size;
+}
+
+/* Two blocks pinned to the artwork's two reserved bands, rather than one
+   flex column spanning the whole cover. A flex column lets a three-line title
+   push the subtitle down into the middle 50%, which is where the tiles are.
+   Pinning guarantees each block stays in its band whatever the line count. */
+
+.dmm-cover-head {
+  position: absolute;
+  left: 52.5%; right: 3.8%;
+  top: 4.5%;
+}
+
+.dmm-cover-foot {
+  position: absolute;
+  left: 52.5%; right: 3.8%;
+  bottom: 5.5%;
+}
+
+.dmm-cover .cover-rule {
+  width: 4.2cqw; height: 0.5cqw; background: #D9A441;
+  border-radius: 2px; margin-bottom: 1.8cqw;
+}
+
+.dmm-cover h1.cover-title {
+  font-family: var(--dmm-serif);
+  font-weight: 700;
+  font-size: 4.6cqw;
+  line-height: 1.12;
+  letter-spacing: -0.012em;
+  color: #ffffff;
+  margin: 0;
+  border: 0; padding: 0;
+  max-width: 100%;
+}
+
+.dmm-cover .cover-sub {
+  font-family: var(--dmm-sans);
+  font-size: 1.85cqw;
+  line-height: 1.45;
+  color: #D9E8F5;
+  margin: 1.8cqw 0 0;
+  max-width: 100%;
+}
+
+.dmm-cover .cover-author {
+  font-family: var(--dmm-sans);
+  font-weight: 700;
+  font-size: 2.1cqw;
+  color: #D9A441;
+  margin: 0;
+}
+
+.dmm-cover .cover-meta {
+  font-family: var(--dmm-sans);
+  font-size: 1.6cqw;
+  line-height: 1.4;
+  color: #9FB3C8;
+  margin: 0.8cqw 0 0;
+}
+
+@media (max-width: 700px) {
+  .dmm-cover { aspect-ratio: 3 / 4; background-position: 70% center; }
+  .dmm-cover-text { left: 6%; right: 6%; background: rgba(21, 38, 58, 0.82);
+                    padding: 5% 5%; border-radius: 4px; }
+  .dmm-cover h1.cover-title { font-size: 9cqw; }
+  .dmm-cover .cover-sub { font-size: 3.4cqw; }
+  .dmm-cover .cover-author { font-size: 3.6cqw; }
+  .dmm-cover .cover-meta { font-size: 2.9cqw; }
+}
+
+/* On the cover page Quarto still emits its own title block above the cover,
+   repeating the title, subtitle and author that the cover already carries.
+   Hide it only on pages that contain a cover, so every other page keeps its
+   heading. :has() is supported in all current browsers; where it is not, the
+   block simply remains, which is a harmless duplication rather than a break. */
+body:has(.dmm-cover) #title-block-header { display: none; }
+
+/* Bold inside Literata reads as emphasis at the browser default, which is too
+   quiet for a defined term or a table label. Lift it, and put structural bold
+   in the sans where it is acting as a label rather than as stress. */
+strong, b { font-weight: 650; }
+.key-terms dt, th, .callout-title, .we-label { font-family: var(--dmm-sans); }

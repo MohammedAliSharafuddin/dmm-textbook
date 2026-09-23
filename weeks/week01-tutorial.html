@@ -1,0 +1,1491 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-GB" xml:lang="en-GB"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.24">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="keywords" content="JASP tutorial, PocketStat, descriptive statistics walkthrough, frequency table, variable audit, business statistics tutorial">
+<meta name="description" content="Chapter 1 tutorial. A 19-step first analysis with a screenshot at every click, shown in both JASP and PocketStat.">
+
+<title>Tutorial: First descriptive statistics – Decision Making for Management</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../weeks/week01-independent-study.html" rel="next">
+<link href="../weeks/week01-reference.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-570c88bfe2ada1383fcb957a641a2ed2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<!-- Structured data for search and answer engines. The book is CC BY, so a
+     model that cites it can say so. DefinedTermSet mirrors the Key terms
+     section, whose entries carry the section ids these URLs point at. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Book",
+      "@id": "https://mohammedalisharafuddin.github.io/dmm-textbook/#book",
+      "name": "Decision Making for Management",
+      "alternateName": "A Student Textbook for Data-Informed Managerial Judgement",
+      "inLanguage": "en-GB",
+      "learningResourceType": "textbook",
+      "educationalLevel": "undergraduate",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "author": {
+        "@type": "Person",
+        "name": "Mohammed Ali Sharafuddin",
+        "affiliation": {
+          "@type": "CollegeOrUniversity",
+          "name": "Qasim Ibrahim School of Business, Villa College"
+        }
+      },
+      "educationalUse": ["instruction", "self study"],
+      "audience": {
+        "@type": "EducationalAudience",
+        "educationalRole": "student"
+      },
+      "usageInfo": "https://mohammedalisharafuddin.github.io/dmm-textbook/front-matter/ai-use.html",
+      "about": [
+        "Business statistics",
+        "Descriptive statistics",
+        "Data-informed decision making"
+      ]
+    },
+    {
+      "@type": ["Chapter", "LearningResource"],
+      "@id": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week01.html#chapter",
+      "name": "Data, Measurement Scales, and Descriptive Statistics",
+      "position": 1,
+      "isPartOf": { "@id": "https://mohammedalisharafuddin.github.io/dmm-textbook/#book" },
+      "inLanguage": "en-GB",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "educationalLevel": "undergraduate",
+      "learningResourceType": "chapter",
+      "timeRequired": "PT9H",
+      "educationalUse": ["instruction", "self study"],
+      "assessmentType": ["formative exit check", "formative checkpoint quiz", "variable audit submission"],
+      "usageInfo": "https://mohammedalisharafuddin.github.io/dmm-textbook/front-matter/ai-use.html",
+      "educationalAlignment": {
+        "@type": "AlignmentObject",
+        "alignmentType": "teaches",
+        "targetName": "Descriptive statistics for management decisions"
+      },
+      "teaches": [
+        "Explain why a manager describes evidence before acting on it",
+        "Distinguish a case, a variable, an observation and a value in a real dataset",
+        "Separate a population from a sample, and a parameter from a statistic",
+        "Say what descriptive statistics can establish and what only inference can",
+        "Classify a variable as nominal, ordinal, interval or ratio, and as discrete or continuous",
+        "Identify which variable is independent and which is dependent in a stated question",
+        "Build and read frequency, relative frequency, grouped and cumulative frequency tables",
+        "Choose a graph that suits the variable type and the question",
+        "Calculate and interpret the mean, median, mode, range, variance, standard deviation, quartiles and the interquartile range",
+        "Recognise a misleading summary or display and say why it misleads"
+      ]
+    },
+    {
+      "@type": "DefinedTermSet",
+      "@id": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week01.html#key-terms",
+      "name": "Key terms, Chapter 1",
+      "hasDefinedTerm": [
+        { "@type": "DefinedTerm", "name": "Case", "description": "The unit the data describe.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week01.html#sec-cases" },
+        { "@type": "DefinedTerm", "name": "Variable", "description": "A characteristic measured on each case.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week01.html#sec-cases" },
+        { "@type": "DefinedTerm", "name": "Population", "description": "Every case of interest.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week01.html#sec-population" },
+        { "@type": "DefinedTerm", "name": "Sample", "description": "The subset of the population actually measured.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week01.html#sec-population" },
+        { "@type": "DefinedTerm", "name": "Parameter", "description": "A number describing a population.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week01.html#sec-population" },
+        { "@type": "DefinedTerm", "name": "Statistic", "description": "A number describing a sample.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week01.html#sec-population" },
+        { "@type": "DefinedTerm", "name": "Nominal", "description": "Named categories with no order. You may count them, find the mode and take proportions.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week01-part2.html#sec-scales" },
+        { "@type": "DefinedTerm", "name": "Ordinal", "description": "Ordered categories where the size of the gaps between them is unknown.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week01-part2.html#sec-scales" },
+        { "@type": "DefinedTerm", "name": "Interval", "description": "Numeric with equal gaps and a zero placed by convention, so ratios have no meaning.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week01-part2.html#sec-scales" },
+        { "@type": "DefinedTerm", "name": "Ratio", "description": "Numeric with equal gaps and a true zero, so ratios are meaningful.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week01-part2.html#sec-scales" },
+        { "@type": "DefinedTerm", "name": "Mean", "description": "The sum of all values divided by how many there are.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week01-part3.html#sec-centre" },
+        { "@type": "DefinedTerm", "name": "Median", "description": "The middle value once the data are in order.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week01-part3.html#sec-centre" },
+        { "@type": "DefinedTerm", "name": "Mode", "description": "The value that occurs most often, read off a frequency table.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week01-part3.html#sec-centre" },
+        { "@type": "DefinedTerm", "name": "Standard deviation", "description": "The square root of the variance, in the original units of the data.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week01-part3.html#sec-spread" },
+        { "@type": "DefinedTerm", "name": "Interquartile range", "description": "The third quartile minus the first, the spread of the middle half.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week01-part3.html#sec-quartiles" },
+        { "@type": "DefinedTerm", "name": "Outlier", "description": "A value beyond 1.5 times the interquartile range from the nearer quartile.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week01-part3.html#sec-shape" }
+      ]
+    }
+  ]
+}
+</script>
+
+
+<link rel="stylesheet" href="../assets/css/fonts.css">
+<link rel="stylesheet" href="../assets/css/typography.css">
+<link rel="stylesheet" href="../assets/css/student-book.css">
+<meta property="og:title" content="Tutorial: First descriptive statistics – Decision Making for Management">
+<meta property="og:description" content="A CC BY undergraduate textbook that teaches descriptive and inferential statistics through management decisions, using JASP and PocketStat.">
+<meta property="og:image" content="https://mohammedalisharafuddin.github.io/dmm-textbook/assets/images/screenshots/ch01/ch01-jasp-01-open-app.png">
+<meta property="og:site_name" content="Decision Making for Management">
+<meta property="og:locale" content="en_GB">
+<meta property="og:image:alt" content="An empty JASP window. The analysis ribbon runs along the top and the data area below it is blank.">
+<meta property="og:image:height" content="1080">
+<meta property="og:image:width" content="1920">
+<meta name="twitter:title" content="Tutorial: First descriptive statistics – Decision Making for Management">
+<meta name="twitter:description" content="A CC BY undergraduate textbook that teaches descriptive and inferential statistics through management decisions, using JASP and PocketStat.">
+<meta name="twitter:image" content="https://mohammedalisharafuddin.github.io/dmm-textbook/assets/images/screenshots/ch01/ch01-jasp-01-open-app.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image:alt" content="An empty JASP window. The analysis ribbon runs along the top and the data area below it is blank.">
+<meta name="twitter:image-height" content="1080">
+<meta name="twitter:image-width" content="1920">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/week01.html">Chapter 1: Data, Measurement Scales, and Descriptive Statistics</a></li><li class="breadcrumb-item"><a href="../weeks/week01-tutorial.html"><span class="chapter-title">Tutorial: First descriptive statistics</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Decision Making for Management</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Decision Making for Management</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../front-matter/copyright.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Copyright and Attribution</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../front-matter/ai-use.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Using AI on This Module</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../front-matter/how-to-use-this-book.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">How to Use This Book</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../front-matter/software-guide.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software Guide</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../front-matter/dataset-overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Dataset Overview</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Chapter 1: Data, Measurement Scales, and Descriptive Statistics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week01.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Part 1: Foundations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week01-part2.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Part 2: Variables and displays</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week01-part3.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Part 3: Centre and spread</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week01-reference.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Running the analysis, and chapter reference</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week01-tutorial.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Tutorial: First descriptive statistics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week01-independent-study.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Independent study and submission</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#activity-1-tutorial-briefing-10-minutes" id="toc-activity-1-tutorial-briefing-10-minutes" class="nav-link active" data-scroll-target="#activity-1-tutorial-briefing-10-minutes">Activity 1: Tutorial briefing (10 minutes)</a>
+  <ul class="collapse">
+  <li><a href="#step-1.-open-the-software" id="toc-step-1.-open-the-software" class="nav-link" data-scroll-target="#step-1.-open-the-software">Step 1. Open the software</a></li>
+  <li><a href="#step-2.-load-the-teaching-dataset" id="toc-step-2.-load-the-teaching-dataset" class="nav-link" data-scroll-target="#step-2.-load-the-teaching-dataset">Step 2. Load the teaching dataset</a></li>
+  <li><a href="#step-3.-check-the-whole-dataset-arrived" id="toc-step-3.-check-the-whole-dataset-arrived" class="nav-link" data-scroll-target="#step-3.-check-the-whole-dataset-arrived">Step 3. Check the whole dataset arrived</a></li>
+  <li><a href="#step-4.-find-where-the-variable-type-is-shown" id="toc-step-4.-find-where-the-variable-type-is-shown" class="nav-link" data-scroll-target="#step-4.-find-where-the-variable-type-is-shown">Step 4. Find where the variable type is shown</a></li>
+  <li><a href="#step-5.-change-a-type-when-the-guess-is-wrong" id="toc-step-5.-change-a-type-when-the-guess-is-wrong" class="nav-link" data-scroll-target="#step-5.-change-a-type-when-the-guess-is-wrong">Step 5. Change a type when the guess is wrong</a></li>
+  </ul></li>
+  <li><a href="#activity-2-variable-audit-35-minutes" id="toc-activity-2-variable-audit-35-minutes" class="nav-link" data-scroll-target="#activity-2-variable-audit-35-minutes">Activity 2: Variable audit (35 minutes)</a>
+  <ul class="collapse">
+  <li><a href="#step-6.-read-the-six-variables-and-their-current-types" id="toc-step-6.-read-the-six-variables-and-their-current-types" class="nav-link" data-scroll-target="#step-6.-read-the-six-variables-and-their-current-types">Step 6. Read the six variables and their current types</a></li>
+  </ul></li>
+  <li><a href="#activity-3-tables-and-summaries-40-minutes" id="toc-activity-3-tables-and-summaries-40-minutes" class="nav-link" data-scroll-target="#activity-3-tables-and-summaries-40-minutes">Activity 3: Tables and summaries (40 minutes)</a>
+  <ul class="collapse">
+  <li><a href="#output-1-a-frequency-table-for-ticket_type" id="toc-output-1-a-frequency-table-for-ticket_type" class="nav-link" data-scroll-target="#output-1-a-frequency-table-for-ticket_type">Output 1, a frequency table for <code>Ticket_Type</code></a></li>
+  <li><a href="#step-7.-open-the-descriptives-panel" id="toc-step-7.-open-the-descriptives-panel" class="nav-link" data-scroll-target="#step-7.-open-the-descriptives-panel">Step 7. Open the descriptives panel</a></li>
+  <li><a href="#step-8.-move-ticket_type-into-the-variables-box" id="toc-step-8.-move-ticket_type-into-the-variables-box" class="nav-link" data-scroll-target="#step-8.-move-ticket_type-into-the-variables-box">Step 8. Move <code>Ticket_Type</code> into the variables box</a></li>
+  <li><a href="#step-9.-ask-for-the-frequency-table" id="toc-step-9.-ask-for-the-frequency-table" class="nav-link" data-scroll-target="#step-9.-ask-for-the-frequency-table">Step 9. Ask for the frequency table</a></li>
+  <li><a href="#step-10.-read-the-finished-table" id="toc-step-10.-read-the-finished-table" class="nav-link" data-scroll-target="#step-10.-read-the-finished-table">Step 10. Read the finished table</a></li>
+  <li><a href="#output-2-a-grouped-frequency-table-for-waiting_time_mins" id="toc-output-2-a-grouped-frequency-table-for-waiting_time_mins" class="nav-link" data-scroll-target="#output-2-a-grouped-frequency-table-for-waiting_time_mins">Output 2, a grouped frequency table for <code>Waiting_Time_Mins</code></a></li>
+  <li><a href="#step-11.-create-the-ten-minute-bands" id="toc-step-11.-create-the-ten-minute-bands" class="nav-link" data-scroll-target="#step-11.-create-the-ten-minute-bands">Step 11. Create the ten-minute bands</a></li>
+  <li><a href="#step-12.-add-the-cumulative-column" id="toc-step-12.-add-the-cumulative-column" class="nav-link" data-scroll-target="#step-12.-add-the-cumulative-column">Step 12. Add the cumulative column</a></li>
+  <li><a href="#step-13.-check-the-finished-grouped-table" id="toc-step-13.-check-the-finished-grouped-table" class="nav-link" data-scroll-target="#step-13.-check-the-finished-grouped-table">Step 13. Check the finished grouped table</a></li>
+  <li><a href="#output-3-descriptive-statistics-for-the-three-numerical-variables" id="toc-output-3-descriptive-statistics-for-the-three-numerical-variables" class="nav-link" data-scroll-target="#output-3-descriptive-statistics-for-the-three-numerical-variables">Output 3, descriptive statistics for the three numerical variables</a></li>
+  <li><a href="#step-14.-move-the-three-variables-in" id="toc-step-14.-move-the-three-variables-in" class="nav-link" data-scroll-target="#step-14.-move-the-three-variables-in">Step 14. Move the three variables in</a></li>
+  <li><a href="#step-15.-ask-for-the-six-statistics" id="toc-step-15.-ask-for-the-six-statistics" class="nav-link" data-scroll-target="#step-15.-ask-for-the-six-statistics">Step 15. Ask for the six statistics</a></li>
+  <li><a href="#step-16.-read-the-output-table" id="toc-step-16.-read-the-output-table" class="nav-link" data-scroll-target="#step-16.-read-the-output-table">Step 16. Read the output table</a></li>
+  <li><a href="#output-4-two-plots" id="toc-output-4-two-plots" class="nav-link" data-scroll-target="#output-4-two-plots">Output 4, two plots</a></li>
+  <li><a href="#step-17.-plot-region-as-a-bar-chart" id="toc-step-17.-plot-region-as-a-bar-chart" class="nav-link" data-scroll-target="#step-17.-plot-region-as-a-bar-chart">Step 17. Plot <code>Region</code> as a bar chart</a></li>
+  <li><a href="#step-18.-plot-waiting_time_mins-as-a-histogram-and-a-boxplot" id="toc-step-18.-plot-waiting_time_mins-as-a-histogram-and-a-boxplot" class="nav-link" data-scroll-target="#step-18.-plot-waiting_time_mins-as-a-histogram-and-a-boxplot">Step 18. Plot <code>Waiting_Time_Mins</code> as a histogram and a boxplot</a></li>
+  </ul></li>
+  <li><a href="#activity-4-manager-summary-25-minutes" id="toc-activity-4-manager-summary-25-minutes" class="nav-link" data-scroll-target="#activity-4-manager-summary-25-minutes">Activity 4: Manager summary (25 minutes)</a></li>
+  <li><a href="#activity-5-share-and-upload-10-minutes" id="toc-activity-5-share-and-upload-10-minutes" class="nav-link" data-scroll-target="#activity-5-share-and-upload-10-minutes">Activity 5: Share and upload (10 minutes)</a>
+  <ul class="collapse">
+  <li><a href="#step-19.-take-a-clean-copy-of-one-output-table" id="toc-step-19.-take-a-clean-copy-of-one-output-table" class="nav-link" data-scroll-target="#step-19.-take-a-clean-copy-of-one-output-table">Step 19. Take a clean copy of one output table</a></li>
+  </ul></li>
+  <li><a href="#what-good-looks-like" id="toc-what-good-looks-like" class="nav-link" data-scroll-target="#what-good-looks-like">What good looks like</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/week01.html">Chapter 1: Data, Measurement Scales, and Descriptive Statistics</a></li><li class="breadcrumb-item"><a href="../weeks/week01-tutorial.html"><span class="chapter-title">Tutorial: First descriptive statistics</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-title">Tutorial: First descriptive statistics</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+<div>
+  <div class="keywords">
+    <div class="block-title">Keywords</div>
+    <p>JASP tutorial, PocketStat, descriptive statistics walkthrough, frequency table, variable audit, business statistics tutorial</p>
+  </div>
+</div>
+
+</header>
+
+
+<div class="lp-header tutorial">
+<p><span class="lp-type">Tutorial</span> <strong>First descriptive statistics in JASP or PocketStat</strong> <span class="lp-meta">2 hours · 5 activities</span></p>
+</div>
+<div class="lp-grid lp-3">
+<div class="lp-card tutorial">
+<p><span class="badge bg-acquisition">Acquisition</span></p>
+<p><strong><span class="act-num">1</span> Tutorial briefing</strong></p>
+<p><span class="act-time">⏱ 10 min</span></p>
+<p>Review the weekly task, open the teaching dataset, and check the output style expected in this module.</p>
+</div>
+<div class="lp-card tutorial">
+<p><span class="badge bg-investigation">Investigation</span></p>
+<p><strong><span class="act-num">2</span> Variable audit</strong></p>
+<p><span class="act-time">⏱ 35 min</span></p>
+<p>Classify selected variables as nominal, ordinal or scale, and explain why that choice matters.</p>
+</div>
+<div class="lp-card tutorial">
+<p><span class="badge bg-production">Production</span></p>
+<p><strong><span class="act-num">3</span> Tables and summaries</strong></p>
+<p><span class="act-time">⏱ 40 min</span></p>
+<p>Build frequency tables and descriptive statistics for selected variables from the teaching dataset.</p>
+</div>
+<div class="lp-card tutorial">
+<p><span class="badge bg-production">Production</span></p>
+<p><strong><span class="act-num">4</span> Manager summary</strong></p>
+<p><span class="act-time">⏱ 25 min</span></p>
+<p>Write a short paragraph that turns the output into clear management language.</p>
+</div>
+<div class="lp-card tutorial">
+<p><span class="badge bg-assessment">Assessment</span></p>
+<p><strong><span class="act-num">5</span> Share and upload</strong></p>
+<p><span class="act-time">⏱ 10 min</span></p>
+<p>Compare your paragraph with a classmate, improve it, and upload the final version with one cleaned output table.</p>
+</div>
+</div>
+<p>Bring the chapter with you. This session runs the analysis. The explaining was done in the chapter, and this session assumes you have read it and worked the Try It exercises.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Two routes, one set of steps">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Two routes, one set of steps
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Every step below carries a <strong>JASP</strong> tab and a <strong>PocketStat</strong> tab. Pick the tool you are using and stay on that tab. The step numbers, the outputs, and the answers are the same either way.</p>
+<p>JASP is installed in the lab. PocketStat runs in a browser tab with nothing to install, and the chapter page has it embedded if you would rather work there.</p>
+</div>
+</div>
+<section id="activity-1-tutorial-briefing-10-minutes" class="level2">
+<h2 class="anchored" data-anchor-id="activity-1-tutorial-briefing-10-minutes">Activity 1: Tutorial briefing (10 minutes)</h2>
+<p>You will work with six of the 26 variables in the teaching dataset: <code>Gender</code>, <code>Region</code>, <code>Ticket_Type</code>, <code>Age</code>, <code>Satisfaction</code> and <code>Waiting_Time_Mins</code>.</p>
+<p>Before anything else, confirm the software has read each one as the right type. This is the step most often skipped and the one that causes most of the errors in the rest of the session.</p>
+<section id="step-1.-open-the-software" class="level3">
+<h3 class="anchored" data-anchor-id="step-1.-open-the-software">Step 1. Open the software</h3>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">JASP</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">PocketStat</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p>Launch <strong>JASP</strong>. It opens on an empty data view with the analysis ribbon along the top.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/images/screenshots/ch01/ch01-jasp-01-open-app.png" class="img-fluid figure-img" alt="An empty JASP window. The analysis ribbon runs along the top and the data area below it is blank."></p>
+<figcaption>The JASP window as it opens, before any data is loaded</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<p>Open PocketStat at <a href="https://mohammedalisharafuddin.github.io/pocketstat/" class="uri">https://mohammedalisharafuddin.github.io/pocketstat/</a>. The first load pulls about 73 MB, so give it up to a minute on lab wifi. It opens on the <strong>Data</strong> tab, and the four buttons along the bottom are the whole app: Data, Analyse, Results, Learn.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/images/screenshots/ch01/ch01-pocketstat-01-open-app.png" class="img-fluid figure-img" alt="The PocketStat window. The title bar reads PocketStat, Statistics in your browser, and four buttons run along the bottom: Data, Analyse, Results and Learn."></p>
+<figcaption>PocketStat as it opens, on the Data tab</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-2.-load-the-teaching-dataset" class="level3">
+<h3 class="anchored" data-anchor-id="step-2.-load-the-teaching-dataset">Step 2. Load the teaching dataset</h3>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">JASP</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">PocketStat</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<p>Click the <strong>file menu</strong> at the top left, then <strong>Open</strong>, <strong>Computer</strong>, <strong>Browse</strong>, and choose <code>DMM_Teaching_Data_Full.csv</code>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/images/screenshots/ch01/ch01-jasp-02-load-data.png" class="img-fluid figure-img" alt="The JASP file menu open at Open, Computer, Browse, with the file dialogue showing DMM_Teaching_Data_Full.csv."></p>
+<figcaption>Opening the teaching dataset from the file menu</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<p>On the <strong>Data</strong> tab, open the upload card and choose <code>DMM_Teaching_Data_Full.csv</code>. The file is read in your browser and stays on your machine.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/images/screenshots/ch01/ch01-pocketstat-02-load-data.png" class="img-fluid figure-img" alt="The PocketStat Data tab with the upload card open and DMM_Teaching_Data_Full.csv chosen."></p>
+<figcaption>Uploading the teaching dataset on the Data tab</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-3.-check-the-whole-dataset-arrived" class="level3">
+<h3 class="anchored" data-anchor-id="step-3.-check-the-whole-dataset-arrived">Step 3. Check the whole dataset arrived</h3>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true" href="">JASP</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false" href="">PocketStat</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<p>The data view fills. Scroll to the bottom and confirm the last row is <strong>200</strong>, then scroll right and confirm there are <strong>26</strong> columns. A short file usually means the wrong delimiter.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/images/screenshots/ch01/ch01-jasp-03-data-loaded.png" class="img-fluid figure-img" alt="The JASP data view filled with the teaching dataset. Row numbers run down the left to 200 and the column headers name the 26 variables."></p>
+<figcaption>The dataset loaded, 200 rows and 26 columns</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<p>The <strong>data summary</strong> card reports the number of rows and columns. Confirm it says <strong>200 rows</strong> and <strong>26 columns</strong> before going further.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/images/screenshots/ch01/ch01-pocketstat-03-data-loaded.png" class="img-fluid figure-img" alt="The PocketStat Data tab showing the data summary card, which reports 200 rows and 26 columns, above the data grid."></p>
+<figcaption>The dataset loaded, 200 rows and 26 columns</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-4.-find-where-the-variable-type-is-shown" class="level3">
+<h3 class="anchored" data-anchor-id="step-4.-find-where-the-variable-type-is-shown">Step 4. Find where the variable type is shown</h3>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true" href="">JASP</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false" href="">PocketStat</a></li></ul>
+<div class="tab-content">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
+<p>Each column header carries a small icon for its measurement level: a ruler for <strong>scale</strong>, three ascending bars for <strong>ordinal</strong>, and three circles for <strong>nominal</strong>. JASP guesses this from the column contents, and it guesses wrong often enough to be worth checking every time.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/images/screenshots/ch01/ch01-jasp-04-variable-type-icons.png" class="img-fluid figure-img" alt="Close view of three JASP column headers. Each carries a small icon: a ruler for scale, three bars for ordinal, and three circles for nominal."></p>
+<figcaption>The measurement-level icon in each column header</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
+<p>The <strong>variables</strong> card lists every variable with the type PocketStat has detected. Read it top to bottom once. The detection is a guess from the column contents, so treat it as a draft.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/images/screenshots/ch01/ch01-pocketstat-04-variable-type-icons.png" class="img-fluid figure-img" alt="The PocketStat variables card. Each of the 26 variables is listed with the type PocketStat has detected for it."></p>
+<figcaption>The variables card listing each variable and its detected type</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-5.-change-a-type-when-the-guess-is-wrong" class="level3">
+<h3 class="anchored" data-anchor-id="step-5.-change-a-type-when-the-guess-is-wrong">Step 5. Change a type when the guess is wrong</h3>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true" href="">JASP</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false" href="">PocketStat</a></li></ul>
+<div class="tab-content">
+<div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
+<p>Click the icon in the column header. The three measurement levels appear and you pick the right one. The change applies to every analysis that uses the column from then on.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/images/screenshots/ch01/ch01-jasp-05-change-variable-type.png" class="img-fluid figure-img" alt="A JASP column header clicked open, showing the three measurement levels with one being selected."></p>
+<figcaption>Changing a variable’s measurement level</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
+<p>Open the <strong>cleaning</strong> card, pick the variable, and set its type there. Any analysis you run afterwards uses the new type.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/images/screenshots/ch01/ch01-pocketstat-05-change-variable-type.png" class="img-fluid figure-img" alt="The PocketStat cleaning card with a variable selected and its type being changed."></p>
+<figcaption>Changing a variable’s type in the cleaning card</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="activity-2-variable-audit-35-minutes" class="level2">
+<h2 class="anchored" data-anchor-id="activity-2-variable-audit-35-minutes">Activity 2: Variable audit (35 minutes)</h2>
+<p>Working in pairs, complete an audit of the six variables.</p>
+<section id="step-6.-read-the-six-variables-and-their-current-types" class="level3">
+<h3 class="anchored" data-anchor-id="step-6.-read-the-six-variables-and-their-current-types">Step 6. Read the six variables and their current types</h3>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true" href="">JASP</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false" href="">PocketStat</a></li></ul>
+<div class="tab-content">
+<div id="tabset-6-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
+<p>Scroll the data view until <code>Gender</code>, <code>Region</code>, <code>Ticket_Type</code>, <code>Age</code>, <code>Satisfaction</code> and <code>Waiting_Time_Mins</code> are visible together, and note the icon on each.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/images/screenshots/ch01/ch01-jasp-06-read-six-variables.png" class="img-fluid figure-img" alt="The JASP data view scrolled to show Gender, Region, Ticket_Type, Age, Satisfaction and Waiting_Time_Mins side by side with their type icons visible."></p>
+<figcaption>The six audit variables and their current types</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
+<p>Scroll the <strong>variables</strong> card to the same six and note the type beside each.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/images/screenshots/ch01/ch01-pocketstat-06-read-six-variables.png" class="img-fluid figure-img" alt="The PocketStat variables card scrolled to Gender, Region, Ticket_Type, Age, Satisfaction and Waiting_Time_Mins, each with its detected type."></p>
+<figcaption>The six audit variables and their current types</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>For each one, record the measurement scale, whether it is discrete or continuous where that applies, the summaries that are legitimate for it, and one summary that would be wrong.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Scale</th>
+<th>Discrete or continuous</th>
+<th>Legitimate summaries</th>
+<th>A wrong summary</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Gender</code></td>
+<td></td>
+<td>not applicable</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>Region</code></td>
+<td></td>
+<td>not applicable</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>Ticket_Type</code></td>
+<td></td>
+<td>not applicable</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>Age</code></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>Satisfaction</code></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>Waiting_Time_Mins</code></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Two of these are arguable. Decide what you think and be ready to defend it:</p>
+<ol type="1">
+<li><code>Satisfaction</code> is recorded 1 to 5. Is treating it as continuous defensible? What would you have to assume, and what would you report instead if you were not willing to assume it?</li>
+<li><code>Age</code> is recorded in completed years. Is it discrete or continuous? Does the answer change what you would do with it?</li>
+</ol>
+<p>Keep this table. It is part of the chapter’s submission.</p>
+</section>
+</section>
+<section id="activity-3-tables-and-summaries-40-minutes" class="level2">
+<h2 class="anchored" data-anchor-id="activity-3-tables-and-summaries-40-minutes">Activity 3: Tables and summaries (40 minutes)</h2>
+<p>Produce four outputs, in the order below. Steps 7 to 10 give you the first.</p>
+<section id="output-1-a-frequency-table-for-ticket_type" class="level3">
+<h3 class="anchored" data-anchor-id="output-1-a-frequency-table-for-ticket_type">Output 1, a frequency table for <code>Ticket_Type</code></h3>
+</section>
+<section id="step-7.-open-the-descriptives-panel" class="level3">
+<h3 class="anchored" data-anchor-id="step-7.-open-the-descriptives-panel">Step 7. Open the descriptives panel</h3>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-7-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-1" role="tab" aria-controls="tabset-7-1" aria-selected="true" href="">JASP</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-2" role="tab" aria-controls="tabset-7-2" aria-selected="false" href="">PocketStat</a></li></ul>
+<div class="tab-content">
+<div id="tabset-7-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-7-1-tab">
+<p>Click <strong>Descriptives</strong> on the ribbon, then <strong>Descriptive Statistics</strong>. The options panel opens on the left and the output appears on the right as you work.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/images/screenshots/ch01/ch01-jasp-07-descriptives-open.png" class="img-fluid figure-img" alt="The JASP ribbon with the Descriptives icon open and Descriptive Statistics highlighted in its menu."></p>
+<figcaption>Opening Descriptive Statistics from the ribbon</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-7-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-2-tab">
+<p>Tap <strong>Analyse</strong> on the bottom bar, then choose <strong>Descriptive statistics</strong> from the technique list.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/images/screenshots/ch01/ch01-pocketstat-07-descriptives-open.png" class="img-fluid figure-img" alt="The PocketStat Analyse tab with the technique list showing and Descriptive statistics selected."></p>
+<figcaption>Choosing Descriptive statistics on the Analyse tab</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-8.-move-ticket_type-into-the-variables-box" class="level3">
+<h3 class="anchored" data-anchor-id="step-8.-move-ticket_type-into-the-variables-box">Step 8. Move <code>Ticket_Type</code> into the variables box</h3>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-8-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-1" role="tab" aria-controls="tabset-8-1" aria-selected="true" href="">JASP</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-8-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-2" role="tab" aria-controls="tabset-8-2" aria-selected="false" href="">PocketStat</a></li></ul>
+<div class="tab-content">
+<div id="tabset-8-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-8-1-tab">
+<p>Select <code>Ticket_Type</code> in the list on the left and click the arrow to send it to <strong>Variables</strong>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/images/screenshots/ch01/ch01-jasp-08-ticket-type-selected.png" class="img-fluid figure-img" alt="The JASP Descriptive Statistics panel. Ticket_Type has been moved from the left-hand variable list into the Variables box on the right."></p>
+<figcaption>Moving Ticket_Type into the Variables box</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-8-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-8-2-tab">
+<p>In the variable chooser, select <code>Ticket_Type</code> and move it into the chosen list. Categorical variables get a frequency distribution, which is the output you want here.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/images/screenshots/ch01/ch01-pocketstat-08-ticket-type-selected.png" class="img-fluid figure-img" alt="The PocketStat variable chooser with Ticket_Type moved from the available list into the chosen list."></p>
+<figcaption>Moving Ticket_Type into the chosen list</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-9.-ask-for-the-frequency-table" class="level3">
+<h3 class="anchored" data-anchor-id="step-9.-ask-for-the-frequency-table">Step 9. Ask for the frequency table</h3>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-9-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-1" role="tab" aria-controls="tabset-9-1" aria-selected="true" href="">JASP</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-2" role="tab" aria-controls="tabset-9-2" aria-selected="false" href="">PocketStat</a></li></ul>
+<div class="tab-content">
+<div id="tabset-9-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-9-1-tab">
+<p>Tick <strong>Frequency tables</strong> in the options panel. The output updates as soon as you tick it.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/images/screenshots/ch01/ch01-jasp-09-frequency-tables-ticked.png" class="img-fluid figure-img" alt="The JASP Descriptive Statistics panel with the Frequency tables checkbox ticked."></p>
+<figcaption>Ticking Frequency tables</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-9-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-9-2-tab">
+<p>Run the analysis. PocketStat checks the data requirements before it runs and tells you if the variable type does not suit the technique.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/images/screenshots/ch01/ch01-pocketstat-09-frequency-tables-ticked.png" class="img-fluid figure-img" alt="The PocketStat Analyse tab with Ticket_Type chosen and the run button about to be pressed."></p>
+<figcaption>Running the analysis</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-10.-read-the-finished-table" class="level3">
+<h3 class="anchored" data-anchor-id="step-10.-read-the-finished-table">Step 10. Read the finished table</h3>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-10-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-1" role="tab" aria-controls="tabset-10-1" aria-selected="true" href="">JASP</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-10-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-2" role="tab" aria-controls="tabset-10-2" aria-selected="false" href="">PocketStat</a></li></ul>
+<div class="tab-content">
+<div id="tabset-10-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-10-1-tab">
+<p>The table gives frequency, percent, valid percent, and cumulative percent for each ticket type. Relative frequency is the percent column expressed as a proportion.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/images/screenshots/ch01/ch01-jasp-10-frequency-table-output.png" class="img-fluid figure-img" alt="A JASP output table headed Frequencies for Ticket_Type, with columns for frequency, percent, valid percent and cumulative percent."></p>
+<figcaption>The finished frequency table for Ticket_Type</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-10-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-10-2-tab">
+<p>Open the <strong>Results</strong> tab. The table lists each ticket type with its count and percentage.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/images/screenshots/ch01/ch01-pocketstat-10-frequency-table-output.png" class="img-fluid figure-img" alt="A PocketStat results table headed Ticket_Type, listing each ticket type with its count and percentage."></p>
+<figcaption>The finished frequency table for Ticket_Type</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>Check the counts sum to 200. If they fall short, some rows are missing a value. Record this as information about the data.</p>
+</section>
+<section id="output-2-a-grouped-frequency-table-for-waiting_time_mins" class="level3">
+<h3 class="anchored" data-anchor-id="output-2-a-grouped-frequency-table-for-waiting_time_mins">Output 2, a grouped frequency table for <code>Waiting_Time_Mins</code></h3>
+<p>Use intervals of ten minutes. Check your interval boundaries leave no gaps and no overlaps.</p>
+</section>
+<section id="step-11.-create-the-ten-minute-bands" class="level3">
+<h3 class="anchored" data-anchor-id="step-11.-create-the-ten-minute-bands">Step 11. Create the ten-minute bands</h3>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-11-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-1" role="tab" aria-controls="tabset-11-1" aria-selected="true" href="">JASP</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-11-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-2" role="tab" aria-controls="tabset-11-2" aria-selected="false" href="">PocketStat</a></li></ul>
+<div class="tab-content">
+<div id="tabset-11-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-11-1-tab">
+<p>Click the <strong>+</strong> at the right-hand end of the column headers to add a <strong>computed column</strong>, name it <code>Wait_Band</code>, and use the R-style formula box:</p>
+<pre><code>cut(Waiting_Time_Mins, breaks = seq(0, 100, 10), right = FALSE)</code></pre>
+<p><code>right = FALSE</code> makes each band include its lower boundary and exclude its upper one. This stops 30 minutes appearing in two bands at once.</p>
+<p>JASP marks every new computed column as <strong>Scale</strong>, regardless of what it holds. <code>Wait_Band</code> holds ordered labels such as <code>[20,30)</code>, not a number you can average, so change its measurement level to <strong>Ordinal</strong> before you run any analysis on it. This is the same variable audit from earlier in this chapter. There, you audited a column you imported. Here, you audit one you just created yourself.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/images/screenshots/ch01/ch01-jasp-11-bands-setup.png" class="img-fluid figure-img" alt="The JASP computed column editor with a formula that cuts Waiting_Time_Mins into ten-minute bands."></p>
+<figcaption>Creating a computed column for the ten-minute bands</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-11-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-11-2-tab">
+<p>PocketStat has no banding tool, so read the bands off the picture instead. Choose <strong>Distribution shape</strong> on the Analyse tab, pick <code>Waiting_Time_Mins</code>, and set the histogram to ten-minute bars.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/images/screenshots/ch01/ch01-pocketstat-11-bands-setup.png" class="img-fluid figure-img" alt="The PocketStat Distribution shape output for Waiting_Time_Mins, with the histogram bars falling into ten-minute bands."></p>
+<figcaption>Reading the ten-minute bands off the distribution</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-12.-add-the-cumulative-column" class="level3">
+<h3 class="anchored" data-anchor-id="step-12.-add-the-cumulative-column">Step 12. Add the cumulative column</h3>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-12-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-1" role="tab" aria-controls="tabset-12-1" aria-selected="true" href="">JASP</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-12-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-2" role="tab" aria-controls="tabset-12-2" aria-selected="false" href="">PocketStat</a></li></ul>
+<div class="tab-content">
+<div id="tabset-12-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-12-1-tab">
+<p>Run <strong>Descriptives</strong> on <code>Wait_Band</code> with <strong>Frequency tables</strong> ticked. The cumulative percent column is produced for you.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/images/screenshots/ch01/ch01-jasp-12-cumulative-column.png" class="img-fluid figure-img" alt="A JASP frequency table for the banded variable, with the cumulative percent column marked."></p>
+<figcaption>The cumulative percent column in the output</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-12-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-12-2-tab">
+<p>Copy the band counts into your notes and write a running total beside them. The running total is the cumulative frequency, and dividing it by 200 gives cumulative relative frequency.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/images/screenshots/ch01/ch01-pocketstat-12-cumulative-column.png" class="img-fluid figure-img" alt="A worksheet with the band counts copied from PocketStat and a running total written beside them."></p>
+<figcaption>Building the cumulative column by hand</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-13.-check-the-finished-grouped-table" class="level3">
+<h3 class="anchored" data-anchor-id="step-13.-check-the-finished-grouped-table">Step 13. Check the finished grouped table</h3>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-13-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-13-1" role="tab" aria-controls="tabset-13-1" aria-selected="true" href="">JASP</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-13-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-13-2" role="tab" aria-controls="tabset-13-2" aria-selected="false" href="">PocketStat</a></li></ul>
+<div class="tab-content">
+<div id="tabset-13-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-13-1-tab">
+<p>Read down the bands and confirm each one is ten minutes wide, that no waiting time could fall into two bands, and that the final cumulative percent is 100.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/images/screenshots/ch01/ch01-jasp-13-grouped-table-output.png" class="img-fluid figure-img" alt="A JASP frequency table for the banded waiting time, showing each ten-minute band with its count, percent and cumulative percent."></p>
+<figcaption>The finished grouped frequency table</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-13-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-13-2-tab">
+<p>Read down the bands and confirm each one is ten minutes wide, that no waiting time could fall into two bands, and that the final cumulative total is 200.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/images/screenshots/ch01/ch01-pocketstat-13-grouped-table-output.png" class="img-fluid figure-img" alt="The completed grouped table, each ten-minute band with its count, relative frequency and cumulative frequency."></p>
+<figcaption>The finished grouped frequency table</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="output-3-descriptive-statistics-for-the-three-numerical-variables" class="level3">
+<h3 class="anchored" data-anchor-id="output-3-descriptive-statistics-for-the-three-numerical-variables">Output 3, descriptive statistics for the three numerical variables</h3>
+</section>
+<section id="step-14.-move-the-three-variables-in" class="level3">
+<h3 class="anchored" data-anchor-id="step-14.-move-the-three-variables-in">Step 14. Move the three variables in</h3>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-14-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-14-1" role="tab" aria-controls="tabset-14-1" aria-selected="true" href="">JASP</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-14-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-14-2" role="tab" aria-controls="tabset-14-2" aria-selected="false" href="">PocketStat</a></li></ul>
+<div class="tab-content">
+<div id="tabset-14-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-14-1-tab">
+<p>Return to <strong>Descriptive Statistics</strong> and put <code>Age</code>, <code>Satisfaction</code> and <code>Waiting_Time_Mins</code> into <strong>Variables</strong>. Clear <code>Ticket_Type</code> out first so the table stays readable.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/images/screenshots/ch01/ch01-jasp-14-three-variables-selected.png" class="img-fluid figure-img" alt="The JASP Descriptive Statistics panel with Age, Satisfaction and Waiting_Time_Mins in the Variables box."></p>
+<figcaption>Moving the three numerical variables in</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-14-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-14-2-tab">
+<p>Return to <strong>Descriptive statistics</strong> and choose <code>Age</code>, <code>Satisfaction</code> and <code>Waiting_Time_Mins</code>. Clear <code>Ticket_Type</code> out first.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/images/screenshots/ch01/ch01-pocketstat-14-three-variables-selected.png" class="img-fluid figure-img" alt="The PocketStat variable chooser with Age, Satisfaction and Waiting_Time_Mins in the chosen list."></p>
+<figcaption>Choosing the three numerical variables</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-15.-ask-for-the-six-statistics" class="level3">
+<h3 class="anchored" data-anchor-id="step-15.-ask-for-the-six-statistics">Step 15. Ask for the six statistics</h3>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-15-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-15-1" role="tab" aria-controls="tabset-15-1" aria-selected="true" href="">JASP</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-15-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-15-2" role="tab" aria-controls="tabset-15-2" aria-selected="false" href="">PocketStat</a></li></ul>
+<div class="tab-content">
+<div id="tabset-15-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-15-1-tab">
+<p>Open the <strong>Statistics</strong> section and tick mean, median, standard deviation, minimum, maximum and quartiles. Untick anything you were not asked for, because a table with 20 rows is harder to read than one with 6.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/images/screenshots/ch01/ch01-jasp-15-statistics-ticked.png" class="img-fluid figure-img" alt="The JASP Statistics section expanded, with mean, median, standard deviation, minimum, maximum and quartiles ticked."></p>
+<figcaption>Ticking the statistics to report</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-15-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-15-2-tab">
+<p>PocketStat reports centre, spread, and quartiles together for a scale variable, so there is nothing to tick. Check the options panel to see what it will report before you run it.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/images/screenshots/ch01/ch01-pocketstat-15-statistics-ticked.png" class="img-fluid figure-img" alt="The PocketStat options panel for Descriptive statistics, showing which summaries it will report."></p>
+<figcaption>The statistics PocketStat reports by default</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-16.-read-the-output-table" class="level3">
+<h3 class="anchored" data-anchor-id="step-16.-read-the-output-table">Step 16. Read the output table</h3>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-16-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-16-1" role="tab" aria-controls="tabset-16-1" aria-selected="true" href="">JASP</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-16-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-16-2" role="tab" aria-controls="tabset-16-2" aria-selected="false" href="">PocketStat</a></li></ul>
+<div class="tab-content">
+<div id="tabset-16-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-16-1-tab">
+<p>Variables run across the columns and statistics down the rows. Read one column at a time rather than one row, because a single variable’s centre and spread belong together.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/images/screenshots/ch01/ch01-jasp-16-statistics-output.png" class="img-fluid figure-img" alt="A JASP descriptives table with Age, Satisfaction and Waiting_Time_Mins down the columns and the six statistics down the rows."></p>
+<figcaption>The finished descriptive statistics table</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-16-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-16-2-tab">
+<p>Open the <strong>Results</strong> tab. Read one variable at a time, taking its centre and its spread together.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/images/screenshots/ch01/ch01-pocketstat-16-statistics-output.png" class="img-fluid figure-img" alt="A PocketStat results table giving centre, spread and quartiles for the three numerical variables."></p>
+<figcaption>The finished descriptive statistics table</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="output-4-two-plots" class="level3">
+<h3 class="anchored" data-anchor-id="output-4-two-plots">Output 4, two plots</h3>
+</section>
+<section id="step-17.-plot-region-as-a-bar-chart" class="level3">
+<h3 class="anchored" data-anchor-id="step-17.-plot-region-as-a-bar-chart">Step 17. Plot <code>Region</code> as a bar chart</h3>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-17-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-17-1" role="tab" aria-controls="tabset-17-1" aria-selected="true" href="">JASP</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-17-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-17-2" role="tab" aria-controls="tabset-17-2" aria-selected="false" href="">PocketStat</a></li></ul>
+<div class="tab-content">
+<div id="tabset-17-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-17-1-tab">
+<p>With <code>Region</code> in <strong>Variables</strong>, open the <strong>Plots</strong> section and tick the bar plot. Check the vertical axis starts at zero.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/images/screenshots/ch01/ch01-jasp-17-bar-chart-region.png" class="img-fluid figure-img" alt="The JASP Plots section with the bar plot option ticked, and the resulting bar chart of Region beside it."></p>
+<figcaption>A bar chart of Region</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-17-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-17-2-tab">
+<p>Run <strong>Descriptive statistics</strong> on <code>Region</code>. The frequency chart draws one bar per region. Check the vertical axis starts at zero.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/images/screenshots/ch01/ch01-pocketstat-17-bar-chart-region.png" class="img-fluid figure-img" alt="The PocketStat results view showing the frequency chart for Region as bars, one per region."></p>
+<figcaption>A bar chart of Region</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-18.-plot-waiting_time_mins-as-a-histogram-and-a-boxplot" class="level3">
+<h3 class="anchored" data-anchor-id="step-18.-plot-waiting_time_mins-as-a-histogram-and-a-boxplot">Step 18. Plot <code>Waiting_Time_Mins</code> as a histogram and a boxplot</h3>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-18-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-18-1" role="tab" aria-controls="tabset-18-1" aria-selected="true" href="">JASP</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-18-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-18-2" role="tab" aria-controls="tabset-18-2" aria-selected="false" href="">PocketStat</a></li></ul>
+<div class="tab-content">
+<div id="tabset-18-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-18-1-tab">
+<p>With <code>Waiting_Time_Mins</code> in <strong>Variables</strong>, tick the distribution plot and the boxplot in the <strong>Plots</strong> section. Read them together: the histogram shows the shape and the boxplot shows the quartiles and the distant values.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/images/screenshots/ch01/ch01-jasp-18-histogram-boxplot-waiting.png" class="img-fluid figure-img" alt="The JASP Plots section with distribution plot and boxplot ticked, and both plots for Waiting_Time_Mins shown."></p>
+<figcaption>A histogram and boxplot of Waiting_Time_Mins</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-18-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-18-2-tab">
+<p>Choose <strong>Distribution shape</strong> on the Analyse tab and pick <code>Waiting_Time_Mins</code>. The histogram and the boxplot are drawn on the same scale, so the tail lines up across both.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/images/screenshots/ch01/ch01-pocketstat-18-histogram-boxplot-waiting.png" class="img-fluid figure-img" alt="The PocketStat Distribution shape output for Waiting_Time_Mins, a histogram above a boxplot on the same scale."></p>
+<figcaption>A histogram and boxplot of Waiting_Time_Mins</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>Then answer three questions from your own output:</p>
+<ol type="1">
+<li>What proportion of customers waited under 40 minutes? Which column gave you that most directly?</li>
+<li>Compare the mean and median of <code>Waiting_Time_Mins</code>. What does the comparison say about the shape, and did the histogram agree?</li>
+<li>Is the mean of <code>Satisfaction</code> a defensible summary here? Say what you would report and why.</li>
+</ol>
+</section>
+</section>
+<section id="activity-4-manager-summary-25-minutes" class="level2">
+<h2 class="anchored" data-anchor-id="activity-4-manager-summary-25-minutes">Activity 4: Manager summary (25 minutes)</h2>
+<p>Write <strong>one paragraph, no more than 120 words</strong>, answering the chapter’s decision question: is the service any good?</p>
+<p>A strong paragraph does five things:</p>
+<ol type="1">
+<li>States what was measured and on how many cases.</li>
+<li>Gives the centre and the spread, in the original units.</li>
+<li>Names the decision-relevant tail, not only the average.</li>
+<li>Says what the evidence leaves open.</li>
+<li>Ends with something a manager could do.</li>
+</ol>
+<p>A weak paragraph reports the procedure, gives a mean with no spread, or quietly promotes a sample statistic to a fact about all customers.</p>
+<p>Write it for a service manager who has not seen the data and will not read a table.</p>
+</section>
+<section id="activity-5-share-and-upload-10-minutes" class="level2">
+<h2 class="anchored" data-anchor-id="activity-5-share-and-upload-10-minutes">Activity 5: Share and upload (10 minutes)</h2>
+<p>Swap paragraphs with a classmate. Check theirs against the five points above and mark which are missing. Take their comments on yours, revise once, and upload.</p>
+<section id="step-19.-take-a-clean-copy-of-one-output-table" class="level3">
+<h3 class="anchored" data-anchor-id="step-19.-take-a-clean-copy-of-one-output-table">Step 19. Take a clean copy of one output table</h3>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-19-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-19-1" role="tab" aria-controls="tabset-19-1" aria-selected="true" href="">JASP</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-19-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-19-2" role="tab" aria-controls="tabset-19-2" aria-selected="false" href="">PocketStat</a></li></ul>
+<div class="tab-content">
+<div id="tabset-19-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-19-1-tab">
+<p>Right-click the table in the output pane and copy it. Paste it into your document and check the column headings survived the paste.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/images/screenshots/ch01/ch01-jasp-19-copy-output.png" class="img-fluid figure-img" alt="A JASP output table right-clicked, with the copy option highlighted in the menu."></p>
+<figcaption>Copying a cleaned table out of the tool</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-19-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-19-2-tab">
+<p>On the <strong>Results</strong> tab, use the write-up and report blocks to take a clean copy. Paste it into your document and check the column headings survived the paste.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/images/screenshots/ch01/ch01-pocketstat-19-copy-output.png" class="img-fluid figure-img" alt="The PocketStat results view with the write-up and report blocks open, ready to copy."></p>
+<figcaption>Copying a cleaned table out of the tool</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>Submit your variable audit table, one cleaned output table, and your final paragraph.</p>
+</section>
+</section>
+<section id="what-good-looks-like" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="what-good-looks-like">What good looks like</h2>
+<blockquote class="blockquote">
+<p>Waiting time was recorded for 200 customers at one branch over one month. Half waited 46 minutes or less and the middle half fell between 38 and 53 minutes, so the service is consistent for most people. Nineteen customers, just under one in ten, waited more than an hour, and two waited over 75 minutes. Return intention is a single ordinal rating, so the median of 4 is the honest summary, and the average of 3.66 describes no customer. These figures describe this branch in this month and say nothing about other branches. The long waits are worth investigating first, because that is where a 60-minute service standard is breached.</p>
+</blockquote>
+<p>110 words, under the 120-word limit. Each of the five requirements above has a specific sentence doing its job:</p>
+<ol type="1">
+<li>“Waiting time was recorded for 200 customers at one branch over one month” states what was measured and the sample size.</li>
+<li>“Half waited 46 minutes or less and the middle half fell between 38 and 53 minutes” gives the centre and the spread, both in minutes, the same units the manager already thinks in.</li>
+<li>“Nineteen customers, just under one in ten, waited more than an hour, and two waited over 75 minutes” names the tail the average alone hides.</li>
+<li>“These figures describe this branch in this month and say nothing about other branches” states what the evidence leaves open.</li>
+<li>“The long waits are worth investigating first, because that is where a 60-minute service standard is breached” ends with something a manager could do next.</li>
+</ol>
+<p>Every figure in the paragraph is the real figure from the file. You should be able to produce each one from the outputs you built in Activity 3, so check your own paragraph against your own output before you compare it with anyone else’s.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/mohammedalisharafuddin\.github\.io\/dmm-textbook");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../weeks/week01-reference.html" class="pagination-link" aria-label="Running the analysis, and chapter reference">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Running the analysis, and chapter reference</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../weeks/week01-independent-study.html" class="pagination-link" aria-label="Independent study and submission">
+        <span class="nav-page-text"><span class="chapter-title">Independent study and submission</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
