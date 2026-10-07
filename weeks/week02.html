@@ -6,10 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="keywords" content="descriptive statistics, case and variable, population and sample, parameter and statistic, sampling, business statistics">
-<meta name="description" content="Chapter 1, part 1. Cases and variables, population and sample, parameter and statistic, description and inference, and how a sample is drawn.">
+<meta name="keywords" content="shape of a distribution, skewness, kurtosis, standard error of skewness, histogram, boxplot, JASP workflow">
+<meta name="description" content="Chapter 2, part 1. Reading the shape of a distribution: peaks, symmetry, skewness and kurtosis with their standard errors, and a repeatable JASP workflow.">
 
-<title>Part 1: Foundations – Decision Making for Management</title>
+<title>Part 1: The shape of a distribution – Decision Making for Management</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -32,8 +32,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../weeks/week01-part2.html" rel="next">
-<link href="../front-matter/dataset-overview.html" rel="prev">
+<link href="../weeks/week02-part2.html" rel="next">
+<link href="../weeks/week01-independent-study.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -251,21 +251,21 @@ window.Quarto = {
 <link rel="stylesheet" href="../assets/css/fonts.css">
 <link rel="stylesheet" href="../assets/css/typography.css">
 <link rel="stylesheet" href="../assets/css/student-book.css">
-<meta property="og:title" content="Part 1: Foundations – Decision Making for Management">
+<meta property="og:title" content="Part 1: The shape of a distribution – Decision Making for Management">
 <meta property="og:description" content="A CC BY undergraduate textbook that teaches descriptive and inferential statistics through management decisions, using JASP and PocketStat.">
-<meta property="og:image" content="https://mohammedalisharafuddin.github.io/dmm-textbook/assets/images/screenshots/ch01/ch01-jasp-f1-dataset-view.png">
+<meta property="og:image" content="https://mohammedalisharafuddin.github.io/dmm-textbook/assets/images/screenshots/ch02/ch02-jasp-f1-four-distribution-plots.png">
 <meta property="og:site_name" content="Decision Making for Management">
 <meta property="og:locale" content="en_GB">
-<meta property="og:image:alt" content="The JASP data view filled with DMM_Teaching_Data_Full.csv. Row numbers run down the left to 200, and the column headers name the variables.">
-<meta property="og:image:height" content="1005">
-<meta property="og:image:width" content="1915">
-<meta name="twitter:title" content="Part 1: Foundations – Decision Making for Management">
+<meta property="og:image:alt" content="Four JASP distribution plots in a two-by-two grid. Waiting_Time_Mins rises to a single peak in the mid-40s with roughly equal tails. Spending has a tall peak between 500 and 600 USD, an empty gap between 700 and 800, and a smaller second peak near 1,000. Satisfaction peaks near 4 and is cut off sharply at 5 on the right. Age is broad and flat between 25 and 45 with no single tall peak.">
+<meta property="og:image:height" content="743">
+<meta property="og:image:width" content="1015">
+<meta name="twitter:title" content="Part 1: The shape of a distribution – Decision Making for Management">
 <meta name="twitter:description" content="A CC BY undergraduate textbook that teaches descriptive and inferential statistics through management decisions, using JASP and PocketStat.">
-<meta name="twitter:image" content="https://mohammedalisharafuddin.github.io/dmm-textbook/assets/images/screenshots/ch01/ch01-jasp-f1-dataset-view.png">
+<meta name="twitter:image" content="https://mohammedalisharafuddin.github.io/dmm-textbook/assets/images/screenshots/ch02/ch02-jasp-f1-four-distribution-plots.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image:alt" content="The JASP data view filled with DMM_Teaching_Data_Full.csv. Row numbers run down the left to 200, and the column headers name the variables.">
-<meta name="twitter:image-height" content="1005">
-<meta name="twitter:image-width" content="1915">
+<meta name="twitter:image:alt" content="Four JASP distribution plots in a two-by-two grid. Waiting_Time_Mins rises to a single peak in the mid-40s with roughly equal tails. Spending has a tall peak between 500 and 600 USD, an empty gap between 700 and 800, and a smaller second peak near 1,000. Satisfaction peaks near 4 and is cut off sharply at 5 on the right. Age is broad and flat between 25 and 45 with no single tall peak.">
+<meta name="twitter:image-height" content="743">
+<meta name="twitter:image-width" content="1015">
 <meta name="dmm-crossref-renumbered" content="1"></head>
 
 <body class="nav-sidebar floating quarto-light">
@@ -277,7 +277,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/week01.html">Chapter 1: Data, Measurement Scales, and Descriptive Statistics</a></li><li class="breadcrumb-item"><a href="../weeks/week01.html"><span class="chapter-title">Part 1: Foundations</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/week02.html">Chapter 2: Introduction to JASP and the Normal Distribution</a></li><li class="breadcrumb-item"><a href="../weeks/week02.html"><span class="chapter-title">Part 1: The shape of a distribution</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -351,7 +351,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../weeks/week01.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Part 1: Foundations</span></a>
+  <a href="../weeks/week01.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Part 1: Foundations</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -392,7 +392,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../weeks/week02.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Part 1: The shape of a distribution</span></a>
+  <a href="../weeks/week02.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Part 1: The shape of a distribution</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -434,24 +434,18 @@ window.Quarto = {
   <ul>
   <li><a href="#this-chapters-lecture" id="toc-this-chapters-lecture" class="nav-link active" data-scroll-target="#this-chapters-lecture">This chapter’s lecture</a></li>
   <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives">Learning objectives</a></li>
-  <li><a href="#sec-language" id="toc-sec-language" class="nav-link" data-scroll-target="#sec-language">Statistics as a decision language</a>
+  <li><a href="#sec-position" id="toc-sec-position" class="nav-link" data-scroll-target="#sec-position">Where a value sits</a>
   <ul class="collapse">
-  <li><a href="#where-judgement-takes-over" id="toc-where-judgement-takes-over" class="nav-link" data-scroll-target="#where-judgement-takes-over">Where judgement takes over</a></li>
-  <li><a href="#the-problem-with-intuition" id="toc-the-problem-with-intuition" class="nav-link" data-scroll-target="#the-problem-with-intuition">The problem with intuition</a></li>
+  <li><a href="#four-terms-for-this-chapter" id="toc-four-terms-for-this-chapter" class="nav-link" data-scroll-target="#four-terms-for-this-chapter">Four terms for this chapter</a></li>
   </ul></li>
-  <li><a href="#sec-evidence" id="toc-sec-evidence" class="nav-link" data-scroll-target="#sec-evidence">Datum, data, information, and evidence</a></li>
-  <li><a href="#sec-averages" id="toc-sec-averages" class="nav-link" data-scroll-target="#sec-averages">Mean, median, mode, and proportion</a>
+  <li><a href="#sec-shape-reading" id="toc-sec-shape-reading" class="nav-link" data-scroll-target="#sec-shape-reading">Reading a histogram for shape</a></li>
+  <li><a href="#sec-skewness" id="toc-sec-skewness" class="nav-link" data-scroll-target="#sec-skewness">Skewness as a number</a>
   <ul class="collapse">
-  <li><a href="#is-an-average-the-same-as-a-mean" id="toc-is-an-average-the-same-as-a-mean" class="nav-link" data-scroll-target="#is-an-average-the-same-as-a-mean">Is an average the same as a mean?</a></li>
+  <li><a href="#skewness-against-its-standard-error" id="toc-skewness-against-its-standard-error" class="nav-link" data-scroll-target="#skewness-against-its-standard-error">Skewness against its standard error</a></li>
   </ul></li>
-  <li><a href="#sec-cases" id="toc-sec-cases" class="nav-link" data-scroll-target="#sec-cases">Cases, variables, observations, and values</a></li>
-  <li><a href="#sec-population" id="toc-sec-population" class="nav-link" data-scroll-target="#sec-population">Population, sample, parameter, and statistic</a></li>
-  <li><a href="#sec-describing" id="toc-sec-describing" class="nav-link" data-scroll-target="#sec-describing">Describing and inferring</a>
-  <ul class="collapse">
-  <li><a href="#three-errors-at-the-boundary" id="toc-three-errors-at-the-boundary" class="nav-link" data-scroll-target="#three-errors-at-the-boundary">Three errors at the boundary</a></li>
-  </ul></li>
-  <li><a href="#sec-sampling" id="toc-sec-sampling" class="nav-link" data-scroll-target="#sec-sampling">Sampling and representativeness</a></li>
-  <li><a href="#sec-variation" id="toc-sec-variation" class="nav-link" data-scroll-target="#sec-variation">Variation in data</a></li>
+  <li><a href="#sec-kurtosis" id="toc-sec-kurtosis" class="nav-link" data-scroll-target="#sec-kurtosis">Kurtosis and the tails</a></li>
+  <li><a href="#sec-boxplot-shape" id="toc-sec-boxplot-shape" class="nav-link" data-scroll-target="#sec-boxplot-shape">Boxplots and shape</a></li>
+  <li><a href="#sec-workflow" id="toc-sec-workflow" class="nav-link" data-scroll-target="#sec-workflow">A repeatable workflow</a></li>
   <li><a href="#section-summary" id="toc-section-summary" class="nav-link" data-scroll-target="#section-summary">Section summary</a></li>
   </ul>
 </nav>
@@ -459,9 +453,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/week01.html">Chapter 1: Data, Measurement Scales, and Descriptive Statistics</a></li><li class="breadcrumb-item"><a href="../weeks/week01.html"><span class="chapter-title">Part 1: Foundations</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/week02.html">Chapter 2: Introduction to JASP and the Normal Distribution</a></li><li class="breadcrumb-item"><a href="../weeks/week02.html"><span class="chapter-title">Part 1: The shape of a distribution</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">Part 1: Foundations</span></h1>
+<h1 class="title"><span class="chapter-title">Part 1: The shape of a distribution</span></h1>
 </div>
 
 
@@ -477,7 +471,7 @@ window.Quarto = {
 <div>
   <div class="keywords">
     <div class="block-title">Keywords</div>
-    <p>descriptive statistics, case and variable, population and sample, parameter and statistic, sampling, business statistics</p>
+    <p>shape of a distribution, skewness, kurtosis, standard error of skewness, histogram, boxplot, JASP workflow</p>
   </div>
 </div>
 
@@ -494,39 +488,40 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>A service manager hands you a file of 200 customer records and asks a simple question: <strong>does the service meet expectations?</strong> Before you can answer, you have to decide what kind of data you are holding, which summaries the data will support, and what the numbers leave open.</p>
-<p>In this chapter you will use <code>DMM_Teaching_Data_Full.csv</code>, 200 customer records with 26 variables. Every figure quoted here comes from that file and is printed on the page, so you can follow the chapter without opening anything. You open the file yourself in the tutorial, where you will reproduce these numbers in JASP or PocketStat. The <a href="../front-matter/dataset-overview.html">dataset overview</a> lists every variable it holds.</p>
+<p>The same service manager from chapter 1 has read your summary and comes back with two sharper questions. <strong>One customer waited 77 minutes. Was that an ordinary bad day, or a sign that something went wrong? And can the branch promise that nine customers in ten will be seen within an hour?</strong></p>
+<p>Chapter 1 gave you the centre and the spread of the waiting times. To answer these questions you need to know where a single value falls inside the distribution, and what share of customers falls beyond a given point. That takes the shape of the distribution, the normal curve, and the z-score.</p>
+<p>You will use the same file, <code>DMM_Teaching_Data_Full.csv</code>, 200 customer records with 26 variables. Every figure quoted in this chapter comes from that file and is printed on the page. The <a href="../front-matter/dataset-overview.html">dataset overview</a> lists every variable it contains.</p>
 </div>
 </div>
 <section id="this-chapters-lecture" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="this-chapters-lecture">This chapter’s lecture</h2>
 <div class="lp-header lecture">
-<p><span class="lp-type">Lecture</span> <strong>Data, measurement scales, and descriptive statistics</strong> <span class="lp-meta">1 hour · 4 activities</span></p>
+<p><span class="lp-type">Lecture</span> <strong>JASP workflow and normal distribution</strong> <span class="lp-meta">1 hour · 4 activities</span></p>
 </div>
 <div class="lp-grid lp-4">
 <div class="lp-card lecture">
 <p><span class="badge bg-discussion">Discussion</span></p>
 <p><strong><span class="act-num">1</span> Welcome and weekly goals</strong></p>
 <p><span class="act-time">⏱ 10 min</span></p>
-<p>How the module is organised, and why data types and descriptive statistics come before any management decision.</p>
+<p>Connect last week’s descriptive work to the shape, the spread and the unusual values in a dataset.</p>
 </div>
 <div class="lp-card lecture">
 <p><span class="badge bg-acquisition">Acquisition</span></p>
-<p><strong><span class="act-num">2</span> Core concepts</strong></p>
+<p><strong><span class="act-num">2</span> Normal curve and z-scores</strong></p>
 <p><span class="act-time">⏱ 30 min</span></p>
-<p>How data, variables, and measurement scales connect to frequency tables, measures of centre, and measures of spread.</p>
+<p>How the normal distribution, the empirical rule and z-scores help you judge whether a value is typical or unusual.</p>
 </div>
 <div class="lp-card lecture">
 <p><span class="badge bg-practice">Practice</span></p>
 <p><strong><span class="act-num">3</span> Worked example and discussion</strong></p>
 <p><span class="act-time">⏱ 15 min</span></p>
-<p>Interpreting a short set of descriptive outputs, and saying what a manager can and cannot infer from them.</p>
+<p>Work through a short example and explain what a z-score tells you in plain language.</p>
 </div>
 <div class="lp-card lecture">
 <p><span class="badge bg-assessment">Assessment</span></p>
 <p><strong><span class="act-num">4</span> Exit check</strong></p>
 <p><span class="act-time">⏱ 5 min</span></p>
-<p>A short check on variable type and the most suitable descriptive summary.</p>
+<p>A short exit check on the normal curve or z-score interpretation.</p>
 </div>
 </div>
 </section>
@@ -534,432 +529,725 @@ window.Quarto = {
 <h2 class="unnumbered anchored" data-anchor-id="learning-objectives">Learning objectives</h2>
 <p>After studying this chapter you should be able to:</p>
 <ol type="1">
-<li>Explain why a manager describes evidence before acting on it.</li>
-<li>Distinguish a case, a variable, an observation, and a value in a real dataset.</li>
-<li>Separate a population from a sample, and a parameter from a statistic.</li>
-<li>Say what descriptive statistics can establish and what only inference can.</li>
-<li>Classify a variable as nominal, ordinal, interval, or ratio, and as discrete or continuous.</li>
-<li>Identify which variable is independent and which is dependent in a stated question.</li>
-<li>Build and read frequency, relative frequency, and grouped and cumulative frequency tables.</li>
-<li>Choose a graph that suits the variable type and the question.</li>
-<li>Calculate and interpret the mean, median, mode, range, variance, standard deviation, quartiles, and the interquartile range.</li>
-<li>Recognise a misleading summary or display and say why it misleads.</li>
+<li>Describe the shape of a distribution from a histogram and a boxplot, naming its peaks, its symmetry and its tails.</li>
+<li>Interpret skewness and kurtosis, and judge each against its standard error.</li>
+<li>Follow a repeatable workflow in JASP or PocketStat from loading a file to an annotated output.</li>
+<li>State the properties of the normal distribution and use the empirical rule to estimate the share of cases within one, two and three standard deviations of the mean.</li>
+<li>Apply Chebyshev’s rule when the shape of a distribution is unknown or clearly non-normal.</li>
+<li>Calculate a z-score, convert a z-score back into the original units, and use z-scores to compare values measured in different units.</li>
+<li>Classify a value as typical, unusual or extreme from its z-score, and explain in plain language what that means for a manager.</li>
+<li>Use the standard normal table to find the share of cases above, below or between two values, and the value that marks a given percentile.</li>
+<li>Judge whether a variable is close enough to normal for the normal model, using a histogram, a Q-Q plot, skewness, kurtosis and the Shapiro-Wilk test.</li>
+<li>Recognise when the normal model gives impossible or distorted answers, and report the alternative.</li>
 </ol>
-<div class="callout callout-style-default callout-note callout-titled" title="Important Instruction">
+<div class="callout callout-style-default callout-note callout-titled" title="How to use this chapter">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Important Instruction
+<span class="screen-reader-only">Note</span>How to use this chapter
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <p>This week’s learning plan is 9 hours: 1 hour of synchronous lecture, 2 hours of synchronous tutorial, and 6 hours of asynchronous self-study.</p>
-<p>You must read all four parts of this chapter word by word before moving to the tutorial. You are permitted to use Google NotebookLM to brainstorm the theories, but you must complete the “Worked Examples” and the “Try It” exercises independently, without any AI assistance. The full policy, and the reason NotebookLM is the only tool permitted, is on the <a href="../front-matter/ai-use.html">Using AI on This Module</a> page.</p>
-<p>You should also understand the key terms and how the statistical techniques apply to managerial decision-making, because the tutorial opens by loading the data and running the analysis.</p>
-<p>If you are a fast reader and finish this chapter before the planned timing, continue to the recommended readings in the independent study section. Complete the independent study and submit your weekly progress.</p>
+<p>You must read all four parts of this chapter in full before moving to the tutorial. You are permitted to use Google NotebookLM to brainstorm the concepts. Complete the worked examples and the Try It exercises yourself, with no AI assistance. The full policy, and the reason NotebookLM is the only tool permitted, is on the <a href="../front-matter/ai-use.html">Using AI on This Module</a> page. NotebookLM reads one web page per source, so add all six pages of this chapter to your notebook, as set out in <a href="../front-matter/ai-use.html#sec-notebooklm">adding a chapter to NotebookLM</a>.</p>
+<p>Keep a calculator beside you. Every z-score in this chapter is worked by hand once, and the tutorial asks you to check the software against your own arithmetic.</p>
+<p>If you finish this chapter before the planned time, continue to the recommended reading in the independent study section. Complete the independent study and submit your weekly progress.</p>
 </div>
 </div>
 </section>
-<section id="sec-language" class="level2">
-<h2 class="anchored" data-anchor-id="sec-language">Statistics as a decision language</h2>
-<p>You may have wondered where statistics will be used once you are managing something. The answer is that you will be handed a set of resources including strategies, goals, KPIs, and numbers by other people, and you will have to decide whether to act on them.</p>
-<p>A regional manager sends you a spreadsheet showing that complaints rose 40 per cent last quarter. A supplier tells you their delivery time averages two days. A colleague reports that customers in the North are happier than customers in the South. In each case somebody has already done the arithmetic, and in each case the arithmetic is the easy half. The greater challenge is determining what conclusions the data can support.</p>
-<p>Often managers decide with incomplete information. Read these two examples carefully. If a restaurant manager wants to change his opening hours, he must first study daily sales and the busy hours. If a hospital administrator wants to decide the gap between appointment slots, she must first study the current waiting times, and she must also decide from that data whether the schedule needs changing at all. In both cases the first task is to describe the evidence clearly.</p>
-<p>Statistics is a language for reasoning. A number on its own settles nothing. A number with its units, its spread, its source and its limits, together with the right statistical technique, can help a manager decide.</p>
-<p>Consider the difference between these two sentences about the same file.</p>
-<blockquote class="blockquote">
-<p>Average waiting time is 45 minutes.</p>
-</blockquote>
-<blockquote class="blockquote">
-<p>Across 200 customers surveyed at one branch in one month, 104 waited 46 minutes or less, a further 77 waited between 47 minutes and an hour, and 19 waited over an hour.</p>
-</blockquote>
-<p>The first statement requires only basic calculation. The second tells a manager where the problem is, how many people it affects, and how far the claim reaches. Each sentence is accurate. Only the second is useful. You will learn to write that kind of sentence by the end of this week.</p>
-<section id="where-judgement-takes-over" class="level3">
-<h3 class="anchored" data-anchor-id="where-judgement-takes-over">Where judgement takes over</h3>
-<p>You should know where the boundary sits between analysis and interpretation before you start, because producing statistics is easy. Any statistical software will do it, and so will a calculator. What matters is how you interpret the result and what you decide from it.</p>
-<p>Statistics tells you what changed. For example: waiting time fell by four minutes. Whether four minutes justifies another staff member is your judgement, and the analysis leaves it with you.</p>
-<p>Statistics also answers the question you ask, so framing the question is your work. Ask “what is the average wait” and you learn the average. Ask “how many customers waited longer than we promised” and you learn something a manager can act on. The software processes either question with equal efficiency and applies no judgement about which one mattered.</p>
-<p>Observation can show association. It cannot show cause. The manager must decide whether a causal claim is justified. Two things that move together may share a cause, may be connected the other way round, or may be coincidence. You will study this in chapter 9 with correlation and chapter 11 with regression. For now the focus stays on data types, measurement scales and descriptive statistics.</p>
-</section>
-<section id="the-problem-with-intuition" class="level3">
-<h3 class="anchored" data-anchor-id="the-problem-with-intuition">The problem with intuition</h3>
-<p>Managers have extensive experience, yet experience is a poor guide to frequency. Two cognitive biases cause most of the damage.</p>
-<p><strong>Availability.</strong> Events that come to mind easily feel more common than they are. Handle one furious complaint and you will overestimate how many customers are furious, because that customer is vivid and the other 199 are quiet.</p>
-<p><strong>Confirmation.</strong> You weigh evidence that fits what you already believe more heavily than evidence that unsettles it. Convinced the evening shift is the problem, you will notice every evening failure and explain away the morning ones.</p>
-<p>Descriptive statistics works as a check on both. It forces every case into the count, including the ones that sit awkwardly with the story, and this chapter covers it in detail.</p>
+<section id="sec-position" class="level2">
+<h2 class="anchored" data-anchor-id="sec-position">Where a value sits</h2>
+<p>A single value means little until you know where it sits among the others. Chapter 1 gave you two numbers for the waiting times in the teaching dataset: a mean of 45.5 minutes and a standard deviation of 11.9 minutes. Those two numbers describe the column as a whole. The manager’s question is about one customer.</p>
+<p>For example: respondent 58 waited 77 minutes. That is 31.5 minutes above the mean. Whether 31.5 minutes is a lot depends on how much waiting times usually vary. In a branch where almost every wait falls between 44 and 47 minutes, 77 would be astonishing. In a branch where waits range freely from 10 minutes to two hours, 77 would pass unnoticed.</p>
+<p>The position of a value depends on two factors. The first is its distance from the centre and the second is the spread that distance is measured against. The <strong>shape</strong> of the distribution acts as a third factor that determines how to read the result. Distance and spread tell you how far out a value falls. Shape tells you how many other cases you should expect to find that far out.</p>
+<section id="four-terms-for-this-chapter" class="level3">
+<h3 class="anchored" data-anchor-id="four-terms-for-this-chapter">Four terms for this chapter</h3>
+<p>Four terms appear throughout the chapter. Each gets a full section later. You need to recognise all four now, because the next few pages use them before those sections arrive.</p>
+<p>A <strong>distribution</strong> is the pattern of values a variable takes: which values occur, and how often. A frequency table and a histogram are two ways of displaying one.</p>
+<p>The <strong>shape</strong> of a distribution is the outline its histogram makes: where it peaks, whether its two sides mirror each other, and how far its tails stretch.</p>
+<p>The <strong>normal distribution</strong> is a particular symmetric, bell-shaped curve. It serves as a reference model, and much of statistics compares real data against it.</p>
+<p>A <strong>z-score</strong> states how many standard deviations a value lies above or below the mean. Respondent 58’s wait of 77 minutes has a z-score of 2.65, meaning it lies 2.65 standard deviations above the mean. <a href="week02-part2.html#sec-zscores" class="quarto-xref"><span>z-scores</span></a> shows how that number is calculated and what it tells a manager.</p>
 </section>
 </section>
-<section id="sec-evidence" class="level2">
-<h2 class="anchored" data-anchor-id="sec-evidence">Datum, data, information, and evidence</h2>
-<p>In this section you will learn the difference between a datum, data, information and evidence. Even though these four words are used loosely in everyday speech, they carry different weight in a report, so you should use the appropriate one when needed.</p>
-<p><strong>Data</strong> are recorded values: <code>47</code>, <code>"East"</code>, <code>3.8</code>. A single value is a <strong>datum</strong>. On their own they mean nothing, because nothing tells you what was measured or on whom.</p>
-<p><strong>Information</strong> is data organised so a question can be asked of it. A table of complaints by region is information. So is a mean waiting time, or a count of how many customers held each ticket type.</p>
-<p><strong>Evidence</strong> is information brought to bear on a decision, with its limits stated. “Half of customers waited 46 minutes or less and 19 of 200 waited over an hour, and this is one month of data from one branch” is evidence, because a manager can act on it and can also see how far it reaches.</p>
-<p>You will spend this module learning to move from the datum to the evidence. Most weak reports stop at the information stage and present it as though the limits had been considered. Worked example 1.1 sets out the four in a single case.</p>
-<div class="worked-example">
-<p><span class="we-label">Worked example 1.1</span></p>
-<section id="from-datum-to-evidence" class="level3">
-<h3 class="anchored" data-anchor-id="from-datum-to-evidence">From datum to evidence</h3>
-<div class="we-problem">
-<p>The value <code>61</code> appears in the waiting time column of the teaching dataset, in row 5.</p>
-<p>Carry that single value through to something a manager can act on. At which point does it become data, then information, then evidence?</p>
+<section id="sec-shape-reading" class="level2">
+<h2 class="anchored" data-anchor-id="sec-shape-reading">Reading a histogram for shape</h2>
+<p>A histogram shows the shape of a continuous variable directly. You met it in chapter 1 as the display for one measurement across all cases. This chapter reads it more closely, and asks three questions of every histogram you draw.</p>
+<p><strong>How many peaks?</strong> A distribution with one clear peak is <strong>unimodal</strong>. A distribution with two separate peaks is bimodal in shape, which usually means two different groups share one column. Chapter 1 used “bimodal” for a column with two equally frequent values. Waiting time had two, 42 and 47 minutes, each recorded 10 times. Its histogram still rises to a single peak in the mid-40s, so its shape is unimodal. In this chapter, unimodal and bimodal describe the shape of the histogram.</p>
+<p><strong>Do the two sides mirror each other?</strong> A distribution whose left and right halves are close to mirror images is <strong>symmetric</strong>. One with a longer tail on one side is <strong>skewed</strong> towards that side. Chapter 1 showed you how to spot skew by comparing the mean with the median. This chapter adds a number that measures it.</p>
+<p><strong>How heavy are the tails?</strong> Two distributions can share a centre, a spread and perfect symmetry, and still differ in how often extreme values occur. One piles its cases tightly around the centre and sends a few far out. The other spreads its cases evenly across the range and has almost none in the far tails. Kurtosis measures this property, and <a href="#sec-kurtosis" class="quarto-xref"><span>Kurtosis and the tails</span></a> covers it.</p>
+<div id="fig-four-shapes" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Four JASP distribution plots in a two-by-two grid. Waiting_Time_Mins rises to a single peak in the mid-40s with roughly equal tails. Spending has a tall peak between 500 and 600 USD, an empty gap between 700 and 800, and a smaller second peak near 1,000. Satisfaction peaks near 4 and is cut off sharply at 5 on the right. Age is broad and flat between 25 and 45 with no single tall peak.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-four-shapes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/images/screenshots/ch02/ch02-jasp-f1-four-distribution-plots.png" class="img-fluid figure-img" alt="Four JASP distribution plots in a two-by-two grid. Waiting_Time_Mins rises to a single peak in the mid-40s with roughly equal tails. Spending has a tall peak between 500 and 600 USD, an empty gap between 700 and 800, and a smaller second peak near 1,000. Satisfaction peaks near 4 and is cut off sharply at 5 on the right. Age is broad and flat between 25 and 45 with no single tall peak.">
 </div>
-<div class="we-solution">
-<p>On its own, <code>61</code> is a <strong>datum</strong>. It could be an age, a price, a score, or a room number.</p>
-<p>Placed in its column, it becomes part of the <strong>data</strong>: respondent 5 waited 61 minutes.</p>
-<p>Counted alongside the other 199 rows, it becomes <strong>information</strong>: 19 of 200 customers waited more than 60 minutes.</p>
-<p>Stated with its limits and its consequence, it becomes <strong>evidence</strong>: “Just under one customer in ten waited more than an hour. These are one month’s customers at a single branch, so the figure describes this branch. The business as a whole is a separate question, and this file cannot reach it. The long waits are where a service-standard breach would show first.”</p>
-</div>
-</section>
-</div>
-</section>
-<section id="sec-averages" class="level2">
-<h2 class="anchored" data-anchor-id="sec-averages">Mean, median, mode, and proportion</h2>
-<p>Four terms appear on almost every page from here on: the <strong>mean</strong>, the <strong>median</strong>, the <strong>mode</strong>, and a <strong>proportion</strong>. Each gets a full section later in this chapter. You need to recognise all four now, because the next few pages use them before those sections arrive.</p>
-<p>The <strong>mean</strong> is one number standing in for a whole set: add every value and divide by how many there are.</p>
-<p>The <strong>median</strong> is the middle value once the data are in order.</p>
-<p>The <strong>mode</strong> is the value that occurs most often.</p>
-<p>A <strong>proportion</strong> is a share of the whole: a count divided by the total. It sits between 0 and 1, and multiplying it by 100 turns it into a percentage.</p>
-<p>For example: if you sat three tests and scored 86, 75, and 92, your mean score is the three scores added together and divided by three.</p>
-<p><span class="math display">\[\bar{x} = \frac{86 + 75 + 92}{3} = \frac{253}{3} = 84.3\]</span></p>
-<p>Your median score is the middle one once they are in order, 75, 86, 92, so the median is 86. No score occurs twice, so this set has no mode. And if 22 of the 40 students in your class are women, the proportion of women is <span class="math inline">\(22 \div 40 = 0.55\)</span>, or 55 per cent.</p>
-<section id="is-an-average-the-same-as-a-mean" class="level3">
-<h3 class="anchored" data-anchor-id="is-an-average-the-same-as-a-mean">Is an average the same as a mean?</h3>
-<p>A fifth word, <strong>average</strong>, is used loosely in everyday speech, and it needs a precise definition before it causes confusion.</p>
-<p>In conversation, “average” and “mean” are interchangeable, and most people who say one intend the other. In statistics teaching the word is used more broadly, as the umbrella term for any measure of the centre, so the mean, the median and the mode are together called the three averages. Technically, an average is a location at the centre of the data.</p>
-<p>No authority settles which use is correct. For a manager, that ambiguity is the practical problem. When a report hands you “the average”, the word alone leaves you guessing which of the three produced it. Read on and find out.</p>
-<p>A supplier quoting an average delivery time of two days has told you less than the wording suggests, because a mean of two days and a median of two days describe different businesses.</p>
-</section>
-</section>
-<section id="sec-cases" class="level2">
-<h2 class="anchored" data-anchor-id="sec-cases">Cases, variables, observations, and values</h2>
-<p>A <strong>case</strong> is the unit the data describe. In <code>DMM_Teaching_Data_Full.csv</code> each row is one respondent, so the respondent is the case. Cases are also called units, subjects, or records, and the word changes with the field while the meaning holds.</p>
-<p>A <strong>variable</strong> is a characteristic measured on every case. <code>Age</code>, <code>Region</code> and <code>Satisfaction</code> are variables, and each has its own column.</p>
-<p>An <strong>observation</strong> is the complete set of values recorded for one case, which is one whole row. A <strong>value</strong> is a single entry, one cell.</p>
-<div id="tbl-terms" class="tbl-def quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-terms-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;1.1: The four data terms as they appear in the teaching dataset
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-four-shapes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.1: Distribution plots for four variables in the teaching dataset, as JASP draws them.
 </figcaption>
-<div aria-describedby="tbl-terms-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="tbl-def caption-top table">
+</figure>
+</div>
+<p>The four variables in <a href="#fig-four-shapes" class="quarto-xref">Figure&nbsp;<span>2.1</span></a> show four different shapes, and each one shows a different pattern to a manager.</p>
+<div id="tbl-four-shapes" class="tbl-apa quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-four-shapes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2.1: Centre, range and shape for four variables in the teaching dataset
+</figcaption>
+<div aria-describedby="tbl-four-shapes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="tbl-apa caption-top table">
 <colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Term</th>
-<th>In this dataset</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Case</td>
-<td>One respondent, one row, 200 in total</td>
-</tr>
-<tr class="even">
-<td>Variable</td>
-<td><code>Age</code>, <code>Gender</code>, <code>Region</code>, <code>Satisfaction</code>, <code>Waiting_Time_Mins</code>, 26 in total</td>
-</tr>
-<tr class="odd">
-<td>Observation</td>
-<td>All 26 values recorded for respondent 1</td>
-</tr>
-<tr class="even">
-<td>Value</td>
-<td><code>32</code>, or <code>East</code>, or <code>3.72</code></td>
-</tr>
-</tbody>
-</table>
-</div>
-</figure>
-</div>
-<p>Here is the first row of the file, written out as an observation:</p>
-<div id="tbl-first-row" class="tbl-def quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-first-row-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;1.2: One observation: the first row of the teaching dataset, 8 of its 26 values
-</figcaption>
-<div aria-describedby="tbl-first-row-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="tbl-def caption-top table">
-<thead>
-<tr class="header">
 <th>Variable</th>
-<th>Value</th>
+<th>Mean</th>
+<th>Median</th>
+<th>Minimum</th>
+<th>Maximum</th>
+<th>Shape</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>Respondent_ID</code></td>
-<td>1</td>
+<td><code>Waiting_Time_Mins</code></td>
+<td>45.46</td>
+<td>46.00</td>
+<td>12</td>
+<td>90</td>
+<td>One peak, close to symmetric</td>
 </tr>
 <tr class="even">
-<td><code>Gender</code></td>
-<td>Male</td>
+<td><code>Spending</code></td>
+<td>505.65</td>
+<td>494.28</td>
+<td>6.34</td>
+<td>1,201.01</td>
+<td>Two peaks: most near 500, a VIP group near 1,000</td>
 </tr>
 <tr class="odd">
-<td><code>Group_AB</code></td>
-<td>Group_A</td>
+<td><code>Satisfaction</code></td>
+<td>3.81</td>
+<td>3.86</td>
+<td>1.58</td>
+<td>5.00</td>
+<td>One peak, cut off at the top of the scale</td>
 </tr>
 <tr class="even">
 <td><code>Age</code></td>
-<td>32</td>
-</tr>
-<tr class="odd">
-<td><code>Region</code></td>
-<td>International</td>
-</tr>
-<tr class="even">
-<td><code>Ticket_Type</code></td>
-<td>Standard</td>
-</tr>
-<tr class="odd">
-<td><code>Attendance</code></td>
-<td>Attended</td>
-</tr>
-<tr class="even">
-<td><code>Strategic_Choice</code></td>
-<td>Differentiation</td>
+<td>35.35</td>
+<td>35.00</td>
+<td>22</td>
+<td>52</td>
+<td>Symmetric, broad and flat</td>
 </tr>
 </tbody>
 </table>
 </div>
 </figure>
 </div>
-<p>Eight of the 26 values are shown. Read across and you have one customer. Read down a single column across all 200 rows and you have one variable.</p>
-<p>Below is the same file as the software shows it, and the tutorial opens on this screen.</p>
-<div id="fig-dataset-view" class="quarto-float quarto-figure quarto-figure-center anchored" alt="The JASP data view filled with DMM_Teaching_Data_Full.csv. Row numbers run down the left to 200, and the column headers name the variables.">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-dataset-view-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../assets/images/screenshots/ch01/ch01-jasp-f1-dataset-view.png" class="img-fluid figure-img" alt="The JASP data view filled with DMM_Teaching_Data_Full.csv. Row numbers run down the left to 200, and the column headers name the variables.">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dataset-view-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.1: The teaching dataset open in JASP. Each row is one respondent and each column is one variable.
-</figcaption>
-</figure>
-</div>
-<div id="fig-one-case-one-variable" class="quarto-float quarto-figure quarto-figure-center anchored" alt="The JASP data view with a single row highlighted across its width and a single column highlighted down its height.">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-one-case-one-variable-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../assets/images/screenshots/ch01/ch01-jasp-f2-one-case-one-variable.png" class="img-fluid figure-img" alt="The JASP data view with a single row highlighted across its width and a single column highlighted down its height.">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-one-case-one-variable-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.2: One row is a case. One column is a variable. The cell where they cross is a value.
-</figcaption>
-</figure>
-</div>
-<p>A case runs left to right. A variable runs top to bottom. Every cell where the two cross is one value.</p>
-<p>Establish these distinctions now, because almost every mistake you will make later starts with confusing a variable for a case, or a value for a variable.</p>
+<p><code>Satisfaction</code> needs a closer look. The score runs from 1 to 5, and 12 of the 200 customers scored exactly 5.00, the highest score the scale allows. A scale with a maximum stops the right tail at that maximum. Any customer who would have scored above 5 is recorded as 5, so the cases pile up against the top of the scale. This pile-up is called a <strong>ceiling effect</strong>, and the longer tail appears on the left. A floor effect is the same pattern at the bottom of a scale.</p>
 <div class="worked-example">
-<p><span class="we-label">Worked example 1.2</span></p>
-<section id="identifying-cases-and-variables" class="level3">
-<h3 class="anchored" data-anchor-id="identifying-cases-and-variables">Identifying cases and variables</h3>
+<p><span class="we-label">Worked example 2.1</span></p>
+<section id="describing-a-shape-in-words" class="level3">
+<h3 class="anchored" data-anchor-id="describing-a-shape-in-words">Describing a shape in words</h3>
 <div class="we-problem">
-<p>A clinic records, for each patient seen in March: patient number, age, presenting complaint, minutes waited, and whether they were referred onward.</p>
-<p>Name the case and the variables. State what the observation for patient 12 is, and what the value <code>28</code> in the waiting column is. Then decide what “March” is.</p>
+<p>The histogram of <code>Spending</code> in <a href="#fig-four-shapes" class="quarto-xref">Figure&nbsp;<span>2.1</span></a> rises to a tall peak between 500 and 600 USD, drops to nothing between 700 and 800 USD, and rises again to a smaller peak near 1,000 USD. The lowest value is 6.34 USD and the highest is 1,201.01. The mean is 505.65 and the median is 494.28.</p>
+<p>Describe the shape in one sentence a manager could read, name the evidence for each part of the description, and suggest what the second peak might be.</p>
 </div>
 <div class="we-solution">
-<p>The <strong>case</strong> is the patient. The <strong>variables</strong> are age, presenting complaint, minutes waited, and referral. The <strong>observation</strong> for patient 12 is the full row of five values. The <strong>value</strong> <code>28</code> in the waiting column is one entry.</p>
-<p>“March” describes the whole dataset. Every case shares it, so it separates nothing within the data, which makes it a <strong>constant</strong>. A constant carries no information about differences between cases, so it fails the test for a variable. It still belongs in the description of where the data came from.</p>
+<p><strong>Description:</strong> Spending has two peaks: most customers spend up to about 700 USD, centred near 500, and a separate group of 30 customers spends between 850 and 1,200 USD.</p>
+<p><strong>Evidence, part by part:</strong></p>
+<ul>
+<li><em>Two peaks.</em> The tallest bar, 500 to 600 USD, holds 47 customers. A second, smaller rise peaks at 900 to 1,000 USD, with 13 customers.</li>
+<li><em>A gap between them.</em> No customer spent between 700 and 800 USD, so the two groups do not overlap.</li>
+<li><em>A lean to the right.</em> The mean is 11.37 USD above the median. The high group pulls the mean up. The median stays near the middle of the main group.</li>
+</ul>
+<p><strong>What the second peak is:</strong> Two peaks usually mean two groups share one column. <code>Ticket_Type</code> confirms it. The 30 customers above 800 USD are exactly the 30 VIP ticket holders, and no standard or student customer spent more than 700 USD.</p>
+<p>A manager reading the sentence learns that VIP customers are a distinct group. They are 15 per cent of customers and bring in 29 per cent of all spending, so their spending belongs in its own line of the report.</p>
 </div>
 </section>
 </div>
-<div id="tryit-1-1" class="callout callout-style-default callout-tip callout-titled" title="Try It 1.1: Identify cases and variables">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Try It 1.1: Identify cases and variables
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>A university records, for each module taught this semester: module code, credits, number enrolled, mean assessment mark, and whether it ran online.</p>
-<p>State the case, list the variables, and say what the value <code>142</code> in the enrolment column represents.</p>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled" title="Check your answer">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Check your answer
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>The <strong>case</strong> is the module. The <strong>variables</strong> are module code, credits, number enrolled, mean assessment mark, and whether it ran online. The value <code>142</code> is one value of the enrolment variable, recording that this particular module had 142 students.</p>
-<p><code>142</code> is one value of one variable, recorded for one case, occupying a single cell.</p>
-<p>“Mean assessment mark” is a variable here even though it is itself an average. It was calculated on students, and at this level of the data it is recorded once per module, so it behaves like any other measurement of a module.</p>
-</div>
-</div>
-</div>
 </section>
-<section id="sec-population" class="level2">
-<h2 class="anchored" data-anchor-id="sec-population">Population, sample, parameter, and statistic</h2>
-<p>A <strong>population</strong> is every case you want to say something about. A <strong>sample</strong> is the subset you measured.</p>
-<p>Sampling is a practical necessity. Measuring every customer of a national chain would cost more than the decision is worth, and would take long enough that the answer would be out of date on arrival. A well-drawn sample of 200 answers the question this week.</p>
-<p>A number describing a population is a <strong>parameter</strong>. A number describing a sample is a <strong>statistic</strong>. A statistic carries uncertainty and a parameter does not. Chapters 4 onward exist to handle that uncertainty.</p>
-<p>Notation keeps the two apart. Learn it now, because chapter 4 assumes it. Greek letters describe populations. Latin letters describe samples.</p>
-<div id="tbl-notation-early" class="tbl-def quarto-float quarto-figure quarto-figure-center anchored">
+<section id="sec-skewness" class="level2">
+<h2 class="anchored" data-anchor-id="sec-skewness">Skewness as a number</h2>
+<p><strong>Skewness</strong> measures how far a distribution leans to one side. JASP and PocketStat both report it as a single number.</p>
+<ul>
+<li>A skewness near <strong>0</strong> means the distribution is close to symmetric.</li>
+<li>A <strong>positive</strong> skewness means a longer tail on the right, called right skew or positive skew.</li>
+<li>A <strong>negative</strong> skewness means a longer tail on the left, called left skew or negative skew.</li>
+</ul>
+<p>The sign gives the direction. The size gives the strength of the lean. A common rule of thumb for the size reads as follows.</p>
+<div id="tbl-skew-size" class="tbl-grid quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-notation-early-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;1.3: Notation for the three quantities you have met so far
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-skew-size-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2.2: A rule of thumb for the size of skewness
 </figcaption>
-<div aria-describedby="tbl-notation-early-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="tbl-def caption-top table">
+<div aria-describedby="tbl-skew-size-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="tbl-grid caption-top table">
 <thead>
 <tr class="header">
-<th>Quantity</th>
-<th>Population parameter</th>
-<th>Sample statistic</th>
+<th>Skewness, ignoring the sign</th>
+<th>Reading</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Mean</td>
-<td><span class="math inline">\(\mu\)</span></td>
-<td><span class="math inline">\(\bar{x}\)</span></td>
+<td>Under 0.5</td>
+<td>Close to symmetric</td>
 </tr>
 <tr class="even">
-<td>Proportion</td>
-<td><span class="math inline">\(\pi\)</span></td>
-<td><span class="math inline">\(p\)</span></td>
+<td>0.5 to 1</td>
+<td>Moderately skewed</td>
 </tr>
 <tr class="odd">
-<td>Size</td>
-<td><span class="math inline">\(N\)</span></td>
-<td><span class="math inline">\(n\)</span></td>
+<td>Over 1</td>
+<td>Strongly skewed</td>
 </tr>
 </tbody>
 </table>
 </div>
 </figure>
 </div>
-<p>Spread has its own symbols, and they arrive in <a href="week01-part3.html#sec-spread" class="quarto-xref"><span>Measures of spread</span></a> alongside the measures they stand for.</p>
-<p>When you read <span class="math inline">\(\bar{x} = 45.46\)</span> in a report, the bar is telling you this came from a sample and carries uncertainty. When you read <span class="math inline">\(\mu = 45.46\)</span>, somebody is claiming to have measured everybody. The second claim is rare and should always be checked.</p>
+<p>The statistic is built from cubed z-scores: each value’s distance from the mean in standard deviations, cubed, then averaged. Cubing keeps the sign, so values far above the mean push the total up and values far below push it down. Cubing also magnifies the far values, so the tails dominate the result. You will read skewness from the software, and the formula appears in the formula review on the <a href="week02-reference.html#sec-formulae">reference page</a> for anyone who wants it.</p>
+<section id="skewness-against-its-standard-error" class="level3">
+<h3 class="anchored" data-anchor-id="skewness-against-its-standard-error">Skewness against its standard error</h3>
+<p>Every statistic calculated from a sample would come out a little different in another sample. The <strong>standard error</strong> of a statistic measures how much it would typically vary from one sample to the next. Chapter 4 builds on the standard error in detail. Here you need it for one purpose: to judge whether a skewness figure is larger than sampling variation alone would produce.</p>
+<p>JASP reports the standard error of skewness beside the skewness itself. For a sample of 200, the standard error is 0.172. Divide the skewness by its standard error:</p>
+<p><span class="math display">\[\text{skewness ratio} = \frac{\text{skewness}}{\text{SE of skewness}}\]</span></p>
+<p>A ratio beyond 2 in either direction indicates skew that is more than sampling variation. A ratio between <span class="math inline">\(-2\)</span> and <span class="math inline">\(+2\)</span> is consistent with a symmetric population.</p>
+<div id="tbl-skewness" class="tbl-apa quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-skewness-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2.3: Skewness as JASP reports it for four variables in the teaching dataset
+</figcaption>
+<div aria-describedby="tbl-skewness-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="tbl-apa caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Skewness</th>
+<th>SE</th>
+<th>Ratio</th>
+<th>Size</th>
+<th>Reading</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Waiting_Time_Mins</code></td>
+<td>0.112</td>
+<td>0.172</td>
+<td>0.65</td>
+<td>Under 0.5</td>
+<td>Symmetric</td>
+</tr>
+<tr class="even">
+<td><code>Age</code></td>
+<td>0.038</td>
+<td>0.172</td>
+<td>0.22</td>
+<td>Under 0.5</td>
+<td>Symmetric</td>
+</tr>
+<tr class="odd">
+<td><code>Satisfaction</code></td>
+<td>-0.289</td>
+<td>0.172</td>
+<td>-1.68</td>
+<td>Under 0.5</td>
+<td>Mild left lean, within sampling variation</td>
+</tr>
+<tr class="even">
+<td><code>Spending</code></td>
+<td>0.635</td>
+<td>0.172</td>
+<td>3.69</td>
+<td>0.5 to 1</td>
+<td>Moderately right-skewed</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p><a href="#tbl-skewness" class="quarto-xref">Table&nbsp;<span>2.3</span></a> rounds every figure to three decimal places. JASP’s default display shows four significant figures, so your own output reads 0.1116 for waiting time, 0.03785 for age and 0.1719 for the standard error. The values are the same. To make JASP print three decimal places, open <strong>Preferences</strong>, choose <strong>Results</strong>, and set <strong>Fix the number of decimals</strong> to 3, as the tutorial does in its second step.</p>
+<p>The two rules answer different questions. The size rule asks whether the lean is large enough to matter for the summary you choose. The ratio asks whether the lean is larger than chance. With a large sample, the ratio flags small leans that make no practical difference. With a small sample, it misses large ones. Read both, and let the histogram settle any disagreement.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Why JASP and PocketStat give slightly different skewness">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Why JASP and PocketStat give slightly different skewness
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>JASP reports a skewness of 0.112 for <code>Waiting_Time_Mins</code>. PocketStat reports 0.110 for the same column.</p>
+<p>Two formulas are in common use. PocketStat uses the simpler one, which averages the cubed z-scores over <span class="math inline">\(n\)</span>. JASP, like SPSS, multiplies that result by a small correction for sample size, <span class="math inline">\(n^2/\big((n-1)(n-2)\big)\)</span>, which for 200 cases is 1.015. The standard errors differ for the same reason: PocketStat uses <span class="math inline">\(\sqrt{6/n} = 0.173\)</span>, and JASP uses a longer formula that gives 0.172.</p>
+<p>The gap shrinks as the sample grows, and at 200 cases it changes no conclusion. Report which tool produced your figures, as you did for quartiles in chapter 1.</p>
+</div>
+</div>
 <div class="worked-example">
-<p><span class="we-label">Worked example 1.3</span></p>
-<section id="population-and-sample" class="level3">
-<h3 class="anchored" data-anchor-id="population-and-sample">Population and sample</h3>
+<p><span class="we-label">Worked example 2.2</span></p>
+<section id="deciding-whether-skew-matters" class="level3">
+<h3 class="anchored" data-anchor-id="deciding-whether-skew-matters">Deciding whether skew matters</h3>
 <div class="we-problem">
-<p>A regional manager oversees 40 branches. She surveys customers at 6 of them and calculates a mean satisfaction of 3.8.</p>
-<p>Name the population, the sample, the statistic, and the parameter. Then write the sentence she should publish.</p>
+<p>A manager asks for “the typical spend and the typical wait” in one line of a report. JASP gives the figures in <a href="#tbl-skewness" class="quarto-xref">Table&nbsp;<span>2.3</span></a>.</p>
+<p>For each variable, decide whether the skew is large enough to change the summary you report, and choose the centre and spread to quote.</p>
 </div>
 <div class="we-solution">
-<p>The <strong>population</strong> is customers of all 40 branches. The <strong>sample</strong> is customers of the 6. The mean satisfaction she calculates is a <strong>statistic</strong>, and its symbol is <span class="math inline">\(\bar{x}\)</span>. The mean satisfaction across all 40 branches, which she does not know, is the <strong>parameter</strong> <span class="math inline">\(\mu\)</span>.</p>
-<p>Reporting the figure as “customer satisfaction is 3.8” promotes a statistic to a parameter. The accurate version names the sample:</p>
+<p><strong>Waiting time:</strong> Skewness is 0.112, well under 0.5, and the ratio of 0.65 falls inside <span class="math inline">\(\pm 2\)</span>. The distribution is close to symmetric, so the mean and the standard deviation describe it well: 45.5 minutes, with a standard deviation of 11.9.</p>
+<p><strong>Spending:</strong> Skewness is 0.635, in the moderate band, and the ratio of 3.69 is well beyond 2. Both rules agree that the lean is real. The median and the interquartile range describe the typical customer better: a median of 494.28 USD, with the middle half spending between 340.04 and 596.99 USD.</p>
+<p>The line in the report reads:</p>
 <blockquote class="blockquote">
-<p>Mean satisfaction among customers surveyed at 6 of our 40 branches was 3.8.</p>
+<p>The typical customer waited 45.5 minutes (standard deviation 11.9) and spent 494 USD (median, with the middle half between 340 and 597 USD).</p>
 </blockquote>
-<p>The difference is one clause, and that clause tells a reader how much weight the number will bear.</p>
+<p>Two variables in one sentence can take two different summaries, as long as the sentence names each one.</p>
 </div>
 </section>
 </div>
-<div id="tryit-1-2" class="callout callout-style-default callout-tip callout-titled" title="Try It 1.2: Population, sample, parameter, statistic">
+<div id="tryit-2-1" class="callout callout-style-default callout-tip callout-titled" title="Try It 2.1: Four shapes, two rules">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Try It 1.2: Population, sample, parameter, statistic
+<span class="screen-reader-only">Tip</span>Try It 2.1: Four shapes, two rules
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>A hospital measures waiting time for 150 of the 2,400 patients seen in a quarter and reports a median of 31 minutes.</p>
-<p>Identify the population, the sample, and whether 31 is a parameter or a statistic. Then write the one sentence you would add to the report to make it accurate.</p>
+<p>Four small illustrative datasets, separate from the teaching dataset, make up this exercise. Each appears in its own tab as a CSV file: a column name on the first line, then one value per line from lowest to highest.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">A. Heights</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">B. Exam scores</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">C. Income</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false" href="">D. Net worth</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p>Adult heights in centimetres, <span class="math inline">\(n = 25\)</span>. <a href="../assets/data/ch02/ch02-tryit-heights.csv" download="ch02-tryit-heights.csv">Download ch02-tryit-heights.csv</a></p>
+<div class="csv-block">
+<pre><code>Height_cm
+168
+170
+171
+172
+173
+174
+174
+175
+175
+175
+176
+176
+177
+177
+178
+178
+179
+180
+181
+182
+183
+184
+185
+186
+188</code></pre>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled" title="Check your answer">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Check your answer
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-6" class="callout-6-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>The <strong>population</strong> is all 2,400 patients seen in the quarter. The <strong>sample</strong> is the 150 measured. The median of 31 minutes is a <strong>statistic</strong>, because it describes the sample.</p>
-<p>An accurate sentence would be: “Median waiting time among 150 patients sampled from the 2,400 seen this quarter was 31 minutes.” The original sentence implies the figure describes everyone.</p>
-</div>
-</div>
-</div>
-</section>
-<section id="sec-describing" class="level2">
-<h2 class="anchored" data-anchor-id="sec-describing">Describing and inferring</h2>
-<p>Describing and inferring are two different claims, and the rest of this module is built on keeping them apart. In practice they are blurred more often than any other pair.</p>
-<p><strong>Descriptive statistics</strong> summarises the data you have. If you hold every case in the population, a descriptive summary is a fact. Every figure is exact, and the work is finished.</p>
-<p><strong>Inferential statistics</strong> uses a sample to say something about a population you did not measure. That step introduces uncertainty, and it requires different tools and different caveats.</p>
-<p>“We found this in our data” and “this is probably true more broadly” are two different claims, and reports frequently cross from the first to the second without explicit justification.</p>
-<p>Each has its place, and the error is doing the second while claiming the first.</p>
-<section id="three-errors-at-the-boundary" class="level3">
-<h3 class="anchored" data-anchor-id="three-errors-at-the-boundary">Three errors at the boundary</h3>
-<p><strong>Treating a sample summary as a population fact.</strong> “Satisfaction is 3.8” when 3.8 came from 6 branches out of 40.</p>
-<p><strong>Using inference where description is enough.</strong> Hold all 40 branches and you can read off which has the longest waits. A significance test on a full population answers a question already settled.</p>
-<p><strong>Generalising from a convenient sample.</strong> Customers who answer a survey differ systematically from those who stay silent. The sample is real, and the population it represents is narrower than it looks, usually narrower than the report claims.</p>
-<p>Chapter 4 builds the tools for defensible inference. Here you are learning to describe well, and to mark the sentence where description ends and inference begins.</p>
-<div id="tryit-1-3" class="callout callout-style-default callout-tip callout-titled" title="Try It 1.3: Describing or inferring">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Try It 1.3: Describing or inferring
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<p>Final exam scores out of 100, <span class="math inline">\(n = 30\)</span>. <a href="../assets/data/ch02/ch02-tryit-exam-scores.csv" download="ch02-tryit-exam-scores.csv">Download ch02-tryit-exam-scores.csv</a></p>
+<div class="csv-block">
+<pre><code>Exam_Score
+58
+62
+66
+68
+72
+75
+76
+78
+79
+80
+81
+82
+83
+84
+85
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99</code></pre>
 </div>
 </div>
-<div class="callout-body-container callout-body">
-<p>For each sentence, say whether it describes the data held or infers beyond it.</p>
-<ol type="1">
-<li>“Of the 200 customers surveyed, 124 held standard tickets.”</li>
-<li>“Most of our customers hold standard tickets.”</li>
-<li>“The mean waiting time in this file is 45.5 minutes.”</li>
-<li>“Customers typically wait about 45 minutes at this branch.”</li>
-<li>“Waiting times at our branches average 45 minutes.”</li>
-</ol>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<p>Household income in hundreds of USD a month, <span class="math inline">\(n = 25\)</span>. <a href="../assets/data/ch02/ch02-tryit-income.csv" download="ch02-tryit-income.csv">Download ch02-tryit-income.csv</a></p>
+<div class="csv-block">
+<pre><code>Income_Hundreds_USD
+12
+15
+18
+22
+25
+28
+30
+32
+35
+38
+40
+42
+45
+48
+50
+55
+60
+65
+70
+75
+80
+90
+100
+110
+125</code></pre>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled" title="Check your answer">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
+<p>Personal net worth in thousands of USD, <span class="math inline">\(n = 30\)</span>. <a href="../assets/data/ch02/ch02-tryit-net-worth.csv" download="ch02-tryit-net-worth.csv">Download ch02-tryit-net-worth.csv</a></p>
+<div class="csv-block">
+<pre><code>Net_Worth_Thousands_USD
+15
+18
+22
+25
+28
+30
+32
+35
+38
+40
+42
+45
+48
+50
+52
+55
+58
+60
+65
+70
+75
+80
+90
+100
+120
+150
+200
+350
+800
+2500</code></pre>
 </div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Check your answer
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-8" class="callout-8-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<ol type="1">
-<li><strong>Describing.</strong> It states a count in the data held and stops there.</li>
-<li><strong>Inferring.</strong> “Our customers” reaches past the 200 surveyed to everyone.</li>
-<li><strong>Describing.</strong> It names the file.</li>
-<li><strong>Inferring</strong>, mildly. “Typically” generalises to customers of this branch who were not surveyed. This one is usually defensible, and it still needs the sample named.</li>
-<li><strong>Inferring</strong>, strongly. “Our branches” reaches to branches where no data was collected at all. This is the claim that needs the most support and usually gets the least.</li>
-</ol>
-<p>Sentences 2, 4 and 5 are legitimate claims. They are claims the sample has to earn, and the accurate version of each names the sample it rests on.</p>
 </div>
 </div>
 </div>
-</section>
-</section>
-<section id="sec-sampling" class="level2">
-<h2 class="anchored" data-anchor-id="sec-sampling">Sampling and representativeness</h2>
-<p>A sample is useful only if it resembles the population in the ways that matter. How the sample was drawn decides that, and the decision is made before any analysis begins.</p>
-<div id="tbl-sampling" class="tbl-grid quarto-float quarto-figure quarto-figure-center anchored">
+<p>JASP reports the following for the four datasets.</p>
+<div id="tbl-four-datasets" class="tbl-apa quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-sampling-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;1.4: Five ways to draw a sample, and what each one risks
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-four-datasets-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2.4: Skewness for four illustrative datasets
 </figcaption>
-<div aria-describedby="tbl-sampling-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="tbl-four-datasets-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="tbl-apa caption-top table">
+<thead>
+<tr class="header">
+<th>Dataset</th>
+<th>Mean</th>
+<th>Median</th>
+<th>Skewness</th>
+<th>SE of skewness</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A. Heights</td>
+<td>177.48</td>
+<td>177.00</td>
+<td>0.288</td>
+<td>0.464</td>
+</tr>
+<tr class="even">
+<td>B. Exam scores</td>
+<td>83.63</td>
+<td>85.00</td>
+<td>-0.696</td>
+<td>0.427</td>
+</tr>
+<tr class="odd">
+<td>C. Income</td>
+<td>52.40</td>
+<td>45.00</td>
+<td>0.832</td>
+<td>0.464</td>
+</tr>
+<tr class="even">
+<td>D. Net worth</td>
+<td>176.43</td>
+<td>53.50</td>
+<td>4.732</td>
+<td>0.427</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<ol type="1">
+<li>Calculate the skewness ratio for each dataset.</li>
+<li>Classify each shape with the size rule in <a href="#tbl-skew-size" class="quarto-xref">Table&nbsp;<span>2.2</span></a>, naming the direction of any skew.</li>
+<li>Say where the size rule and the ratio disagree, and explain why.</li>
+<li>Choose the measure of centre you would report for each dataset.</li>
+</ol>
+<p><strong>To check a figure in the software</strong>, load the dataset as a CSV file. JASP and PocketStat both open CSV files directly, so a CSV file is the most reliable route in.</p>
+<ol type="1">
+<li><strong>Get the file:</strong> Click the download link in the dataset’s tab and go straight to step 4. If the download is blocked, hover over the grey block and click the copy button at its top right.</li>
+<li><strong>Paste it into a plain-text editor:</strong> On Windows, use Notepad. On a Mac, use TextEdit, and choose <strong>Format</strong>, then <strong>Make Plain Text</strong> before you paste.</li>
+<li><strong>Save it with a <code>.csv</code> ending</strong>, for example <code>heights.csv</code>. In Notepad, set <strong>Save as type</strong> to <strong>All files</strong> first, or Windows saves it as <code>heights.csv.txt</code>. In TextEdit, untick any option to add a <code>.txt</code> ending.</li>
+<li><strong>Open it:</strong> In JASP, open the file menu, then <strong>Open</strong>, <strong>Computer</strong>, <strong>Browse</strong>, and choose the file. In PocketStat, open the upload card on the <strong>Data</strong> tab and choose it.</li>
+<li><strong>Check and run:</strong> Confirm the one column reads as <strong>scale</strong> and the row count matches the tab’s <span class="math inline">\(n\)</span>. Then run <strong>Descriptive Statistics</strong> in JASP with <strong>Skewness</strong> ticked, or <strong>Distribution shape</strong> in PocketStat.</li>
+</ol>
+<p>PocketStat’s skewness differs from JASP’s in the third decimal, for the reason given in the callout on the two formulas.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Check your answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Check your answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>A: <span class="math inline">\(0.288 \div 0.464 = 0.62\)</span>. B: <span class="math inline">\(-0.696 \div 0.427 = -1.63\)</span>. C: <span class="math inline">\(0.832 \div 0.464 = 1.79\)</span>. D: <span class="math inline">\(4.732 \div 0.427 = 11.08\)</span>.</li>
+<li>A is <strong>close to symmetric</strong>, under 0.5. B is <strong>moderately skewed to the left</strong>, between 0.5 and 1 with a negative sign: a few low scores stretch the left tail. C is <strong>moderately skewed to the right</strong>: a few higher incomes stretch the right tail. D is <strong>strongly skewed to the right</strong>, far over 1, with three values, 350, 800 and 2,500, far out in the tail.</li>
+<li>B and C are moderately skewed by size, and their ratios, <span class="math inline">\(-1.63\)</span> and <span class="math inline">\(1.79\)</span>, stay inside <span class="math inline">\(\pm 2\)</span>. With 25 or 30 cases the standard error is large, about 0.43 to 0.46, so the ratio misses a lean the size rule catches. The mean-against-median gap confirms the lean in both: the mean is 1.37 marks below the median for B and 7.40 above it for C.</li>
+<li>A: the <strong>mean</strong>, 177.48 cm, because the shape is symmetric. B, C and D: the <strong>median</strong>. For D the mean of 176.43 is above 26 of the 30 values, and the median of 53.50 describes a typical person.</li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="sec-kurtosis" class="level2">
+<h2 class="anchored" data-anchor-id="sec-kurtosis">Kurtosis and the tails</h2>
+<p><strong>Kurtosis</strong> measures how heavy the tails of a distribution are compared with a normal distribution of the same spread. JASP and PocketStat report <strong>excess kurtosis</strong>, which is set so that a normal distribution scores 0.</p>
+<ul>
+<li><strong>Positive</strong> excess kurtosis means heavier tails than normal. Extreme values turn up more often than a normal curve would predict, and the peak is usually sharper. A distribution like this is called <strong>leptokurtic</strong>.</li>
+<li><strong>Negative</strong> excess kurtosis means lighter tails than normal. The cases spread more evenly across the range, the peak is flatter, and extreme values are rarer. A distribution like this is called <strong>platykurtic</strong>.</li>
+</ul>
+<p>Kurtosis matters to a manager because of the tails. A process with heavy tails produces more very long waits, very large orders or very bad days than its standard deviation suggests. Planning built on the normal curve will then underestimate how often the extreme case arrives.</p>
+<p>Kurtosis has its own standard error, and the same ratio test applies. For 200 cases, JASP reports a standard error of kurtosis of 0.342.</p>
+<div id="tbl-kurtosis" class="tbl-apa quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-kurtosis-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2.5: Excess kurtosis as JASP reports it for four variables in the teaching dataset
+</figcaption>
+<div aria-describedby="tbl-kurtosis-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="tbl-apa caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Excess kurtosis</th>
+<th>SE</th>
+<th>Ratio</th>
+<th>Reading</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Waiting_Time_Mins</code></td>
+<td>0.482</td>
+<td>0.342</td>
+<td>1.41</td>
+<td>Tails slightly heavier than normal, within sampling variation</td>
+</tr>
+<tr class="even">
+<td><code>Age</code></td>
+<td>-0.599</td>
+<td>0.342</td>
+<td>-1.75</td>
+<td>Flatter than normal, close to the limit</td>
+</tr>
+<tr class="odd">
+<td><code>Satisfaction</code></td>
+<td>-0.397</td>
+<td>0.342</td>
+<td>-1.16</td>
+<td>Slightly flat, within sampling variation</td>
+</tr>
+<tr class="even">
+<td><code>Spending</code></td>
+<td>0.195</td>
+<td>0.342</td>
+<td>0.57</td>
+<td>Close to normal tails</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<div class="worked-example">
+<p><span class="we-label">Worked example 2.3</span></p>
+<section id="a-symmetric-variable-that-is-flat" class="level3">
+<h3 class="anchored" data-anchor-id="a-symmetric-variable-that-is-flat">A symmetric variable that is flat</h3>
+<div class="we-problem">
+<p><code>Age</code> has a skewness of 0.038 and an excess kurtosis of -0.599, with a standard error of kurtosis of 0.342. Ages run from 22 to 52 with a mean of 35.3 and a standard deviation of 7.3.</p>
+<p>Describe the shape, and decide what it means for a marketing manager planning one campaign aimed at “the typical customer’s age”.</p>
+</div>
+<div class="we-solution">
+<p><strong>Shape:</strong> The skewness is close to 0, so age is symmetric. The kurtosis ratio is <span class="math inline">\(-0.599 \div 0.342 = -1.75\)</span>, negative and close to the limit of <span class="math inline">\(-2\)</span>. Age is flatter than a normal distribution: customers are spread fairly evenly from the mid-20s to the mid-40s, with no tall peak at 35.</p>
+<p><strong>Consequence:</strong> A flat distribution has a weak centre. The mean of 35 is correct as an average, and relatively few customers are close to it. Within one standard deviation of the mean, from 28 to 42.7 years, the data contain 138 of the 200 customers, 69 per cent. The other 31 per cent are spread across the 20s and the upper 40s.</p>
+<p>A campaign aimed at 35-year-olds reaches the middle of a broad group. The manager would do better to plan for a range, for example two versions aimed at the late 20s and the early 40s.</p>
+</div>
+</section>
+</div>
+<div id="tryit-2-2" class="callout callout-style-default callout-tip callout-titled" title="Try It 2.2: Skewness and kurtosis">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Try It 2.2: Skewness and kurtosis
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A delivery firm records the minutes each of 200 deliveries took. JASP reports a skewness of 1.34 and an excess kurtosis of 2.10. The standard errors are 0.172 and 0.342.</p>
+<ol type="1">
+<li>Calculate the skewness ratio and the kurtosis ratio.</li>
+<li>Describe the shape in one sentence.</li>
+<li>State which centre and spread you would report, and why.</li>
+<li>Explain what the kurtosis figure warns the operations manager about.</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Check your answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Check your answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Skewness ratio: <span class="math inline">\(1.34 \div 0.172 = 7.79\)</span>. Kurtosis ratio: <span class="math inline">\(2.10 \div 0.342 = 6.14\)</span>. Each is well beyond 2, so both departures exceed sampling variation.</li>
+<li>Delivery times are strongly skewed to the right, with a skewness over 1, and have heavier tails than a normal distribution: most deliveries are quick, and a minority take far longer.</li>
+<li>The <strong>median and the interquartile range</strong>. A skewness of 1.34 is in the strong band, so the tail of slow deliveries would pull the mean well above the typical delivery.</li>
+<li>Positive excess kurtosis means very slow deliveries happen more often than a normal curve with the same standard deviation predicts. A service promise set at “mean plus two standard deviations” will be broken more often than a normal curve predicts.</li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+<section id="sec-boxplot-shape" class="level2">
+<h2 class="anchored" data-anchor-id="sec-boxplot-shape">Boxplots and shape</h2>
+<p>A boxplot shows shape through its proportions. Chapter 1 introduced it as a display of the quartiles with fences at <span class="math inline">\(1.5 \times IQR\)</span>. Read against shape, each part of the box says something.</p>
+<ul>
+<li><strong>The median line:</strong> In a symmetric distribution it is near the middle of the box. When it is closer to one end, the half of the box on the other side is longer, and the data are skewed that way.</li>
+<li><strong>The whiskers:</strong> Whiskers of similar length suggest symmetry. A longer whisker marks the longer tail.</li>
+<li><strong>The points beyond the whiskers:</strong> Cases beyond the fences appear individually. Three or more on one side only point to skew. A handful on both sides of an otherwise symmetric box point to heavy tails.</li>
+</ul>
+<p>For waiting time, the quartiles are 37.75, 46 and 53.25 minutes. The median is 8.25 minutes above <span class="math inline">\(Q_1\)</span> and 7.25 minutes below <span class="math inline">\(Q_3\)</span>, close to the middle of the box. Four points lie beyond the fences, two on each side, at 12 and 14 minutes and at 77 and 90. That is a symmetric box with a few distant cases on both sides.</p>
+<div id="fig-boxplot-waiting" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A single vertical JASP boxplot for Waiting_Time_Mins. The box runs from about 38 to 53 minutes with the median line near 46, close to the middle. Whiskers of similar length reach 19 and 69 minutes. Two points sit below the lower whisker, at 12 and 14, and two above the upper whisker, at 77 and 90.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-boxplot-waiting-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/images/screenshots/ch02/ch02-jasp-f2-boxplot-waiting.png" class="img-fluid figure-img" alt="A single vertical JASP boxplot for Waiting_Time_Mins. The box runs from about 38 to 53 minutes with the median line near 46, close to the middle. Whiskers of similar length reach 19 and 69 minutes. Two points sit below the lower whisker, at 12 and 14, and two above the upper whisker, at 77 and 90.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-boxplot-waiting-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.2: A JASP boxplot of Waiting_Time_Mins with the four cases beyond the fences shown individually.
+</figcaption>
+</figure>
+</div>
+<div id="tryit-2-3" class="callout callout-style-default callout-tip callout-titled" title="Try It 2.3: Read the shape from a boxplot">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Try It 2.3: Read the shape from a boxplot
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A boxplot of order values in USD has <span class="math inline">\(Q_1 = 42\)</span>, median <span class="math inline">\(= 51\)</span> and <span class="math inline">\(Q_3 = 88\)</span>. The lower whisker reaches 18 and the upper whisker reaches 150. Seven points lie above the upper whisker and none below the lower one.</p>
+<ol type="1">
+<li>Is the distribution symmetric, right-skewed or left-skewed? Give two pieces of evidence.</li>
+<li>Would you expect the mean to be above or below 51?</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Check your answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Check your answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><strong>Right-skewed:</strong> The median is <span class="math inline">\(51 - 42 = 9\)</span> USD above <span class="math inline">\(Q_1\)</span> and <span class="math inline">\(88 - 51 = 37\)</span> USD below <span class="math inline">\(Q_3\)</span>, so the upper half of the box is about four times longer. The upper whisker reaches <span class="math inline">\(150 - 88 = 62\)</span> USD beyond the box, against <span class="math inline">\(42 - 18 = 24\)</span> USD for the lower. All seven distant points lie above.</li>
+<li><strong>Above 51:</strong> The tail of large orders pulls the mean up. The median stays in place.</li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+<section id="sec-workflow" class="level2">
+<h2 class="anchored" data-anchor-id="sec-workflow">A repeatable workflow</h2>
+<p>Every analysis in the rest of this module follows the same five steps, whichever tool you use. Chapter 1 took you through the first three. This chapter adds the last two, and the tutorial practises all five.</p>
+<div id="tbl-workflow" class="tbl-grid quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-workflow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2.6: The five-step workflow used for every analysis in this module
+</figcaption>
+<div aria-describedby="tbl-workflow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="tbl-grid caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -968,95 +1256,56 @@ Table&nbsp;1.4: Five ways to draw a sample, and what each one risks
 </colgroup>
 <thead>
 <tr class="header">
-<th>Sampling approach</th>
-<th>What it is</th>
-<th>The risk</th>
+<th>Step</th>
+<th>What you do</th>
+<th>What it protects against</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Simple random</td>
-<td>Every case has an equal chance of selection</td>
-<td>Needs a full list of the population</td>
+<td>1. Load</td>
+<td>Open the file and confirm the row and column counts</td>
+<td>A file read with the wrong delimiter, or a partial file</td>
 </tr>
 <tr class="even">
-<td>Systematic</td>
-<td>Every <span class="math inline">\(k\)</span>th case from an ordered list</td>
-<td>A hidden cycle in the order distorts it</td>
+<td>2. Set types</td>
+<td>Check every variable’s measurement level and correct it</td>
+<td>A mean calculated on codes</td>
 </tr>
 <tr class="odd">
-<td>Stratified</td>
-<td>Random within defined groups, then combined</td>
-<td>Needs the groups known in advance</td>
+<td>3. Describe</td>
+<td>Centre, spread and frequency tables</td>
+<td>Reporting a result you have never looked at</td>
 </tr>
 <tr class="even">
-<td>Cluster</td>
-<td>Whole groups selected at random, then all cases within them</td>
-<td>Cheaper, and less precise for the same size</td>
+<td>4. Look at shape</td>
+<td>Histogram, boxplot, skewness, kurtosis</td>
+<td>Using a summary the shape does not support</td>
 </tr>
 <tr class="odd">
-<td>Convenience</td>
-<td>Whoever is easiest to reach</td>
-<td>Rarely represents anyone but itself</td>
+<td>5. Annotate and export</td>
+<td>Add a note to the output, then save or copy it</td>
+<td>Output that nobody can interpret a week later</td>
 </tr>
 </tbody>
 </table>
 </div>
 </figure>
 </div>
-<p>Convenience sampling is perfectly acceptable. It is the usual default in a teaching exercise and in much practice. What is forbidden is reporting it as though it were random.</p>
-<p>Two additional problems arise even when the method was sound.</p>
-<p><strong>Sampling error</strong> is the difference between a sample statistic and the population parameter that arises purely because you measured a sample. Measure every case and it disappears. It shrinks as the sample grows and it never reaches zero. It is expected, it is quantifiable, and chapters 4 onward are largely about quantifying it.</p>
-<p><strong>Non-sampling error</strong> is everything else: a badly worded question, a data entry slip, a respondent who answers what they think you want to hear. It does not shrink as the sample grows. A larger sample of a biased measurement gives you a more precise estimate of the wrong quantity.</p>
-<div class="worked-example">
-<p><span class="we-label">Worked example 1.4</span></p>
-<section id="two-samples-same-size-different-worth" class="level3">
-<h3 class="anchored" data-anchor-id="two-samples-same-size-different-worth">Two samples, same size, different worth</h3>
-<div class="we-problem">
-<p>A manager wants to know how long customers wait. She has budget to measure 200 of them, and two ways to spend it.</p>
-<p><strong>Approach A.</strong> Measure the first 200 customers through the door on a Monday morning.</p>
-<p><strong>Approach B.</strong> Measure 40 customers on each of five days chosen across the month, drawn at random from that day’s arrivals.</p>
-<p>Both give <span class="math inline">\(n = 200\)</span>. Which is worth more, and what exactly does the weaker one cost her?</p>
-</div>
-<div class="we-solution">
-<p>Approach B is worth more, and the reason sits in what each sample is allowed to represent.</p>
-<p>Approach A confounds waiting time with Monday morning, which is a specific and probably atypical part of the week. Whatever she measures describes Monday mornings, and her question was about customers. Approach B spreads the sample across the variation it is trying to measure, so the 200 cases stand for the month.</p>
-<p>The sampling error is similar in both, because that depends mostly on the sample size. The bias is entirely different, and no amount of arithmetic afterwards repairs it. That is the cost: Approach A buys a precise answer to a question she did not ask.</p>
-</div>
-</section>
-</div>
-</section>
-<section id="sec-variation" class="level2">
-<h2 class="anchored" data-anchor-id="sec-variation">Variation in data</h2>
-<p>Values differ from case to case, and you will be managing that variation.</p>
-<p>If every customer waited exactly 45 minutes, the mean would tell you everything and you could stop reading here. Waits differ. In the teaching dataset they run from 12 minutes to 90, and description has to convey that range faithfully in a few numbers.</p>
-<p>Variation also explains why one observation should rarely drive policy. One angry customer, one late shipment, one exceptional sales day may reveal a genuine problem, or may be an unusual case. Descriptive statistics help you judge which.</p>
-<div class="worked-example">
-<p><span class="we-label">Worked example 1.5</span></p>
-<section id="variation-and-decision-risk" class="level3">
-<h3 class="anchored" data-anchor-id="variation-and-decision-risk">Variation and decision risk</h3>
-<div class="we-problem">
-<p>Two delivery routes both average 42 minutes. Route A ranges from 38 to 47 minutes. Route B ranges from 12 to 95. The promise made to the customer is delivery within the hour.</p>
-<p>On the average alone the two routes look identical. Are they performing equally?</p>
-</div>
-<div class="we-solution">
-<p>No.&nbsp;The average obscures this variation.</p>
-<p>A customer on Route A can expect something close to 42 minutes every time. A customer on Route B faces a wait that could be a quarter of the average or more than double it. Against the promise of an hour, Route A keeps it almost always and Route B fails roughly a quarter of the time.</p>
-<p>Reporting only the mean obscures the underlying issue. This is a frequent reporting failure in management, and most of what follows is a set of tools for avoiding it.</p>
-</div>
-</section>
-</div>
+<p>Step 4 comes before any test. Chapters 4 onward choose between tests partly on shape, and a test chosen before the shape is known has been chosen blind.</p>
+<p>Step 5 turns output into evidence. JASP lets you attach a written note to any table or plot in the output, and PocketStat builds a short write-up beside each result. A note written at the time, such as “Satisfaction piles up at 5.00, so the left tail is partly a ceiling effect”, saves the reader from rediscovering it, and saves you from forgetting it.</p>
+<p>The <a href="week02-reference.html#sec-software">reference page</a> lists the exact menu steps for both tools, and the <a href="week02-tutorial.html">tutorial</a> takes you through them at the machine.</p>
 </section>
 <section id="section-summary" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="section-summary">Section summary</h2>
-<p>A case is the unit the data describe. A variable is a characteristic measured on it. A sample holds the cases you measured, and a population holds every case you want to talk about. The gap between them is uncertainty, and naming it is the difference between description and inference. Variation is the risk a manager carries, and reporting it is part of reporting performance.</p>
+<p>A value’s position depends on its distance from the centre, the spread that distance is measured against, and the shape of the distribution. A histogram shows the shape through its peaks, its symmetry and its tails. Skewness measures the lean and kurtosis measures the weight of the tails, and each is judged by its size and by its ratio to its standard error. A scale with a maximum can create a ceiling effect that looks like skew. The five-step workflow puts the look at shape before any summary is chosen.</p>
 <div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<p><strong>Next.</strong> <a href="week01-part2.html">Part 2, variables and displays</a> covers variable types, the four measurement scales, frequency tables and choosing a graph.</p>
+<p><strong>Next:</strong> <a href="week02-part2.html">Part 2, the normal curve and z-scores</a> covers the normal distribution, the empirical rule, Chebyshev’s rule and the z-score.</p>
 </div>
 </div>
 </div>
@@ -1472,13 +1721,13 @@ Table&nbsp;1.4: Five ways to draw a sample, and what each one risks
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../front-matter/dataset-overview.html" class="pagination-link" aria-label="Dataset Overview">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Dataset Overview</span>
+      <a href="../weeks/week01-independent-study.html" class="pagination-link" aria-label="Independent study and submission">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Independent study and submission</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../weeks/week01-part2.html" class="pagination-link" aria-label="Part 2: Variables and displays">
-        <span class="nav-page-text"><span class="chapter-title">Part 2: Variables and displays</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../weeks/week02-part2.html" class="pagination-link" aria-label="Part 2: The normal curve and z-scores">
+        <span class="nav-page-text"><span class="chapter-title">Part 2: The normal curve and z-scores</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

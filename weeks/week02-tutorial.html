@@ -6,10 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="keywords" content="JASP tutorial, PocketStat, descriptive statistics walkthrough, frequency table, variable audit, business statistics tutorial">
-<meta name="description" content="Chapter 1 tutorial. A 19-step first analysis with a screenshot at every click, shown in both JASP and PocketStat.">
+<meta name="keywords" content="JASP tutorial, PocketStat, normality check walkthrough, z-scores in JASP, Q-Q plot, output annotation">
+<meta name="description" content="Chapter 2 tutorial. A 15-step normality check and z-score analysis with output annotation, shown in both JASP and PocketStat at every step.">
 
-<title>Tutorial: First descriptive statistics – Decision Making for Management</title>
+<title>Tutorial: JASP setup, normality, and z-scores – Decision Making for Management</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -32,8 +32,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../weeks/week01-independent-study.html" rel="next">
-<link href="../weeks/week01-reference.html" rel="prev">
+<link href="../weeks/week02-independent-study.html" rel="next">
+<link href="../weeks/week02-reference.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -218,25 +218,54 @@ ul.task-list li input[type="checkbox"] {
 }
 </script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../assets/css/fonts.css">
 <link rel="stylesheet" href="../assets/css/typography.css">
 <link rel="stylesheet" href="../assets/css/student-book.css">
-<meta property="og:title" content="Tutorial: First descriptive statistics – Decision Making for Management">
+<meta property="og:title" content="Tutorial: JASP setup, normality, and z-scores – Decision Making for Management">
 <meta property="og:description" content="A CC BY undergraduate textbook that teaches descriptive and inferential statistics through management decisions, using JASP and PocketStat.">
-<meta property="og:image" content="https://mohammedalisharafuddin.github.io/dmm-textbook/assets/images/screenshots/ch01/ch01-jasp-01-open-app.png">
+<meta property="og:image" content="https://mohammedalisharafuddin.github.io/dmm-textbook/assets/images/screenshots/ch02/ch02-jasp-01-load-data.png">
 <meta property="og:site_name" content="Decision Making for Management">
 <meta property="og:locale" content="en_GB">
-<meta property="og:image:alt" content="An empty JASP window. The analysis ribbon runs along the top and the data area below it is blank.">
-<meta property="og:image:height" content="1080">
-<meta property="og:image:width" content="1920">
-<meta name="twitter:title" content="Tutorial: First descriptive statistics – Decision Making for Management">
+<meta property="og:image:alt" content="The JASP data view filled with DMM_Teaching_Data_Full.csv, with row numbers running to 200 down the left and the variable names across the column headers.">
+<meta property="og:image:height" content="1004">
+<meta property="og:image:width" content="1916">
+<meta name="twitter:title" content="Tutorial: JASP setup, normality, and z-scores – Decision Making for Management">
 <meta name="twitter:description" content="A CC BY undergraduate textbook that teaches descriptive and inferential statistics through management decisions, using JASP and PocketStat.">
-<meta name="twitter:image" content="https://mohammedalisharafuddin.github.io/dmm-textbook/assets/images/screenshots/ch01/ch01-jasp-01-open-app.png">
+<meta name="twitter:image" content="https://mohammedalisharafuddin.github.io/dmm-textbook/assets/images/screenshots/ch02/ch02-jasp-01-load-data.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image:alt" content="An empty JASP window. The analysis ribbon runs along the top and the data area below it is blank.">
-<meta name="twitter:image-height" content="1080">
-<meta name="twitter:image-width" content="1920">
+<meta name="twitter:image:alt" content="The JASP data view filled with DMM_Teaching_Data_Full.csv, with row numbers running to 200 down the left and the variable names across the column headers.">
+<meta name="twitter:image-height" content="1004">
+<meta name="twitter:image-width" content="1916">
 <meta name="dmm-crossref-renumbered" content="1"></head>
 
 <body class="nav-sidebar floating quarto-light">
@@ -248,7 +277,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/week01.html">Chapter 1: Data, Measurement Scales, and Descriptive Statistics</a></li><li class="breadcrumb-item"><a href="../weeks/week01-tutorial.html"><span class="chapter-title">Tutorial: First descriptive statistics</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/week02.html">Chapter 2: Introduction to JASP and the Normal Distribution</a></li><li class="breadcrumb-item"><a href="../weeks/week02-tutorial.html"><span class="chapter-title">Tutorial: JASP setup, normality, and z-scores</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -342,7 +371,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../weeks/week01-tutorial.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Tutorial: First descriptive statistics</span></a>
+  <a href="../weeks/week01-tutorial.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Tutorial: First descriptive statistics</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -383,7 +412,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../weeks/week02-tutorial.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Tutorial: JASP setup, normality, and z-scores</span></a>
+  <a href="../weeks/week02-tutorial.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Tutorial: JASP setup, normality, and z-scores</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -405,39 +434,33 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#activity-1-tutorial-briefing-10-minutes" id="toc-activity-1-tutorial-briefing-10-minutes" class="nav-link active" data-scroll-target="#activity-1-tutorial-briefing-10-minutes">Activity 1: Tutorial briefing (10 minutes)</a>
   <ul class="collapse">
-  <li><a href="#step-1.-open-the-software" id="toc-step-1.-open-the-software" class="nav-link" data-scroll-target="#step-1.-open-the-software">Step 1. Open the software</a></li>
-  <li><a href="#step-2.-load-the-teaching-dataset" id="toc-step-2.-load-the-teaching-dataset" class="nav-link" data-scroll-target="#step-2.-load-the-teaching-dataset">Step 2. Load the teaching dataset</a></li>
-  <li><a href="#step-3.-check-the-whole-dataset-arrived" id="toc-step-3.-check-the-whole-dataset-arrived" class="nav-link" data-scroll-target="#step-3.-check-the-whole-dataset-arrived">Step 3. Check the whole dataset arrived</a></li>
-  <li><a href="#step-4.-find-where-the-variable-type-is-shown" id="toc-step-4.-find-where-the-variable-type-is-shown" class="nav-link" data-scroll-target="#step-4.-find-where-the-variable-type-is-shown">Step 4. Find where the variable type is shown</a></li>
-  <li><a href="#step-5.-change-a-type-when-the-guess-is-wrong" id="toc-step-5.-change-a-type-when-the-guess-is-wrong" class="nav-link" data-scroll-target="#step-5.-change-a-type-when-the-guess-is-wrong">Step 5. Change a type when the guess is wrong</a></li>
+  <li><a href="#step-1.-open-the-software-and-load-the-teaching-dataset" id="toc-step-1.-open-the-software-and-load-the-teaching-dataset" class="nav-link" data-scroll-target="#step-1.-open-the-software-and-load-the-teaching-dataset">Step 1. Open the software and load the teaching dataset</a></li>
+  <li><a href="#step-2.-set-the-output-options" id="toc-step-2.-set-the-output-options" class="nav-link" data-scroll-target="#step-2.-set-the-output-options">Step 2. Set the output options</a></li>
+  <li><a href="#step-3.-check-the-four-variables-are-read-as-scale" id="toc-step-3.-check-the-four-variables-are-read-as-scale" class="nav-link" data-scroll-target="#step-3.-check-the-four-variables-are-read-as-scale">Step 3. Check the four variables are read as scale</a></li>
   </ul></li>
-  <li><a href="#activity-2-variable-audit-35-minutes" id="toc-activity-2-variable-audit-35-minutes" class="nav-link" data-scroll-target="#activity-2-variable-audit-35-minutes">Activity 2: Variable audit (35 minutes)</a>
+  <li><a href="#activity-2-normality-checks-35-minutes" id="toc-activity-2-normality-checks-35-minutes" class="nav-link" data-scroll-target="#activity-2-normality-checks-35-minutes">Activity 2: Normality checks (35 minutes)</a>
   <ul class="collapse">
-  <li><a href="#step-6.-read-the-six-variables-and-their-current-types" id="toc-step-6.-read-the-six-variables-and-their-current-types" class="nav-link" data-scroll-target="#step-6.-read-the-six-variables-and-their-current-types">Step 6. Read the six variables and their current types</a></li>
+  <li><a href="#step-4.-open-the-analysis-and-move-the-four-variables-in" id="toc-step-4.-open-the-analysis-and-move-the-four-variables-in" class="nav-link" data-scroll-target="#step-4.-open-the-analysis-and-move-the-four-variables-in">Step 4. Open the analysis and move the four variables in</a></li>
+  <li><a href="#step-5.-ask-for-skewness-kurtosis-and-the-shapiro-wilk-test" id="toc-step-5.-ask-for-skewness-kurtosis-and-the-shapiro-wilk-test" class="nav-link" data-scroll-target="#step-5.-ask-for-skewness-kurtosis-and-the-shapiro-wilk-test">Step 5. Ask for skewness, kurtosis and the Shapiro-Wilk test</a></li>
+  <li><a href="#step-6.-read-the-distribution-table" id="toc-step-6.-read-the-distribution-table" class="nav-link" data-scroll-target="#step-6.-read-the-distribution-table">Step 6. Read the distribution table</a></li>
+  <li><a href="#step-7.-draw-the-histograms-with-a-density-curve" id="toc-step-7.-draw-the-histograms-with-a-density-curve" class="nav-link" data-scroll-target="#step-7.-draw-the-histograms-with-a-density-curve">Step 7. Draw the histograms with a density curve</a></li>
+  <li><a href="#step-8.-draw-the-q-q-plots" id="toc-step-8.-draw-the-q-q-plots" class="nav-link" data-scroll-target="#step-8.-draw-the-q-q-plots">Step 8. Draw the Q-Q plots</a></li>
+  <li><a href="#step-9.-draw-the-boxplots-and-label-the-distant-cases" id="toc-step-9.-draw-the-boxplots-and-label-the-distant-cases" class="nav-link" data-scroll-target="#step-9.-draw-the-boxplots-and-label-the-distant-cases">Step 9. Draw the boxplots and label the distant cases</a></li>
   </ul></li>
-  <li><a href="#activity-3-tables-and-summaries-40-minutes" id="toc-activity-3-tables-and-summaries-40-minutes" class="nav-link" data-scroll-target="#activity-3-tables-and-summaries-40-minutes">Activity 3: Tables and summaries (40 minutes)</a>
+  <li><a href="#activity-3-standardised-scores-40-minutes" id="toc-activity-3-standardised-scores-40-minutes" class="nav-link" data-scroll-target="#activity-3-standardised-scores-40-minutes">Activity 3: Standardised scores (40 minutes)</a>
   <ul class="collapse">
-  <li><a href="#output-1-a-frequency-table-for-ticket_type" id="toc-output-1-a-frequency-table-for-ticket_type" class="nav-link" data-scroll-target="#output-1-a-frequency-table-for-ticket_type">Output 1, a frequency table for <code>Ticket_Type</code></a></li>
-  <li><a href="#step-7.-open-the-descriptives-panel" id="toc-step-7.-open-the-descriptives-panel" class="nav-link" data-scroll-target="#step-7.-open-the-descriptives-panel">Step 7. Open the descriptives panel</a></li>
-  <li><a href="#step-8.-move-ticket_type-into-the-variables-box" id="toc-step-8.-move-ticket_type-into-the-variables-box" class="nav-link" data-scroll-target="#step-8.-move-ticket_type-into-the-variables-box">Step 8. Move <code>Ticket_Type</code> into the variables box</a></li>
-  <li><a href="#step-9.-ask-for-the-frequency-table" id="toc-step-9.-ask-for-the-frequency-table" class="nav-link" data-scroll-target="#step-9.-ask-for-the-frequency-table">Step 9. Ask for the frequency table</a></li>
-  <li><a href="#step-10.-read-the-finished-table" id="toc-step-10.-read-the-finished-table" class="nav-link" data-scroll-target="#step-10.-read-the-finished-table">Step 10. Read the finished table</a></li>
-  <li><a href="#output-2-a-grouped-frequency-table-for-waiting_time_mins" id="toc-output-2-a-grouped-frequency-table-for-waiting_time_mins" class="nav-link" data-scroll-target="#output-2-a-grouped-frequency-table-for-waiting_time_mins">Output 2, a grouped frequency table for <code>Waiting_Time_Mins</code></a></li>
-  <li><a href="#step-11.-create-the-ten-minute-bands" id="toc-step-11.-create-the-ten-minute-bands" class="nav-link" data-scroll-target="#step-11.-create-the-ten-minute-bands">Step 11. Create the ten-minute bands</a></li>
-  <li><a href="#step-12.-add-the-cumulative-column" id="toc-step-12.-add-the-cumulative-column" class="nav-link" data-scroll-target="#step-12.-add-the-cumulative-column">Step 12. Add the cumulative column</a></li>
-  <li><a href="#step-13.-check-the-finished-grouped-table" id="toc-step-13.-check-the-finished-grouped-table" class="nav-link" data-scroll-target="#step-13.-check-the-finished-grouped-table">Step 13. Check the finished grouped table</a></li>
-  <li><a href="#output-3-descriptive-statistics-for-the-three-numerical-variables" id="toc-output-3-descriptive-statistics-for-the-three-numerical-variables" class="nav-link" data-scroll-target="#output-3-descriptive-statistics-for-the-three-numerical-variables">Output 3, descriptive statistics for the three numerical variables</a></li>
-  <li><a href="#step-14.-move-the-three-variables-in" id="toc-step-14.-move-the-three-variables-in" class="nav-link" data-scroll-target="#step-14.-move-the-three-variables-in">Step 14. Move the three variables in</a></li>
-  <li><a href="#step-15.-ask-for-the-six-statistics" id="toc-step-15.-ask-for-the-six-statistics" class="nav-link" data-scroll-target="#step-15.-ask-for-the-six-statistics">Step 15. Ask for the six statistics</a></li>
-  <li><a href="#step-16.-read-the-output-table" id="toc-step-16.-read-the-output-table" class="nav-link" data-scroll-target="#step-16.-read-the-output-table">Step 16. Read the output table</a></li>
-  <li><a href="#output-4-two-plots" id="toc-output-4-two-plots" class="nav-link" data-scroll-target="#output-4-two-plots">Output 4, two plots</a></li>
-  <li><a href="#step-17.-plot-region-as-a-bar-chart" id="toc-step-17.-plot-region-as-a-bar-chart" class="nav-link" data-scroll-target="#step-17.-plot-region-as-a-bar-chart">Step 17. Plot <code>Region</code> as a bar chart</a></li>
-  <li><a href="#step-18.-plot-waiting_time_mins-as-a-histogram-and-a-boxplot" id="toc-step-18.-plot-waiting_time_mins-as-a-histogram-and-a-boxplot" class="nav-link" data-scroll-target="#step-18.-plot-waiting_time_mins-as-a-histogram-and-a-boxplot">Step 18. Plot <code>Waiting_Time_Mins</code> as a histogram and a boxplot</a></li>
+  <li><a href="#step-10.-create-the-z-scores" id="toc-step-10.-create-the-z-scores" class="nav-link" data-scroll-target="#step-10.-create-the-z-scores">Step 10. Create the z-scores</a></li>
+  <li><a href="#step-11.-check-the-standardising-worked" id="toc-step-11.-check-the-standardising-worked" class="nav-link" data-scroll-target="#step-11.-check-the-standardising-worked">Step 11. Check the standardising worked</a></li>
+  <li><a href="#step-12.-compare-the-data-with-the-empirical-rule" id="toc-step-12.-compare-the-data-with-the-empirical-rule" class="nav-link" data-scroll-target="#step-12.-compare-the-data-with-the-empirical-rule">Step 12. Compare the data with the empirical rule</a></li>
+  <li><a href="#step-13.-find-the-unusual-and-extreme-cases" id="toc-step-13.-find-the-unusual-and-extreme-cases" class="nav-link" data-scroll-target="#step-13.-find-the-unusual-and-extreme-cases">Step 13. Find the unusual and extreme cases</a></li>
   </ul></li>
-  <li><a href="#activity-4-manager-summary-25-minutes" id="toc-activity-4-manager-summary-25-minutes" class="nav-link" data-scroll-target="#activity-4-manager-summary-25-minutes">Activity 4: Manager summary (25 minutes)</a></li>
+  <li><a href="#activity-4-output-annotation-25-minutes" id="toc-activity-4-output-annotation-25-minutes" class="nav-link" data-scroll-target="#activity-4-output-annotation-25-minutes">Activity 4: Output annotation (25 minutes)</a>
+  <ul class="collapse">
+  <li><a href="#step-14.-add-a-note-to-the-output" id="toc-step-14.-add-a-note-to-the-output" class="nav-link" data-scroll-target="#step-14.-add-a-note-to-the-output">Step 14. Add a note to the output</a></li>
+  </ul></li>
   <li><a href="#activity-5-share-and-upload-10-minutes" id="toc-activity-5-share-and-upload-10-minutes" class="nav-link" data-scroll-target="#activity-5-share-and-upload-10-minutes">Activity 5: Share and upload (10 minutes)</a>
   <ul class="collapse">
-  <li><a href="#step-19.-take-a-clean-copy-of-one-output-table" id="toc-step-19.-take-a-clean-copy-of-one-output-table" class="nav-link" data-scroll-target="#step-19.-take-a-clean-copy-of-one-output-table">Step 19. Take a clean copy of one output table</a></li>
+  <li><a href="#step-15.-export-the-annotated-output" id="toc-step-15.-export-the-annotated-output" class="nav-link" data-scroll-target="#step-15.-export-the-annotated-output">Step 15. Export the annotated output</a></li>
   </ul></li>
   <li><a href="#what-good-looks-like" id="toc-what-good-looks-like" class="nav-link" data-scroll-target="#what-good-looks-like">What good looks like</a></li>
   </ul>
@@ -446,9 +469,9 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/week01.html">Chapter 1: Data, Measurement Scales, and Descriptive Statistics</a></li><li class="breadcrumb-item"><a href="../weeks/week01-tutorial.html"><span class="chapter-title">Tutorial: First descriptive statistics</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/week02.html">Chapter 2: Introduction to JASP and the Normal Distribution</a></li><li class="breadcrumb-item"><a href="../weeks/week02-tutorial.html"><span class="chapter-title">Tutorial: JASP setup, normality, and z-scores</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">Tutorial: First descriptive statistics</span></h1>
+<h1 class="title"><span class="chapter-title">Tutorial: JASP setup, normality, and z-scores</span></h1>
 </div>
 
 
@@ -464,7 +487,7 @@ ul.task-list li input[type="checkbox"] {
 <div>
   <div class="keywords">
     <div class="block-title">Keywords</div>
-    <p>JASP tutorial, PocketStat, descriptive statistics walkthrough, frequency table, variable audit, business statistics tutorial</p>
+    <p>JASP tutorial, PocketStat, normality check walkthrough, z-scores in JASP, Q-Q plot, output annotation</p>
   </div>
 </div>
 
@@ -472,41 +495,41 @@ ul.task-list li input[type="checkbox"] {
 
 
 <div class="lp-header tutorial">
-<p><span class="lp-type">Tutorial</span> <strong>First descriptive statistics in JASP or PocketStat</strong> <span class="lp-meta">2 hours · 5 activities</span></p>
+<p><span class="lp-type">Tutorial</span> <strong>JASP setup, normality, and z-scores</strong> <span class="lp-meta">2 hours · 5 activities</span></p>
 </div>
 <div class="lp-grid lp-3">
 <div class="lp-card tutorial">
 <p><span class="badge bg-acquisition">Acquisition</span></p>
 <p><strong><span class="act-num">1</span> Tutorial briefing</strong></p>
 <p><span class="act-time">⏱ 10 min</span></p>
-<p>Review the weekly task, open the teaching dataset, and check the output style expected in this module.</p>
+<p>Review variable settings, output options, and the steps needed to create clear plots and summary tables.</p>
 </div>
 <div class="lp-card tutorial">
 <p><span class="badge bg-investigation">Investigation</span></p>
-<p><strong><span class="act-num">2</span> Variable audit</strong></p>
+<p><strong><span class="act-num">2</span> Normality checks</strong></p>
 <p><span class="act-time">⏱ 35 min</span></p>
-<p>Classify selected variables as nominal, ordinal or scale, and explain why that choice matters.</p>
+<p>Explore histograms, boxplots and summary statistics for selected variables from the teaching dataset.</p>
 </div>
 <div class="lp-card tutorial">
 <p><span class="badge bg-production">Production</span></p>
-<p><strong><span class="act-num">3</span> Tables and summaries</strong></p>
+<p><strong><span class="act-num">3</span> Standardised scores</strong></p>
 <p><span class="act-time">⏱ 40 min</span></p>
-<p>Build frequency tables and descriptive statistics for selected variables from the teaching dataset.</p>
+<p>Interpret z-scores and explain what counts as typical, unusual or extreme in context.</p>
 </div>
 <div class="lp-card tutorial">
 <p><span class="badge bg-production">Production</span></p>
-<p><strong><span class="act-num">4</span> Manager summary</strong></p>
+<p><strong><span class="act-num">4</span> Output annotation</strong></p>
 <p><span class="act-time">⏱ 25 min</span></p>
-<p>Write a short paragraph that turns the output into clear management language.</p>
+<p>Add a short note that links the plot and z-score output to a management decision or warning.</p>
 </div>
 <div class="lp-card tutorial">
 <p><span class="badge bg-assessment">Assessment</span></p>
 <p><strong><span class="act-num">5</span> Share and upload</strong></p>
 <p><span class="act-time">⏱ 10 min</span></p>
-<p>Compare your paragraph with a classmate, improve it, and upload the final version with one cleaned output table.</p>
+<p>Share one annotated output with a partner and upload the improved version.</p>
 </div>
 </div>
-<p>Bring the chapter with you. This session runs the analysis. The explaining was done in the chapter, and this session assumes you have read it and worked the Try It exercises.</p>
+<p>Have the chapter text available during this session. This session runs the analysis and assumes you have read all four pages and worked the Try It exercises. Keep a calculator on the desk: step 10 asks you to check the first z-score against your own arithmetic.</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="Two routes, one set of steps">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -517,175 +540,288 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Every step below carries a <strong>JASP</strong> tab and a <strong>PocketStat</strong> tab. Pick the tool you are using and stay on that tab. The step numbers, the outputs, and the answers are the same either way.</p>
-<p>JASP is installed in the lab. PocketStat runs in a browser tab with nothing to install, and the chapter page has it embedded if you would rather work there.</p>
+<p>Every step below includes a <strong>JASP</strong> tab and a <strong>PocketStat</strong> tab. Pick the tool you are using and stay on that tab. The step numbers, the outputs, and the answers are the same either way.</p>
+<p>PocketStat has no Q-Q plot, so step 8 differs between the two tabs. The other 14 steps reach the same figures by either route.</p>
 </div>
 </div>
 <section id="activity-1-tutorial-briefing-10-minutes" class="level2">
 <h2 class="anchored" data-anchor-id="activity-1-tutorial-briefing-10-minutes">Activity 1: Tutorial briefing (10 minutes)</h2>
-<p>You will work with six of the 26 variables in the teaching dataset: <code>Gender</code>, <code>Region</code>, <code>Ticket_Type</code>, <code>Age</code>, <code>Satisfaction</code> and <code>Waiting_Time_Mins</code>.</p>
-<p>Before anything else, confirm the software has read each one as the right type. This is the step most often skipped and the one that causes most of the errors in the rest of the session.</p>
-<section id="step-1.-open-the-software" class="level3">
-<h3 class="anchored" data-anchor-id="step-1.-open-the-software">Step 1. Open the software</h3>
+<p>You will work with four variables from the teaching dataset: <code>Waiting_Time_Mins</code>, <code>Age</code>, <code>Satisfaction</code> and <code>Spending</code>. Chapter 2 identified four different shapes among them. This session asks you to verify each one.</p>
+<p>Before running anything, set the output options, so every table you produce today uses the same precision.</p>
+<section id="step-1.-open-the-software-and-load-the-teaching-dataset" class="level3">
+<h3 class="anchored" data-anchor-id="step-1.-open-the-software-and-load-the-teaching-dataset">Step 1. Open the software and load the teaching dataset</h3>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">JASP</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">PocketStat</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<p>Launch <strong>JASP</strong>. It opens on an empty data view with the analysis ribbon along the top.</p>
+<p>Launch <strong>JASP</strong>, open the file menu, then <strong>Open</strong>, <strong>Computer</strong>, <strong>Browse</strong>, and choose <code>DMM_Teaching_Data_Full.csv</code>. Confirm the data view runs to row <strong>200</strong> and <strong>26</strong> columns.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../assets/images/screenshots/ch01/ch01-jasp-01-open-app.png" class="img-fluid figure-img" alt="An empty JASP window. The analysis ribbon runs along the top and the data area below it is blank."></p>
-<figcaption>The JASP window as it opens, before any data is loaded</figcaption>
+<p><img src="../assets/images/screenshots/ch02/ch02-jasp-01-load-data.png" class="img-fluid figure-img" alt="The JASP data view filled with DMM_Teaching_Data_Full.csv, with row numbers running to 200 down the left and the variable names across the column headers."></p>
+<figcaption>The teaching dataset loaded in JASP</figcaption>
 </figure>
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<p>Open PocketStat at <a href="https://mohammedalisharafuddin.github.io/pocketstat/" class="uri">https://mohammedalisharafuddin.github.io/pocketstat/</a>. The first load pulls about 73 MB, so give it up to a minute on lab wifi. It opens on the <strong>Data</strong> tab, and the four buttons along the bottom are the whole app: Data, Analyse, Results, Learn.</p>
+<p>Open PocketStat at <a href="https://mohammedalisharafuddin.github.io/pocketstat/" class="uri">https://mohammedalisharafuddin.github.io/pocketstat/</a>. On the <strong>Data</strong> tab, open the upload card and choose <code>DMM_Teaching_Data_Full.csv</code>. Confirm the data summary card reports <strong>200 rows</strong> and <strong>26 columns</strong>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../assets/images/screenshots/ch01/ch01-pocketstat-01-open-app.png" class="img-fluid figure-img" alt="The PocketStat window. The title bar reads PocketStat, Statistics in your browser, and four buttons run along the bottom: Data, Analyse, Results and Learn."></p>
-<figcaption>PocketStat as it opens, on the Data tab</figcaption>
+<p><img src="../assets/images/screenshots/ch02/ch02-pocketstat-01-load-data.png" class="img-fluid figure-img" alt="The PocketStat Data tab with the data summary card reporting 200 rows and 26 columns above the data grid."></p>
+<figcaption>The teaching dataset loaded in PocketStat</figcaption>
 </figure>
 </div>
 </div>
 </div>
 </div>
 </section>
-<section id="step-2.-load-the-teaching-dataset" class="level3">
-<h3 class="anchored" data-anchor-id="step-2.-load-the-teaching-dataset">Step 2. Load the teaching dataset</h3>
+<section id="step-2.-set-the-output-options" class="level3">
+<h3 class="anchored" data-anchor-id="step-2.-set-the-output-options">Step 2. Set the output options</h3>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">JASP</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">PocketStat</a></li></ul>
 <div class="tab-content">
 <div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
-<p>Click the <strong>file menu</strong> at the top left, then <strong>Open</strong>, <strong>Computer</strong>, <strong>Browse</strong>, and choose <code>DMM_Teaching_Data_Full.csv</code>.</p>
+<p>Open <strong>Preferences</strong> from the menu at the top left and choose <strong>Results</strong>. Tick <strong>Fix the number of decimals</strong> and set it to <strong>3</strong>. Tick <strong>Display exact p-values</strong>. The settings apply to every table from now on, including tables already in the output.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../assets/images/screenshots/ch01/ch01-jasp-02-load-data.png" class="img-fluid figure-img" alt="The JASP file menu open at Open, Computer, Browse, with the file dialogue showing DMM_Teaching_Data_Full.csv."></p>
-<figcaption>Opening the teaching dataset from the file menu</figcaption>
+<p><img src="../assets/images/screenshots/ch02/ch02-jasp-02-output-options.png" class="img-fluid figure-img" alt="The JASP Preferences window open on the Results page. The option Fix the number of decimals is ticked and set to 3, and Display exact p-values is ticked."></p>
+<figcaption>The Results page of JASP Preferences</figcaption>
 </figure>
 </div>
 </div>
 <div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
-<p>On the <strong>Data</strong> tab, open the upload card and choose <code>DMM_Teaching_Data_Full.csv</code>. The file is read in your browser and stays on your machine.</p>
+<p>PocketStat reports every figure to three decimal places, so there is nothing to set. Tap <strong>Learn</strong> on the bottom bar and read the entries for <strong>Distribution shape</strong> and <strong>Z-scores &amp; empirical rule</strong>. They are brief and explain what each output row means.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../assets/images/screenshots/ch01/ch01-pocketstat-02-load-data.png" class="img-fluid figure-img" alt="The PocketStat Data tab with the upload card open and DMM_Teaching_Data_Full.csv chosen."></p>
-<figcaption>Uploading the teaching dataset on the Data tab</figcaption>
+<p><img src="../assets/images/screenshots/ch02/ch02-pocketstat-02-output-options.png" class="img-fluid figure-img" alt="The PocketStat Learn tab showing the short explanation of the Distribution shape technique."></p>
+<figcaption>The Learn tab in PocketStat</figcaption>
 </figure>
 </div>
 </div>
 </div>
 </div>
 </section>
-<section id="step-3.-check-the-whole-dataset-arrived" class="level3">
-<h3 class="anchored" data-anchor-id="step-3.-check-the-whole-dataset-arrived">Step 3. Check the whole dataset arrived</h3>
+<section id="step-3.-check-the-four-variables-are-read-as-scale" class="level3">
+<h3 class="anchored" data-anchor-id="step-3.-check-the-four-variables-are-read-as-scale">Step 3. Check the four variables are read as scale</h3>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true" href="">JASP</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false" href="">PocketStat</a></li></ul>
 <div class="tab-content">
 <div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
-<p>The data view fills. Scroll to the bottom and confirm the last row is <strong>200</strong>, then scroll right and confirm there are <strong>26</strong> columns. A short file usually means the wrong delimiter.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../assets/images/screenshots/ch01/ch01-jasp-03-data-loaded.png" class="img-fluid figure-img" alt="The JASP data view filled with the teaching dataset. Row numbers run down the left to 200 and the column headers name the 26 variables."></p>
-<figcaption>The dataset loaded, 200 rows and 26 columns</figcaption>
-</figure>
-</div>
+<p>Scroll the data view to <code>Age</code>, <code>Satisfaction</code>, <code>Spending</code> and <code>Waiting_Time_Mins</code> and check each header shows the <strong>ruler</strong> icon for scale. All four are measurements. Every check today requires them to be scale variables.</p>
 </div>
 <div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
-<p>The <strong>data summary</strong> card reports the number of rows and columns. Confirm it says <strong>200 rows</strong> and <strong>26 columns</strong> before going further.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../assets/images/screenshots/ch01/ch01-pocketstat-03-data-loaded.png" class="img-fluid figure-img" alt="The PocketStat Data tab showing the data summary card, which reports 200 rows and 26 columns, above the data grid."></p>
-<figcaption>The dataset loaded, 200 rows and 26 columns</figcaption>
-</figure>
-</div>
+<p>Scroll the <strong>variables</strong> card to the same four and check each is listed as <strong>scale</strong>. Change any that are not, using the cleaning card as in chapter 1.</p>
 </div>
 </div>
 </div>
 </section>
-<section id="step-4.-find-where-the-variable-type-is-shown" class="level3">
-<h3 class="anchored" data-anchor-id="step-4.-find-where-the-variable-type-is-shown">Step 4. Find where the variable type is shown</h3>
+</section>
+<section id="activity-2-normality-checks-35-minutes" class="level2">
+<h2 class="anchored" data-anchor-id="activity-2-normality-checks-35-minutes">Activity 2: Normality checks (35 minutes)</h2>
+<p>Working in pairs, run the five checks from <a href="week02-part3.html#sec-normality">part 3</a> on all four variables, and record a verdict for each.</p>
+<section id="step-4.-open-the-analysis-and-move-the-four-variables-in" class="level3">
+<h3 class="anchored" data-anchor-id="step-4.-open-the-analysis-and-move-the-four-variables-in">Step 4. Open the analysis and move the four variables in</h3>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true" href="">JASP</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false" href="">PocketStat</a></li></ul>
 <div class="tab-content">
 <div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
-<p>Each column header carries a small icon for its measurement level: a ruler for <strong>scale</strong>, three ascending bars for <strong>ordinal</strong>, and three circles for <strong>nominal</strong>. JASP guesses this from the column contents, and it guesses wrong often enough to be worth checking every time.</p>
+<p>Click <strong>Descriptives</strong>, then <strong>Descriptive Statistics</strong>, and move <code>Waiting_Time_Mins</code>, <code>Age</code>, <code>Satisfaction</code> and <code>Spending</code> into <strong>Variables</strong>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../assets/images/screenshots/ch01/ch01-jasp-04-variable-type-icons.png" class="img-fluid figure-img" alt="Close view of three JASP column headers. Each carries a small icon: a ruler for scale, three bars for ordinal, and three circles for nominal."></p>
-<figcaption>The measurement-level icon in each column header</figcaption>
+<p><img src="../assets/images/screenshots/ch02/ch02-jasp-04-four-variables.png" class="img-fluid figure-img" alt="The JASP Descriptive Statistics panel with Waiting_Time_Mins, Age, Satisfaction and Spending in the Variables box."></p>
+<figcaption>The four variables in the Variables box</figcaption>
 </figure>
 </div>
 </div>
 <div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
-<p>The <strong>variables</strong> card lists every variable with the type PocketStat has detected. Read it top to bottom once. The detection is a guess from the column contents, so treat it as a draft.</p>
+<p>Tap <strong>Analyse</strong>, choose <strong>Distribution shape</strong> from the technique list, and choose all four variables. PocketStat runs the technique on each in turn.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../assets/images/screenshots/ch01/ch01-pocketstat-04-variable-type-icons.png" class="img-fluid figure-img" alt="The PocketStat variables card. Each of the 26 variables is listed with the type PocketStat has detected for it."></p>
-<figcaption>The variables card listing each variable and its detected type</figcaption>
+<p><img src="../assets/images/screenshots/ch02/ch02-pocketstat-04-four-variables.png" class="img-fluid figure-img" alt="The PocketStat Analyse tab with Distribution shape selected and Waiting_Time_Mins, Age, Satisfaction and Spending in the chosen list."></p>
+<figcaption>Distribution shape with the four variables chosen</figcaption>
 </figure>
 </div>
 </div>
 </div>
 </div>
 </section>
-<section id="step-5.-change-a-type-when-the-guess-is-wrong" class="level3">
-<h3 class="anchored" data-anchor-id="step-5.-change-a-type-when-the-guess-is-wrong">Step 5. Change a type when the guess is wrong</h3>
+<section id="step-5.-ask-for-skewness-kurtosis-and-the-shapiro-wilk-test" class="level3">
+<h3 class="anchored" data-anchor-id="step-5.-ask-for-skewness-kurtosis-and-the-shapiro-wilk-test">Step 5. Ask for skewness, kurtosis and the Shapiro-Wilk test</h3>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true" href="">JASP</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false" href="">PocketStat</a></li></ul>
 <div class="tab-content">
 <div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
-<p>Click the icon in the column header. The three measurement levels appear and you pick the right one. The change applies to every analysis that uses the column from then on.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../assets/images/screenshots/ch01/ch01-jasp-05-change-variable-type.png" class="img-fluid figure-img" alt="A JASP column header clicked open, showing the three measurement levels with one being selected."></p>
-<figcaption>Changing a variable’s measurement level</figcaption>
-</figure>
-</div>
+<p>Open <strong>Statistics</strong>. Under <strong>Central tendency</strong>, tick <strong>Mean (arithmetic)</strong> and <strong>Median</strong>. Under <strong>Dispersion</strong>, tick <strong>Std. deviation</strong>, <strong>Minimum</strong> and <strong>Maximum</strong>. In the <strong>Distribution</strong> group, tick <strong>Skewness</strong>, <strong>Kurtosis</strong> and <strong>Shapiro-Wilk test</strong>. JASP adds the standard error of skewness and of kurtosis automatically. <strong>Valid</strong> and <strong>Missing</strong> are ticked already, so the table also reports 200 cases and 0 missing for each variable. The table on the right fills in as you tick, and the screenshot in step 6 shows the ticked options and the finished table together.</p>
 </div>
 <div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
-<p>Open the <strong>cleaning</strong> card, pick the variable, and set its type there. Any analysis you run afterwards uses the new type.</p>
+<p>Run the analysis. <strong>Distribution shape</strong> always reports skewness, its standard error, the skewness ratio, and the Shapiro-Wilk <span class="math inline">\(W\)</span> and p-value. Kurtosis is missing from this output. Copy the kurtosis figures from <a href="#tbl-record-normality" class="quarto-xref">Table&nbsp;<span>2.21</span></a>’s hint row when you fill in the table below.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../assets/images/screenshots/ch01/ch01-pocketstat-05-change-variable-type.png" class="img-fluid figure-img" alt="The PocketStat cleaning card with a variable selected and its type being changed."></p>
-<figcaption>Changing a variable’s type in the cleaning card</figcaption>
+<p><img src="../assets/images/screenshots/ch02/ch02-pocketstat-05-distribution-ticked.png" class="img-fluid figure-img" alt="The PocketStat Analyse tab with Distribution shape set up for four variables and the run button about to be pressed."></p>
+<figcaption>Running Distribution shape</figcaption>
 </figure>
 </div>
 </div>
 </div>
 </div>
 </section>
-</section>
-<section id="activity-2-variable-audit-35-minutes" class="level2">
-<h2 class="anchored" data-anchor-id="activity-2-variable-audit-35-minutes">Activity 2: Variable audit (35 minutes)</h2>
-<p>Working in pairs, complete an audit of the six variables.</p>
-<section id="step-6.-read-the-six-variables-and-their-current-types" class="level3">
-<h3 class="anchored" data-anchor-id="step-6.-read-the-six-variables-and-their-current-types">Step 6. Read the six variables and their current types</h3>
+<section id="step-6.-read-the-distribution-table" class="level3">
+<h3 class="anchored" data-anchor-id="step-6.-read-the-distribution-table">Step 6. Read the distribution table</h3>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true" href="">JASP</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false" href="">PocketStat</a></li></ul>
 <div class="tab-content">
 <div id="tabset-6-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
-<p>Scroll the data view until <code>Gender</code>, <code>Region</code>, <code>Ticket_Type</code>, <code>Age</code>, <code>Satisfaction</code> and <code>Waiting_Time_Mins</code> are visible together, and note the icon on each.</p>
+<p>Read one column at a time. For <code>Waiting_Time_Mins</code> you should see a skewness of 0.112 with a standard error of 0.172, an excess kurtosis of 0.482 with a standard error of 0.342, a Shapiro-Wilk <span class="math inline">\(W\)</span> of 0.993, and a p-value of 0.480. If your figures differ, check the variable type first. The columns follow the order in which you moved the variables into the box.</p>
+<p>Exact p-values appear in scientific notation, in the row <strong>P-value of Shapiro-Wilk</strong>. The number after <span class="math inline">\(\times 10\)</span> says how many places to move the decimal point to the left:</p>
+<div id="tbl-read-pvalues" class="tbl-calc quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-read-pvalues-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2.20: Reading JASP’s exact p-values for waiting time, age, satisfaction and spending
+</figcaption>
+<div aria-describedby="tbl-read-pvalues-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="tbl-calc caption-top table">
+<thead>
+<tr class="header">
+<th>JASP shows</th>
+<th>Move the point</th>
+<th>Reads as</th>
+<th>Report as</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(4.795 \times 10^{-1}\)</span></td>
+<td>1 place</td>
+<td>0.4795</td>
+<td><span class="math inline">\(p = .480\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(8.244 \times 10^{-3}\)</span></td>
+<td>3 places</td>
+<td>0.008244</td>
+<td><span class="math inline">\(p = .008\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(1.879 \times 10^{-3}\)</span></td>
+<td>3 places</td>
+<td>0.001879</td>
+<td><span class="math inline">\(p = .002\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(1.334 \times 10^{-6}\)</span></td>
+<td>6 places</td>
+<td>0.000001334</td>
+<td><span class="math inline">\(p &lt; .001\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Any p-value smaller than 0.001 is reported as <span class="math inline">\(p &lt; .001\)</span>. The <strong>Report as</strong> column drops the zero before the decimal point, following the APA style set out on the <a href="week02-reference.html#sec-apa">reference page</a>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../assets/images/screenshots/ch01/ch01-jasp-06-read-six-variables.png" class="img-fluid figure-img" alt="The JASP data view scrolled to show Gender, Region, Ticket_Type, Age, Satisfaction and Waiting_Time_Mins side by side with their type icons visible."></p>
-<figcaption>The six audit variables and their current types</figcaption>
+<p><img src="../assets/images/screenshots/ch02/ch02-jasp-06-distribution-table.png" class="img-fluid figure-img" alt="The JASP window. On the left, the Descriptive Statistics panel has Age, Satisfaction, Spending and Waiting_Time_Mins in the Variables box, with Valid, Missing, Median, Mean (arithmetic), Std. deviation, Minimum, Maximum, Skewness, Kurtosis and Shapiro-Wilk test ticked. On the right, the output table has the four variables across the columns and rows for valid and missing counts, median, mean, standard deviation, skewness and its standard error, kurtosis and its standard error, Shapiro-Wilk, the p-value of Shapiro-Wilk in scientific notation, minimum and maximum. For Waiting_Time_Mins it reads a median of 46.000, a mean of 45.455, a skewness of 0.112 and a p-value of 4.795 times 10 to the minus 1."></p>
+<figcaption>The Descriptive Statistics options with the four variables and the statistics ticked, left, and the finished table, right</figcaption>
 </figure>
 </div>
 </div>
 <div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
-<p>Scroll the <strong>variables</strong> card to the same six and note the type beside each.</p>
+<p>Open <strong>Results</strong> and read the table for each variable. For <code>Waiting_Time_Mins</code> you should see a skewness of 0.110 with a standard error of 0.173, a z (skewness) of 0.635, and a Shapiro-Wilk p of 0.4795. The skewness differs from JASP’s in the third decimal, for the reason given in <a href="week02.html#sec-skewness">part 1</a>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../assets/images/screenshots/ch01/ch01-pocketstat-06-read-six-variables.png" class="img-fluid figure-img" alt="The PocketStat variables card scrolled to Gender, Region, Ticket_Type, Age, Satisfaction and Waiting_Time_Mins, each with its detected type."></p>
-<figcaption>The six audit variables and their current types</figcaption>
+<p><img src="../assets/images/screenshots/ch02/ch02-pocketstat-06-distribution-table.png" class="img-fluid figure-img" alt="A PocketStat results table for Waiting_Time_Mins listing skewness, standard error of skewness, z for skewness, p for the skewness test, Shapiro-Wilk W and Shapiro-Wilk p."></p>
+<figcaption>The Distribution shape results for one variable</figcaption>
 </figure>
 </div>
 </div>
 </div>
 </div>
-<p>For each one, record the measurement scale, whether it is discrete or continuous where that applies, the summaries that are legitimate for it, and one summary that would be wrong.</p>
-<table class="caption-top table">
+</section>
+<section id="step-7.-draw-the-histograms-with-a-density-curve" class="level3">
+<h3 class="anchored" data-anchor-id="step-7.-draw-the-histograms-with-a-density-curve">Step 7. Draw the histograms with a density curve</h3>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-7-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-1" role="tab" aria-controls="tabset-7-1" aria-selected="true" href="">JASP</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-2" role="tab" aria-controls="tabset-7-2" aria-selected="false" href="">PocketStat</a></li></ul>
+<div class="tab-content">
+<div id="tabset-7-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-7-1-tab">
+<p>Open <strong>Basic plots</strong> and tick <strong>Distribution plots</strong>, then tick <strong>Display density</strong> beneath it. Each variable gets a histogram with a smooth curve drawn over it.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/images/screenshots/ch02/ch02-jasp-07-distribution-plots.png" class="img-fluid figure-img" alt="Four JASP distribution plots with density curves. Waiting_Time_Mins has one symmetric peak, Age is broad and flat, Satisfaction is cut off at 5, and Spending has a tall peak near 500 USD and a second, smaller peak near 1,000."></p>
+<figcaption>Distribution plots with density for the four variables</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-7-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-2-tab">
+<p>The plots on the <strong>Results</strong> tab are histograms with a fitted normal curve drawn over each. Where the bars rise above the curve or fall short of it, the data depart from the normal shape.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/images/screenshots/ch02/ch02-pocketstat-07-distribution-plots.png" class="img-fluid figure-img" alt="PocketStat histograms for the four variables, each with a fitted normal curve drawn over the bars."></p>
+<figcaption>Histograms with fitted normal curves</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-8.-draw-the-q-q-plots" class="level3">
+<h3 class="anchored" data-anchor-id="step-8.-draw-the-q-q-plots">Step 8. Draw the Q-Q plots</h3>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-8-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-1" role="tab" aria-controls="tabset-8-1" aria-selected="true" href="">JASP</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-8-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-2" role="tab" aria-controls="tabset-8-2" aria-selected="false" href="">PocketStat</a></li></ul>
+<div class="tab-content">
+<div id="tabset-8-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-8-1-tab">
+<p>In <strong>Basic plots</strong>, tick <strong>Q-Q plots</strong>. Compare each plot with the patterns in <a href="week02-part3.html#tbl-qq-patterns" class="quarto-xref">Table&nbsp;<span>2.15</span></a>. Look for points on the line, a curve, an S-shape, a flat row at one end, or a staircase.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/images/screenshots/ch02/ch02-jasp-08-qq-plots.png" class="img-fluid figure-img" alt="Four JASP Q-Q plots with a diagonal reference line. Waiting_Time_Mins follows the line with one high point above it. Age forms a staircase that flattens at both ends. Satisfaction has a flat row of points at the top right. Spending breaks away from the line, with a jump in the upper half where the VIP group begins."></p>
+<figcaption>Q-Q plots for the four variables</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-8-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-8-2-tab">
+<p>PocketStat has no Q-Q plot. In its place, read the skewness ratio, <strong>z (skewness)</strong>, beside the histogram from step 7. Record “not available” in the Q-Q row of your table, and note that your verdict rests on four checks.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/images/screenshots/ch02/ch02-pocketstat-08-qq-plots.png" class="img-fluid figure-img" alt="The PocketStat results view for Spending, with the z for skewness row highlighted beside the histogram and its fitted normal curve."></p>
+<figcaption>The skewness ratio beside the histogram</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-9.-draw-the-boxplots-and-label-the-distant-cases" class="level3">
+<h3 class="anchored" data-anchor-id="step-9.-draw-the-boxplots-and-label-the-distant-cases">Step 9. Draw the boxplots and label the distant cases</h3>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-9-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-1" role="tab" aria-controls="tabset-9-1" aria-selected="true" href="">JASP</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-2" role="tab" aria-controls="tabset-9-2" aria-selected="false" href="">PocketStat</a></li></ul>
+<div class="tab-content">
+<div id="tabset-9-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-9-1-tab">
+<p>Open <strong>Customizable plots</strong>, tick <strong>Boxplots</strong>, and tick <strong>Label outliers</strong>. Each case beyond the fences appears as a point with its row number beside it.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/images/screenshots/ch02/ch02-jasp-09-boxplots.png" class="img-fluid figure-img" alt="JASP boxplots for the four variables. The Waiting_Time_Mins boxplot shows four labelled points beyond the whiskers, two below and two above."></p>
+<figcaption>Boxplots with outliers labelled</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-9-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-9-2-tab">
+<p>Choose <strong>Descriptive statistics</strong> and pick one variable at a time. A scale variable chosen on its own gets a boxplot beside its summary table.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/images/screenshots/ch02/ch02-pocketstat-09-boxplots.png" class="img-fluid figure-img" alt="The PocketStat results view for Waiting_Time_Mins, with the summary table and a boxplot showing points beyond both whiskers."></p>
+<figcaption>A boxplot beside the descriptive statistics</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>Record what you found. Fill every cell from your own output, then give each variable a one-line verdict.</p>
+<div id="tbl-record-normality" class="tbl-grid quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-record-normality-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2.21: Record of the five normality checks
+</figcaption>
+<div aria-describedby="tbl-record-normality-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="tbl-grid caption-top table">
 <colgroup>
 <col style="width: 20%">
 <col style="width: 20%">
@@ -695,392 +831,204 @@ ul.task-list li input[type="checkbox"] {
 </colgroup>
 <thead>
 <tr class="header">
-<th>Variable</th>
-<th>Scale</th>
-<th>Discrete or continuous</th>
-<th>Legitimate summaries</th>
-<th>A wrong summary</th>
+<th>Check</th>
+<th><code>Waiting_Time_Mins</code></th>
+<th><code>Age</code></th>
+<th><code>Satisfaction</code></th>
+<th><code>Spending</code></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>Gender</code></td>
-<td></td>
-<td>not applicable</td>
+<td>Histogram</td>
 <td></td>
 <td></td>
-</tr>
-<tr class="even">
-<td><code>Region</code></td>
-<td></td>
-<td>not applicable</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><code>Ticket_Type</code></td>
-<td></td>
-<td>not applicable</td>
 <td></td>
 <td></td>
 </tr>
 <tr class="even">
-<td><code>Age</code></td>
+<td>Mean against median</td>
 <td></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr class="odd">
-<td><code>Satisfaction</code></td>
+<td>Skewness ratio</td>
 <td></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr class="even">
-<td><code>Waiting_Time_Mins</code></td>
+<td>Kurtosis ratio</td>
 <td></td>
 <td></td>
 <td></td>
 <td></td>
+</tr>
+<tr class="odd">
+<td>Q-Q plot</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Shapiro-Wilk p</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Verdict</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><em>Hint for PocketStat users: excess kurtosis and its standard error</em></td>
+<td><em>0.482, 0.342</em></td>
+<td><em>-0.599, 0.342</em></td>
+<td><em>-0.397, 0.342</em></td>
+<td><em>0.195, 0.342</em></td>
 </tr>
 </tbody>
 </table>
-<p>Two of these are arguable. Decide what you think and be ready to defend it:</p>
+</div>
+</figure>
+</div>
+<p>Then answer two questions with your partner:</p>
 <ol type="1">
-<li><code>Satisfaction</code> is recorded 1 to 5. Is treating it as continuous defensible? What would you have to assume, and what would you report instead if you were not willing to assume it?</li>
-<li><code>Age</code> is recorded in completed years. Is it discrete or continuous? Does the answer change what you would do with it?</li>
+<li><code>Age</code> is symmetric and fails the Shapiro-Wilk test. Which of your other checks explains the failure, and does it matter for a planning estimate?</li>
+<li>Which of the four variables could you use with the normal model to estimate the share of customers above a threshold? Defend your choice in one sentence each.</li>
 </ol>
-<p>Keep this table. It is part of the chapter’s submission.</p>
 </section>
 </section>
-<section id="activity-3-tables-and-summaries-40-minutes" class="level2">
-<h2 class="anchored" data-anchor-id="activity-3-tables-and-summaries-40-minutes">Activity 3: Tables and summaries (40 minutes)</h2>
-<p>Produce four outputs, in the order below. Steps 7 to 10 give you the first.</p>
-<section id="output-1-a-frequency-table-for-ticket_type" class="level3">
-<h3 class="anchored" data-anchor-id="output-1-a-frequency-table-for-ticket_type">Output 1, a frequency table for <code>Ticket_Type</code></h3>
-</section>
-<section id="step-7.-open-the-descriptives-panel" class="level3">
-<h3 class="anchored" data-anchor-id="step-7.-open-the-descriptives-panel">Step 7. Open the descriptives panel</h3>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-7-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-1" role="tab" aria-controls="tabset-7-1" aria-selected="true" href="">JASP</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-2" role="tab" aria-controls="tabset-7-2" aria-selected="false" href="">PocketStat</a></li></ul>
-<div class="tab-content">
-<div id="tabset-7-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-7-1-tab">
-<p>Click <strong>Descriptives</strong> on the ribbon, then <strong>Descriptive Statistics</strong>. The options panel opens on the left and the output appears on the right as you work.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../assets/images/screenshots/ch01/ch01-jasp-07-descriptives-open.png" class="img-fluid figure-img" alt="The JASP ribbon with the Descriptives icon open and Descriptive Statistics highlighted in its menu."></p>
-<figcaption>Opening Descriptive Statistics from the ribbon</figcaption>
-</figure>
-</div>
-</div>
-<div id="tabset-7-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-2-tab">
-<p>Tap <strong>Analyse</strong> on the bottom bar, then choose <strong>Descriptive statistics</strong> from the technique list.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../assets/images/screenshots/ch01/ch01-pocketstat-07-descriptives-open.png" class="img-fluid figure-img" alt="The PocketStat Analyse tab with the technique list showing and Descriptive statistics selected."></p>
-<figcaption>Choosing Descriptive statistics on the Analyse tab</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="step-8.-move-ticket_type-into-the-variables-box" class="level3">
-<h3 class="anchored" data-anchor-id="step-8.-move-ticket_type-into-the-variables-box">Step 8. Move <code>Ticket_Type</code> into the variables box</h3>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-8-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-1" role="tab" aria-controls="tabset-8-1" aria-selected="true" href="">JASP</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-8-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-2" role="tab" aria-controls="tabset-8-2" aria-selected="false" href="">PocketStat</a></li></ul>
-<div class="tab-content">
-<div id="tabset-8-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-8-1-tab">
-<p>Select <code>Ticket_Type</code> in the list on the left and click the arrow to send it to <strong>Variables</strong>.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../assets/images/screenshots/ch01/ch01-jasp-08-ticket-type-selected.png" class="img-fluid figure-img" alt="The JASP Descriptive Statistics panel. Ticket_Type has been moved from the left-hand variable list into the Variables box on the right."></p>
-<figcaption>Moving Ticket_Type into the Variables box</figcaption>
-</figure>
-</div>
-</div>
-<div id="tabset-8-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-8-2-tab">
-<p>In the variable chooser, select <code>Ticket_Type</code> and move it into the chosen list. Categorical variables get a frequency distribution, which is the output you want here.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../assets/images/screenshots/ch01/ch01-pocketstat-08-ticket-type-selected.png" class="img-fluid figure-img" alt="The PocketStat variable chooser with Ticket_Type moved from the available list into the chosen list."></p>
-<figcaption>Moving Ticket_Type into the chosen list</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="step-9.-ask-for-the-frequency-table" class="level3">
-<h3 class="anchored" data-anchor-id="step-9.-ask-for-the-frequency-table">Step 9. Ask for the frequency table</h3>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-9-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-1" role="tab" aria-controls="tabset-9-1" aria-selected="true" href="">JASP</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-2" role="tab" aria-controls="tabset-9-2" aria-selected="false" href="">PocketStat</a></li></ul>
-<div class="tab-content">
-<div id="tabset-9-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-9-1-tab">
-<p>Tick <strong>Frequency tables</strong> in the options panel. The output updates as soon as you tick it.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../assets/images/screenshots/ch01/ch01-jasp-09-frequency-tables-ticked.png" class="img-fluid figure-img" alt="The JASP Descriptive Statistics panel with the Frequency tables checkbox ticked."></p>
-<figcaption>Ticking Frequency tables</figcaption>
-</figure>
-</div>
-</div>
-<div id="tabset-9-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-9-2-tab">
-<p>Run the analysis. PocketStat checks the data requirements before it runs and tells you if the variable type does not suit the technique.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../assets/images/screenshots/ch01/ch01-pocketstat-09-frequency-tables-ticked.png" class="img-fluid figure-img" alt="The PocketStat Analyse tab with Ticket_Type chosen and the run button about to be pressed."></p>
-<figcaption>Running the analysis</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="step-10.-read-the-finished-table" class="level3">
-<h3 class="anchored" data-anchor-id="step-10.-read-the-finished-table">Step 10. Read the finished table</h3>
+<section id="activity-3-standardised-scores-40-minutes" class="level2">
+<h2 class="anchored" data-anchor-id="activity-3-standardised-scores-40-minutes">Activity 3: Standardised scores (40 minutes)</h2>
+<p>This activity works on <code>Waiting_Time_Mins</code>, the variable closest to normal.</p>
+<section id="step-10.-create-the-z-scores" class="level3">
+<h3 class="anchored" data-anchor-id="step-10.-create-the-z-scores">Step 10. Create the z-scores</h3>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-10-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-1" role="tab" aria-controls="tabset-10-1" aria-selected="true" href="">JASP</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-10-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-2" role="tab" aria-controls="tabset-10-2" aria-selected="false" href="">PocketStat</a></li></ul>
 <div class="tab-content">
 <div id="tabset-10-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-10-1-tab">
-<p>The table gives frequency, percent, valid percent, and cumulative percent for each ticket type. Relative frequency is the percent column expressed as a proportion.</p>
+<p>Click the <strong>+</strong> at the right-hand end of the column headers to add a computed column. Name it <code>Wait_z</code>, choose the R formula box, and enter:</p>
+<pre><code>(Waiting_Time_Mins - mean(Waiting_Time_Mins)) / sd(Waiting_Time_Mins)</code></pre>
+<p>The formula is the z-score from <a href="week02-part2.html#sec-zscores">part 2</a>, <span class="math inline">\(z = (x - \bar{x}) / s\)</span>, written for the whole column at once:</p>
+<ul>
+<li><code>Waiting_Time_Mins</code> is <span class="math inline">\(x\)</span>, each customer’s own wait</li>
+<li><code>mean(Waiting_Time_Mins)</code> is <span class="math inline">\(\bar{x}\)</span>, 45.455 minutes</li>
+<li><code>sd(Waiting_Time_Mins)</code> is <span class="math inline">\(s\)</span>, 11.905 minutes. R’s <code>sd()</code> divides by <span class="math inline">\(n - 1\)</span>, so it gives the same sample standard deviation JASP reported in step 6.</li>
+</ul>
+<p>JASP works through the column one row at a time. Respondent 1 waited 28 minutes and gets <span class="math inline">\((28 - 45.455) \div 11.905 = -1.466\)</span>, the value you calculated by hand in worked example 2.5. Check that row 1 of <code>Wait_z</code> reads <strong>-1.466</strong> before you go on.</p>
+<p>Leave its type as <strong>Scale</strong>. A z-score is a measurement with equal gaps, so scale is correct.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../assets/images/screenshots/ch01/ch01-jasp-10-frequency-table-output.png" class="img-fluid figure-img" alt="A JASP output table headed Frequencies for Ticket_Type, with columns for frequency, percent, valid percent and cumulative percent."></p>
-<figcaption>The finished frequency table for Ticket_Type</figcaption>
+<p><img src="../assets/images/screenshots/ch02/ch02-jasp-10-z-column.png" class="img-fluid figure-img" alt="The JASP computed column editor for a new column named Wait_z, with a formula subtracting the mean of Waiting_Time_Mins and dividing by its standard deviation."></p>
+<figcaption>Creating the z-score column</figcaption>
 </figure>
 </div>
 </div>
 <div id="tabset-10-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-10-2-tab">
-<p>Open the <strong>Results</strong> tab. The table lists each ticket type with its count and percentage.</p>
+<p>Tap <strong>Analyse</strong> and choose <strong>Z-scores &amp; empirical rule</strong>, then pick <code>Waiting_Time_Mins</code> and run it. PocketStat applies the z-score formula from <a href="week02-part2.html#sec-zscores">part 2</a>, <span class="math inline">\(z = (x - \bar{x}) / s\)</span>, to every row, using the column’s mean of 45.455 and standard deviation of 11.905.</p>
+<p>It reports a summary of the z-scores, set out in the next three steps, and shows no z-score for each row. To find one customer’s z-score, apply the formula yourself, the way worked example 2.5 does.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../assets/images/screenshots/ch01/ch01-pocketstat-10-frequency-table-output.png" class="img-fluid figure-img" alt="A PocketStat results table headed Ticket_Type, listing each ticket type with its count and percentage."></p>
-<figcaption>The finished frequency table for Ticket_Type</figcaption>
+<p><img src="../assets/images/screenshots/ch02/ch02-pocketstat-10-z-column.png" class="img-fluid figure-img" alt="The PocketStat Analyse tab with Z-scores and empirical rule selected and Waiting_Time_Mins chosen as the numeric variable."></p>
+<figcaption>Z-scores &amp; empirical rule with Waiting_Time_Mins chosen</figcaption>
 </figure>
 </div>
 </div>
 </div>
 </div>
-<p>Check the counts sum to 200. If they fall short, some rows are missing a value. Record this as information about the data.</p>
 </section>
-<section id="output-2-a-grouped-frequency-table-for-waiting_time_mins" class="level3">
-<h3 class="anchored" data-anchor-id="output-2-a-grouped-frequency-table-for-waiting_time_mins">Output 2, a grouped frequency table for <code>Waiting_Time_Mins</code></h3>
-<p>Use intervals of ten minutes. Check your interval boundaries leave no gaps and no overlaps.</p>
-</section>
-<section id="step-11.-create-the-ten-minute-bands" class="level3">
-<h3 class="anchored" data-anchor-id="step-11.-create-the-ten-minute-bands">Step 11. Create the ten-minute bands</h3>
+<section id="step-11.-check-the-standardising-worked" class="level3">
+<h3 class="anchored" data-anchor-id="step-11.-check-the-standardising-worked">Step 11. Check the standardising worked</h3>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-11-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-1" role="tab" aria-controls="tabset-11-1" aria-selected="true" href="">JASP</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-11-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-2" role="tab" aria-controls="tabset-11-2" aria-selected="false" href="">PocketStat</a></li></ul>
 <div class="tab-content">
 <div id="tabset-11-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-11-1-tab">
-<p>Click the <strong>+</strong> at the right-hand end of the column headers to add a <strong>computed column</strong>, name it <code>Wait_Band</code>, and use the R-style formula box:</p>
-<pre><code>cut(Waiting_Time_Mins, breaks = seq(0, 100, 10), right = FALSE)</code></pre>
-<p><code>right = FALSE</code> makes each band include its lower boundary and exclude its upper one. This stops 30 minutes appearing in two bands at once.</p>
-<p>JASP marks every new computed column as <strong>Scale</strong>, regardless of what it holds. <code>Wait_Band</code> holds ordered labels such as <code>[20,30)</code>, not a number you can average, so change its measurement level to <strong>Ordinal</strong> before you run any analysis on it. This is the same variable audit from earlier in this chapter. There, you audited a column you imported. Here, you audit one you just created yourself.</p>
+<p>Run <strong>Descriptive Statistics</strong> on <code>Wait_z</code> with mean, standard deviation, minimum and maximum ticked. The standard deviation should be <strong>1.000</strong>, the minimum <strong>-2.810</strong> and the maximum <strong>3.742</strong>.</p>
+<p>The mean should be zero. JASP may print it as a tiny number in scientific notation, such as <span class="math inline">\(2.588 \times 10^{-16}\)</span>. Moving the decimal point 16 places gives 0.0000000000000002588, which is zero apart from the computer’s rounding. A standardised column always has a mean of zero.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../assets/images/screenshots/ch01/ch01-jasp-11-bands-setup.png" class="img-fluid figure-img" alt="The JASP computed column editor with a formula that cuts Waiting_Time_Mins into ten-minute bands."></p>
-<figcaption>Creating a computed column for the ten-minute bands</figcaption>
+<p><img src="../assets/images/screenshots/ch02/ch02-jasp-11-z-check.png" class="img-fluid figure-img" alt="A JASP descriptives table for Wait_z showing a mean of 0.000, a standard deviation of 1.000, a minimum of -2.810 and a maximum of 3.742."></p>
+<figcaption>Descriptives for the z-score column</figcaption>
 </figure>
 </div>
 </div>
 <div id="tabset-11-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-11-2-tab">
-<p>PocketStat has no banding tool, so read the bands off the picture instead. Choose <strong>Distribution shape</strong> on the Analyse tab, pick <code>Waiting_Time_Mins</code>, and set the histogram to ten-minute bars.</p>
+<p>On <strong>Results</strong>, read the first rows: n is <strong>200</strong>, the mean <strong>45.455</strong> and the standard deviation <strong>11.905</strong>. These are the two numbers used to build every z-score in the column.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../assets/images/screenshots/ch01/ch01-pocketstat-11-bands-setup.png" class="img-fluid figure-img" alt="The PocketStat Distribution shape output for Waiting_Time_Mins, with the histogram bars falling into ten-minute bands."></p>
-<figcaption>Reading the ten-minute bands off the distribution</figcaption>
+<p><img src="../assets/images/screenshots/ch02/ch02-pocketstat-11-z-check.png" class="img-fluid figure-img" alt="The PocketStat results table for Z-scores and empirical rule, with rows for n equal to 200, mean 45.455 and standard deviation 11.905."></p>
+<figcaption>The mean and standard deviation used for the z-scores</figcaption>
 </figure>
 </div>
 </div>
 </div>
 </div>
 </section>
-<section id="step-12.-add-the-cumulative-column" class="level3">
-<h3 class="anchored" data-anchor-id="step-12.-add-the-cumulative-column">Step 12. Add the cumulative column</h3>
+<section id="step-12.-compare-the-data-with-the-empirical-rule" class="level3">
+<h3 class="anchored" data-anchor-id="step-12.-compare-the-data-with-the-empirical-rule">Step 12. Compare the data with the empirical rule</h3>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-12-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-1" role="tab" aria-controls="tabset-12-1" aria-selected="true" href="">JASP</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-12-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-2" role="tab" aria-controls="tabset-12-2" aria-selected="false" href="">PocketStat</a></li></ul>
 <div class="tab-content">
 <div id="tabset-12-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-12-1-tab">
-<p>Run <strong>Descriptives</strong> on <code>Wait_Band</code> with <strong>Frequency tables</strong> ticked. The cumulative percent column is produced for you.</p>
+<p>Add a second computed column named <code>Wait_z_band</code>, using the R formula box:</p>
+<pre><code>cut(abs(Wait_z), breaks = c(0, 1, 2, 3, 10), right = FALSE)</code></pre>
+<p>Set its type to <strong>Ordinal</strong>, then run <strong>Descriptive Statistics</strong> on it with <strong>Frequency tables</strong> ticked. The cumulative percent column gives the share within one, two and three standard deviations: <strong>66.5</strong>, <strong>96.5</strong> and <strong>99.5</strong>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../assets/images/screenshots/ch01/ch01-jasp-12-cumulative-column.png" class="img-fluid figure-img" alt="A JASP frequency table for the banded variable, with the cumulative percent column marked."></p>
-<figcaption>The cumulative percent column in the output</figcaption>
+<p><img src="../assets/images/screenshots/ch02/ch02-jasp-12-empirical-check.png" class="img-fluid figure-img" alt="A JASP frequency table for Wait_z_band with four rows, from 0 to under 1, 1 to under 2, 2 to under 3, and 3 to under 10, with counts 133, 60, 6 and 1, and cumulative percents 66.5, 96.5, 99.5 and 100."></p>
+<figcaption>The z-score bands as a frequency table</figcaption>
 </figure>
 </div>
 </div>
 <div id="tabset-12-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-12-2-tab">
-<p>Copy the band counts into your notes and write a running total beside them. The running total is the cumulative frequency, and dividing it by 200 gives cumulative relative frequency.</p>
+<p>Read the three percentage rows. Within one standard deviation: <strong>66.5</strong>. Within two: <strong>96.5</strong>. Within three: <strong>99.5</strong>. PocketStat prints the empirical rule’s 68, 95 and 99.7 beside each for comparison.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../assets/images/screenshots/ch01/ch01-pocketstat-12-cumulative-column.png" class="img-fluid figure-img" alt="A worksheet with the band counts copied from PocketStat and a running total written beside them."></p>
-<figcaption>Building the cumulative column by hand</figcaption>
+<p><img src="../assets/images/screenshots/ch02/ch02-pocketstat-12-empirical-check.png" class="img-fluid figure-img" alt="The PocketStat results table showing 66.5 per cent within 1 SD, 96.5 per cent within 2 SD and 99.5 per cent within 3 SD, each labelled with the empirical rule's expected figure."></p>
+<figcaption>The empirical rule check in PocketStat</figcaption>
 </figure>
 </div>
 </div>
 </div>
 </div>
 </section>
-<section id="step-13.-check-the-finished-grouped-table" class="level3">
-<h3 class="anchored" data-anchor-id="step-13.-check-the-finished-grouped-table">Step 13. Check the finished grouped table</h3>
+<section id="step-13.-find-the-unusual-and-extreme-cases" class="level3">
+<h3 class="anchored" data-anchor-id="step-13.-find-the-unusual-and-extreme-cases">Step 13. Find the unusual and extreme cases</h3>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-13-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-13-1" role="tab" aria-controls="tabset-13-1" aria-selected="true" href="">JASP</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-13-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-13-2" role="tab" aria-controls="tabset-13-2" aria-selected="false" href="">PocketStat</a></li></ul>
 <div class="tab-content">
 <div id="tabset-13-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-13-1-tab">
-<p>Read down the bands and confirm each one is ten minutes wide, that no waiting time could fall into two bands, and that the final cumulative percent is 100.</p>
+<p>Run <strong>Descriptive Statistics</strong> on <code>Wait_z</code>. Under <strong>Customizable plots</strong>, tick <strong>Boxplots</strong> and <strong>Label outliers</strong>, as in step 9.</p>
+<p>The vertical axis is now in z-scores, so each point’s distance from the mean reads straight off it. Four points sit beyond the whiskers, each labelled with its row number:</p>
+<ul>
+<li><strong>Row 85</strong>, above 3, is the <strong>extreme</strong> case: a wait of 90 minutes at <span class="math inline">\(z = 3.74\)</span>.</li>
+<li><strong>Row 58</strong>, between 2 and 3 above the mean, is <strong>unusual</strong>: 77 minutes at <span class="math inline">\(z = 2.65\)</span>.</li>
+<li><strong>Rows 149 and 189</strong>, between 2 and 3 below the mean, are <strong>unusual</strong>: 12 and 14 minutes.</li>
+</ul>
+<p>The boxplot flags cases beyond its fences, the <span class="math inline">\(1.5 \times IQR\)</span> rule from chapter 1, so it marks 4 of the 7 cases that step 12 counted at 2 or more standard deviations. The other three, waits of 19, 20 and 21 minutes, sit just inside the lower whisker. <a href="week02-part2.html#tbl-unusual-waits" class="quarto-xref">Table&nbsp;<span>2.11</span></a> in the chapter lists all seven, with a column showing which ones the fences catch.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../assets/images/screenshots/ch01/ch01-jasp-13-grouped-table-output.png" class="img-fluid figure-img" alt="A JASP frequency table for the banded waiting time, showing each ten-minute band with its count, percent and cumulative percent."></p>
-<figcaption>The finished grouped frequency table</figcaption>
+<p><img src="../assets/images/screenshots/ch02/ch02-jasp-13-extremes.png" class="img-fluid figure-img" alt="A JASP boxplot of Wait_z with a vertical axis in standard deviations. The box sits around zero. Two labelled points lie above the upper whisker, row 58 near 2.6 and row 85 near 3.7, and two lie below the lower whisker, rows 149 and 189 near minus 2.8 and minus 2.6."></p>
+<figcaption>A boxplot of the z-scores with the cases beyond the whiskers labelled by row</figcaption>
 </figure>
 </div>
 </div>
 <div id="tabset-13-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-13-2-tab">
-<p>Read down the bands and confirm each one is ten minutes wide, that no waiting time could fall into two bands, and that the final cumulative total is 200.</p>
+<p>Read the row <strong>observations with |z| &gt; 2</strong>, which should be <strong>7</strong>, and the note beneath the table, which names the row with the largest z-score: row 85, a wait of 90 minutes, <span class="math inline">\(z = 3.74\)</span>.</p>
+<p>The boxplot beside the histogram shows four points beyond the whiskers, two long waits and two short ones. PocketStat leaves the points unlabelled, so match them with <a href="week02-part2.html#tbl-unusual-waits" class="quarto-xref">Table&nbsp;<span>2.11</span></a> in the chapter, which lists all seven cases with their z-scores.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../assets/images/screenshots/ch01/ch01-pocketstat-13-grouped-table-output.png" class="img-fluid figure-img" alt="The completed grouped table, each ten-minute band with its count, relative frequency and cumulative frequency."></p>
-<figcaption>The finished grouped frequency table</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="output-3-descriptive-statistics-for-the-three-numerical-variables" class="level3">
-<h3 class="anchored" data-anchor-id="output-3-descriptive-statistics-for-the-three-numerical-variables">Output 3, descriptive statistics for the three numerical variables</h3>
-</section>
-<section id="step-14.-move-the-three-variables-in" class="level3">
-<h3 class="anchored" data-anchor-id="step-14.-move-the-three-variables-in">Step 14. Move the three variables in</h3>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-14-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-14-1" role="tab" aria-controls="tabset-14-1" aria-selected="true" href="">JASP</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-14-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-14-2" role="tab" aria-controls="tabset-14-2" aria-selected="false" href="">PocketStat</a></li></ul>
-<div class="tab-content">
-<div id="tabset-14-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-14-1-tab">
-<p>Return to <strong>Descriptive Statistics</strong> and put <code>Age</code>, <code>Satisfaction</code> and <code>Waiting_Time_Mins</code> into <strong>Variables</strong>. Clear <code>Ticket_Type</code> out first so the table stays readable.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../assets/images/screenshots/ch01/ch01-jasp-14-three-variables-selected.png" class="img-fluid figure-img" alt="The JASP Descriptive Statistics panel with Age, Satisfaction and Waiting_Time_Mins in the Variables box."></p>
-<figcaption>Moving the three numerical variables in</figcaption>
-</figure>
-</div>
-</div>
-<div id="tabset-14-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-14-2-tab">
-<p>Return to <strong>Descriptive statistics</strong> and choose <code>Age</code>, <code>Satisfaction</code> and <code>Waiting_Time_Mins</code>. Clear <code>Ticket_Type</code> out first.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../assets/images/screenshots/ch01/ch01-pocketstat-14-three-variables-selected.png" class="img-fluid figure-img" alt="The PocketStat variable chooser with Age, Satisfaction and Waiting_Time_Mins in the chosen list."></p>
-<figcaption>Choosing the three numerical variables</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="step-15.-ask-for-the-six-statistics" class="level3">
-<h3 class="anchored" data-anchor-id="step-15.-ask-for-the-six-statistics">Step 15. Ask for the six statistics</h3>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-15-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-15-1" role="tab" aria-controls="tabset-15-1" aria-selected="true" href="">JASP</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-15-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-15-2" role="tab" aria-controls="tabset-15-2" aria-selected="false" href="">PocketStat</a></li></ul>
-<div class="tab-content">
-<div id="tabset-15-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-15-1-tab">
-<p>Open the <strong>Statistics</strong> section and tick mean, median, standard deviation, minimum, maximum and quartiles. Untick anything you were not asked for, because a table with 20 rows is harder to read than one with 6.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../assets/images/screenshots/ch01/ch01-jasp-15-statistics-ticked.png" class="img-fluid figure-img" alt="The JASP Statistics section expanded, with mean, median, standard deviation, minimum, maximum and quartiles ticked."></p>
-<figcaption>Ticking the statistics to report</figcaption>
-</figure>
-</div>
-</div>
-<div id="tabset-15-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-15-2-tab">
-<p>PocketStat reports centre, spread, and quartiles together for a scale variable, so there is nothing to tick. Check the options panel to see what it will report before you run it.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../assets/images/screenshots/ch01/ch01-pocketstat-15-statistics-ticked.png" class="img-fluid figure-img" alt="The PocketStat options panel for Descriptive statistics, showing which summaries it will report."></p>
-<figcaption>The statistics PocketStat reports by default</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="step-16.-read-the-output-table" class="level3">
-<h3 class="anchored" data-anchor-id="step-16.-read-the-output-table">Step 16. Read the output table</h3>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-16-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-16-1" role="tab" aria-controls="tabset-16-1" aria-selected="true" href="">JASP</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-16-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-16-2" role="tab" aria-controls="tabset-16-2" aria-selected="false" href="">PocketStat</a></li></ul>
-<div class="tab-content">
-<div id="tabset-16-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-16-1-tab">
-<p>Variables run across the columns and statistics down the rows. Read one column at a time rather than one row, because a single variable’s centre and spread belong together.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../assets/images/screenshots/ch01/ch01-jasp-16-statistics-output.png" class="img-fluid figure-img" alt="A JASP descriptives table with Age, Satisfaction and Waiting_Time_Mins down the columns and the six statistics down the rows."></p>
-<figcaption>The finished descriptive statistics table</figcaption>
-</figure>
-</div>
-</div>
-<div id="tabset-16-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-16-2-tab">
-<p>Open the <strong>Results</strong> tab. Read one variable at a time, taking its centre and its spread together.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../assets/images/screenshots/ch01/ch01-pocketstat-16-statistics-output.png" class="img-fluid figure-img" alt="A PocketStat results table giving centre, spread and quartiles for the three numerical variables."></p>
-<figcaption>The finished descriptive statistics table</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="output-4-two-plots" class="level3">
-<h3 class="anchored" data-anchor-id="output-4-two-plots">Output 4, two plots</h3>
-</section>
-<section id="step-17.-plot-region-as-a-bar-chart" class="level3">
-<h3 class="anchored" data-anchor-id="step-17.-plot-region-as-a-bar-chart">Step 17. Plot <code>Region</code> as a bar chart</h3>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-17-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-17-1" role="tab" aria-controls="tabset-17-1" aria-selected="true" href="">JASP</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-17-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-17-2" role="tab" aria-controls="tabset-17-2" aria-selected="false" href="">PocketStat</a></li></ul>
-<div class="tab-content">
-<div id="tabset-17-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-17-1-tab">
-<p>With <code>Region</code> in <strong>Variables</strong>, open the <strong>Plots</strong> section and tick the bar plot. Check the vertical axis starts at zero.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../assets/images/screenshots/ch01/ch01-jasp-17-bar-chart-region.png" class="img-fluid figure-img" alt="The JASP Plots section with the bar plot option ticked, and the resulting bar chart of Region beside it."></p>
-<figcaption>A bar chart of Region</figcaption>
-</figure>
-</div>
-</div>
-<div id="tabset-17-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-17-2-tab">
-<p>Run <strong>Descriptive statistics</strong> on <code>Region</code>. The frequency chart draws one bar per region. Check the vertical axis starts at zero.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../assets/images/screenshots/ch01/ch01-pocketstat-17-bar-chart-region.png" class="img-fluid figure-img" alt="The PocketStat results view showing the frequency chart for Region as bars, one per region."></p>
-<figcaption>A bar chart of Region</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="step-18.-plot-waiting_time_mins-as-a-histogram-and-a-boxplot" class="level3">
-<h3 class="anchored" data-anchor-id="step-18.-plot-waiting_time_mins-as-a-histogram-and-a-boxplot">Step 18. Plot <code>Waiting_Time_Mins</code> as a histogram and a boxplot</h3>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-18-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-18-1" role="tab" aria-controls="tabset-18-1" aria-selected="true" href="">JASP</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-18-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-18-2" role="tab" aria-controls="tabset-18-2" aria-selected="false" href="">PocketStat</a></li></ul>
-<div class="tab-content">
-<div id="tabset-18-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-18-1-tab">
-<p>With <code>Waiting_Time_Mins</code> in <strong>Variables</strong>, tick the distribution plot and the boxplot in the <strong>Plots</strong> section. Read them together: the histogram shows the shape and the boxplot shows the quartiles and the distant values.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../assets/images/screenshots/ch01/ch01-jasp-18-histogram-boxplot-waiting.png" class="img-fluid figure-img" alt="The JASP Plots section with distribution plot and boxplot ticked, and both plots for Waiting_Time_Mins shown."></p>
-<figcaption>A histogram and boxplot of Waiting_Time_Mins</figcaption>
-</figure>
-</div>
-</div>
-<div id="tabset-18-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-18-2-tab">
-<p>Choose <strong>Distribution shape</strong> on the Analyse tab and pick <code>Waiting_Time_Mins</code>. The histogram and the boxplot are drawn on the same scale, so the tail lines up across both.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../assets/images/screenshots/ch01/ch01-pocketstat-18-histogram-boxplot-waiting.png" class="img-fluid figure-img" alt="The PocketStat Distribution shape output for Waiting_Time_Mins, a histogram above a boxplot on the same scale."></p>
-<figcaption>A histogram and boxplot of Waiting_Time_Mins</figcaption>
+<p><img src="../assets/images/screenshots/ch02/ch02-pocketstat-13-extremes.png" class="img-fluid figure-img" alt="The PocketStat results table with the row observations with z beyond 2 reading 7, and a note naming row 85, value 90, z equal to 3.74, as the largest deviation. Below it, a histogram with standard deviation bands beside a boxplot showing two points above and two below the whiskers."></p>
+<figcaption>The count of cases beyond two standard deviations, and the boxplot</figcaption>
 </figure>
 </div>
 </div>
@@ -1088,71 +1036,93 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <p>Then answer three questions from your own output:</p>
 <ol type="1">
-<li>What proportion of customers waited under 40 minutes? Which column gave you that most directly?</li>
-<li>Compare the mean and median of <code>Waiting_Time_Mins</code>. What does the comparison say about the shape, and did the histogram agree?</li>
-<li>Is the mean of <code>Satisfaction</code> a defensible summary here? Say what you would report and why.</li>
+<li>How many of the 200 waits are typical, how many unusual and how many extreme? How does that compare with what a normal curve predicts?</li>
+<li>Respondent 85 gave a satisfaction score of 4.50. What would you check before reporting this wait to the manager?</li>
+<li>Five of the seven unusual waits are <em>short</em>. Is a very short wait a problem for the manager? Explain in two sentences.</li>
 </ol>
 </section>
 </section>
-<section id="activity-4-manager-summary-25-minutes" class="level2">
-<h2 class="anchored" data-anchor-id="activity-4-manager-summary-25-minutes">Activity 4: Manager summary (25 minutes)</h2>
-<p>Write <strong>one paragraph, no more than 120 words</strong>, answering the chapter’s decision question: is the service any good?</p>
-<p>A strong paragraph does five things:</p>
+<section id="activity-4-output-annotation-25-minutes" class="level2">
+<h2 class="anchored" data-anchor-id="activity-4-output-annotation-25-minutes">Activity 4: Output annotation (25 minutes)</h2>
+<p>An annotation is a short note attached to an output. It states what the output shows and what follows from it. Write it for the service manager. The manager will see the plot, read your note, and skip the table.</p>
+<section id="step-14.-add-a-note-to-the-output" class="level3">
+<h3 class="anchored" data-anchor-id="step-14.-add-a-note-to-the-output">Step 14. Add a note to the output</h3>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-14-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-14-1" role="tab" aria-controls="tabset-14-1" aria-selected="true" href="">JASP</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-14-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-14-2" role="tab" aria-controls="tabset-14-2" aria-selected="false" href="">PocketStat</a></li></ul>
+<div class="tab-content">
+<div id="tabset-14-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-14-1-tab">
+<p>Scroll the output to the distribution plot or the boxplot of <code>Waiting_Time_Mins</code>. Click the small arrow beside the analysis title and choose <strong>Add Note</strong>. A text box opens under the title. Type your annotation into it.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/images/screenshots/ch02/ch02-jasp-14-add-note.png" class="img-fluid figure-img" alt="The JASP output for Waiting_Time_Mins, a histogram with a density curve above a boxplot, and below them an open note box with a formatting toolbar. The note reads: Boxplot and histogram of waiting time, 200 customers, one month. Waits are close to normal, with a single symmetric peak and a mean of 45.5 minutes. One customer waited 90 minutes, 3.7 standard deviations above the mean, a wait that should happen fewer than 3 times in 1,000. Check that record before quoting it."></p>
+<figcaption>A note added under the waiting-time histogram and boxplot</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-14-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-14-2-tab">
+<p>On <strong>Results</strong>, with the <strong>Z-scores &amp; empirical rule</strong> output showing, scroll to the card headed <strong>Your write-up</strong> and type your annotation into the box. PocketStat offers a suggested starting point built from the numbers. Write your own. The write-up travels with the result into the report in step 15.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/images/screenshots/ch02/ch02-pocketstat-14-add-note.png" class="img-fluid figure-img" alt="The PocketStat Results tab scrolled to the Your write-up card, with a text box for a short interpretation beneath a suggested starting point."></p>
+<figcaption>Writing the annotation in the write-up box</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>Your note must be <strong>no more than 80 words</strong> and must do four things:</p>
 <ol type="1">
-<li>States what was measured and on how many cases.</li>
-<li>Gives the centre and the spread, in the original units.</li>
-<li>Names the decision-relevant tail, not only the average.</li>
-<li>Says what the evidence leaves open.</li>
-<li>Ends with something a manager could do.</li>
+<li>Name the variable and the display the note appears under.</li>
+<li>State the shape in plain words, with one figure as evidence.</li>
+<li>Name one case, or one share of customers, using a z-score or the empirical rule, and say in plain words how rare it is.</li>
+<li>End with a decision or a warning the manager can act on.</li>
 </ol>
-<p>A weak paragraph reports the procedure, gives a mean with no spread, or quietly promotes a sample statistic to a fact about all customers.</p>
-<p>Write it for a service manager who has not seen the data and will not read a table.</p>
+</section>
 </section>
 <section id="activity-5-share-and-upload-10-minutes" class="level2">
 <h2 class="anchored" data-anchor-id="activity-5-share-and-upload-10-minutes">Activity 5: Share and upload (10 minutes)</h2>
-<p>Swap paragraphs with a classmate. Check theirs against the five points above and mark which are missing. Take their comments on yours, revise once, and upload.</p>
-<section id="step-19.-take-a-clean-copy-of-one-output-table" class="level3">
-<h3 class="anchored" data-anchor-id="step-19.-take-a-clean-copy-of-one-output-table">Step 19. Take a clean copy of one output table</h3>
+<p>Swap annotated outputs with a partner. Check theirs against the four points above and mark any that are missing. Take their comments on yours, revise once, then export and upload.</p>
+<section id="step-15.-export-the-annotated-output" class="level3">
+<h3 class="anchored" data-anchor-id="step-15.-export-the-annotated-output">Step 15. Export the annotated output</h3>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-19-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-19-1" role="tab" aria-controls="tabset-19-1" aria-selected="true" href="">JASP</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-19-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-19-2" role="tab" aria-controls="tabset-19-2" aria-selected="false" href="">PocketStat</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-15-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-15-1" role="tab" aria-controls="tabset-15-1" aria-selected="true" href="">JASP</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-15-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-15-2" role="tab" aria-controls="tabset-15-2" aria-selected="false" href="">PocketStat</a></li></ul>
 <div class="tab-content">
-<div id="tabset-19-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-19-1-tab">
-<p>Right-click the table in the output pane and copy it. Paste it into your document and check the column headings survived the paste.</p>
+<div id="tabset-15-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-15-1-tab">
+<p>Open the file menu and choose <strong>Export Results</strong>. Save as HTML or PDF. Open the saved file and check your note appears under the right plot.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../assets/images/screenshots/ch01/ch01-jasp-19-copy-output.png" class="img-fluid figure-img" alt="A JASP output table right-clicked, with the copy option highlighted in the menu."></p>
-<figcaption>Copying a cleaned table out of the tool</figcaption>
+<p><img src="../assets/images/screenshots/ch02/ch02-jasp-15-export.png" class="img-fluid figure-img" alt="The JASP file menu open at Export Results, with the save dialogue offering HTML and PDF formats."></p>
+<figcaption>Exporting the output with its note</figcaption>
 </figure>
 </div>
 </div>
-<div id="tabset-19-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-19-2-tab">
-<p>On the <strong>Results</strong> tab, use the write-up and report blocks to take a clean copy. Paste it into your document and check the column headings survived the paste.</p>
+<div id="tabset-15-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-15-2-tab">
+<p>Scroll to the report card at the foot of <strong>Results</strong> and choose <strong>Download report (HTML, formatted)</strong>. Open the file and check your write-up appears beside the result.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../assets/images/screenshots/ch01/ch01-pocketstat-19-copy-output.png" class="img-fluid figure-img" alt="The PocketStat results view with the write-up and report blocks open, ready to copy."></p>
-<figcaption>Copying a cleaned table out of the tool</figcaption>
+<p><img src="../assets/images/screenshots/ch02/ch02-pocketstat-15-export.png" class="img-fluid figure-img" alt="The PocketStat report card with the Download report HTML formatted button highlighted."></p>
+<figcaption>Downloading the report with the write-up</figcaption>
 </figure>
 </div>
 </div>
 </div>
 </div>
-<p>Submit your variable audit table, one cleaned output table, and your final paragraph.</p>
+<p>Submit your normality record and your exported annotated output.</p>
 </section>
 </section>
 <section id="what-good-looks-like" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="what-good-looks-like">What good looks like</h2>
 <blockquote class="blockquote">
-<p>Waiting time was recorded for 200 customers at one branch over one month. Half waited 46 minutes or less and the middle half fell between 38 and 53 minutes, so the service is consistent for most people. Nineteen customers, just under one in ten, waited more than an hour, and two waited over 75 minutes. Return intention is a single ordinal rating, so the median of 4 is the honest summary, and the average of 3.66 describes no customer. These figures describe this branch in this month and say nothing about other branches. The long waits are worth investigating first, because that is where a 60-minute service standard is breached.</p>
+<p>Boxplot and histogram of waiting time, 200 customers, one month. Waits are close to normal, with a single symmetric peak and a mean of 45.5 minutes. One customer waited 90 minutes, 3.7 standard deviations above the mean, a wait that should happen fewer than 3 times in 1,000. Check that record before quoting it. If it is correct, review that day: two more waits over an hour would break the promise to see nine in ten within the hour.</p>
 </blockquote>
-<p>110 words, under the 120-word limit. Each of the five requirements above has a specific sentence doing its job:</p>
+<p>The example contains 79 words and stays under the 80-word limit. Each of the four requirements has a specific sentence fulfilling it:</p>
 <ol type="1">
-<li>“Waiting time was recorded for 200 customers at one branch over one month” states what was measured and the sample size.</li>
-<li>“Half waited 46 minutes or less and the middle half fell between 38 and 53 minutes” gives the centre and the spread, both in minutes, the same units the manager already thinks in.</li>
-<li>“Nineteen customers, just under one in ten, waited more than an hour, and two waited over 75 minutes” names the tail the average alone hides.</li>
-<li>“These figures describe this branch in this month and say nothing about other branches” states what the evidence leaves open.</li>
-<li>“The long waits are worth investigating first, because that is where a 60-minute service standard is breached” ends with something a manager could do next.</li>
+<li>“Boxplot and histogram of waiting time, 200 customers, one month” names the variable, the display, and the sample.</li>
+<li>“Waits are close to normal, with a single symmetric peak and a mean of 45.5 minutes” states the shape and gives a figure.</li>
+<li>“One customer waited 90 minutes, 3.7 standard deviations above the mean, a wait that should happen fewer than 3 times in 1,000” names the case and turns the z-score into rarity.</li>
+<li>“Check that record before quoting it. If it is correct, review that day” ends with actions the manager can take.</li>
 </ol>
-<p>Every figure in the paragraph is the real figure from the file. You should be able to produce each one from the outputs you built in Activity 3, so check your own paragraph against your own output before you compare it with anyone else’s.</p>
+<p>Every figure in the note is the real figure from the file. You should be able to find each one in the outputs you built in activities 2 and 3.</p>
 
 
 </section>
@@ -1565,12 +1535,12 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../weeks/week01-reference.html" class="pagination-link" aria-label="Running the analysis, and chapter reference">
+      <a href="../weeks/week02-reference.html" class="pagination-link" aria-label="Running the analysis, and chapter reference">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Running the analysis, and chapter reference</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../weeks/week01-independent-study.html" class="pagination-link" aria-label="Independent study and submission">
+      <a href="../weeks/week02-independent-study.html" class="pagination-link" aria-label="Independent study and submission">
         <span class="nav-page-text"><span class="chapter-title">Independent study and submission</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>

@@ -6,10 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="keywords" content="mean, median, mode, standard deviation, variance, range, quartiles, interquartile range, outliers, skewness">
-<meta name="description" content="Chapter 1, part 3. Mean, median and mode, variance and standard deviation, quartiles, the interquartile range and the shape of a distribution.">
+<meta name="keywords" content="normal distribution, empirical rule, 68-95-99.7 rule, Chebyshev’s rule, z-score, standardised score, unusual values">
+<meta name="description" content="Chapter 2, part 2. The normal distribution, the empirical rule, Chebyshev’s rule, z-scores, and how to judge a value as typical, unusual or extreme.">
 
-<title>Part 3: Centre and spread – Decision Making for Management</title>
+<title>Part 2: The normal curve and z-scores – Decision Making for Management</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -32,8 +32,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../weeks/week01-reference.html" rel="next">
-<link href="../weeks/week01-part2.html" rel="prev">
+<link href="../weeks/week02-part3.html" rel="next">
+<link href="../weeks/week02.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -251,13 +251,21 @@ window.Quarto = {
 <link rel="stylesheet" href="../assets/css/fonts.css">
 <link rel="stylesheet" href="../assets/css/typography.css">
 <link rel="stylesheet" href="../assets/css/student-book.css">
-<meta property="og:title" content="Part 3: Centre and spread – Decision Making for Management">
+<meta property="og:title" content="Part 2: The normal curve and z-scores – Decision Making for Management">
 <meta property="og:description" content="A CC BY undergraduate textbook that teaches descriptive and inferential statistics through management decisions, using JASP and PocketStat.">
+<meta property="og:image" content="https://mohammedalisharafuddin.github.io/dmm-textbook/assets/images/figures/ch02/ch02-fig-empirical-rule.png">
 <meta property="og:site_name" content="Decision Making for Management">
 <meta property="og:locale" content="en_GB">
-<meta name="twitter:title" content="Part 3: Centre and spread – Decision Making for Management">
+<meta property="og:image:alt" content="A symmetric bell curve with its horizontal axis marked from minus 3 to plus 3 standard deviations, and beneath each mark the matching waiting time in minutes: 9.7, 21.6, 33.5, 45.5, 57.4, 69.3 and 81.2. The central band from minus 1 to plus 1 is shaded darkest, the bands out to plus and minus 2 lighter, and the bands out to plus and minus 3 lightest. Brackets above the curve read 68 per cent within 1 SD, 95 per cent within 2 SD, and 99.7 per cent within 3 SD.">
+<meta property="og:image:height" content="880">
+<meta property="og:image:width" content="1600">
+<meta name="twitter:title" content="Part 2: The normal curve and z-scores – Decision Making for Management">
 <meta name="twitter:description" content="A CC BY undergraduate textbook that teaches descriptive and inferential statistics through management decisions, using JASP and PocketStat.">
+<meta name="twitter:image" content="https://mohammedalisharafuddin.github.io/dmm-textbook/assets/images/figures/ch02/ch02-fig-empirical-rule.png">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image:alt" content="A symmetric bell curve with its horizontal axis marked from minus 3 to plus 3 standard deviations, and beneath each mark the matching waiting time in minutes: 9.7, 21.6, 33.5, 45.5, 57.4, 69.3 and 81.2. The central band from minus 1 to plus 1 is shaded darkest, the bands out to plus and minus 2 lighter, and the bands out to plus and minus 3 lightest. Brackets above the curve read 68 per cent within 1 SD, 95 per cent within 2 SD, and 99.7 per cent within 3 SD.">
+<meta name="twitter:image-height" content="880">
+<meta name="twitter:image-width" content="1600">
 <meta name="dmm-crossref-renumbered" content="1"></head>
 
 <body class="nav-sidebar floating quarto-light">
@@ -269,7 +277,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/week01.html">Chapter 1: Data, Measurement Scales, and Descriptive Statistics</a></li><li class="breadcrumb-item"><a href="../weeks/week01-part3.html"><span class="chapter-title">Part 3: Centre and spread</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/week02.html">Chapter 2: Introduction to JASP and the Normal Distribution</a></li><li class="breadcrumb-item"><a href="../weeks/week02-part2.html"><span class="chapter-title">Part 2: The normal curve and z-scores</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -353,7 +361,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../weeks/week01-part3.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Part 3: Centre and spread</span></a>
+  <a href="../weeks/week01-part3.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Part 3: Centre and spread</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -389,7 +397,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../weeks/week02-part2.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Part 2: The normal curve and z-scores</span></a>
+  <a href="../weeks/week02-part2.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Part 2: The normal curve and z-scores</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -424,27 +432,26 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#sec-centre" id="toc-sec-centre" class="nav-link active" data-scroll-target="#sec-centre">Measures of centre</a>
+  <li><a href="#sec-normal" id="toc-sec-normal" class="nav-link active" data-scroll-target="#sec-normal">The normal distribution</a>
   <ul class="collapse">
-  <li><a href="#mean" id="toc-mean" class="nav-link" data-scroll-target="#mean">Mean</a></li>
-  <li><a href="#median" id="toc-median" class="nav-link" data-scroll-target="#median">Median</a></li>
-  <li><a href="#mode" id="toc-mode" class="nav-link" data-scroll-target="#mode">Mode</a></li>
-  <li><a href="#choosing-between-them" id="toc-choosing-between-them" class="nav-link" data-scroll-target="#choosing-between-them">Choosing between them</a></li>
+  <li><a href="#properties-of-the-normal-curve" id="toc-properties-of-the-normal-curve" class="nav-link" data-scroll-target="#properties-of-the-normal-curve">Properties of the normal curve</a></li>
+  <li><a href="#many-curves-one-shape" id="toc-many-curves-one-shape" class="nav-link" data-scroll-target="#many-curves-one-shape">Many curves, one shape</a></li>
   </ul></li>
-  <li><a href="#sec-spread" id="toc-sec-spread" class="nav-link" data-scroll-target="#sec-spread">Measures of spread</a>
+  <li><a href="#sec-empirical" id="toc-sec-empirical" class="nav-link" data-scroll-target="#sec-empirical">The empirical rule</a>
   <ul class="collapse">
-  <li><a href="#range" id="toc-range" class="nav-link" data-scroll-target="#range">Range</a></li>
-  <li><a href="#deviation-variance-and-standard-deviation" id="toc-deviation-variance-and-standard-deviation" class="nav-link" data-scroll-target="#deviation-variance-and-standard-deviation">Deviation, variance, and standard deviation</a></li>
-  <li><a href="#what-a-standard-deviation-means-in-practice" id="toc-what-a-standard-deviation-means-in-practice" class="nav-link" data-scroll-target="#what-a-standard-deviation-means-in-practice">What a standard deviation means in practice</a></li>
-  <li><a href="#why-the-sample-divides-by-n-minus-1" id="toc-why-the-sample-divides-by-n-minus-1" class="nav-link" data-scroll-target="#why-the-sample-divides-by-n-minus-1">Why the sample divides by n minus 1</a></li>
-  <li><a href="#comparing-spread-across-different-units" id="toc-comparing-spread-across-different-units" class="nav-link" data-scroll-target="#comparing-spread-across-different-units">Comparing spread across different units</a></li>
+  <li><a href="#the-rule-against-real-data" id="toc-the-rule-against-real-data" class="nav-link" data-scroll-target="#the-rule-against-real-data">The rule against real data</a></li>
   </ul></li>
-  <li><a href="#sec-quartiles" id="toc-sec-quartiles" class="nav-link" data-scroll-target="#sec-quartiles">Percentiles, quartiles, and the interquartile range</a>
+  <li><a href="#sec-chebyshev" id="toc-sec-chebyshev" class="nav-link" data-scroll-target="#sec-chebyshev">Chebyshev’s rule for any shape</a></li>
+  <li><a href="#sec-zscores" id="toc-sec-zscores" class="nav-link" data-scroll-target="#sec-zscores">z-scores</a>
   <ul class="collapse">
-  <li><a href="#boxplots-and-the-outlier-rule" id="toc-boxplots-and-the-outlier-rule" class="nav-link" data-scroll-target="#boxplots-and-the-outlier-rule">Boxplots and the outlier rule</a></li>
+  <li><a href="#calculating-a-z-score" id="toc-calculating-a-z-score" class="nav-link" data-scroll-target="#calculating-a-z-score">Calculating a z-score</a></li>
+  <li><a href="#from-a-z-score-back-to-the-original-units" id="toc-from-a-z-score-back-to-the-original-units" class="nav-link" data-scroll-target="#from-a-z-score-back-to-the-original-units">From a z-score back to the original units</a></li>
   </ul></li>
-  <li><a href="#sec-shape" id="toc-sec-shape" class="nav-link" data-scroll-target="#sec-shape">Shape, skewness, and outliers</a></li>
-  <li><a href="#sec-ethics" id="toc-sec-ethics" class="nav-link" data-scroll-target="#sec-ethics">Data quality and ethical description</a></li>
+  <li><a href="#sec-unusual" id="toc-sec-unusual" class="nav-link" data-scroll-target="#sec-unusual">Typical, unusual and extreme values</a>
+  <ul class="collapse">
+  <li><a href="#the-unusual-waits-in-the-teaching-dataset" id="toc-the-unusual-waits-in-the-teaching-dataset" class="nav-link" data-scroll-target="#the-unusual-waits-in-the-teaching-dataset">The unusual waits in the teaching dataset</a></li>
+  </ul></li>
+  <li><a href="#sec-compare-z" id="toc-sec-compare-z" class="nav-link" data-scroll-target="#sec-compare-z">Comparing values in different units</a></li>
   <li><a href="#section-summary" id="toc-section-summary" class="nav-link" data-scroll-target="#section-summary">Section summary</a></li>
   </ul>
 </nav>
@@ -452,9 +459,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/week01.html">Chapter 1: Data, Measurement Scales, and Descriptive Statistics</a></li><li class="breadcrumb-item"><a href="../weeks/week01-part3.html"><span class="chapter-title">Part 3: Centre and spread</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/week02.html">Chapter 2: Introduction to JASP and the Normal Distribution</a></li><li class="breadcrumb-item"><a href="../weeks/week02-part2.html"><span class="chapter-title">Part 2: The normal curve and z-scores</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">Part 3: Centre and spread</span></h1>
+<h1 class="title"><span class="chapter-title">Part 2: The normal curve and z-scores</span></h1>
 </div>
 
 
@@ -470,125 +477,143 @@ window.Quarto = {
 <div>
   <div class="keywords">
     <div class="block-title">Keywords</div>
-    <p>mean, median, mode, standard deviation, variance, range, quartiles, interquartile range, outliers, skewness</p>
+    <p>normal distribution, empirical rule, 68-95-99.7 rule, Chebyshev’s rule, z-score, standardised score, unusual values</p>
   </div>
 </div>
 
 </header>
 
 
-<p>Part 2 let you decide which summaries a column can support. This part builds those summaries.</p>
-<p>A manager asking “how long do customers wait?” wants one number. This part produces that number. It also produces the measure of spread that qualifies the centre, and it explains how the shape of the distribution determines which pair to report. The standard deviation is calculated by hand once, using five values, so that you can interpret and defend the result later.</p>
-<section id="sec-centre" class="level2">
-<h2 class="anchored" data-anchor-id="sec-centre">Measures of centre</h2>
-<p>A measure of centre is a single value representing a whole column. Three measures are common, and the choice among them depends on the shape of the data.</p>
-<section id="mean" class="level3">
-<h3 class="anchored" data-anchor-id="mean">Mean</h3>
-<p>The arithmetic mean adds all values and divides by the number of values. For a sample of <span class="math inline">\(n\)</span> values <span class="math inline">\(x_1, x_2, \dots, x_n\)</span>:</p>
-<p><span class="math display">\[\bar{x} = \frac{\sum x}{n}\]</span></p>
-<p>The symbol <span class="math inline">\(\sum\)</span> means “add up all of these”. For <code>Waiting_Time_Mins</code> in the teaching dataset the 200 values add to 9,091 minutes, so</p>
-<p><span class="math display">\[\bar{x} = \frac{9{,}091}{200} = 45.455 \text{ minutes}\]</span></p>
-<p>which you would report as 45.5 minutes. Reporting 45.455 would claim a precision that the underlying measurements do not support, because each value was rounded to the nearest minute.</p>
-<p>The mean uses every value. That is useful, and it also makes the mean sensitive to extreme values: a single unusual case can move it a long way.</p>
-<div class="worked-example">
-<p><span class="we-label">Worked example 1.9</span></p>
-<section id="mean-in-a-staffing-decision" class="level3">
-<h3 class="anchored" data-anchor-id="mean-in-a-staffing-decision">Mean in a staffing decision</h3>
-<div class="we-problem">
-<p>Five shifts record 28, 39, 22, 51 and 34 calls.</p>
-<p>Calculate the mean, then decide whether it is the right basis for a staffing rule.</p>
+<p>Part 1 showed you how to read the shape of a distribution. Part 2 introduces the shape that most of statistics measures against, the normal distribution, and uses it to place a single value inside a distribution with one number, the z-score.</p>
+<section id="sec-normal" class="level2">
+<h2 class="anchored" data-anchor-id="sec-normal">The normal distribution</h2>
+<p>The <strong>normal distribution</strong> is a symmetric, bell-shaped curve that describes how values spread around a centre when many small, independent influences add together. A customer’s waiting time is a sum of small influences. These include how many people arrived just before, how long each transaction took, and whether a colleague was on a break. When enough of them combine, the result tends towards the bell shape.</p>
+<p>The normal curve is a theoretical model. You can think of it as an idealised histogram, drawn for an infinite number of cases with bars of zero width. No real dataset follows it exactly. Many come close enough for the model to answer practical questions, and part 3 shows you how to judge whether yours does.</p>
+<section id="properties-of-the-normal-curve" class="level3">
+<h3 class="anchored" data-anchor-id="properties-of-the-normal-curve">Properties of the normal curve</h3>
+<p>Six properties define the normal distribution:</p>
+<ol type="1">
+<li>It has one peak, at the mean.</li>
+<li>It is symmetric about the mean, so the mean, the median and the mode are equal.</li>
+<li>Its tails extend in both directions without limit, and they thin out quickly. Values far from the mean are possible and rare.</li>
+<li>Two numbers define it completely. The mean, <span class="math inline">\(\mu\)</span>, determines the peak location, and the standard deviation, <span class="math inline">\(\sigma\)</span>, determines the width of the curve.</li>
+<li>The total area under the curve is 1, which stands for 100 per cent of the cases.</li>
+<li>The area under the curve between two values equals the share of cases that fall between them.</li>
+</ol>
+<p>Property 4 gives the notation. A variable <span class="math inline">\(X\)</span> that follows a normal distribution with mean <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma\)</span> is written</p>
+<p><span class="math display">\[X \sim N(\mu, \sigma)\]</span></p>
+<p>and read “X is normally distributed with mean mu and standard deviation sigma”. Some books write the variance, <span class="math inline">\(\sigma^2\)</span>, in the second position. Check which one a source uses before you copy a figure from it.</p>
+<p>Property 6 provides the most practical value. The height of the curve at a single point is hard to interpret on its own. The <strong>area</strong> under the curve is a proportion, and a proportion is something a manager can use: the share of customers who wait longer than an hour, or the share of parcels that weigh less than the label says.</p>
+</section>
+<section id="many-curves-one-shape" class="level3">
+<h3 class="anchored" data-anchor-id="many-curves-one-shape">Many curves, one shape</h3>
+<p>Changing the mean slides the curve along the axis. Changing the standard deviation stretches or squeezes it. A branch with a mean wait of 45 minutes and a standard deviation of 12 has a wide, low curve. A branch with the same mean and a standard deviation of 3 has a narrow, tall one. The total area under each is still 1.</p>
+<p>Every normal curve has the same shape once its horizontal axis is measured in standard deviations from the mean. That fact makes the rest of this chapter possible. One set of proportions, worked out once for a single reference curve, applies to every normal distribution there is.</p>
+</section>
+</section>
+<section id="sec-empirical" class="level2">
+<h2 class="anchored" data-anchor-id="sec-empirical">The empirical rule</h2>
+<p>The <strong>empirical rule</strong> states the share of cases that fall within one, two and three standard deviations of the mean in any normal distribution:</p>
+<ul>
+<li>about <strong>68 per cent</strong> lie within one standard deviation of the mean</li>
+<li>about <strong>95 per cent</strong> lie within two standard deviations</li>
+<li>about <strong>99.7 per cent</strong> lie within three standard deviations</li>
+</ul>
+<p>It is also called the 68-95-99.7 rule.</p>
+<div id="fig-empirical-rule" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A symmetric bell curve with its horizontal axis marked from minus 3 to plus 3 standard deviations, and beneath each mark the matching waiting time in minutes: 9.7, 21.6, 33.5, 45.5, 57.4, 69.3 and 81.2. The central band from minus 1 to plus 1 is shaded darkest, the bands out to plus and minus 2 lighter, and the bands out to plus and minus 3 lightest. Brackets above the curve read 68 per cent within 1 SD, 95 per cent within 2 SD, and 99.7 per cent within 3 SD.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-empirical-rule-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/images/figures/ch02/ch02-fig-empirical-rule.png" class="img-fluid figure-img" alt="A symmetric bell curve with its horizontal axis marked from minus 3 to plus 3 standard deviations, and beneath each mark the matching waiting time in minutes: 9.7, 21.6, 33.5, 45.5, 57.4, 69.3 and 81.2. The central band from minus 1 to plus 1 is shaded darkest, the bands out to plus and minus 2 lighter, and the bands out to plus and minus 3 lightest. Brackets above the curve read 68 per cent within 1 SD, 95 per cent within 2 SD, and 99.7 per cent within 3 SD.">
 </div>
-<div class="we-solution">
-<p><span class="math display">\[\bar{x} = \frac{28 + 39 + 22 + 51 + 34}{5} = \frac{174}{5} = 34.8 \text{ calls}\]</span></p>
-<p>The mean is 34.8 calls. As a summary of the month, that figure is correct.</p>
-<p>It is the wrong basis for the staffing rule. Staffing for 34.8 calls leaves the 51-call shift understaffed. The rule should use the upper end of the observed range.</p>
-<p>This illustrates a common reporting failure. The statistic is correct, yet it answers an unasked question.</p>
-</div>
-</section>
-</div>
-</section>
-<section id="median" class="level3">
-<h3 class="anchored" data-anchor-id="median">Median</h3>
-<p>The median is the middle value when the data are ordered. It is the value with half the data at or below it and half at or above.</p>
-<p>To find it, sort the values and take the one in position <span class="math inline">\((n+1)/2\)</span>. With an even count, that position falls between two values. Take the mean of the two values.</p>
-<p>For the 200 waiting times, <span class="math inline">\((200+1)/2 = 100.5\)</span>, so the median lies between the 100th and 101st values in the sorted list. Both are 46, so</p>
-<p><span class="math display">\[\text{median} = \frac{46 + 46}{2} = 46 \text{ minutes}\]</span></p>
-<p>For the small set 22, 28, 34, 39, and 51 the position is <span class="math inline">\((5+1)/2 = 3\)</span>, so the median is the third value, 34.</p>
-<p>The median depends on positions. However extreme the outer values are, each affects the median only through its position. This resistance to extremes is the main advantage of the median.</p>
-</section>
-<section id="mode" class="level3">
-<h3 class="anchored" data-anchor-id="mode">Mode</h3>
-<p>The mode is the most frequent value. It is the only measure of centre available for nominal data, and the right one when the question is “what happens most often”.</p>
-<p>You read the mode from a frequency table, so for a categorical variable you already have it. The table in <a href="week01-part2.html#tbl-ticket-type" class="quarto-xref">Table&nbsp;<span>1.10</span></a> gives the mode of <code>Ticket_Type</code> at a glance: <strong>Standard</strong>, held by 124 of 200 customers.</p>
-<p>For <code>Waiting_Time_Mins</code> there are <strong>two</strong> modes. Both 42 minutes and 47 minutes occur 10 times, which is more often than any other value. A distribution with two modes is called <strong>bimodal</strong>. Report both, because two peaks often indicate that two different groups have been combined in one column.</p>
-<p>Some columns have no useful mode. <code>Satisfaction</code> holds 143 distinct values across 200 customers, and most occur once, so asking which value is most frequent tells you little. This is typical for a finely measured continuous variable. The mode is mainly useful for categorical data.</p>
-</section>
-<section id="choosing-between-them" class="level3">
-<h3 class="anchored" data-anchor-id="choosing-between-them">Choosing between them</h3>
-<div id="tbl-centre-choice" class="tbl-grid quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-centre-choice-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;1.13: Choosing between the mean, the median and the mode
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-empirical-rule-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.3: The empirical rule on a normal curve, with the axis marked in standard deviations and in the waiting times of the teaching dataset.
 </figcaption>
-<div aria-describedby="tbl-centre-choice-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="tbl-grid caption-top table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
+</figure>
+</div>
+<p>Because the curve is symmetric, each share splits evenly between the two sides. If 95 per cent lie within two standard deviations, the remaining 5 per cent split into 2.5 per cent above <span class="math inline">\(\mu + 2\sigma\)</span> and 2.5 per cent below <span class="math inline">\(\mu - 2\sigma\)</span>. The same reasoning puts 16 per cent above <span class="math inline">\(\mu + \sigma\)</span>, because <span class="math inline">\((100 - 68) \div 2 = 16\)</span>.</p>
+<section id="the-rule-against-real-data" class="level3">
+<h3 class="anchored" data-anchor-id="the-rule-against-real-data">The rule against real data</h3>
+<p>Waiting time in the teaching dataset has a mean of 45.46 minutes and a standard deviation of 11.91. <a href="#tbl-empirical-waiting" class="quarto-xref">Table&nbsp;<span>2.7</span></a> compares what the rule predicts for 200 customers with what the data show.</p>
+<div id="tbl-empirical-waiting" class="tbl-apa quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-empirical-waiting-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2.7: The empirical rule against the 200 waiting times in the teaching dataset
+</figcaption>
+<div aria-describedby="tbl-empirical-waiting-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="tbl-apa caption-top table">
 <thead>
 <tr class="header">
-<th>Situation</th>
-<th>Use</th>
-<th>Because</th>
+<th>Band</th>
+<th>Minutes</th>
+<th>Rule predicts</th>
+<th>Data holds</th>
+<th>Data share</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Roughly symmetric, no extremes</td>
-<td>Mean</td>
-<td>Uses all the data</td>
+<td>Within 1 SD</td>
+<td>33.5 to 57.4</td>
+<td>136</td>
+<td>133</td>
+<td>66.5%</td>
 </tr>
 <tr class="even">
-<td>Skewed, or has extreme values</td>
-<td>Median</td>
-<td>Resists the pull of the tail</td>
+<td>Within 2 SD</td>
+<td>21.6 to 69.3</td>
+<td>190</td>
+<td>193</td>
+<td>96.5%</td>
 </tr>
 <tr class="odd">
-<td>Nominal data</td>
-<td>Mode</td>
-<td>Nothing else is defined</td>
-</tr>
-<tr class="even">
-<td>Ordinal data</td>
-<td>Median</td>
-<td>Order is meaningful. Equal gaps are not assumed</td>
-</tr>
-<tr class="odd">
-<td>The question is “most common”</td>
-<td>Mode</td>
-<td>The mode directly answers the question</td>
+<td>Within 3 SD</td>
+<td>9.7 to 81.2</td>
+<td>199</td>
+<td>199</td>
+<td>99.5%</td>
 </tr>
 </tbody>
 </table>
 </div>
 </figure>
 </div>
-<div id="tryit-1-7" class="callout callout-style-default callout-tip callout-titled" title="Try It 1.7: Mean, median, or mode">
+<p>The agreement is close. Chapter 1 found 133 customers within one standard deviation and said this chapter would make that figure precise: the rule predicts 68 per cent, and the data show 66.5 per cent.</p>
+<div class="worked-example">
+<p><span class="we-label">Worked example 2.4</span></p>
+<section id="using-the-empirical-rule-for-a-service-promise" class="level3">
+<h3 class="anchored" data-anchor-id="using-the-empirical-rule-for-a-service-promise">Using the empirical rule for a service promise</h3>
+<div class="we-problem">
+<p>Waiting times have a mean of 45.5 minutes and a standard deviation of 11.9, and the distribution is close to normal.</p>
+<p>Use the empirical rule to estimate the share of customers who wait longer than 69.3 minutes, and the share who wait between 33.6 and 69.3 minutes. Then check the first estimate against the data.</p>
+</div>
+<div class="we-solution">
+<p><strong>Longer than 69.3 minutes:</strong> <span class="math inline">\(69.3 = 45.5 + 2 \times 11.9\)</span>, so this is the tail beyond two standard deviations above the mean. The rule puts 95 per cent within two standard deviations, and the other 5 per cent split evenly between the two tails:</p>
+<p><span class="math display">\[\frac{100\% - 95\%}{2} = 2.5\%\]</span></p>
+<p>About 2.5 per cent, or 5 of 200 customers.</p>
+<p><strong>Between 33.6 and 69.3 minutes:</strong> <span class="math inline">\(33.6 = 45.5 - 11.9\)</span>, one standard deviation below the mean. The range runs from <span class="math inline">\(-1\)</span> to <span class="math inline">\(+2\)</span> standard deviations, so combine half of each band:</p>
+<p><span class="math display">\[\frac{68\%}{2} + \frac{95\%}{2} = 34\% + 47.5\% = 81.5\%\]</span></p>
+<p>About 81.5 per cent of customers.</p>
+<p><strong>Check against the data:</strong> Two customers waited longer than 69.3 minutes, at 77 and 90. The rule predicted about 5. Five customers fall more than two standard deviations <em>below</em> the mean, so the two tails contain 7 between them against a prediction of 10. The rule describes the centre of this distribution very well and its thin tails a little less well, which is typical of a real dataset. The small numbers in the tails are also where chance has the most influence.</p>
+</div>
+</section>
+</div>
+<div id="tryit-2-4" class="callout callout-style-default callout-tip callout-titled" title="Try It 2.4: Apply the empirical rule">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Try It 1.7: Mean, median, or mode
+<span class="screen-reader-only">Tip</span>Try It 2.4: Apply the empirical rule
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Part A.</strong> A department’s eight salaries are 28, 30, 31, 32, 33, 35, 36, and 180 thousand.</p>
-<p>Calculate the mean and the median. State which you would report to staff asking about typical pay, and say what the other one would tell them.</p>
-<p><strong>Part B.</strong> The same department records each employee’s contract type: 5 permanent, 2 fixed-term, 1 consultant.</p>
-<p>Give the measure of centre for contract type, state its value, and say why the other two measures are unavailable here.</p>
+<p>A packing line fills bags of rice with a mean of 1,000 grams and a standard deviation of 4 grams. The fill weights are close to normal.</p>
+<ol type="1">
+<li>Between which two weights do about 95 per cent of bags fall?</li>
+<li>What share of bags weigh more than 1,004 grams?</li>
+<li>What share weigh less than 988 grams?</li>
+<li>The label promises 992 grams or more. Roughly how many bags in 10,000 break that promise?</li>
+</ol>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled" title="Check your answer">
@@ -603,126 +628,29 @@ Table&nbsp;1.13: Choosing between the mean, the median and the mode
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><strong>Part A, mean.</strong> The total is 405, so <span class="math inline">\(\bar{x} = 405 \div 8 = 50.6\)</span> thousand.</p>
-<p><strong>Part A, median.</strong> With <span class="math inline">\(n = 8\)</span> the position is <span class="math inline">\((8+1)/2 = 4.5\)</span>, so take the mean of the 4th and 5th values: <span class="math inline">\((32 + 33) \div 2 = 32.5\)</span> thousand.</p>
-<p>Report the <strong>median</strong>. The single salary of 180 pulls the mean above every other salary in the department, so the mean lies above all salaries except the highest. Seven of the eight staff earn less than the mean. Reporting 50.6 to staff asking about typical pay would be technically correct and would give them a misleading picture of the department.</p>
-<p><strong>Part B.</strong> Contract type is nominal, so the <strong>mode</strong> is the measure, and its value is <strong>permanent</strong>, held by 5 of the 8 staff.</p>
-<p>The median requires ordered categories, and permanent, fixed-term, and consultant carry no natural order. The mean requires numbers to add, and contract categories are text labels, not quantities. The mode is therefore the appropriate measure for a nominal variable.</p>
+<ol type="1">
+<li>Within two standard deviations: <span class="math inline">\(1{,}000 \pm 2 \times 4\)</span>, so <strong>992 to 1,008 grams</strong>.</li>
+<li><span class="math inline">\(1{,}004 = 1{,}000 + 4\)</span>, one standard deviation above. The share above is $(100% - 68%) = $ <strong>16 per cent</strong>.</li>
+<li><span class="math inline">\(988 = 1{,}000 - 3 \times 4\)</span>, three standard deviations below. The share beyond three standard deviations on one side is $(100% - 99.7%) = $ <strong>0.15 per cent</strong>.</li>
+<li><span class="math inline">\(992\)</span> is two standard deviations below the mean, so 2.5 per cent of bags weigh less. In 10,000 bags that is <strong>about 250</strong>. The manager would raise the mean fill or tighten the standard deviation until the share was acceptable.</li>
+</ol>
 </div>
 </div>
 </div>
 </section>
 </section>
-<section id="sec-spread" class="level2">
-<h2 class="anchored" data-anchor-id="sec-spread">Measures of spread</h2>
-<p>A measure of centre without a measure of spread gives only part of the summary, and often the less useful part. Spread tells a manager how much the cases differ from one another. It also indicates how much uncertainty the average conceals.</p>
-<section id="range" class="level3">
-<h3 class="anchored" data-anchor-id="range">Range</h3>
-<p>The range is the largest value minus the smallest value.</p>
-<p><span class="math display">\[\text{range} = \text{maximum} - \text{minimum}\]</span></p>
-<p>For the waiting times, <span class="math inline">\(90 - 12 = 78\)</span> minutes. It is simple to calculate, but it depends entirely on the two most extreme cases. A single unusual value can therefore determine it. It is fragile on its own and useful mainly alongside other measures.</p>
-</section>
-<section id="deviation-variance-and-standard-deviation" class="level3">
-<h3 class="anchored" data-anchor-id="deviation-variance-and-standard-deviation">Deviation, variance, and standard deviation</h3>
-<p>The <strong>deviation</strong> of a value is its distance from the mean, <span class="math inline">\(x - \bar{x}\)</span>. A positive deviation lies above the mean, and a negative deviation lies below.</p>
-<p>Averaging the deviations gives zero because the deviations always sum to zero. This property follows from the definition of the mean as the point at which deviations balance. For this reason, the deviations are squared before averaging.</p>
-<p>The <strong>variance</strong> is the sum of the squared deviations divided by <span class="math inline">\(n - 1\)</span>:</p>
-<p><span class="math display">\[s^2 = \frac{\sum (x - \bar{x})^2}{n - 1}\]</span></p>
-<p>The <strong>standard deviation</strong> is its square root, which returns the measure to the original units and makes it interpretable:</p>
-<p><span class="math display">\[s = \sqrt{\frac{\sum (x - \bar{x})^2}{n - 1}}\]</span></p>
-<p>Variance is expressed in squared minutes, which is difficult to interpret directly. Standard deviation is expressed in minutes, which matches the original variable. Taking the square root returns the measure to the original units.</p>
-<div class="worked-example">
-<p><span class="we-label">Worked example 1.10</span></p>
-<section id="calculating-a-standard-deviation-by-hand" class="level3">
-<h3 class="anchored" data-anchor-id="calculating-a-standard-deviation-by-hand">Calculating a standard deviation by hand</h3>
-<div class="we-problem">
-<p>Take the first five waiting times in the teaching dataset: 28, 39, 37, 48 and 61 minutes.</p>
-<p>Calculate the variance and the standard deviation by hand, and say what the result tells a manager.</p>
-</div>
-<div class="we-solution">
-<p><strong>Step 1, the mean.</strong></p>
-<p><span class="math display">\[\bar{x} = \frac{28 + 39 + 37 + 48 + 61}{5} = \frac{213}{5} = 42.6\]</span></p>
-<p><strong>Step 2, the deviations and their squares.</strong></p>
-<div id="tbl-deviations" class="tbl-calc quarto-float quarto-figure quarto-figure-center anchored">
+<section id="sec-chebyshev" class="level2">
+<h2 class="anchored" data-anchor-id="sec-chebyshev">Chebyshev’s rule for any shape</h2>
+<p>The empirical rule applies only to distributions close to normal. <strong>Chebyshev’s rule</strong> applies to every distribution, regardless of its shape. For any number <span class="math inline">\(k\)</span> greater than 1, at least</p>
+<p><span class="math display">\[1 - \frac{1}{k^2}\]</span></p>
+<p>of the cases lie within <span class="math inline">\(k\)</span> standard deviations of the mean.</p>
+<div id="tbl-chebyshev" class="tbl-grid quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-deviations-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;1.14: Deviations and squared deviations for the first five waiting times
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-chebyshev-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2.8: Chebyshev’s guarantee against the empirical rule
 </figcaption>
-<div aria-describedby="tbl-deviations-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="tbl-calc caption-top table">
-<thead>
-<tr class="header">
-<th><span class="math inline">\(x\)</span></th>
-<th><span class="math inline">\(x - \bar{x}\)</span></th>
-<th><span class="math inline">\((x - \bar{x})^2\)</span></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>28</td>
-<td>-14.6</td>
-<td>213.16</td>
-</tr>
-<tr class="even">
-<td>39</td>
-<td>-3.6</td>
-<td>12.96</td>
-</tr>
-<tr class="odd">
-<td>37</td>
-<td>-5.6</td>
-<td>31.36</td>
-</tr>
-<tr class="even">
-<td>48</td>
-<td>5.4</td>
-<td>29.16</td>
-</tr>
-<tr class="odd">
-<td>61</td>
-<td>18.4</td>
-<td>338.56</td>
-</tr>
-<tr class="even">
-<td><strong>Sum</strong></td>
-<td><strong>0.0</strong></td>
-<td><strong>625.20</strong></td>
-</tr>
-</tbody>
-</table>
-</div>
-</figure>
-</div>
-<p>The deviation column sums to zero, which provides an arithmetic check on the mean. If the sum differs from zero, the mean is incorrect and later calculations will also be incorrect.</p>
-<p><strong>Step 3, the variance.</strong></p>
-<p><span class="math display">\[s^2 = \frac{625.20}{5 - 1} = \frac{625.20}{4} = 156.3\]</span></p>
-<p><strong>Step 4, the standard deviation.</strong></p>
-<p><span class="math display">\[s = \sqrt{156.3} = 12.50 \text{ minutes}\]</span></p>
-<p><strong>Interpretation.</strong> These five customers waited 42.6 minutes on average, and a typical customer differed from that average by about 12.5 minutes.</p>
-<p>Across all 200 customers, the same calculation gives <span class="math inline">\(s^2 = 141.74\)</span> and <span class="math inline">\(s = 11.91\)</span> minutes, so these five are reasonably representative of the file.</p>
-<p>You will do this once by hand and let software do it thereafter. Do it once and the standard deviation stops being a button and becomes a quantity you can argue about.</p>
-</div>
-</section>
-</div>
-</section>
-<section id="what-a-standard-deviation-means-in-practice" class="level3">
-<h3 class="anchored" data-anchor-id="what-a-standard-deviation-means-in-practice">What a standard deviation means in practice</h3>
-<p>A standard deviation of 12 minutes means waiting times typically differ from the average by about 12 minutes. A standard deviation of 2 minutes with the same mean describes a more consistent service, and a customer would notice the difference long before a manager read the report.</p>
-<p>As a rough guide for roughly symmetric data, most cases fall within one standard deviation of the mean. In the teaching dataset, 133 of the 200 waits, or 66.5 per cent, fall between 33.5 and 57.4 minutes, which is the mean plus or minus one standard deviation. Chapter 2 makes this precise with the empirical rule.</p>
-</section>
-<section id="why-the-sample-divides-by-n-minus-1" class="level3">
-<h3 class="anchored" data-anchor-id="why-the-sample-divides-by-n-minus-1">Why the sample divides by n minus 1</h3>
-<p>The sample variance divides by <span class="math inline">\(n - 1\)</span>. The explanation for the minus one is brief.</p>
-<p>Deviations are measured from the <strong>sample</strong> mean, and the sample mean sits, by construction, at the centre of that particular sample. Deviations from it are therefore slightly smaller than deviations from the unknown population mean would be. Dividing by <span class="math inline">\(n\)</span> would carry that shortfall into the estimate and understate the true spread.</p>
-<p>Dividing by <span class="math inline">\(n - 1\)</span> corrects it. In worked example 1.10, dividing by 5 instead of 4 gives a standard deviation of 11.18 compared with 12.50, roughly 11 per cent smaller. The correction matters for small samples, and its effect becomes smaller as the sample grows. The two formulas converge for large datasets, so the issue mainly affects small samples.</p>
-<p>Now that spread has its own symbols, here is the full notation table that <a href="week01.html#tbl-notation-early" class="quarto-xref">Table&nbsp;<span>1.3</span></a> opened. Greek letters describe populations. Latin letters describe samples.</p>
-<div id="tbl-notation-full" class="tbl-def quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-notation-full-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;1.15: Population parameters and their sample counterparts
-</figcaption>
-<div aria-describedby="tbl-notation-full-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="tbl-def caption-top table">
+<div aria-describedby="tbl-chebyshev-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="tbl-grid caption-top table">
 <colgroup>
 <col style="width: 33%">
 <col style="width: 33%">
@@ -730,117 +658,46 @@ Table&nbsp;1.15: Population parameters and their sample counterparts
 </colgroup>
 <thead>
 <tr class="header">
-<th>Quantity</th>
-<th>Population</th>
-<th>Sample</th>
+<th>Distance from the mean</th>
+<th>Chebyshev guarantees at least</th>
+<th>Empirical rule, if normal</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Mean</td>
-<td><span class="math inline">\(\mu = \dfrac{\sum x}{N}\)</span></td>
-<td><span class="math inline">\(\bar{x} = \dfrac{\sum x}{n}\)</span></td>
+<td>2 standard deviations</td>
+<td><span class="math inline">\(1 - 1/4 = 75\%\)</span></td>
+<td>95%</td>
 </tr>
 <tr class="even">
-<td>Variance</td>
-<td><span class="math inline">\(\sigma^2 = \dfrac{\sum (x - \mu)^2}{N}\)</span></td>
-<td><span class="math inline">\(s^2 = \dfrac{\sum (x - \bar{x})^2}{n - 1}\)</span></td>
-</tr>
-<tr class="odd">
-<td>Standard deviation</td>
-<td><span class="math inline">\(\sigma = \sqrt{\sigma^2}\)</span></td>
-<td><span class="math inline">\(s = \sqrt{s^2}\)</span></td>
-</tr>
-<tr class="even">
-<td>Proportion</td>
-<td><span class="math inline">\(\pi\)</span></td>
-<td><span class="math inline">\(p\)</span></td>
-</tr>
-<tr class="odd">
-<td>Size</td>
-<td><span class="math inline">\(N\)</span></td>
-<td><span class="math inline">\(n\)</span></td>
+<td>3 standard deviations</td>
+<td><span class="math inline">\(1 - 1/9 = 88.9\%\)</span></td>
+<td>99.7%</td>
 </tr>
 </tbody>
 </table>
 </div>
 </figure>
 </div>
-</section>
-<section id="comparing-spread-across-different-units" class="level3">
-<h3 class="anchored" data-anchor-id="comparing-spread-across-different-units">Comparing spread across different units</h3>
-<p>A standard deviation of 11.91 minutes is on a different scale from one of 256.84 USD. A direct comparison of the two therefore provides little information.</p>
-<p>The <strong>coefficient of variation</strong> expresses the standard deviation as a proportion of the mean, which removes the units:</p>
-<p><span class="math display">\[CV = \frac{s}{\bar{x}} \times 100\%\]</span></p>
-<p>For the teaching dataset:</p>
-<div id="tbl-cv" class="tbl-apa quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-cv-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;1.16: Coefficient of variation for three variables measured in different units
-</figcaption>
-<div aria-describedby="tbl-cv-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="tbl-apa caption-top table">
-<thead>
-<tr class="header">
-<th>Variable</th>
-<th><span class="math inline">\(\bar{x}\)</span></th>
-<th><span class="math inline">\(s\)</span></th>
-<th><span class="math inline">\(CV\)</span></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>Age</code></td>
-<td>35.35 years</td>
-<td>7.35</td>
-<td>20.8%</td>
-</tr>
-<tr class="even">
-<td><code>Waiting_Time_Mins</code></td>
-<td>45.46 minutes</td>
-<td>11.91</td>
-<td>26.2%</td>
-</tr>
-<tr class="odd">
-<td><code>Spending</code></td>
-<td>505.65 USD</td>
-<td>256.84</td>
-<td>50.8%</td>
-</tr>
-</tbody>
-</table>
-</div>
-</figure>
-</div>
-<p>Spending varies far more, relative to its own average, than either age or waiting time. A manager can use this fact: a forecast of next month’s average spend carries much more uncertainty than a forecast of next month’s average wait.</p>
-<p>The coefficient of variation requires a true zero, so it applies to ratio variables only. Applying it to temperature in Celsius produces a number that changes when you switch to Fahrenheit. This shows that the measure is inappropriate for interval variables.</p>
-<div class="worked-example">
-<p><span class="we-label">Worked example 1.11</span></p>
-<section id="two-teams-with-the-same-mean" class="level3">
-<h3 class="anchored" data-anchor-id="two-teams-with-the-same-mean">Two teams with the same mean</h3>
-<div class="we-problem">
-<p>Two service teams both resolve calls in 24 minutes on average. Team A has a standard deviation of 3 minutes. Team B has a standard deviation of 14 minutes.</p>
-<p>A report states that the two teams perform identically. Is the report right?</p>
-</div>
-<div class="we-solution">
-<p>No.&nbsp;The means match, but the customer experience differs.</p>
-<p>Team A is predictable: almost every call lands between about 18 and 30 minutes. Team B is unpredictable. Calls range from very fast to very slow, and a customer’s experience depends on chance.</p>
-<p>The means are equal, but the risk differs. Reporting only the average implies that the teams perform identically, which is false.</p>
-</div>
-</section>
-</div>
-<div id="tryit-1-8" class="callout callout-style-default callout-tip callout-titled" title="Try It 1.8: Same mean, different spread">
+<p>Chebyshev’s figures are floors. The true share is almost always higher, and for a normal distribution it is much higher. The rule gives you a guarantee you can use when the shape is unknown, skewed or heavy-tailed, and it trades precision for that guarantee.</p>
+<p><code>Spending</code> shows why the guarantee matters. Its standard deviation is 256.84 USD around a mean of 505.65. Two standard deviations either side runs from <span class="math inline">\(-8.03\)</span> to 1,019.33 USD. The data place 190 of 200 customers in that band, 95 per cent, which matches the empirical rule exactly. The match hides a problem: all 10 customers outside the band are high spenders, and none are low. The empirical rule assumes the outside share splits evenly between the two tails, and here it splits 10 to 0. The lower limit, <span class="math inline">\(-8.03\)</span> USD, is a spend no customer can make.</p>
+<p>For a skewed variable, the percentages from the empirical rule can look right while the story they tell about the tails is misleading. Chebyshev’s floor of 75 per cent is safe for any shape, and it makes no claim about which side the outside cases fall on.</p>
+<div id="tryit-2-5" class="callout callout-style-default callout-tip callout-titled" title="Try It 2.5: Chebyshev's rule">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Try It 1.8: Same mean, different spread
+<span class="screen-reader-only">Tip</span>Try It 2.5: Chebyshev’s rule
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Two branches both average 300 transactions a day. Branch A has a standard deviation of 20. Branch B has a standard deviation of 95.</p>
-<p>Calculate the coefficient of variation for each. Explain what the difference means for staffing, and say which branch you would visit first.</p>
+<p>Monthly insurance claims at a small firm have a mean of 12,000 USD and a standard deviation of 3,000. The distribution is strongly right-skewed.</p>
+<ol type="1">
+<li>Using Chebyshev’s rule, what share of months at least fall between 6,000 and 18,000 USD?</li>
+<li>What share at least fall within 2.5 standard deviations of the mean, and what range of claims is that?</li>
+<li>Why would the empirical rule be a poor choice here?</li>
+</ol>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled" title="Check your answer">
@@ -855,111 +712,121 @@ Table&nbsp;1.16: Coefficient of variation for three variables measured in differ
 </div>
 <div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><strong>Coefficient of variation.</strong> Branch A: <span class="math inline">\(20 \div 300 = 6.7\%\)</span>. Branch B: <span class="math inline">\(95 \div 300 = 31.7\%\)</span>. Branch B’s daily volume is almost five times as variable, relative to its own average.</p>
-<p>Both branches average 300 transactions, so on volume alone they look identical.</p>
-<p>Branch A, with a standard deviation of 20, is predictable. Most days fall roughly between 260 and 340, so a fixed staffing level works.</p>
-<p>Branch B, with a standard deviation of 95, ranges from very quiet to very busy. A fixed level either wastes staff on quiet days or fails customers on busy ones, so it needs flexible staffing and a way to forecast the busy days.</p>
-<p>Visit <strong>Branch B</strong> first, because its variation is the problem the average conceals.</p>
-</div>
-</div>
-</div>
-</section>
-</section>
-<section id="sec-quartiles" class="level2">
-<h2 class="anchored" data-anchor-id="sec-quartiles">Percentiles, quartiles, and the interquartile range</h2>
-<p>A <strong>percentile</strong> marks the position below which a given share of the data falls. The 90th percentile is the value that 90 per cent of cases fall at or below.</p>
-<p><strong>Quartiles</strong> split the ordered data into four equal parts:</p>
-<ul>
-<li><span class="math inline">\(Q_1\)</span>, the first quartile, is the 25th percentile</li>
-<li><span class="math inline">\(Q_2\)</span>, the second quartile, is the median</li>
-<li><span class="math inline">\(Q_3\)</span>, the third quartile, is the 75th percentile</li>
-</ul>
-<p>For <code>Waiting_Time_Mins</code>, the software reports <span class="math inline">\(Q_1 = 37.75\)</span>, <span class="math inline">\(Q_2 = 46\)</span> and <span class="math inline">\(Q_3 = 53.25\)</span> minutes.</p>
-<p>Read as a sentence: a quarter of customers waited under 38 minutes, half waited under 46 minutes, and a quarter waited over 53 minutes.</p>
-<p>The <strong>interquartile range</strong> is the spread of the middle half:</p>
-<p><span class="math display">\[IQR = Q_3 - Q_1\]</span></p>
-<p>Here the value is <span class="math inline">\(53.25 - 37.75 = 15.5\)</span> minutes. Because it discards the outer quarters, it resists extremes more effectively than the range. The range for the same column is 78 minutes, set by two customers out of 200.</p>
-<div class="callout callout-style-default callout-note callout-titled" title="Why two packages give different quartiles">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Why two packages give different quartiles
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Quartiles fall between data points, so software must interpolate. Nine conventions exist for this interpolation.</p>
-<p>For <span class="math inline">\(Q_1\)</span> of the 200 waiting times, the values in sorted positions 50 and 51 are 37 and 38.</p>
-<ul>
-<li><p>The convention used by JASP, R, and most statistical software puts <span class="math inline">\(Q_1\)</span> at position <span class="math inline">\(1 + (n-1) \times 0.25 = 50.75\)</span>, giving <span class="math inline">\(37 + 0.75 \times 1 = 37.75\)</span>.</p></li>
-<li><p>A common textbook convention puts it at position <span class="math inline">\((n+1)/4 = 50.25\)</span>, giving <span class="math inline">\(37 + 0.25 \times 1 = 37.25\)</span>.</p></li>
-</ul>
-<p>Each convention is defensible, and the gap here is half a minute. The difference rarely changes a decision, but it explains why two packages can disagree on the same file. Report which tool produced your figures.</p>
-</div>
-</div>
-<section id="boxplots-and-the-outlier-rule" class="level3">
-<h3 class="anchored" data-anchor-id="boxplots-and-the-outlier-rule">Boxplots and the outlier rule</h3>
-<p>A boxplot draws the quartiles. The box runs from <span class="math inline">\(Q_1\)</span> to <span class="math inline">\(Q_3\)</span>, a line inside the box marks the median, and whiskers extend to the furthest values that are still within reach of the box.</p>
-<p>“Within reach” has a definition. The standard rule places fences at</p>
-<p><span class="math display">\[\text{lower fence} = Q_1 - 1.5 \times IQR \qquad \text{upper fence} = Q_3 + 1.5 \times IQR\]</span></p>
-<p>and flags anything beyond them as a potential outlier.</p>
-<p>For the waiting times:</p>
-<p><span class="math display">\[\text{lower fence} = 37.75 - 1.5 \times 15.5 = 14.5 \text{ minutes}\]</span></p>
-<p><span class="math display">\[\text{upper fence} = 53.25 + 1.5 \times 15.5 = 76.5 \text{ minutes}\]</span></p>
-<p>Four of the 200 customers fall outside: two waited 12 and 14 minutes, and two waited 77 and 90 minutes. Those four points appear individually on the boxplot, beyond the ends of the whiskers.</p>
-<p>The word “outlier” here means “look at this one again”. If you are managing complaints, the customer who waited 90 minutes may be the most urgent case in the file.</p>
-<div id="tryit-1-9" class="callout callout-style-default callout-tip callout-titled" title="Try It 1.9: Interquartile range and fences">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Try It 1.9: Interquartile range and fences
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Software reports <span class="math inline">\(Q_1\)</span> as 22 minutes, the median as 31, and <span class="math inline">\(Q_3\)</span> as 41 for a different branch.</p>
 <ol type="1">
-<li>Calculate the interquartile range.</li>
-<li>Calculate the upper fence.</li>
-<li>State what the IQR tells a manager.</li>
-<li>Explain why the IQR is preferable to the range as a summary of spread when a few customers waited over two hours.</li>
-</ol>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled" title="Check your answer">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Check your answer
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-7" class="callout-7-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<ol type="1">
-<li>$IQR = 41 - 22 = $ <strong>19 minutes</strong>.</li>
-<li>Upper fence $= 41 + 1.5 = 41 + 28.5 = $ <strong>69.5 minutes</strong>. Any wait beyond 69.5 minutes is flagged for a second look.</li>
-<li>The middle half of customers waited between 22 and 41 minutes, a spread of 19 minutes. This describes the typical experience and is the figure to quote alongside the median.</li>
-<li>The range would be driven entirely by the small number of customers who waited over two hours. It would describe those cases. It would fail to describe the service as a whole. Those cases matter and should be reported. They should not define the normal wait. The IQR discards the outer quarters, so it describes what is typical. The fences describe what is unusual.</li>
+<li><span class="math inline">\(6{,}000\)</span> and <span class="math inline">\(18{,}000\)</span> are <span class="math inline">\(12{,}000 \pm 2 \times 3{,}000\)</span>, so <span class="math inline">\(k = 2\)</span>. At least $1 - 1/2^2 = $ <strong>75 per cent</strong> of months.</li>
+<li><span class="math inline">\(k = 2.5\)</span>: at least $1 - 1/2.5^2 = 1 - 1/6.25 = 1 - 0.16 = $ <strong>84 per cent</strong> of months, in the range <span class="math inline">\(12{,}000 \pm 2.5 \times 3{,}000\)</span>, from <strong>4,500 to 19,500 USD</strong>.</li>
+<li>The empirical rule assumes a normal, symmetric shape. With strong right skew, the months outside two standard deviations will sit almost entirely on the high side, and the rule would report the split as even. Chebyshev’s floor makes no assumption about shape.</li>
 </ol>
 </div>
 </div>
 </div>
 </section>
+<section id="sec-zscores" class="level2">
+<h2 class="anchored" data-anchor-id="sec-zscores">z-scores</h2>
+<p>A <strong>z-score</strong>, also called a <strong>standardised score</strong>, states how many standard deviations a value lies from the mean. For a value <span class="math inline">\(x\)</span> in a sample with mean <span class="math inline">\(\bar{x}\)</span> and standard deviation <span class="math inline">\(s\)</span>:</p>
+<p><span class="math display">\[z = \frac{x - \bar{x}}{s}\]</span></p>
+<p>For a population with mean <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma\)</span> the formula takes the Greek letters, <span class="math inline">\(z = (x - \mu) / \sigma\)</span>. The arithmetic is the same.</p>
+<p>Three facts follow from the formula:</p>
+<ul>
+<li><strong>The sign gives the direction.</strong> A positive z-score lies above the mean and a negative one lies below. A z-score of 0 is the mean itself.</li>
+<li><strong>The size gives the distance, in standard deviations.</strong> A z-score of <span class="math inline">\(-1.5\)</span> lies one and a half standard deviations below the mean.</li>
+<li><strong>The units cancel.</strong> The numerator and the denominator are both in minutes, or both in USD, so a z-score has no units. That lets you compare values measured on different scales, which <a href="#sec-compare-z" class="quarto-xref"><span>Comparing values in different units</span></a> uses.</li>
+</ul>
+<p>Converting every value in a column to its z-score is called <strong>standardising</strong> the column. A standardised column always has a mean of 0 and a standard deviation of 1, whatever its original units.</p>
+<section id="calculating-a-z-score" class="level3">
+<h3 class="anchored" data-anchor-id="calculating-a-z-score">Calculating a z-score</h3>
+<p>For respondent 58, who waited 77 minutes:</p>
+<p><span class="math display">\[z = \frac{77 - 45.455}{11.905} = \frac{31.545}{11.905} = 2.65\]</span></p>
+<p>Respondent 58 waited 2.65 standard deviations longer than the average customer.</p>
 </section>
-<section id="sec-shape" class="level2">
-<h2 class="anchored" data-anchor-id="sec-shape">Shape, skewness, and outliers</h2>
-<p>Comparing the mean with the median reveals the shape before you draw a single graph.</p>
-<div id="tbl-skew-rule" class="tbl-grid quarto-float quarto-figure quarto-figure-center anchored">
+<section id="from-a-z-score-back-to-the-original-units" class="level3">
+<h3 class="anchored" data-anchor-id="from-a-z-score-back-to-the-original-units">From a z-score back to the original units</h3>
+<p>Rearranging the formula turns a z-score back into a value:</p>
+<p><span class="math display">\[x = \bar{x} + z \times s\]</span></p>
+<p>This answers questions that start from a position and ask for a value. For example: the wait that falls 1.5 standard deviations below the mean is</p>
+<p><span class="math display">\[x = 45.455 + (-1.5) \times 11.905 = 45.455 - 17.858 = 27.6 \text{ minutes}\]</span></p>
+<div class="worked-example">
+<p><span class="we-label">Worked example 2.5</span></p>
+<section id="standardising-the-first-five-customers" class="level3">
+<h3 class="anchored" data-anchor-id="standardising-the-first-five-customers">Standardising the first five customers</h3>
+<div class="we-problem">
+<p>The first five waiting times in the teaching dataset are 28, 39, 37, 48 and 61 minutes. The full column has a mean of 45.455 and a standard deviation of 11.905.</p>
+<p>Calculate the z-score of each wait against the full column, and say in plain language what the largest one means.</p>
+</div>
+<div class="we-solution">
+<p>Subtract the mean, then divide by the standard deviation.</p>
+<div id="tbl-first-five-z" class="tbl-calc quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-skew-rule-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;1.17: Reading the shape of a distribution from the mean and the median
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-first-five-z-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2.9: z-scores for the first five waiting times, measured against all 200 customers
 </figcaption>
-<div aria-describedby="tbl-skew-rule-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="tbl-first-five-z-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="tbl-calc caption-top table">
+<thead>
+<tr class="header">
+<th>Respondent</th>
+<th><span class="math inline">\(x\)</span></th>
+<th><span class="math inline">\(x - \bar{x}\)</span></th>
+<th><span class="math inline">\(z\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>28</td>
+<td>-17.455</td>
+<td>-1.47</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>39</td>
+<td>-6.455</td>
+<td>-0.54</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>37</td>
+<td>-8.455</td>
+<td>-0.71</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>48</td>
+<td>2.545</td>
+<td>0.21</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>61</td>
+<td>15.545</td>
+<td>1.31</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Respondent 1 was served faster than most, at 1.47 standard deviations below the average. Respondents 2, 3 and 4 fall within one standard deviation of the mean, in the band that contains about two customers in three.</p>
+<p>The largest z-score, in size, is respondent 1’s. The largest above the mean is respondent 5’s:</p>
+<blockquote class="blockquote">
+<p>Respondent 5 waited 61 minutes, 1.31 standard deviations longer than the average customer. That is a long wait, and still a typical one: roughly one customer in ten waits this long or longer.</p>
+</blockquote>
+<p>The empirical rule brackets the “one in ten”. Sixteen per cent of customers lie more than one standard deviation above the mean and 2.5 per cent lie more than two above, so a wait 1.31 standard deviations above falls between the two. The data agree: 19 of the 200 customers, 9.5 per cent, waited 61 minutes or longer. Part 3 shows how to find the share exactly.</p>
+<p>Worked example 1.10 in chapter 1 used the same five values to find a standard deviation of 12.50 <em>within</em> the five. The z-scores here use the mean and standard deviation of <em>all 200</em>, because the question is where each customer falls in the full branch.</p>
+</div>
+</section>
+</div>
+</section>
+</section>
+<section id="sec-unusual" class="level2">
+<h2 class="anchored" data-anchor-id="sec-unusual">Typical, unusual and extreme values</h2>
+<p>A z-score becomes a judgement once you set thresholds. This module uses three bands, taken from the empirical rule.</p>
+<div id="tbl-z-bands" class="tbl-grid quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-z-bands-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2.10: Three bands for judging a value by its z-score
+</figcaption>
+<div aria-describedby="tbl-z-bands-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="tbl-grid caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -968,116 +835,152 @@ Table&nbsp;1.17: Reading the shape of a distribution from the mean and the media
 </colgroup>
 <thead>
 <tr class="header">
-<th>Relationship</th>
-<th>Shape</th>
-<th>What it means</th>
+<th>z-score, ignoring the sign</th>
+<th>Label</th>
+<th>Share expected under a normal curve</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Mean close to the median</td>
-<td>Roughly symmetric</td>
-<td>The average describes the typical case well</td>
+<td>Less than 2</td>
+<td>Typical</td>
+<td>About 95 in 100</td>
 </tr>
 <tr class="even">
-<td>Mean well above the median</td>
-<td>Right-skewed</td>
-<td>A tail of high values pulls the mean up</td>
+<td>2 up to 3</td>
+<td>Unusual</td>
+<td>About 4 or 5 in 100</td>
 </tr>
 <tr class="odd">
-<td>Mean well below the median</td>
-<td>Left-skewed</td>
-<td>A tail of low values pulls the mean down</td>
+<td>3 or more</td>
+<td>Extreme</td>
+<td>About 3 in 1,000</td>
 </tr>
 </tbody>
 </table>
 </div>
 </figure>
 </div>
-<p>Apply it to the teaching dataset.</p>
-<div id="tbl-shape-real" class="tbl-apa quarto-float quarto-figure quarto-figure-center anchored">
+<p>“Unusual” is a statement about frequency. It says a value of this size turns up in roughly one case in twenty. In a file of 200 you should expect about 9 unusual values by chance alone. An unusual value is a prompt to look again, the same prompt the <span class="math inline">\(1.5 \times IQR\)</span> fences gave you in chapter 1.</p>
+<p>“Extreme” is stronger. Under a normal curve, a value three or more standard deviations from the mean turns up about 3 times in 1,000 cases. When you find one, check the record first, then the circumstances, and only then treat it as part of the ordinary spread.</p>
+<section id="the-unusual-waits-in-the-teaching-dataset" class="level3">
+<h3 class="anchored" data-anchor-id="the-unusual-waits-in-the-teaching-dataset">The unusual waits in the teaching dataset</h3>
+<p>Seven of the 200 waiting times lie two or more standard deviations from the mean.</p>
+<div id="tbl-unusual-waits" class="tbl-apa quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-shape-real-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;1.18: Mean against median for three variables in the teaching dataset
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-unusual-waits-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2.11: The seven waiting times two or more standard deviations from the mean
 </figcaption>
-<div aria-describedby="tbl-shape-real-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="tbl-unusual-waits-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="tbl-apa caption-top table">
 <thead>
 <tr class="header">
-<th>Variable</th>
-<th>Mean</th>
-<th>Median</th>
-<th>Difference</th>
-<th>Shape</th>
+<th>Respondent</th>
+<th>Wait, minutes</th>
+<th><span class="math inline">\(z\)</span></th>
+<th>Band</th>
+<th>Beyond the IQR fences?</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>Waiting_Time_Mins</code></td>
-<td>45.46</td>
-<td>46.00</td>
-<td>-0.54</td>
-<td>Close to symmetric</td>
+<td>85</td>
+<td>90</td>
+<td>3.74</td>
+<td>Extreme</td>
+<td>Yes</td>
 </tr>
 <tr class="even">
-<td><code>Satisfaction</code></td>
-<td>3.81</td>
-<td>3.86</td>
-<td>-0.04</td>
-<td>Close to symmetric</td>
+<td>149</td>
+<td>12</td>
+<td>-2.81</td>
+<td>Unusual</td>
+<td>Yes</td>
 </tr>
 <tr class="odd">
-<td><code>Spending</code></td>
-<td>505.65</td>
-<td>494.28</td>
-<td>+11.37</td>
-<td>Mildly right-skewed</td>
+<td>58</td>
+<td>77</td>
+<td>2.65</td>
+<td>Unusual</td>
+<td>Yes</td>
+</tr>
+<tr class="even">
+<td>189</td>
+<td>14</td>
+<td>-2.64</td>
+<td>Unusual</td>
+<td>Yes</td>
+</tr>
+<tr class="odd">
+<td>191</td>
+<td>19</td>
+<td>-2.22</td>
+<td>Unusual</td>
+<td>No</td>
+</tr>
+<tr class="even">
+<td>138</td>
+<td>20</td>
+<td>-2.14</td>
+<td>Unusual</td>
+<td>No</td>
+</tr>
+<tr class="odd">
+<td>147</td>
+<td>21</td>
+<td>-2.05</td>
+<td>Unusual</td>
+<td>No</td>
 </tr>
 </tbody>
 </table>
 </div>
 </figure>
 </div>
-<p>Waiting time here is close to symmetric, although waiting times in operational data often skew to the right. Right skew is common in business data. Waiting times, spending, and incomes have a floor at zero and often lack a fixed ceiling, so the tail runs to the right. In this branch, waits sit in a fairly narrow band with a few long values. The description should follow the data.</p>
-<p><code>Spending</code> shows the mild right skew you would expect from money, with the mean 11 USD above the median.</p>
-<p>An <strong>outlier</strong> is a value far from the rest. It may be an error, a special case, or an important observation. Investigate it and report what you found. Deleting it silently is inappropriate, because a reader who sees only the remaining cases evaluates an edited file.</p>
+<p>The two rules largely agree. Every case beyond the chapter 1 fences also has a z-score beyond 2, and the z-score rule adds three short waits just inside the lower fence. The IQR rule works from quartiles and suits any shape. The z-score rule works from the mean and standard deviation and suits a distribution close to normal, which waiting time is.</p>
+<p>The file contains 6 unusual values and 1 extreme one, against a normal-curve prediction of about 9 and 0.5. The counts agree closely, and the extreme case, respondent 85, needs a closer look.</p>
 <div class="worked-example">
-<p><span class="we-label">Worked example 1.12</span></p>
-<section id="skewness-in-online-orders" class="level3">
-<h3 class="anchored" data-anchor-id="skewness-in-online-orders">Skewness in online orders</h3>
+<p><span class="we-label">Worked example 2.6</span></p>
+<section id="explaining-a-z-score-in-plain-language" class="level3">
+<h3 class="anchored" data-anchor-id="explaining-a-z-score-in-plain-language">Explaining a z-score in plain language</h3>
 <div class="we-problem">
-<p>Order values at a different company have a mean of 480 and a median of 395.</p>
-<p>Identify the shape of the distribution and state which figure belongs in a report on typical spending and which belongs in a revenue forecast.</p>
+<p>Respondent 85 waited 90 minutes. The same customer gave a satisfaction score of 4.50, above the mean of 3.81.</p>
+<p>Calculate the z-score for the wait, classify it, and write two sentences for a branch manager who has never heard of a z-score. Then say what you would check before acting on it.</p>
 </div>
 <div class="we-solution">
-<p>The mean exceeds the median by 85, so the distribution is right-skewed. Most orders are modest and a few large ones pull the average up.</p>
-<p>Reporting 480 as the typical order overstates what most customers spend. The median, 395, is the defensible figure for “typical”.</p>
-<p>The mean, 480, is the right figure for forecasting total revenue, because total revenue is the mean multiplied by the number of orders and the large orders count fully towards it.</p>
-<p>Both are correct, and they answer different questions. The report should name the question it is answering.</p>
+<p><strong>The z-score:</strong></p>
+<p><span class="math display">\[z = \frac{90 - 45.455}{11.905} = \frac{44.545}{11.905} = 3.74\]</span></p>
+<p><strong>The band:</strong> <span class="math inline">\(3.74\)</span> is beyond 3, so the wait is <strong>extreme</strong>.</p>
+<p><strong>For the manager:</strong></p>
+<blockquote class="blockquote">
+<p>One customer waited 90 minutes, nearly twice the average wait and far beyond anything else in the month. Waits this far from the average should happen fewer than 3 times in 1,000 customers, so this one needs an explanation.</p>
+</blockquote>
+<p>The sentences convey the meaning of the z-score without using the symbol. They state the distance, the reference point and the rarity.</p>
+<p><strong>What to check first:</strong> A 90-minute wait paired with a satisfaction score of 4.50 is an odd combination, because long waits usually go with low satisfaction. Three explanations fit: the time was recorded wrongly, perhaps 9 or 19 minutes typed as 90, the customer chose to wait for a particular member of staff, or the customer was patient. The first is a data error to correct and record. The second and third are real events that belong in the file. The z-score told you where to look. The record and the circumstances tell you what you found.</p>
 </div>
 </section>
 </div>
-<div id="tryit-1-10" class="callout callout-style-default callout-tip callout-titled" title="Try It 1.10: Read the shape">
+<div id="tryit-2-6" class="callout callout-style-default callout-tip callout-titled" title="Try It 2.6: Classify the waits">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Try It 1.10: Read the shape
+<span class="screen-reader-only">Tip</span>Try It 2.6: Classify the waits
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>A branch reports these figures for waiting time: mean 52 minutes, median 41 minutes, <span class="math inline">\(Q_1\)</span> 33, <span class="math inline">\(Q_3\)</span> 58, minimum 9, maximum 186.</p>
+<p>Use the waiting-time mean of 45.455 minutes and standard deviation of 11.905.</p>
 <ol type="1">
-<li>What shape is the distribution, and how do you know?</li>
-<li>Calculate the IQR and the upper fence.</li>
-<li>Which measure of centre would you quote to a customer asking about a typical wait?</li>
-<li>The branch manager proposes removing the 186-minute case as “obviously an error”. What would you advise?</li>
+<li>Calculate the z-score for waits of 20, 52 and 82 minutes, to two decimal places.</li>
+<li>Classify each as typical, unusual or extreme.</li>
+<li>Find the waiting time that sits exactly 2 standard deviations above the mean, and the one that sits 1 standard deviation below it.</li>
+<li>Write one plain-language sentence about the 82-minute wait for a manager.</li>
 </ol>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled" title="Check your answer">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1086,36 +989,128 @@ Table&nbsp;1.18: Mean against median for three variables in the teaching dataset
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
-<li><strong>Right-skewed.</strong> The mean sits 11 minutes above the median, which happens when a tail of long waits pulls the average up. The gap between the median and the maximum is 145 minutes. The gap between the median and the minimum is 32 minutes. This supports the same conclusion.</li>
-<li><span class="math inline">\(IQR = 58 - 33 = 25\)</span> minutes. Upper fence <span class="math inline">\(= 58 + 1.5 \times 25 = 95.5\)</span> minutes. The 186-minute wait is far beyond it.</li>
-<li>The <strong>median</strong>, 41 minutes. Half of customers waited no longer than this value. The mean is inflated by waits that most customers avoided.</li>
-<li>Ask what evidence identifies it as an error. A very busy afternoon could produce the same value in the column. A 186-minute wait is possible in a service where customers queue. If the record is a data entry error, correct it and record the correction. If it is real, it may be one of the most important rows in the file, because that customer is likely to complain. In either case, record the decision in the report. A reader who sees only the remaining cases evaluates an edited file.</li>
+<li>20 minutes: <span class="math inline">\(z = (20 - 45.455) \div 11.905 = -25.455 \div 11.905 = -2.14\)</span>. 52 minutes: <span class="math inline">\(z = (52 - 45.455) \div 11.905 = 6.545 \div 11.905 = 0.55\)</span>. 82 minutes: <span class="math inline">\(z = (82 - 45.455) \div 11.905 = 36.545 \div 11.905 = 3.07\)</span>.</li>
+<li>20 minutes is <strong>unusual</strong>, below the mean. 52 minutes is <strong>typical</strong>. 82 minutes is <strong>extreme</strong>, just past 3.</li>
+<li>Two above: <span class="math inline">\(45.455 + 2 \times 11.905 = 69.3\)</span> minutes. One below: <span class="math inline">\(45.455 - 11.905 = 33.6\)</span> minutes.</li>
+<li>For example: “A customer who waits 82 minutes has waited about 37 minutes longer than average, and a wait that long should happen to fewer than 3 customers in 1,000.”</li>
 </ol>
 </div>
 </div>
 </div>
 </section>
-<section id="sec-ethics" class="level2">
-<h2 class="anchored" data-anchor-id="sec-ethics">Data quality and ethical description</h2>
-<p>Every choice in this chapter can mislead while every sentence remains literally true.</p>
-<p>Examples include choosing the mean over the median because it is larger, truncating an axis, reporting a percentage while leaving out its denominator, and presenting a convenience sample as though it represented everyone. Each choice may appear defensible in isolation, and each choice can move a reader toward a conclusion the evidence withholds.</p>
-<p>One question provides a test: <strong>would you make the same choice if the number pointed the other way?</strong> If the honest summary is the one that happens to suit you, the choice is defensible. If you would have chosen differently, the choice is selective.</p>
-<p>A practical habit follows from it. Record the choices you made in one sentence in the report: which measure of centre and why, how any bands were drawn, what happened to unusual cases, and what the sample covers. One sentence converts a claim into a statement a reader can check.</p>
-<p>Chapter 8 returns to this topic in detail. The issue begins here, because the opportunity to mislead begins with these choices.</p>
+</section>
+<section id="sec-compare-z" class="level2">
+<h2 class="anchored" data-anchor-id="sec-compare-z">Comparing values in different units</h2>
+<p>A z-score has no units, so it lets you compare a customer’s wait with the same customer’s spend, or a branch’s sales with its complaints. The question it answers is: <strong>which value is further from its own average, measured in that variable’s own spread?</strong></p>
+<div class="worked-example">
+<p><span class="we-label">Worked example 2.7</span></p>
+<section id="which-figure-is-most-out-of-line" class="level3">
+<h3 class="anchored" data-anchor-id="which-figure-is-most-out-of-line">Which figure is most out of line?</h3>
+<div class="we-problem">
+<p>Respondent 5 waited 61 minutes, spent 161.90 USD and gave a satisfaction score of 2.77.</p>
+<div id="tbl-respondent-5" class="tbl-apa quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-respondent-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2.12: Respondent 5 against the means and standard deviations of three variables
+</figcaption>
+<div aria-describedby="tbl-respondent-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="tbl-apa caption-top table">
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Value</th>
+<th>Mean</th>
+<th>Standard deviation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Waiting_Time_Mins</code></td>
+<td>61</td>
+<td>45.455</td>
+<td>11.905</td>
+</tr>
+<tr class="even">
+<td><code>Spending</code></td>
+<td>161.90</td>
+<td>505.650</td>
+<td>256.839</td>
+</tr>
+<tr class="odd">
+<td><code>Satisfaction</code></td>
+<td>2.77</td>
+<td>3.814</td>
+<td>0.740</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Standardise all three values and decide which one lies furthest from its own average.</p>
+</div>
+<div class="we-solution">
+<p><span class="math display">\[z_{\text{wait}} = \frac{61 - 45.455}{11.905} = 1.31\]</span></p>
+<p><span class="math display">\[z_{\text{spend}} = \frac{161.90 - 505.650}{256.839} = -1.34\]</span></p>
+<p><span class="math display">\[z_{\text{satisfaction}} = \frac{2.77 - 3.814}{0.740} = -1.41\]</span></p>
+<p>All three are typical in size, between 1.3 and 1.5 standard deviations from their means. The satisfaction score is the furthest out, by a small margin. The raw numbers hide this completely: 343.75 USD below average sounds far larger than 1.04 points below average, and in the units of each variable’s own spread they are about the same distance.</p>
+<p>The pattern across the three is the useful finding. This customer waited longer than most, spent less than most and was less satisfied than most. One customer proves nothing, and a manager who found the same pattern across many customers would have a lead to follow.</p>
+<p>One caution applies. <code>Spending</code> is right-skewed, so a z-score of <span class="math inline">\(-1.34\)</span> there does not indicate the same rarity as <span class="math inline">\(-1.34\)</span> on a normal curve. The comparison of distances remains valid. The empirical-rule shares apply only to the two variables close to normal.</p>
+</div>
+</section>
+</div>
+<div id="tryit-2-7" class="callout callout-style-default callout-tip callout-titled" title="Try It 2.7: Compare across units">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Try It 2.7: Compare across units
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A student scores 68 in a statistics test where the class mean is 60 and the standard deviation is 5. The same student scores 75 in a marketing test where the class mean is 70 and the standard deviation is 10.</p>
+<ol type="1">
+<li>Calculate both z-scores.</li>
+<li>In which test did the student perform better relative to the class?</li>
+<li>What statistics mark would match the student’s relative position in marketing?</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Check your answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Check your answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Statistics: <span class="math inline">\(z = (68 - 60) \div 5 = 8 \div 5 = 1.6\)</span>. Marketing: <span class="math inline">\(z = (75 - 70) \div 10 = 5 \div 10 = 0.5\)</span>.</li>
+<li><strong>Statistics:</strong> The student ranks 1.6 standard deviations above the class there, against 0.5 in marketing, even though the raw marketing mark is higher.</li>
+<li>Convert <span class="math inline">\(z = 0.5\)</span> back using the statistics mean and standard deviation: $x = 60 + 0.5 = $ <strong>62.5</strong>.</li>
+</ol>
+</div>
+</div>
+</div>
 </section>
 <section id="section-summary" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="section-summary">Section summary</h2>
-<p>The mean, median, and mode answer different questions, and the shape of the data decides which one to report. Spread is an essential part of the summary. Equal means with different standard deviations describe different risks. Dividing by <span class="math inline">\(n - 1\)</span> corrects for measuring deviations from the sample mean. The IQR and the 1.5 multiplier separate typical values from unusual values. Comparing the mean with the median reveals skew without a graph.</p>
+<p>The normal distribution is a symmetric bell-shaped model fixed by its mean and standard deviation, and the area under it is the share of cases. The empirical rule puts about 68, 95 and 99.7 per cent of cases within one, two and three standard deviations, and waiting time in the teaching dataset follows it closely. Chebyshev’s rule gives a floor that applies to any shape. A z-score measures distance from the mean in standard deviations, and it converts back with <span class="math inline">\(x = \bar{x} + z s\)</span>. Values beyond 2 are unusual and values beyond 3 are extreme, and both are prompts to check the record.</p>
 <div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<p><strong>Next.</strong> <a href="week01-reference.html">Running the analysis and reference</a> shows the same work in JASP and PocketStat, and carries the key terms and formula review.</p>
+<p><strong>Next:</strong> <a href="week02-part3.html">Part 3, areas, percentiles and normality</a> covers the standard normal table, percentiles from the normal model, and how to check whether a variable is close enough to normal.</p>
 </div>
 </div>
 </div>
@@ -1531,13 +1526,13 @@ Table&nbsp;1.18: Mean against median for three variables in the teaching dataset
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../weeks/week01-part2.html" class="pagination-link" aria-label="Part 2: Variables and displays">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Part 2: Variables and displays</span></span>
+      <a href="../weeks/week02.html" class="pagination-link" aria-label="Part 1: The shape of a distribution">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Part 1: The shape of a distribution</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../weeks/week01-reference.html" class="pagination-link" aria-label="Running the analysis, and chapter reference">
-        <span class="nav-page-text"><span class="chapter-title">Running the analysis, and chapter reference</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../weeks/week02-part3.html" class="pagination-link" aria-label="Part 3: Areas, percentiles and checking normality">
+        <span class="nav-page-text"><span class="chapter-title">Part 3: Areas, percentiles and checking normality</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

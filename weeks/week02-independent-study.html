@@ -6,10 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="keywords" content="JASP, PocketStat, descriptive statistics in JASP, reporting statistics, statistics glossary, formula review">
-<meta name="description" content="Chapter 1 in JASP and PocketStat, how to report the result, and the chapter key terms and formula review.">
+<meta name="keywords" content="independent study, z-score exercises, empirical rule practice, normality check, formative checklist">
+<meta name="description" content="Chapter 2 independent study. Six hours of practice on shape, the empirical rule, z-scores and normality checks, with exercises and worked solutions.">
 
-<title>Running the analysis, and chapter reference – Decision Making for Management</title>
+<title>Independent study and submission – Decision Making for Management</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -32,8 +32,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../weeks/week01-tutorial.html" rel="next">
-<link href="../weeks/week01-part3.html" rel="prev">
+<link href="../weeks/week02-tutorial.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -251,11 +250,11 @@ window.Quarto = {
 <link rel="stylesheet" href="../assets/css/fonts.css">
 <link rel="stylesheet" href="../assets/css/typography.css">
 <link rel="stylesheet" href="../assets/css/student-book.css">
-<meta property="og:title" content="Running the analysis, and chapter reference – Decision Making for Management">
+<meta property="og:title" content="Independent study and submission – Decision Making for Management">
 <meta property="og:description" content="A CC BY undergraduate textbook that teaches descriptive and inferential statistics through management decisions, using JASP and PocketStat.">
 <meta property="og:site_name" content="Decision Making for Management">
 <meta property="og:locale" content="en_GB">
-<meta name="twitter:title" content="Running the analysis, and chapter reference – Decision Making for Management">
+<meta name="twitter:title" content="Independent study and submission – Decision Making for Management">
 <meta name="twitter:description" content="A CC BY undergraduate textbook that teaches descriptive and inferential statistics through management decisions, using JASP and PocketStat.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="dmm-crossref-renumbered" content="1"></head>
@@ -269,7 +268,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/week01.html">Chapter 1: Data, Measurement Scales, and Descriptive Statistics</a></li><li class="breadcrumb-item"><a href="../weeks/week01-reference.html"><span class="chapter-title">Running the analysis, and chapter reference</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/week02.html">Chapter 2: Introduction to JASP and the Normal Distribution</a></li><li class="breadcrumb-item"><a href="../weeks/week02-independent-study.html"><span class="chapter-title">Independent study and submission</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -358,7 +357,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../weeks/week01-reference.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Running the analysis, and chapter reference</span></a>
+  <a href="../weeks/week01-reference.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Running the analysis, and chapter reference</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -409,7 +408,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../weeks/week02-independent-study.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Independent study and submission</span></a>
+  <a href="../weeks/week02-independent-study.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Independent study and submission</span></a>
   </div>
 </li>
       </ul>
@@ -424,30 +423,29 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#sec-software" id="toc-sec-software" class="nav-link active" data-scroll-target="#sec-software">Running the analysis</a>
+  <li><a href="#reading" id="toc-reading" class="nav-link active" data-scroll-target="#reading">Reading</a></li>
+  <li><a href="#guided-practice" id="toc-guided-practice" class="nav-link" data-scroll-target="#guided-practice">Guided practice</a>
   <ul class="collapse">
-  <li><a href="#in-jasp" id="toc-in-jasp" class="nav-link" data-scroll-target="#in-jasp">In JASP</a></li>
-  <li><a href="#in-pocketstat" id="toc-in-pocketstat" class="nav-link" data-scroll-target="#in-pocketstat">In PocketStat</a></li>
+  <li><a href="#tryit-a" id="toc-tryit-a" class="nav-link" data-scroll-target="#tryit-a">Try It A: Read the shape</a></li>
+  <li><a href="#tryit-b" id="toc-tryit-b" class="nav-link" data-scroll-target="#tryit-b">Try It B: The empirical rule and Chebyshev</a></li>
+  <li><a href="#tryit-c" id="toc-tryit-c" class="nav-link" data-scroll-target="#tryit-c">Try It C: z-scores in context</a></li>
+  <li><a href="#tryit-d" id="toc-tryit-d" class="nav-link" data-scroll-target="#tryit-d">Try It D: Shares and percentiles</a></li>
   </ul></li>
-  <li><a href="#sec-reporting" id="toc-sec-reporting" class="nav-link" data-scroll-target="#sec-reporting">Reporting the result</a></li>
-  <li><a href="#chapter-review" id="toc-chapter-review" class="nav-link" data-scroll-target="#chapter-review">Chapter review</a></li>
-  <li><a href="#key-terms" id="toc-key-terms" class="nav-link" data-scroll-target="#key-terms">Key terms</a>
-  <ul class="collapse">
-  <li><a href="#part-1-foundations" id="toc-part-1-foundations" class="nav-link" data-scroll-target="#part-1-foundations">Part 1, foundations</a></li>
-  <li><a href="#part-2-variables-and-displays" id="toc-part-2-variables-and-displays" class="nav-link" data-scroll-target="#part-2-variables-and-displays">Part 2, variables and displays</a></li>
-  <li><a href="#part-3-centre-and-spread" id="toc-part-3-centre-and-spread" class="nav-link" data-scroll-target="#part-3-centre-and-spread">Part 3, centre and spread</a></li>
-  </ul></li>
-  <li><a href="#formula-review" id="toc-formula-review" class="nav-link" data-scroll-target="#formula-review">Formula review</a></li>
-  <li><a href="#references-and-further-reading" id="toc-references-and-further-reading" class="nav-link" data-scroll-target="#references-and-further-reading">References and further reading</a></li>
+  <li><a href="#independent-analysis" id="toc-independent-analysis" class="nav-link" data-scroll-target="#independent-analysis">Independent analysis</a></li>
+  <li><a href="#reflection-or-study-note" id="toc-reflection-or-study-note" class="nav-link" data-scroll-target="#reflection-or-study-note">Reflection or study note</a></li>
+  <li><a href="#formative-checklist" id="toc-formative-checklist" class="nav-link" data-scroll-target="#formative-checklist">Formative checklist</a></li>
+  <li><a href="#review-questions" id="toc-review-questions" class="nav-link" data-scroll-target="#review-questions">Review questions</a></li>
+  <li><a href="#solutions" id="toc-solutions" class="nav-link" data-scroll-target="#solutions">Solutions</a></li>
+  <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways">Key takeaways</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/week01.html">Chapter 1: Data, Measurement Scales, and Descriptive Statistics</a></li><li class="breadcrumb-item"><a href="../weeks/week01-reference.html"><span class="chapter-title">Running the analysis, and chapter reference</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/week02.html">Chapter 2: Introduction to JASP and the Normal Distribution</a></li><li class="breadcrumb-item"><a href="../weeks/week02-independent-study.html"><span class="chapter-title">Independent study and submission</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">Running the analysis, and chapter reference</span></h1>
+<h1 class="title"><span class="chapter-title">Independent study and submission</span></h1>
 </div>
 
 
@@ -463,333 +461,282 @@ window.Quarto = {
 <div>
   <div class="keywords">
     <div class="block-title">Keywords</div>
-    <p>JASP, PocketStat, descriptive statistics in JASP, reporting statistics, statistics glossary, formula review</p>
+    <p>independent study, z-score exercises, empirical rule practice, normality check, formative checklist</p>
   </div>
 </div>
 
 </header>
 
 
-<p>Parts 1 to 3 built every summary by hand, five values at a time. The software does the same arithmetic on all 200 at once.</p>
-<p>That removes the arithmetic and leaves the two judgements that were always yours: which summary the variable supports, and what the result means for the branch. This page runs the chapter’s analysis both ways, in JASP and in PocketStat, then turns the output into the paragraph a manager will read.</p>
-<p>The key terms and the formula review at the foot cover all four parts, with every term linked back to the section that defines it.</p>
-<section id="sec-software" class="level2">
-<h2 class="anchored" data-anchor-id="sec-software">Running the analysis</h2>
-<p>Each route reaches the same answer. Use whichever suits the machine you have, and name it in your write-up.</p>
-<section id="in-jasp" class="level3">
-<h3 class="anchored" data-anchor-id="in-jasp">In JASP</h3>
-<ol type="1">
-<li>Open JASP and choose <strong>Open</strong>, then <strong>Computer</strong>, and select <code>DMM_Teaching_Data_Full.csv</code>.</li>
-<li>Check the measurement icon beside every variable you intend to use. CSV import marks almost everything as scale, and a nominal variable read as scale will let you calculate a meaningless mean.</li>
-<li>Choose <strong>Descriptives</strong>, then <strong>Descriptive Statistics</strong>.</li>
-<li>Move your variables into the Variables box.</li>
-<li>Under <strong>Statistics</strong>, tick mean, median, standard deviation, minimum, maximum and quartiles.</li>
-<li>Under <strong>Plots</strong>, tick the distribution plot and the boxplot.</li>
-</ol>
-<p>The tutorial takes this apart step by step, with a screenshot at each click.</p>
-</section>
-<section id="in-pocketstat" class="level3">
-<h3 class="anchored" data-anchor-id="in-pocketstat">In PocketStat</h3>
-<p>PocketStat runs inside this page. Nothing installs, nothing uploads, and your data stays on your own machine.</p>
-<div class="pocketstat-embed">
-<iframe src="https://mohammedalisharafuddin.github.io/pocketstat/" title="PocketStat, a browser-based statistics tool" width="100%" height="620" loading="lazy" style="border:1px solid #d1d9e6; border-radius:6px;">
-</iframe>
-<p>If the panel above stays blank, open <a href="https://mohammedalisharafuddin.github.io/pocketstat/">PocketStat in a new tab</a> instead. The tool needs to be served over the web, so it stays blank when this page is opened as a file from disk.</p>
+<div class="lp-header selflearn">
+<p><span class="lp-type">Self-learning</span> <strong>Normal distribution practice</strong> <span class="lp-meta">6 hours · 5 activities</span></p>
 </div>
-<ol type="1">
-<li>Load <code>DMM_Teaching_Data_Full.csv</code> from the Data tab, or pick the built-in demo dataset.</li>
-<li>Check the type shown beside each variable, as you would in JASP.</li>
-<li>Choose <strong>Descriptive statistics</strong> from the technique list.</li>
-<li>Select your variables and read the summary table and the plot together.</li>
-</ol>
-<p>For the distribution shape and the histogram, choose <strong>Distribution shape</strong> instead.</p>
-<!-- Walkthrough video hidden until it is recorded. The script is in assets/videos. Remove these comment lines to show it.
-::: {.video-placeholder}
-
-**Chapter 1 walkthrough**
-
-`assets/videos/week01/week01-software-walkthrough.mp4`
-
-Open the dataset, check the variable types, run the descriptives, read the output, and write the
-one-sentence interpretation. Captions and a transcript accompany the video.
-
-:::
--->
-</section>
-</section>
-<section id="sec-reporting" class="level2">
-<h2 class="anchored" data-anchor-id="sec-reporting">Reporting the result</h2>
-<p>A descriptive result is finished when it becomes a sentence a manager can act on.</p>
-<p><strong>For a categorical variable.</strong> State the total, the largest category with its share, and what follows.</p>
-<blockquote class="blockquote">
-<p>Of 200 respondents, 124, or 62 per cent, held standard tickets. That is the largest group by some distance, so any pricing change reaches most of the customer base through that one category.</p>
-</blockquote>
-<p><strong>For a numerical variable.</strong> State the centre, the spread, and the decision-relevant tail.</p>
-<blockquote class="blockquote">
-<p>Half of customers waited 46 minutes or less, and the middle half waited between 38 and 53 minutes. Nineteen customers, just under one in ten, waited more than an hour, and two waited over 75 minutes.</p>
-</blockquote>
-<p><strong>For the whole question.</strong> Bring both together and name the limit.</p>
-<blockquote class="blockquote">
-<p>Waiting time was recorded for 200 customers at one branch over one month. Half waited 46 minutes or less and the middle half fell between 38 and 53 minutes, so the service is consistent for most customers. The exception is the 19 customers who waited over an hour, two of them over 75 minutes, and those are where any service-standard breach and most complaints will concentrate. These figures describe this branch in this month and say nothing about other branches.</p>
-</blockquote>
-<p>Weak reporting states the procedure: “descriptive statistics were calculated”. Strong reporting states the finding, its size, and its consequence.</p>
-</section>
-<section id="chapter-review" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="chapter-review">Chapter review</h2>
-<p>Describe before you decide. Settle the variable type first, because it governs every summary and every graph that follows. Report centre and spread together, because either alone misleads. Prefer the cumulative view when the question is about a standard or a threshold. Mark the point where you move from describing your data to claiming something about a wider population.</p>
-</section>
-<section id="key-terms" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="key-terms">Key terms</h2>
-<p>Every term links to the section that defines it, and the three groups follow the three parts of the chapter, so this doubles as a revision map.</p>
-<section id="part-1-foundations" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="part-1-foundations">Part 1, foundations</h3>
-<div class="key-terms">
-<dl>
-<dt><a href="week01.html#sec-cases">Case</a></dt>
-<dd>
-the unit the data describe
-</dd>
-<dt><a href="week01.html#sec-cases">Variable</a></dt>
-<dd>
-a characteristic measured on each case
-</dd>
-<dt><a href="week01.html#sec-cases">Observation</a></dt>
-<dd>
-all values recorded for one case
-</dd>
-<dt><a href="week01.html#sec-evidence">Datum</a></dt>
-<dd>
-a single value
-</dd>
-<dt><a href="week01.html#sec-cases">Constant</a></dt>
-<dd>
-a feature every case shares
-</dd>
-<dt><a href="week01.html#sec-population">Population</a></dt>
-<dd>
-every case of interest
-</dd>
-<dt><a href="week01.html#sec-population">Sample</a></dt>
-<dd>
-the subset measured
-</dd>
-<dt><a href="week01.html#sec-population">Parameter</a></dt>
-<dd>
-a number describing a population
-</dd>
-<dt><a href="week01.html#sec-population">Statistic</a></dt>
-<dd>
-a number describing a sample
-</dd>
-<dt><a href="week01.html#sec-sampling">Sampling error</a></dt>
-<dd>
-the gap left by measuring a sample
-</dd>
-<dt><a href="week01.html#sec-sampling">Non-sampling error</a></dt>
-<dd>
-every other source of error
-</dd>
-<dt><a href="week01.html#sec-describing">Descriptive statistics</a></dt>
-<dd>
-summarising the data held
-</dd>
-<dt><a href="week01.html#sec-describing">Inferential statistics</a></dt>
-<dd>
-reasoning from a sample to a population
-</dd>
-<dt><a href="week01.html#sec-averages">Proportion</a></dt>
-<dd>
-a count divided by the total
-</dd>
-</dl>
+<div class="lp-grid lp-3">
+<div class="lp-card selflearn">
+<p><span class="badge bg-acquisition">Acquisition</span></p>
+<p><strong><span class="act-num">1</span> Read and make notes</strong></p>
+<p><span class="act-time">⏱ 60 min</span></p>
+<p>Read the assigned sections and make notes on quartiles, outliers, the normal curve and z-scores.</p>
 </div>
-</section>
-<section id="part-2-variables-and-displays" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="part-2-variables-and-displays">Part 2, variables and displays</h3>
-<div class="key-terms">
-<dl>
-<dt><a href="week01-part2.html#sec-scales">Nominal</a></dt>
-<dd>
-named categories
-</dd>
-<dt><a href="week01-part2.html#sec-scales">Ordinal</a></dt>
-<dd>
-ordered categories with unequal gaps
-</dd>
-<dt><a href="week01-part2.html#sec-scales">Interval</a></dt>
-<dd>
-equal gaps, no true zero
-</dd>
-<dt><a href="week01-part2.html#sec-scales">Ratio</a></dt>
-<dd>
-equal gaps and a true zero
-</dd>
-<dt><a href="week01-part2.html#sec-types">Discrete</a></dt>
-<dd>
-counted
-</dd>
-<dt><a href="week01-part2.html#sec-types">Continuous</a></dt>
-<dd>
-measured
-</dd>
-<dt><a href="week01-part2.html#sec-types">Independent variable</a></dt>
-<dd>
-the proposed explanation
-</dd>
-<dt><a href="week01-part2.html#sec-types">Dependent variable</a></dt>
-<dd>
-the outcome
-</dd>
-<dt><a href="week01-part2.html#sec-frequency">Frequency</a></dt>
-<dd>
-how many in a category
-</dd>
-<dt><a href="week01-part2.html#sec-frequency">Relative frequency</a></dt>
-<dd>
-the proportion in a category
-</dd>
-<dt><a href="week01-part2.html#sec-frequency">Cumulative frequency</a></dt>
-<dd>
-how many up to a point
-</dd>
-</dl>
+<div class="lp-card selflearn">
+<p><span class="badge bg-production">Production</span></p>
+<p><strong><span class="act-num">2</span> Guided practice</strong></p>
+<p><span class="act-time">⏱ 75 min</span></p>
+<p>Complete guided questions on skewness, the empirical rule and standardised scores.</p>
 </div>
-</section>
-<section id="part-3-centre-and-spread" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="part-3-centre-and-spread">Part 3, centre and spread</h3>
-<div class="key-terms">
-<dl>
-<dt><a href="week01-part3.html#sec-centre">Mean</a></dt>
-<dd>
-the arithmetic average
-</dd>
-<dt><a href="week01-part3.html#sec-centre">Median</a></dt>
-<dd>
-the middle value
-</dd>
-<dt><a href="week01-part3.html#sec-centre">Mode</a></dt>
-<dd>
-the most frequent value
-</dd>
-<dt><a href="week01-part3.html#sec-centre">Bimodal</a></dt>
-<dd>
-having two modes
-</dd>
-<dt><a href="week01-part3.html#sec-spread">Range</a></dt>
-<dd>
-maximum minus minimum
-</dd>
-<dt><a href="week01-part3.html#sec-spread">Deviation</a></dt>
-<dd>
-a value minus the mean
-</dd>
-<dt><a href="week01-part3.html#sec-spread">Variance</a></dt>
-<dd>
-the mean squared deviation
-</dd>
-<dt><a href="week01-part3.html#sec-spread">Standard deviation</a></dt>
-<dd>
-the square root of the variance
-</dd>
-<dt><a href="week01-part3.html#sec-spread">Coefficient of variation</a></dt>
-<dd>
-the standard deviation as a share of the mean
-</dd>
-<dt><a href="week01-part3.html#sec-quartiles">Percentile</a></dt>
-<dd>
-a position in the ordered data
-</dd>
-<dt><a href="week01-part3.html#sec-quartiles">Quartile</a></dt>
-<dd>
-a quarter boundary
-</dd>
-<dt><a href="week01-part3.html#sec-quartiles">Interquartile range</a></dt>
-<dd>
-the third quartile minus the first
-</dd>
-<dt><a href="week01-part3.html#sec-quartiles">Fence</a></dt>
-<dd>
-the 1.5 IQR boundary
-</dd>
-<dt><a href="week01-part3.html#sec-shape">Skew</a></dt>
-<dd>
-asymmetry
-</dd>
-<dt><a href="week01-part3.html#sec-shape">Outlier</a></dt>
-<dd>
-a value beyond a fence
-</dd>
-</dl>
+<div class="lp-card selflearn">
+<p><span class="badge bg-production">Production</span></p>
+<p><strong><span class="act-num">3</span> Independent analysis</strong></p>
+<p><span class="act-time">⏱ 75 min</span></p>
+<p>Repeat one normality check and one z-score interpretation task in your own time.</p>
 </div>
-</section>
-</section>
-<section id="formula-review" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="formula-review">Formula review</h2>
-<div id="tbl-formulae" class="tbl-def quarto-float quarto-figure quarto-figure-center anchored">
+<div class="lp-card selflearn">
+<p><span class="badge bg-production">Production</span></p>
+<p><strong><span class="act-num">4</span> Reflection or study note</strong></p>
+<p><span class="act-time">⏱ 60 min</span></p>
+<p>Write a short note on why a manager should care about unusually high or low values.</p>
+</div>
+<div class="lp-card selflearn">
+<p><span class="badge bg-assessment">Assessment</span></p>
+<p><strong><span class="act-num">5</span> Checkpoint</strong></p>
+<p><span class="act-time">⏱ 90 min</span></p>
+<p>Complete the chapter checkpoint quiz.</p>
+</div>
+</div>
+<section id="reading" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="reading">Reading</h2>
+<p>The assigned reading is this chapter and two sections of chapter 1. Read the explanatory sections of the chapter. At a working pace with a pen, this takes about one hour.</p>
+<p>Complete the 10 embedded Try It exercises from the chapter text during Activity 2.</p>
+<div id="tbl-reading-plan" class="tbl-grid quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-formulae-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;1.19: Every formula used in this chapter
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-reading-plan-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2.22: Reading plan for the first hour
 </figcaption>
-<div aria-describedby="tbl-formulae-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="tbl-def caption-top table">
+<div aria-describedby="tbl-reading-plan-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="tbl-grid caption-top table">
+<thead>
+<tr class="header">
+<th>Read</th>
+<th>Minutes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Chapter 1, <a href="week01-part3.html#sec-quartiles">percentiles, quartiles and the interquartile range</a>, and <a href="week01-part3.html#sec-shape">shape, skewness and outliers</a></td>
+<td>8</td>
+</tr>
+<tr class="even">
+<td><a href="week02.html">Part 1, the shape of a distribution</a></td>
+<td>15</td>
+</tr>
+<tr class="odd">
+<td><a href="week02-part2.html">Part 2, the normal curve and z-scores</a></td>
+<td>15</td>
+</tr>
+<tr class="even">
+<td><a href="week02-part3.html">Part 3, areas, percentiles and normality</a></td>
+<td>16</td>
+</tr>
+<tr class="odd">
+<td><a href="week02-reference.html">Running the analysis and reference</a></td>
+<td>6</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Make your notes under four headings: <strong>quartiles and outliers</strong>, <strong>shape</strong>, <strong>the normal curve</strong>, and <strong>z-scores</strong>. Each heading should include its definition, its formula where it has one, and one example from the teaching dataset. The chapter’s Key terms and Formula review are a good check: if your notes cover those, you have the chapter.</p>
+<p><strong>If a section went too fast:</strong> OpenStax, <em>Introductory Business Statistics 2e</em>, is free to read at openstax.org. Chapter 6 covers the normal distribution and z-scores at a slower pace with a second set of examples. This is optional and falls outside the allocated hour.</p>
+</section>
+<section id="guided-practice" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="guided-practice">Guided practice</h2>
+<p>Complete the 10 embedded Try It exercises from the chapter text before starting the four additional scenarios below. The solutions for the additional scenarios are at the bottom of this page.</p>
+<section id="tryit-a" class="level3">
+<h3 class="anchored" data-anchor-id="tryit-a">Try It A: Read the shape</h3>
+<p>JASP reports these figures for the number of items in 200 online orders:</p>
+<div id="tbl-tryit-a" class="tbl-apa quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-tryit-a-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2.23: Descriptive statistics for items per order
+</figcaption>
+<div aria-describedby="tbl-tryit-a-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="tbl-apa caption-top table">
+<thead>
+<tr class="header">
+<th>Statistic</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Mean</td>
+<td>4.8</td>
+</tr>
+<tr class="even">
+<td>Median</td>
+<td>4.0</td>
+</tr>
+<tr class="odd">
+<td>Skewness</td>
+<td>0.91</td>
+</tr>
+<tr class="even">
+<td>SE of skewness</td>
+<td>0.172</td>
+</tr>
+<tr class="odd">
+<td>Excess kurtosis</td>
+<td>0.64</td>
+</tr>
+<tr class="even">
+<td>SE of kurtosis</td>
+<td>0.342</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<ol type="1">
+<li>Calculate the skewness ratio and the kurtosis ratio.</li>
+<li>Describe the shape in one sentence.</li>
+<li>Which measure of centre would you report as the typical order size?</li>
+</ol>
+</section>
+<section id="tryit-b" class="level3">
+<h3 class="anchored" data-anchor-id="tryit-b">Try It B: The empirical rule and Chebyshev</h3>
+<p>A bakery’s daily sales of loaves have a mean of 340 and a standard deviation of 25.</p>
+<ol type="1">
+<li>If sales are close to normal, between which two figures do sales fall on about 68 per cent of days? On about 95 per cent?</li>
+<li>On roughly how many days in a 360-day year would sales exceed 390?</li>
+<li>If the shape of the distribution were unknown, what share of days at least would fall between 290 and 390?</li>
+</ol>
+</section>
+<section id="tryit-c" class="level3">
+<h3 class="anchored" data-anchor-id="tryit-c">Try It C: z-scores in context</h3>
+<p>Two regional managers each claim the better month. The North region sold 1,240 units, where its monthly mean is 1,100 and its standard deviation is 80. The South region sold 860 units, where its monthly mean is 700 and its standard deviation is 120.</p>
+<ol type="1">
+<li>Calculate each region’s z-score for the month.</li>
+<li>Which region had the more exceptional month, relative to its own history?</li>
+<li>Classify each month as typical, unusual or extreme.</li>
+</ol>
+</section>
+<section id="tryit-d" class="level3">
+<h3 class="anchored" data-anchor-id="tryit-d">Try It D: Shares and percentiles</h3>
+<p>Delivery times from a warehouse are close to normal, with a mean of 48 hours and a standard deviation of 6 hours.</p>
+<ol type="1">
+<li>What share of deliveries take longer than 60 hours?</li>
+<li>What share take between 42 and 57 hours?</li>
+<li>The firm wants to promise a delivery time that 95 per cent of orders meet. What should the promise be?</li>
+</ol>
+</section>
+</section>
+<section id="independent-analysis" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="independent-analysis">Independent analysis</h2>
+<p>Apply the tutorial tasks to a new variable: <code>Satisfaction_Post</code>. This variable records each customer’s satisfaction score after the service change on the same 1 to 5 scale as <code>Satisfaction</code>. Use JASP or PocketStat.</p>
+<ol type="1">
+<li><strong>One normality check:</strong> Run the five normality checks from <a href="week02-part3.html#sec-normality">part 3</a> on <code>Satisfaction_Post</code>. If you use PocketStat, run the four available checks. Fill in one column of the record table from the tutorial and provide a one-line verdict. Then write the Shapiro-Wilk result twice, once for a manager and once as an APA sentence, following <a href="week02-reference.html#sec-apa">two ways to report a result</a>.</li>
+<li><strong>One z-score interpretation:</strong> Find the lowest <code>Satisfaction_Post</code> score in the file. Calculate its z-score by hand and classify it. Write two sentences for a manager about that customer in plain language without using statistical symbols.</li>
+</ol>
+<p>Save a clean copy of your output with a note attached, as in the tutorial.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Check your figures">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Check your figures
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Open this only after you have your own output. These are the figures to check against. The interpretation is yours to write.</p>
+<ul>
+<li>Mean 4.138, median 4.285, standard deviation 0.761, minimum 1.59, maximum 5.00</li>
+<li>37 of the 200 customers score exactly 5.00</li>
+<li>Skewness <span class="math inline">\(-0.725\)</span> in JASP, standard error 0.172, ratio <span class="math inline">\(-4.22\)</span></li>
+<li>Excess kurtosis <span class="math inline">\(-0.100\)</span>, standard error 0.342</li>
+<li>Shapiro-Wilk <span class="math inline">\(W = .920\)</span>, <span class="math inline">\(p &lt; .001\)</span></li>
+<li>The lowest score is respondent 190’s, 1.59, with a z-score of <span class="math inline">\(-3.35\)</span></li>
+</ul>
+<p>If your figures match, check your verdict against the ceiling effect in <a href="week02.html#sec-shape-reading">part 1</a>. If they differ, check the variable type first.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="reflection-or-study-note" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="reflection-or-study-note">Reflection or study note</h2>
+<p>Write a study note of <strong>250 to 300 words</strong> answering one question: <strong>why should a manager care about unusually high or low values?</strong></p>
+<p>A strong note includes four elements:</p>
+<ol type="1">
+<li>Give one example of an unusual value that signals a problem, and one that signals an opportunity. The teaching dataset contains both: the 90-minute wait and the customers who spent more than 1,000 USD.</li>
+<li>Explain the difference between flagging a value and deleting it.</li>
+<li>State when the z-score rule suits the data and when the IQR fences from chapter 1 suit it better.</li>
+<li>Name one decision in a workplace you know where the tails matter more than the average.</li>
+</ol>
+</section>
+<section id="formative-checklist" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="formative-checklist">Formative checklist</h2>
+<p>Tick each before you submit. Any unticked item is a mark you are choosing to lose.</p>
+<div id="tbl-checklist" class="tbl-grid quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-checklist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2.24: Formative checklist for the chapter submission
+</figcaption>
+<div aria-describedby="tbl-checklist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="tbl-grid caption-top table">
 <colgroup>
 <col style="width: 50%">
 <col style="width: 50%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Quantity</th>
-<th>Formula</th>
+<th></th>
+<th>Check</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Sample mean</td>
-<td><span class="math inline">\(\bar{x} = \dfrac{\sum x}{n}\)</span></td>
+<td>☐</td>
+<td>My normality record has a verdict for all four tutorial variables</td>
 </tr>
 <tr class="even">
-<td>Median position</td>
-<td><span class="math inline">\(\dfrac{n+1}{2}\)</span> in the ordered data</td>
+<td>☐</td>
+<td>I read skewness and kurtosis against their standard errors</td>
 </tr>
 <tr class="odd">
-<td>Mode</td>
-<td>The value with the highest frequency. Read off a frequency table, never calculated</td>
+<td>☐</td>
+<td>My verdict uses the pictures and the numbers together</td>
 </tr>
 <tr class="even">
-<td>Range</td>
-<td>maximum <span class="math inline">\(-\)</span> minimum</td>
+<td>☐</td>
+<td>Row 1 of my z-score column matches my own calculation, -1.466</td>
 </tr>
 <tr class="odd">
-<td>Deviation</td>
-<td><span class="math inline">\(x - \bar{x}\)</span></td>
+<td>☐</td>
+<td>I classified each flagged case as unusual or extreme</td>
 </tr>
 <tr class="even">
-<td>Sample variance</td>
-<td><span class="math inline">\(s^2 = \dfrac{\sum (x - \bar{x})^2}{n-1}\)</span></td>
+<td>☐</td>
+<td>My annotation names a decision or a warning</td>
 </tr>
 <tr class="odd">
-<td>Sample standard deviation</td>
-<td><span class="math inline">\(s = \sqrt{s^2}\)</span></td>
+<td>☐</td>
+<td>My annotation is under 80 words</td>
 </tr>
 <tr class="even">
-<td>Coefficient of variation</td>
-<td><span class="math inline">\(CV = \dfrac{s}{\bar{x}} \times 100\%\)</span></td>
+<td>☐</td>
+<td>I used the normal model only on a variable that passed the checks</td>
 </tr>
 <tr class="odd">
-<td>Interquartile range</td>
-<td><span class="math inline">\(IQR = Q_3 - Q_1\)</span></td>
+<td>☐</td>
+<td>My APA sentence drops the zero before the decimal point in <span class="math inline">\(W\)</span> and <span class="math inline">\(p\)</span></td>
 </tr>
 <tr class="even">
-<td>Outlier fences</td>
-<td><span class="math inline">\(Q_1 - 1.5 \times IQR\)</span> and <span class="math inline">\(Q_3 + 1.5 \times IQR\)</span></td>
-</tr>
-<tr class="odd">
-<td>Relative frequency</td>
-<td><span class="math inline">\(\dfrac{f}{n}\)</span></td>
-</tr>
-<tr class="even">
-<td>Percentage</td>
-<td>relative frequency <span class="math inline">\(\times \, 100\)</span></td>
+<td>☐</td>
+<td>I have said whether I used JASP or PocketStat</td>
 </tr>
 </tbody>
 </table>
@@ -797,12 +744,110 @@ Table&nbsp;1.19: Every formula used in this chapter
 </figure>
 </div>
 </section>
-<section id="references-and-further-reading" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="references-and-further-reading">References and further reading</h2>
+<section id="review-questions" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="review-questions">Review questions</h2>
+<ol type="1">
+<li>Why do two distributions with the same mean and standard deviation present different risks for a manager?</li>
+<li>What does a skewness ratio beyond 2 tell you that the skewness alone does not?</li>
+<li>State the empirical rule, and name the one condition it needs.</li>
+<li>Why does a z-score have no units, and why is that useful?</li>
+<li>A Shapiro-Wilk test on 2,000 cases returns <span class="math inline">\(p = .010\)</span> for a variable whose histogram looks close to normal. What would you conclude?</li>
+<li>Why is the normal model a poor choice for a satisfaction score that many customers rate at the maximum?</li>
+</ol>
+</section>
+<section id="solutions" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="solutions">Solutions</h2>
+<p>Solutions to the 10 embedded chapter exercises appear directly beneath each task in the chapter text, so you can check an answer without losing your place. The four tasks below are answered here.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Check your answer: Try It A">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Check your answer: Try It A
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Skewness ratio: <span class="math inline">\(0.91 \div 0.172 = 5.29\)</span>. Kurtosis ratio: <span class="math inline">\(0.64 \div 0.342 = 1.87\)</span>.</li>
+<li>Order size is moderately skewed to the right, with a ratio well beyond 2, and its tails are close to normal: most orders are small, and a minority of large orders stretch the right tail.</li>
+<li>The <strong>median</strong>, 4 items. The mean of 4.8 is pulled up by the large orders.</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Check your answer: Try It B">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Check your answer: Try It B
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>About 68 per cent: <span class="math inline">\(340 \pm 25\)</span>, from <strong>315 to 365</strong> loaves. About 95 per cent: <span class="math inline">\(340 \pm 2 \times 25\)</span>, from <strong>290 to 390</strong> loaves.</li>
+<li>390 is two standard deviations above the mean, so about 2.5 per cent of days exceed it: $0.025 = $ <strong>9 days</strong>.</li>
+<li>290 to 390 is <span class="math inline">\(k = 2\)</span>, so Chebyshev’s rule guarantees at least $1 - 1/4 = $ <strong>75 per cent</strong> of days.</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Check your answer: Try It C">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Check your answer: Try It C
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>North: <span class="math inline">\(z = (1{,}240 - 1{,}100) \div 80 = 140 \div 80 = 1.75\)</span>. South: <span class="math inline">\(z = (860 - 700) \div 120 = 160 \div 120 = 1.33\)</span>.</li>
+<li><strong>North:</strong> Its month is 1.75 standard deviations above its own mean, against 1.33 for South, even though South’s rise in units was larger.</li>
+<li>Both are <strong>typical</strong>, since neither reaches 2. North’s month is a strong one, and it falls inside the range that contains about 95 months in 100.</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Check your answer: Try It D">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Check your answer: Try It D
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><span class="math inline">\(z = (60 - 48) \div 6 = 2.0\)</span>. Area above 2.0 is <strong>0.0228</strong>, about 2.3 per cent.</li>
+<li><span class="math inline">\(z_{42} = (42 - 48) \div 6 = -1.0\)</span> and <span class="math inline">\(z_{57} = (57 - 48) \div 6 = 1.5\)</span>. Area below <span class="math inline">\(-1.0\)</span> is 0.1587, and area above 1.5 is 0.0668. Between: $1 - 0.1587 - 0.0668 = $ <strong>0.7745</strong>, about 77.5 per cent.</li>
+<li>The 95th percentile, <span class="math inline">\(z = 1.645\)</span>: $48 + 1.645 = 48 + 9.9 = $ <strong>57.9 hours</strong>. A promise of 58 hours would be met by about 95 per cent of orders.</li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+<section id="key-takeaways" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="key-takeaways">Key takeaways</h2>
 <ul>
-<li>OpenStax. (2023). <em>Introductory Business Statistics 2e</em>. Rice University.</li>
-<li>Pallant, J. (2016). <em>SPSS Survival Manual</em> (6th ed.). Open University Press.</li>
-<li>Villa College. (2026). <em>BUSS2111 Decision Making for Management Module Handbook 2026/27</em>.</li>
+<li>Look at the shape before you choose a summary or a model.</li>
+<li>Judge skewness and kurtosis by their size and by their ratio to the standard error.</li>
+<li>The empirical rule applies to distributions close to normal. Chebyshev’s rule applies to any shape.</li>
+<li>A z-score places a value in standard deviations from the mean, and it compares values measured in different units.</li>
+<li>A value beyond 2 is unusual and beyond 3 is extreme. Both call for a second look at the record.</li>
+<li>Check a variable before you use the normal model, and for skewed or capped variables report percentiles taken from the data.</li>
 </ul>
 
 
@@ -1216,14 +1261,11 @@ Table&nbsp;1.19: Every formula used in this chapter
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../weeks/week01-part3.html" class="pagination-link" aria-label="Part 3: Centre and spread">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Part 3: Centre and spread</span></span>
+      <a href="../weeks/week02-tutorial.html" class="pagination-link" aria-label="Tutorial: JASP setup, normality, and z-scores">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Tutorial: JASP setup, normality, and z-scores</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../weeks/week01-tutorial.html" class="pagination-link" aria-label="Tutorial: First descriptive statistics">
-        <span class="nav-page-text"><span class="chapter-title">Tutorial: First descriptive statistics</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->

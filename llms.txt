@@ -67,6 +67,22 @@ must be declared in the submission.
   both JASP and PocketStat.
 - [Chapter 1 Independent Study](weeks/week01-independent-study.html): exercises, a formative
   checklist and worked solutions.
+- [Chapter 2, Part 1: The Shape of a Distribution](weeks/week02.html): peaks, symmetry and
+  tails, skewness and kurtosis against their standard errors, ceiling effects, and the five-step
+  analysis workflow.
+- [Chapter 2, Part 2: The Normal Curve and z-Scores](weeks/week02-part2.html): the normal
+  distribution, the empirical rule, Chebyshev's rule, z-scores, and typical, unusual and extreme
+  values.
+- [Chapter 2, Part 3: Areas, Percentiles and Normality](weeks/week02-part3.html): the standard
+  normal table, shares and percentiles from the normal model, Q-Q plots, the Shapiro-Wilk test,
+  and when the normal model fails.
+- [Chapter 2: Running the Analysis and Reference](weeks/week02-reference.html): normality checks
+  and z-scores in JASP and PocketStat, how to report them, and the chapter key terms and formula
+  review.
+- [Chapter 2 Tutorial](weeks/week02-tutorial.html): a 15-step normality check, z-score analysis
+  and output annotation, each step shown in both JASP and PocketStat.
+- [Chapter 2 Independent Study](weeks/week02-independent-study.html): exercises, an independent
+  analysis, a formative checklist and worked solutions.
 
 ## Optional
 
