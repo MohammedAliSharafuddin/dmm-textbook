@@ -65,8 +65,8 @@ must be declared in the submission.
   JASP and PocketStat, how to report it, and the chapter key terms and formula review.
 - [Chapter 1 Tutorial](weeks/week01-tutorial.html): a 19-step first analysis, each step shown in
   both JASP and PocketStat.
-- [Chapter 1 Independent Study](weeks/week01-independent-study.html): exercises, a formative
-  checklist and worked solutions.
+- [Chapter 1 Independent Study](weeks/week01-independent-study.html): exercises, a self-check
+  and worked solutions, for revision. Nothing on it is graded.
 - [Chapter 2, Part 1: The Shape of a Distribution](weeks/week02.html): peaks, symmetry and
   tails, skewness and kurtosis against their standard errors, ceiling effects, and the five-step
   analysis workflow.
@@ -82,7 +82,7 @@ must be declared in the submission.
 - [Chapter 2 Tutorial](weeks/week02-tutorial.html): a 15-step normality check, z-score analysis
   and output annotation, each step shown in both JASP and PocketStat.
 - [Chapter 2 Independent Study](weeks/week02-independent-study.html): exercises, an independent
-  analysis, a formative checklist and worked solutions.
+  analysis, a self-check and worked solutions, for revision. Nothing on it is graded.
 
 ## Optional
 
