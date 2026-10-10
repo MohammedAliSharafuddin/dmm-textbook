@@ -44,7 +44,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-3b4d8bd5646d865a73be5b7d80659dd7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-f4b9810437ab3d39bd583d8cb295f5db.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -595,7 +595,7 @@ ul.task-list li input[type="checkbox"] {
 <p>The <strong>data summary</strong> card reports the number of rows and columns. Confirm it says <strong>200 rows</strong> and <strong>26 columns</strong> before going further.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../assets/images/screenshots/ch01/ch01-pocketstat-03-data-loaded.png" class="img-fluid figure-img" alt="The PocketStat Data tab showing the data summary card, which reports 200 rows and 26 columns, above the data grid."></p>
+<p><img src="../assets/images/screenshots/ch01/ch01-pocketstat-03-data-loaded.png" class="img-fluid figure-img" alt="The PocketStat Data tab with the Loaded data card outlined. It reports 200 rows and 26 columns, above the Variables card."></p>
 <figcaption>The dataset loaded, 200 rows and 26 columns</figcaption>
 </figure>
 </div>
@@ -644,11 +644,11 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 <div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
-<p>Open the <strong>cleaning</strong> card, pick the variable, and set its type there. Any analysis you run afterwards uses the new type.</p>
+<p>In the <strong>variables</strong> card, click the <strong>Type</strong> cell beside the variable and choose nominal, ordinal or scale from the list. Any analysis you run afterwards uses the new type.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../assets/images/screenshots/ch01/ch01-pocketstat-05-change-variable-type.png" class="img-fluid figure-img" alt="The PocketStat cleaning card with a variable selected and its type being changed."></p>
-<figcaption>Changing a variable’s type in the cleaning card</figcaption>
+<p><img src="../assets/images/screenshots/ch01/ch01-pocketstat-05-change-variable-type.png" class="img-fluid figure-img" alt="The PocketStat variables card with the Type list open on Return_Intention, offering nominal, ordinal and scale."></p>
+<figcaption>Changing a variable’s type in the variables card</figcaption>
 </figure>
 </div>
 </div>
@@ -677,7 +677,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Scroll the <strong>variables</strong> card to the same six and note the type beside each.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../assets/images/screenshots/ch01/ch01-pocketstat-06-read-six-variables.png" class="img-fluid figure-img" alt="The PocketStat variables card scrolled to Gender, Region, Ticket_Type, Age, Satisfaction and Waiting_Time_Mins, each with its detected type."></p>
+<p><img src="../assets/images/screenshots/ch01/ch01-pocketstat-06-read-six-variables.png" class="img-fluid figure-img" alt="The PocketStat variables card with six rows outlined: Gender, Region, Ticket_Type, Age, Satisfaction and Waiting_Time_Mins, each with its detected type."></p>
 <figcaption>The six audit variables and their current types</figcaption>
 </figure>
 </div>
@@ -897,10 +897,10 @@ Table&nbsp;1.20: Variable audit: complete one row for each variable
 </div>
 </div>
 <div id="tabset-11-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-11-2-tab">
-<p>PocketStat has no banding tool, so read the bands off the picture instead. Choose <strong>Distribution shape</strong> on the Analyse tab, pick <code>Waiting_Time_Mins</code>, and set the histogram to ten-minute bars.</p>
+<p>PocketStat has no banding tool, and its histogram does the banding for you. Choose <strong>Descriptive statistics</strong> on the Analyse tab, pick <code>Waiting_Time_Mins</code> on its own and run it. The bars are ten minutes wide, each bar includes its lower boundary, and the count is printed above each bar.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../assets/images/screenshots/ch01/ch01-pocketstat-11-bands-setup.png" class="img-fluid figure-img" alt="The PocketStat Distribution shape output for Waiting_Time_Mins, with the histogram bars falling into ten-minute bands."></p>
+<p><img src="../assets/images/screenshots/ch01/ch01-pocketstat-11-bands-setup.png" class="img-fluid figure-img" alt="The PocketStat Descriptive statistics chart for Waiting_Time_Mins. The histogram bars are ten minutes wide with the count printed above each: 3, 14, 47, 62, 53, 19, 1, 0 and 1."></p>
 <figcaption>Reading the ten-minute bands off the distribution</figcaption>
 </figure>
 </div>
@@ -926,7 +926,7 @@ Table&nbsp;1.20: Variable audit: complete one row for each variable
 <p>Copy the band counts into your notes and write a running total beside them. The running total is the cumulative frequency, and dividing it by 200 gives cumulative relative frequency.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../assets/images/screenshots/ch01/ch01-pocketstat-12-cumulative-column.png" class="img-fluid figure-img" alt="A worksheet with the band counts copied from PocketStat and a running total written beside them."></p>
+<p><img src="../assets/images/screenshots/ch01/ch01-pocketstat-12-cumulative-column.png" class="img-fluid figure-img" alt="A worksheet listing the nine ten-minute bands with the counts copied from PocketStat. A running total is filled in for the first five bands: 3, 17, 64, 126 and 179."></p>
 <figcaption>Building the cumulative column by hand</figcaption>
 </figure>
 </div>
@@ -952,7 +952,7 @@ Table&nbsp;1.20: Variable audit: complete one row for each variable
 <p>Read down the bands and confirm each one is ten minutes wide, that no waiting time could fall into two bands, and that the final cumulative total is 200.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../assets/images/screenshots/ch01/ch01-pocketstat-13-grouped-table-output.png" class="img-fluid figure-img" alt="The completed grouped table, each ten-minute band with its count, relative frequency and cumulative frequency."></p>
+<p><img src="../assets/images/screenshots/ch01/ch01-pocketstat-13-grouped-table-output.png" class="img-fluid figure-img" alt="The completed grouped table: each ten-minute band with its count, relative frequency, cumulative frequency and cumulative relative frequency, ending at 200 and 1.000."></p>
 <figcaption>The finished grouped frequency table</figcaption>
 </figure>
 </div>
@@ -1004,10 +1004,10 @@ Table&nbsp;1.20: Variable audit: complete one row for each variable
 </div>
 </div>
 <div id="tabset-15-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-15-2-tab">
-<p>PocketStat reports centre, spread, and quartiles together for a scale variable, so there is nothing to tick. Check the options panel to see what it will report before you run it.</p>
+<p>PocketStat reports the mean, median, standard deviation, minimum, quartiles and maximum together for a scale variable, so there is nothing to tick. The quartiles appear as <strong>q1</strong> and <strong>q3</strong>. The <strong>Learn</strong> tab’s entry for Descriptive statistics says what the table holds.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../assets/images/screenshots/ch01/ch01-pocketstat-15-statistics-ticked.png" class="img-fluid figure-img" alt="The PocketStat options panel for Descriptive statistics, showing which summaries it will report."></p>
+<p><img src="../assets/images/screenshots/ch01/ch01-pocketstat-15-statistics-ticked.png" class="img-fluid figure-img" alt="The PocketStat Learn tab at the entry for Descriptive statistics, which lists the typical values and the measures of spread it reports."></p>
 <figcaption>The statistics PocketStat reports by default</figcaption>
 </figure>
 </div>
@@ -1085,10 +1085,10 @@ Table&nbsp;1.20: Variable audit: complete one row for each variable
 </div>
 </div>
 <div id="tabset-18-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-18-2-tab">
-<p>Choose <strong>Distribution shape</strong> on the Analyse tab and pick <code>Waiting_Time_Mins</code>. The histogram and the boxplot are drawn on the same scale, so the tail lines up across both.</p>
+<p>Run <strong>Descriptive statistics</strong> on <code>Waiting_Time_Mins</code> on its own. The histogram and the boxplot are drawn side by side, both in minutes, so a long wait in the histogram’s tail matches a point beyond the boxplot’s upper whisker.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../assets/images/screenshots/ch01/ch01-pocketstat-18-histogram-boxplot-waiting.png" class="img-fluid figure-img" alt="The PocketStat Distribution shape output for Waiting_Time_Mins, a histogram above a boxplot on the same scale."></p>
+<p><img src="../assets/images/screenshots/ch01/ch01-pocketstat-18-histogram-boxplot-waiting.png" class="img-fluid figure-img" alt="The PocketStat Descriptive statistics chart for Waiting_Time_Mins: a histogram on the left and a boxplot on the right, with two points above the upper whisker and two below the lower one."></p>
 <figcaption>A histogram and boxplot of Waiting_Time_Mins</figcaption>
 </figure>
 </div>
@@ -1135,10 +1135,10 @@ Table&nbsp;1.20: Variable audit: complete one row for each variable
 </div>
 </div>
 <div id="tabset-19-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-19-2-tab">
-<p>On the <strong>Results</strong> tab, use the write-up and report blocks to take a clean copy. Paste it into your document and check the column headings survived the paste.</p>
+<p>On the <strong>Results</strong> tab, type your sentence into <strong>Your write-up</strong>, then choose <strong>Download report (HTML, formatted)</strong>. Open the file, copy the table into your document and check the column headings survived the paste.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../assets/images/screenshots/ch01/ch01-pocketstat-19-copy-output.png" class="img-fluid figure-img" alt="The PocketStat results view with the write-up and report blocks open, ready to copy."></p>
+<p><img src="../assets/images/screenshots/ch01/ch01-pocketstat-19-copy-output.png" class="img-fluid figure-img" alt="The PocketStat Results tab with a sentence typed into Your write-up and the Download report button outlined."></p>
 <figcaption>Copying a cleaned table out of the tool</figcaption>
 </figure>
 </div>

@@ -44,7 +44,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-3b4d8bd5646d865a73be5b7d80659dd7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-f4b9810437ab3d39bd583d8cb295f5db.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -566,7 +566,7 @@ window.Quarto = {
 <p>Open PocketStat at <a href="https://mohammedalisharafuddin.github.io/pocketstat/" class="uri">https://mohammedalisharafuddin.github.io/pocketstat/</a>. On the <strong>Data</strong> tab, open the upload card and choose <code>DMM_Teaching_Data_Full.csv</code>. Confirm the data summary card reports <strong>200 rows</strong> and <strong>26 columns</strong>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../assets/images/screenshots/ch02/ch02-pocketstat-01-load-data.png" class="img-fluid figure-img" alt="The PocketStat Data tab with the data summary card reporting 200 rows and 26 columns above the data grid."></p>
+<p><img src="../assets/images/screenshots/ch02/ch02-pocketstat-01-load-data.png" class="img-fluid figure-img" alt="The PocketStat Data tab with the Loaded data card reporting 200 rows and 26 columns, above the Variables card listing each column and its type."></p>
 <figcaption>The teaching dataset loaded in PocketStat</figcaption>
 </figure>
 </div>
@@ -589,7 +589,7 @@ window.Quarto = {
 </div>
 </div>
 <div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
-<p>PocketStat reports every figure to three decimal places, so there is nothing to set. Tap <strong>Learn</strong> on the bottom bar and read the entries for <strong>Distribution shape</strong> and <strong>Z-scores &amp; empirical rule</strong>. They are brief and explain what each output row means.</p>
+<p>PocketStat sets its own precision, so there is nothing to set: three decimal places for most statistics and four for p-values. It drops a trailing zero, so 0.110 appears as 0.11. Tap <strong>Learn</strong> on the bottom bar and read the entries for <strong>Distribution shape</strong> and <strong>Z-scores &amp; empirical rule</strong>. They are brief and explain what each output row means.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../assets/images/screenshots/ch02/ch02-pocketstat-02-output-options.png" class="img-fluid figure-img" alt="The PocketStat Learn tab showing the short explanation of the Distribution shape technique."></p>
@@ -726,7 +726,7 @@ Table&nbsp;2.20: Reading JASP’s exact p-values for waiting time, age, satisfac
 </div>
 </div>
 <div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
-<p>Open <strong>Results</strong> and read the table for each variable. For <code>Waiting_Time_Mins</code> you should see a skewness of 0.110 with a standard error of 0.173, a z (skewness) of 0.635, and a Shapiro-Wilk p of 0.4795. The skewness differs from JASP’s in the third decimal, for the reason given in <a href="week02.html#sec-skewness">part 1</a>.</p>
+<p>Open <strong>Results</strong> and read the table for each variable. For <code>Waiting_Time_Mins</code> you should see a skewness of 0.11, which is 0.110 with its trailing zero dropped, a standard error of 0.173, a z (skewness) of 0.635, and a Shapiro-Wilk p of 0.4795. The tables appear in alphabetical order, so <code>Waiting_Time_Mins</code> is the fourth. For <code>Spending</code>, PocketStat prints a Shapiro-Wilk p of 0: the value is 0.0000013, which rounds to 0 at four decimals, so report it as <span class="math inline">\(p &lt; .001\)</span>. The skewness differs from JASP’s in the third decimal, for the reason given in <a href="week02.html#sec-skewness">part 1</a>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../assets/images/screenshots/ch02/ch02-pocketstat-06-distribution-table.png" class="img-fluid figure-img" alt="A PocketStat results table for Waiting_Time_Mins listing skewness, standard error of skewness, z for skewness, p for the skewness test, Shapiro-Wilk W and Shapiro-Wilk p."></p>
@@ -1024,7 +1024,7 @@ Table&nbsp;2.21: Record of the five normality checks
 </div>
 <div id="tabset-13-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-13-2-tab">
 <p>Read the row <strong>observations with |z| &gt; 2</strong>, which should be <strong>7</strong>, and the note beneath the table, which names the row with the largest z-score: row 85, a wait of 90 minutes, <span class="math inline">\(z = 3.74\)</span>.</p>
-<p>The boxplot beside the histogram shows four points beyond the whiskers, two long waits and two short ones. PocketStat leaves the points unlabelled, so match them with <a href="week02-part2.html#tbl-unusual-waits" class="quarto-xref">Table&nbsp;<span>2.11</span></a> in the chapter, which lists all seven cases with their z-scores.</p>
+<p>The boxplot beside the histogram shows four points beyond the whiskers, two long waits and two short ones, the same four JASP marks. PocketStat leaves the points unlabelled, so match them with <a href="week02-part2.html#tbl-unusual-waits" class="quarto-xref">Table&nbsp;<span>2.11</span></a> in the chapter, which lists all seven cases with their z-scores.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../assets/images/screenshots/ch02/ch02-pocketstat-13-extremes.png" class="img-fluid figure-img" alt="The PocketStat results table with the row observations with z beyond 2 reading 7, and a note naming row 85, value 90, z equal to 3.74, as the largest deviation. Below it, a histogram with standard deviation bands beside a boxplot showing two points above and two below the whiskers."></p>
@@ -1060,10 +1060,10 @@ Table&nbsp;2.21: Record of the five normality checks
 </div>
 </div>
 <div id="tabset-14-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-14-2-tab">
-<p>On <strong>Results</strong>, with the <strong>Z-scores &amp; empirical rule</strong> output showing, scroll to the card headed <strong>Your write-up</strong> and type your annotation into the box. PocketStat offers a suggested starting point built from the numbers. Write your own. The write-up travels with the result into the report in step 15.</p>
+<p>On <strong>Results</strong>, with the <strong>Z-scores &amp; empirical rule</strong> output showing, scroll to the card headed <strong>Your write-up</strong> and type your annotation into the box. The write-up travels with the result into the report in step 15.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../assets/images/screenshots/ch02/ch02-pocketstat-14-add-note.png" class="img-fluid figure-img" alt="The PocketStat Results tab scrolled to the Your write-up card, with a text box for a short interpretation beneath a suggested starting point."></p>
+<p><img src="../assets/images/screenshots/ch02/ch02-pocketstat-14-add-note.png" class="img-fluid figure-img" alt="The PocketStat Results tab scrolled to the Your write-up card, with a short interpretation typed into the text box, above the Check your understanding card."></p>
 <figcaption>Writing the annotation in the write-up box</figcaption>
 </figure>
 </div>
@@ -1091,7 +1091,7 @@ Table&nbsp;2.21: Record of the five normality checks
 <p>Open the file menu and choose <strong>Export Results</strong>. Save as HTML or PDF. Open the saved file and check your note appears under the right plot.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../assets/images/screenshots/ch02/ch02-jasp-15-export.png" class="img-fluid figure-img" alt="The JASP file menu open at Export Results, with the save dialogue offering HTML and PDF formats."></p>
+<p><img src="../assets/images/screenshots/ch02/ch02-jasp-15-export.png" class="img-fluid figure-img" alt="The JASP file menu open with Export Results selected. To its right, Computer is chosen and a Browse button sits above the list of recent folders."></p>
 <figcaption>Exporting the output with its note</figcaption>
 </figure>
 </div>
