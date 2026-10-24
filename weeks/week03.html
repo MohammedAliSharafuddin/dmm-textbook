@@ -1,0 +1,1960 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-GB" xml:lang="en-GB"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.24">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="keywords" content="probability, complement rule, contingency table, joint probability, conditional probability, addition rule, probability tree, decision making under uncertainty">
+<meta name="description" content="Chapter 3, part 1. Probability from business records: the complement, contingency tables, joint and conditional probability, the addition rule and probability trees.">
+
+<title>Part 1: Probability from records – Decision Making for Management</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../weeks/week03-part2.html" rel="next">
+<link href="../weeks/week02-independent-study.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-f4b9810437ab3d39bd583d8cb295f5db.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<!-- Structured data for search and answer engines. The book is CC BY, so a
+     model that cites it can say so. DefinedTermSet mirrors the Key terms
+     section, whose entries carry the section ids these URLs point at. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Book",
+      "@id": "https://mohammedalisharafuddin.github.io/dmm-textbook/#book",
+      "name": "Decision Making for Management",
+      "alternateName": "A Student Textbook for Data-Informed Managerial Judgement",
+      "inLanguage": "en-GB",
+      "learningResourceType": "textbook",
+      "educationalLevel": "undergraduate",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "author": {
+        "@type": "Person",
+        "name": "Mohammed Ali Sharafuddin",
+        "affiliation": {
+          "@type": "CollegeOrUniversity",
+          "name": "Qasim Ibrahim School of Business, Villa College"
+        }
+      },
+      "educationalUse": ["instruction", "self study"],
+      "audience": {
+        "@type": "EducationalAudience",
+        "educationalRole": "student"
+      },
+      "usageInfo": "https://mohammedalisharafuddin.github.io/dmm-textbook/front-matter/ai-use.html",
+      "about": [
+        "Business statistics",
+        "Descriptive statistics",
+        "Data-informed decision making"
+      ]
+    },
+    {
+      "@type": ["Chapter", "LearningResource"],
+      "@id": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week01.html#chapter",
+      "name": "Data, Measurement Scales, and Descriptive Statistics",
+      "position": 1,
+      "isPartOf": { "@id": "https://mohammedalisharafuddin.github.io/dmm-textbook/#book" },
+      "inLanguage": "en-GB",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "educationalLevel": "undergraduate",
+      "learningResourceType": "chapter",
+      "timeRequired": "PT9H",
+      "educationalUse": ["instruction", "self study"],
+      "assessmentType": ["formative exit check", "checkpoint quiz", "tutorial upload"],
+      "usageInfo": "https://mohammedalisharafuddin.github.io/dmm-textbook/front-matter/ai-use.html",
+      "educationalAlignment": {
+        "@type": "AlignmentObject",
+        "alignmentType": "teaches",
+        "targetName": "Descriptive statistics for management decisions"
+      },
+      "teaches": [
+        "Explain why a manager describes evidence before acting on it",
+        "Distinguish a case, a variable, an observation and a value in a real dataset",
+        "Separate a population from a sample, and a parameter from a statistic",
+        "Say what descriptive statistics can establish and what only inference can",
+        "Classify a variable as nominal, ordinal, interval or ratio, and as discrete or continuous",
+        "Identify which variable is independent and which is dependent in a stated question",
+        "Build and read frequency, relative frequency, grouped and cumulative frequency tables",
+        "Choose a graph that suits the variable type and the question",
+        "Calculate and interpret the mean, median, mode, range, variance, standard deviation, quartiles and the interquartile range",
+        "Recognise a misleading summary or display and say why it misleads"
+      ]
+    },
+    {
+      "@type": "DefinedTermSet",
+      "@id": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week01.html#key-terms",
+      "name": "Key terms, Chapter 1",
+      "hasDefinedTerm": [
+        { "@type": "DefinedTerm", "name": "Case", "description": "The unit the data describe.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week01.html#sec-cases" },
+        { "@type": "DefinedTerm", "name": "Variable", "description": "A characteristic measured on each case.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week01.html#sec-cases" },
+        { "@type": "DefinedTerm", "name": "Population", "description": "Every case of interest.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week01.html#sec-population" },
+        { "@type": "DefinedTerm", "name": "Sample", "description": "The subset of the population actually measured.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week01.html#sec-population" },
+        { "@type": "DefinedTerm", "name": "Parameter", "description": "A number describing a population.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week01.html#sec-population" },
+        { "@type": "DefinedTerm", "name": "Statistic", "description": "A number describing a sample.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week01.html#sec-population" },
+        { "@type": "DefinedTerm", "name": "Nominal", "description": "Named categories with no order. You may count them, find the mode and take proportions.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week01-part2.html#sec-scales" },
+        { "@type": "DefinedTerm", "name": "Ordinal", "description": "Ordered categories where the size of the gaps between them is unknown.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week01-part2.html#sec-scales" },
+        { "@type": "DefinedTerm", "name": "Interval", "description": "Numeric with equal gaps and a zero placed by convention, so ratios have no meaning.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week01-part2.html#sec-scales" },
+        { "@type": "DefinedTerm", "name": "Ratio", "description": "Numeric with equal gaps and a true zero, so ratios are meaningful.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week01-part2.html#sec-scales" },
+        { "@type": "DefinedTerm", "name": "Mean", "description": "The sum of all values divided by how many there are.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week01-part3.html#sec-centre" },
+        { "@type": "DefinedTerm", "name": "Median", "description": "The middle value once the data are in order.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week01-part3.html#sec-centre" },
+        { "@type": "DefinedTerm", "name": "Mode", "description": "The value that occurs most often, read off a frequency table.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week01-part3.html#sec-centre" },
+        { "@type": "DefinedTerm", "name": "Standard deviation", "description": "The square root of the variance, in the original units of the data.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week01-part3.html#sec-spread" },
+        { "@type": "DefinedTerm", "name": "Interquartile range", "description": "The third quartile minus the first, the spread of the middle half.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week01-part3.html#sec-quartiles" },
+        { "@type": "DefinedTerm", "name": "Outlier", "description": "A value beyond 1.5 times the interquartile range from the nearer quartile.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week01-part3.html#sec-shape" }
+      ]
+    },
+    {
+      "@type": ["Chapter", "LearningResource"],
+      "@id": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week02.html#chapter",
+      "name": "Introduction to JASP and the Normal Distribution",
+      "position": 2,
+      "isPartOf": { "@id": "https://mohammedalisharafuddin.github.io/dmm-textbook/#book" },
+      "inLanguage": "en-GB",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "educationalLevel": "undergraduate",
+      "learningResourceType": "chapter",
+      "timeRequired": "PT9H",
+      "educationalUse": ["instruction", "self study"],
+      "assessmentType": ["formative exit check", "checkpoint quiz", "tutorial upload"],
+      "usageInfo": "https://mohammedalisharafuddin.github.io/dmm-textbook/front-matter/ai-use.html",
+      "educationalAlignment": {
+        "@type": "AlignmentObject",
+        "alignmentType": "teaches",
+        "targetName": "The normal distribution and z-scores for management decisions"
+      },
+      "teaches": [
+        "Describe the shape of a distribution from a histogram and a boxplot, naming its peaks, its symmetry and its tails",
+        "Interpret skewness and kurtosis, and judge each against its standard error",
+        "Follow a repeatable workflow in JASP or PocketStat from loading a file to an annotated output",
+        "State the properties of the normal distribution and use the empirical rule to estimate the share of cases within one, two and three standard deviations of the mean",
+        "Apply Chebyshev's rule when the shape of a distribution is unknown or clearly non-normal",
+        "Calculate a z-score, convert a z-score back into the original units, and use z-scores to compare values measured in different units",
+        "Classify a value as typical, unusual or extreme from its z-score, and explain in plain language what that means for a manager",
+        "Use the standard normal table to find the share of cases above, below or between two values, and the value that marks a given percentile",
+        "Judge whether a variable is close enough to normal for the normal model, using a histogram, a Q-Q plot, skewness, kurtosis and the Shapiro-Wilk test",
+        "Recognise when the normal model gives impossible or distorted answers, and report the alternative"
+      ]
+    },
+    {
+      "@type": "DefinedTermSet",
+      "@id": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week02.html#key-terms",
+      "name": "Key terms, Chapter 2",
+      "hasDefinedTerm": [
+        { "@type": "DefinedTerm", "name": "Distribution", "description": "The values a variable takes, and how often each occurs.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week02.html#sec-position" },
+        { "@type": "DefinedTerm", "name": "Ceiling effect", "description": "Cases piled up at the highest value a scale allows, which cuts off the right tail.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week02.html#sec-shape-reading" },
+        { "@type": "DefinedTerm", "name": "Skewness", "description": "How far a distribution leans to one side. Positive for a longer right tail, negative for a longer left tail.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week02.html#sec-skewness" },
+        { "@type": "DefinedTerm", "name": "Standard error", "description": "How much a statistic would typically vary from one sample to the next.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week02.html#sec-skewness" },
+        { "@type": "DefinedTerm", "name": "Kurtosis", "description": "How heavy the tails of a distribution are compared with a normal distribution, reported as excess kurtosis with 0 for normal.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week02.html#sec-kurtosis" },
+        { "@type": "DefinedTerm", "name": "Normal distribution", "description": "A symmetric bell-shaped model fixed by its mean and standard deviation, whose areas are shares of cases.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week02-part2.html#sec-normal" },
+        { "@type": "DefinedTerm", "name": "Empirical rule", "description": "In a normal distribution about 68, 95 and 99.7 per cent of cases lie within one, two and three standard deviations of the mean.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week02-part2.html#sec-empirical" },
+        { "@type": "DefinedTerm", "name": "Chebyshev's rule", "description": "For any distribution, at least 1 minus 1 over k squared of the cases lie within k standard deviations of the mean.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week02-part2.html#sec-chebyshev" },
+        { "@type": "DefinedTerm", "name": "z-score", "description": "How many standard deviations a value lies above or below the mean.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week02-part2.html#sec-zscores" },
+        { "@type": "DefinedTerm", "name": "Standard normal distribution", "description": "The normal distribution with a mean of 0 and a standard deviation of 1.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week02-part3.html#sec-standard-normal" },
+        { "@type": "DefinedTerm", "name": "Q-Q plot", "description": "A plot of sorted data against the values a normal distribution predicts for each position. Normal data lie on a straight line.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week02-part3.html#sec-normality" },
+        { "@type": "DefinedTerm", "name": "Shapiro-Wilk test", "description": "A test of how closely data follow the pattern a normal distribution would produce. Its verdict depends heavily on sample size.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week02-part3.html#sec-normality" }
+      ]
+    },
+    {
+      "@type": ["Chapter", "LearningResource"],
+      "@id": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week03.html#chapter",
+      "name": "Decision Processes, Decision Trees, CPA/CPM, Gantt Charts, and Basics of Probability",
+      "position": 3,
+      "isPartOf": {
+        "@id": "https://mohammedalisharafuddin.github.io/dmm-textbook/#book"
+      },
+      "inLanguage": "en-GB",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "educationalLevel": "undergraduate",
+      "learningResourceType": "chapter",
+      "timeRequired": "PT9H",
+      "educationalUse": ["instruction", "self study"],
+      "assessmentType": ["formative exit check", "checkpoint quiz", "tutorial upload"],
+      "usageInfo": "https://mohammedalisharafuddin.github.io/dmm-textbook/front-matter/ai-use.html",
+      "educationalAlignment": {
+        "@type": "AlignmentObject",
+        "alignmentType": "teaches",
+        "targetName": "Probability, expected value and project scheduling for management decisions"
+      },
+      "teaches": ["Calculate the probability of an event from records, using the denominator the question names, and find the probability of its complement", "Build a contingency table and read joint, marginal and conditional probabilities from it", "Apply the addition rule, and recognise events that are mutually exclusive", "Judge whether two events are independent, and apply the multiplication rule along a probability tree", "Calculate the expected value and the standard deviation of an uncertain payoff, and name the probability and size of the worst outcome", "Draw a decision tree, roll it back to choose an option and review the risk behind the expected value", "Use the binomial model to estimate how many registered people attend, and how far that number varies", "Calculate a PERT expected duration and its variance from three time estimates", "Run a forward and a backward pass to find each task's earliest and latest times, its slack and the critical path", "Estimate the probability of finishing a project by a deadline from the PERT variance of the critical path", "Build and read a Gantt chart, and check it against the critical path", "Write a decision note that joins a probability, an expected value and a schedule into one recommendation"]
+    },
+    {
+      "@type": "DefinedTermSet",
+      "@id": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week03.html#key-terms",
+      "name": "Key terms, Chapter 3",
+      "hasDefinedTerm": [
+        {
+          "@type": "DefinedTerm",
+          "name": "Probability",
+          "description": "A number from 0 to 1 stating how likely an event is. From records, the count of cases in the event divided by the number of cases the question is about.",
+          "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week03.html#sec-probability"
+        },
+        {
+          "@type": "DefinedTerm",
+          "name": "Contingency table",
+          "description": "A table counting the cases in each combination of two categorical variables.",
+          "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week03.html#sec-contingency"
+        },
+        {
+          "@type": "DefinedTerm",
+          "name": "Joint probability",
+          "description": "The probability that two events happen together.",
+          "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week03.html#sec-contingency"
+        },
+        {
+          "@type": "DefinedTerm",
+          "name": "Conditional probability",
+          "description": "The probability of one event among the cases where a second event has happened.",
+          "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week03.html#sec-conditional"
+        },
+        {
+          "@type": "DefinedTerm",
+          "name": "Addition rule",
+          "description": "P(A or B) equals P(A) plus P(B) minus P(A and B).",
+          "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week03.html#sec-addition"
+        },
+        {
+          "@type": "DefinedTerm",
+          "name": "Independent events",
+          "description": "Events where knowing that one happened leaves the probability of the other unchanged.",
+          "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week03.html#sec-independence"
+        },
+        {
+          "@type": "DefinedTerm",
+          "name": "Probability tree",
+          "description": "A diagram of uncertain events in the order they happen, with a probability on each branch.",
+          "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week03.html#sec-probability-tree"
+        },
+        {
+          "@type": "DefinedTerm",
+          "name": "Expected value",
+          "description": "The average of a random variable's possible values, each weighted by its probability.",
+          "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week03-part2.html#sec-expected-value"
+        },
+        {
+          "@type": "DefinedTerm",
+          "name": "Decision tree",
+          "description": "A diagram of options, chance events and payoffs, rolled back from right to left to choose an option.",
+          "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week03-part2.html#sec-decision-trees"
+        },
+        {
+          "@type": "DefinedTerm",
+          "name": "Binomial model",
+          "description": "The probability distribution of the number of successes in a fixed number of independent trials with the same probability of success.",
+          "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week03-part2.html#sec-binomial"
+        },
+        {
+          "@type": "DefinedTerm",
+          "name": "PERT",
+          "description": "An expected task duration, (O + 4M + P) / 6, and a variance from optimistic, most likely and pessimistic estimates.",
+          "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week03-part3.html#sec-pert"
+        },
+        {
+          "@type": "DefinedTerm",
+          "name": "Slack",
+          "description": "The number of days a task can slip without moving the project's finishing date. Also called float.",
+          "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week03-part3.html#sec-backward-pass"
+        },
+        {
+          "@type": "DefinedTerm",
+          "name": "Critical path",
+          "description": "The chain of zero-slack tasks that sets a project's finishing date.",
+          "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week03-part3.html#sec-backward-pass"
+        },
+        {
+          "@type": "DefinedTerm",
+          "name": "Gantt chart",
+          "description": "A project schedule drawn as horizontal bars against a calendar.",
+          "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week03-part3.html#sec-gantt"
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../assets/css/fonts.css">
+<link rel="stylesheet" href="../assets/css/typography.css">
+<link rel="stylesheet" href="../assets/css/student-book.css">
+<meta property="og:title" content="Part 1: Probability from records – Decision Making for Management">
+<meta property="og:description" content="A CC BY undergraduate textbook that teaches descriptive and inferential statistics through management decisions, using JASP and PocketStat.">
+<meta property="og:image" content="https://mohammedalisharafuddin.github.io/dmm-textbook/assets/images/figures/ch03/ch03-fig-probability-tree.png">
+<meta property="og:site_name" content="Decision Making for Management">
+<meta property="og:locale" content="en_GB">
+<meta property="og:image:alt" content="A probability tree drawn left to right. From a starting circle, two branches lead to Standard, probability 0.80, and VIP, probability 0.20. From Standard, two branches lead to Attended, 67 of 80 equals 0.8375, and No Show, 13 of 80 equals 0.1625. From VIP, two branches lead to Attended, 16 of 20 equals 0.80, and No Show, 4 of 20 equals 0.20. A column on the right gives each path's probability: Standard and attended, 0.80 times 0.8375 equals 0.67. Standard and no-show, 0.13. VIP and attended, 0.16. VIP and no-show, 0.04.">
+<meta property="og:image:height" content="880">
+<meta property="og:image:width" content="1600">
+<meta name="twitter:title" content="Part 1: Probability from records – Decision Making for Management">
+<meta name="twitter:description" content="A CC BY undergraduate textbook that teaches descriptive and inferential statistics through management decisions, using JASP and PocketStat.">
+<meta name="twitter:image" content="https://mohammedalisharafuddin.github.io/dmm-textbook/assets/images/figures/ch03/ch03-fig-probability-tree.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image:alt" content="A probability tree drawn left to right. From a starting circle, two branches lead to Standard, probability 0.80, and VIP, probability 0.20. From Standard, two branches lead to Attended, 67 of 80 equals 0.8375, and No Show, 13 of 80 equals 0.1625. From VIP, two branches lead to Attended, 16 of 20 equals 0.80, and No Show, 4 of 20 equals 0.20. A column on the right gives each path's probability: Standard and attended, 0.80 times 0.8375 equals 0.67. Standard and no-show, 0.13. VIP and attended, 0.16. VIP and no-show, 0.04.">
+<meta name="twitter:image-height" content="880">
+<meta name="twitter:image-width" content="1600">
+<meta name="dmm-crossref-renumbered" content="1"></head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/week03.html">Chapter 3: Decision Processes, Decision Trees, CPA/CPM, Gantt Charts, and Basics of Probability</a></li><li class="breadcrumb-item"><a href="../weeks/week03.html"><span class="chapter-title">Part 1: Probability from records</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Decision Making for Management</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Decision Making for Management</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../front-matter/copyright.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Copyright and Attribution</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../front-matter/ai-use.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Using AI on This Module</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../front-matter/how-to-use-this-book.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">How to Use This Book</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../front-matter/software-guide.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software Guide</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../front-matter/dataset-overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Dataset Overview</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Chapter 1: Data, Measurement Scales, and Descriptive Statistics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week01.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Part 1: Foundations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week01-part2.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Part 2: Variables and displays</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week01-part3.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Part 3: Centre and spread</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week01-reference.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Running the analysis, and chapter reference</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week01-tutorial.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Tutorial: First descriptive statistics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week01-independent-study.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Independent study</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Chapter 2: Introduction to JASP and the Normal Distribution</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week02.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Part 1: The shape of a distribution</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week02-part2.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Part 2: The normal curve and z-scores</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week02-part3.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Part 3: Areas, percentiles and checking normality</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week02-reference.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Running the analysis, and chapter reference</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week02-tutorial.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Tutorial: JASP setup, normality, and z-scores</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week02-independent-study.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Independent study</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Chapter 3: Decision Processes, Decision Trees, CPA/CPM, Gantt Charts, and Basics of Probability</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week03.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Part 1: Probability from records</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week03-part2.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Part 2: Expected value and decision trees</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week03-part3.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Part 3: Project time, the critical path and Gantt charts</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week03-reference.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Running the analysis, and chapter reference</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week03-tutorial.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Tutorial: Decision trees, CPA/CPM, and Gantt practice</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week03-independent-study.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Independent study</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#this-chapters-lecture" id="toc-this-chapters-lecture" class="nav-link active" data-scroll-target="#this-chapters-lecture">This chapter’s lecture</a></li>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives">Learning objectives</a></li>
+  <li><a href="#sec-uncertainty" id="toc-sec-uncertainty" class="nav-link" data-scroll-target="#sec-uncertainty">Decisions under uncertainty</a>
+  <ul class="collapse">
+  <li><a href="#five-terms-for-this-chapter" id="toc-five-terms-for-this-chapter" class="nav-link" data-scroll-target="#five-terms-for-this-chapter">Five terms for this chapter</a></li>
+  </ul></li>
+  <li><a href="#sec-probability" id="toc-sec-probability" class="nav-link" data-scroll-target="#sec-probability">Probability from records</a>
+  <ul class="collapse">
+  <li><a href="#where-a-probability-comes-from" id="toc-where-a-probability-comes-from" class="nav-link" data-scroll-target="#where-a-probability-comes-from">Where a probability comes from</a></li>
+  <li><a href="#sec-coin-toss" id="toc-sec-coin-toss" class="nav-link" data-scroll-target="#sec-coin-toss">A probability as a long-run share</a></li>
+  <li><a href="#sec-complement" id="toc-sec-complement" class="nav-link" data-scroll-target="#sec-complement">The complement rule</a></li>
+  </ul></li>
+  <li><a href="#sec-contingency" id="toc-sec-contingency" class="nav-link" data-scroll-target="#sec-contingency">Contingency tables and joint probability</a></li>
+  <li><a href="#sec-conditional" id="toc-sec-conditional" class="nav-link" data-scroll-target="#sec-conditional">Conditional probability</a>
+  <ul class="collapse">
+  <li><a href="#the-denominator-decides-the-question" id="toc-the-denominator-decides-the-question" class="nav-link" data-scroll-target="#the-denominator-decides-the-question">The denominator decides the question</a></li>
+  </ul></li>
+  <li><a href="#sec-addition" id="toc-sec-addition" class="nav-link" data-scroll-target="#sec-addition">The addition rule</a>
+  <ul class="collapse">
+  <li><a href="#mutually-exclusive-events" id="toc-mutually-exclusive-events" class="nav-link" data-scroll-target="#mutually-exclusive-events">Mutually exclusive events</a></li>
+  </ul></li>
+  <li><a href="#sec-independence" id="toc-sec-independence" class="nav-link" data-scroll-target="#sec-independence">Independence and the multiplication rule</a>
+  <ul class="collapse">
+  <li><a href="#the-multiplication-rule" id="toc-the-multiplication-rule" class="nav-link" data-scroll-target="#the-multiplication-rule">The multiplication rule</a></li>
+  </ul></li>
+  <li><a href="#sec-probability-tree" id="toc-sec-probability-tree" class="nav-link" data-scroll-target="#sec-probability-tree">Probability trees</a></li>
+  <li><a href="#sec-probability-explorer" id="toc-sec-probability-explorer" class="nav-link" data-scroll-target="#sec-probability-explorer">Check your working with the probability explorer</a></li>
+  <li><a href="#section-summary" id="toc-section-summary" class="nav-link" data-scroll-target="#section-summary">Section summary</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/week03.html">Chapter 3: Decision Processes, Decision Trees, CPA/CPM, Gantt Charts, and Basics of Probability</a></li><li class="breadcrumb-item"><a href="../weeks/week03.html"><span class="chapter-title">Part 1: Probability from records</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-title">Part 1: Probability from records</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+<div>
+  <div class="keywords">
+    <div class="block-title">Keywords</div>
+    <p>probability, complement rule, contingency table, joint probability, conditional probability, addition rule, probability tree, decision making under uncertainty</p>
+  </div>
+</div>
+
+</header>
+
+
+<div class="callout callout-style-default callout-note callout-titled" title="The decision question for this chapter">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>The decision question for this chapter
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>An events team is planning a one-day training event and brings you three questions. <strong>How many of the people who register will turn up? Which of two catering vendors should the team book? And how many working days does the team need to be ready, and which tasks can never be allowed to slip?</strong></p>
+<p>Chapters 1 and 2 described what had already happened. This chapter looks forward. Each of the three questions has an answer that is uncertain when the decision is made, and each needs a different tool: probability for attendance, expected value and a decision tree for the vendor, and the critical path method with a Gantt chart for the schedule.</p>
+<p>You will use four small files, one for each tool: <code>Week3_Probability_Basics_Data.csv</code> (100 registration records), <code>Week3_Decision_Tree_Data.csv</code> (50 vendor scenarios, two options each), <code>Week3_CPM_Task_Data.csv</code> (8 project tasks with three time estimates) and <code>Week3_Gantt_Data.csv</code> (the same 8 tasks as a schedule). Every figure quoted in this chapter comes from those files. The <a href="../front-matter/dataset-overview.html">dataset overview</a> lists them with the other files.</p>
+</div>
+</div>
+<section id="this-chapters-lecture" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="this-chapters-lecture">This chapter’s lecture</h2>
+<div class="lp-header lecture">
+<p><span class="lp-type">Lecture</span> <strong>Probability and decision-process tools</strong> <span class="lp-meta">1 hour · 4 activities</span></p>
+</div>
+<div class="lp-grid lp-4">
+<div class="lp-card lecture">
+<p><span class="badge bg-discussion">Discussion</span></p>
+<p><strong><span class="act-num">1</span> Welcome and weekly goals</strong></p>
+<p><span class="act-time">⏱ 10 min</span></p>
+<p>See how probability and decision-process tools help a manager compare uncertain choices and time-based trade-offs.</p>
+</div>
+<div class="lp-card lecture">
+<p><span class="badge bg-acquisition">Acquisition</span></p>
+<p><strong><span class="act-num">2</span> Probability and planning logic</strong></p>
+<p><span class="act-time">⏱ 30 min</span></p>
+<p>The basic probability rules you need before you build decision trees, critical paths and Gantt charts.</p>
+</div>
+<div class="lp-card lecture">
+<p><span class="badge bg-practice">Practice</span></p>
+<p><strong><span class="act-num">3</span> Worked example and discussion</strong></p>
+<p><span class="act-time">⏱ 15 min</span></p>
+<p>Work through a short business scenario and explain how probability and timing change the recommended option.</p>
+</div>
+<div class="lp-card lecture">
+<p><span class="badge bg-assessment">Assessment</span></p>
+<p><strong><span class="act-num">4</span> Exit check</strong></p>
+<p><span class="act-time">⏱ 5 min</span></p>
+<p>A short exit check on one probability rule or decision-process concept.</p>
+</div>
+</div>
+</section>
+<section id="learning-objectives" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="learning-objectives">Learning objectives</h2>
+<p>After studying this chapter you should be able to:</p>
+<ol type="1">
+<li>Calculate the probability of an event from records, using the denominator the question names, and find the probability of its complement.</li>
+<li>Build a contingency table and read joint, marginal and conditional probabilities from it.</li>
+<li>Apply the addition rule, and recognise events that are mutually exclusive.</li>
+<li>Judge whether two events are independent, and apply the multiplication rule along a probability tree.</li>
+<li>Calculate the expected value and the standard deviation of an uncertain payoff, and name the probability and size of the worst outcome.</li>
+<li>Draw a decision tree, roll it back to choose an option and review the risk behind the expected value.</li>
+<li>Use the binomial model to estimate how many registered people attend, and how far that number varies.</li>
+<li>Calculate a PERT expected duration and its variance from three time estimates.</li>
+<li>Run a forward and a backward pass to find each task’s earliest and latest times, its slack and the critical path.</li>
+<li>Estimate the probability of finishing a project by a deadline from the PERT variance of the critical path.</li>
+<li>Build and read a Gantt chart, and check it against the critical path.</li>
+<li>Write a decision note that joins a probability, an expected value and a schedule into one recommendation.</li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled" title="How to use this chapter">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>How to use this chapter
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This week’s learning plan is 9 hours: 1 hour of synchronous lecture, 2 hours of synchronous tutorial and 6 hours of asynchronous self-study.</p>
+<p>You must read all four parts of this chapter in full before moving to the tutorial. You are permitted to use Google NotebookLM to brainstorm the concepts. Complete the worked examples and the Try It exercises yourself, with no AI assistance. The full policy, and the reason NotebookLM is the only tool permitted, is on the <a href="../front-matter/ai-use.html">Using AI on This Module</a> page. NotebookLM reads one web page per source, so add all six pages of this chapter to your notebook, as set out in <a href="../front-matter/ai-use.html#sec-notebooklm">adding a chapter to NotebookLM</a>.</p>
+<p>This chapter works in a spreadsheet: Google Sheets in a browser, or LibreOffice Calc, which is free to install from libreoffice.org. The tools it teaches are arithmetic on small tables, and a spreadsheet shows every step of that arithmetic in a cell you can check. Keep a calculator beside you as well. Every probability, expected value and critical path in this chapter is worked by hand once before the spreadsheet repeats it.</p>
+<p>If you finish this chapter before the planned time, continue to the recommended reading in the independent study section. Use the independent study for revision, then take the checkpoint quiz.</p>
+</div>
+</div>
+</section>
+<section id="sec-uncertainty" class="level2">
+<h2 class="anchored" data-anchor-id="sec-uncertainty">Decisions under uncertainty</h2>
+<p>A decision under uncertainty is a choice made before you know how it will turn out. Booking a venue for 120 people is a decision under uncertainty, because some of the 120 will stay at home. Choosing a vendor is one, because a vendor can deliver late. Promising a date for an event is one, because tasks overrun.</p>
+<p>Uncertainty requires structured reasoning. Records of past events show how often people fail to turn up. Past contracts show how often each vendor delivered on time. Previous task managers can estimate typical durations and worst-case delays. A manager who quantifies this evidence can compare options objectively and justify the choice to stakeholders.</p>
+<p>Every decision tool in this chapter follows the same eight steps.</p>
+<div id="tbl-decision-steps" class="tbl-grid quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-decision-steps-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3.1: The eight steps of a decision under uncertainty
+</figcaption>
+<div aria-describedby="tbl-decision-steps-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="tbl-grid caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Step</th>
+<th>What you do</th>
+<th>Example from the events team</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1. State the question</td>
+<td>Write the decision as one question</td>
+<td>Which vendor should supply the event?</td>
+</tr>
+<tr class="even">
+<td>2. List the options</td>
+<td>Name every choice under your control</td>
+<td>Local vendor or international vendor</td>
+</tr>
+<tr class="odd">
+<td>3. Name the uncertain events</td>
+<td>Name what you cannot control</td>
+<td>The vendor delivers on time or late</td>
+</tr>
+<tr class="even">
+<td>4. Assign probabilities</td>
+<td>Give each event a number from evidence</td>
+<td>On time 0.740 for the local vendor</td>
+</tr>
+<tr class="odd">
+<td>5. Attach the outcomes</td>
+<td>Give each path a payoff, a cost or a time</td>
+<td>6,943.62 USD if on time</td>
+</tr>
+<tr class="even">
+<td>6. Calculate</td>
+<td>Combine probabilities and outcomes</td>
+<td>The expected value of each option</td>
+</tr>
+<tr class="odd">
+<td>7. Review the risk</td>
+<td>Look at the worst case and its chance</td>
+<td>A loss of 1,818.47 USD, with probability 0.260</td>
+</tr>
+<tr class="even">
+<td>8. Recommend</td>
+<td>Write the choice and the reason</td>
+<td>Book the vendor with the higher expected value, if the worst case is affordable</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Steps 1 to 3 need judgement and no arithmetic. Steps 4 to 6 are the arithmetic this chapter teaches. Steps 7 and 8 return to judgement, and they decide whether the arithmetic is used well.</p>
+<section id="five-terms-for-this-chapter" class="level3">
+<h3 class="anchored" data-anchor-id="five-terms-for-this-chapter">Five terms for this chapter</h3>
+<p>Five terms appear throughout the chapter, and each gets a full section later. You need to recognise all five now, as the following pages use them before their defining sections appear.</p>
+<p>A <strong>probability</strong> is a number from 0 to 1 that states how likely an event is. A probability of 0.83 means the event happens in about 83 cases out of 100.</p>
+<p>An <strong>event</strong> is an outcome you can count in the records: a registered person attended, a vendor delivered late, a task finished on day 16.</p>
+<p>An <strong>expected value</strong> is the average outcome of an uncertain option, with each possible outcome weighted by its probability. <a href="week03-part2.html#sec-expected-value">Part 2</a> shows how to calculate one.</p>
+<p>A <strong>decision tree</strong> is a diagram that sets out the options, the uncertain events that follow each option and the outcome at the end of every path.</p>
+<p>The <strong>critical path</strong> is the longest chain of linked tasks in a project. It sets the earliest finishing date, and any delay to a task on it delays the whole project. <a href="week03-part3.html#sec-backward-pass">Part 3</a> shows how to find it.</p>
+</section>
+</section>
+<section id="sec-probability" class="level2">
+<h2 class="anchored" data-anchor-id="sec-probability">Probability from records</h2>
+<p>A probability from records is the share of past cases in which an event happened. You count the cases where the event happened and divide by the number of cases the question is about.</p>
+<p><span class="math display">\[P(A) = \frac{\text{number of cases in which } A \text{ happened}}{\text{number of cases the question is about}}\]</span></p>
+<p><span class="math inline">\(P(A)\)</span> is read as “the probability of <span class="math inline">\(A\)</span>”. Three properties follow from the definition:</p>
+<ul>
+<li>Every probability lies between 0 and 1. A probability of 0 means the event never happened in the records, and 1 means it happened every time.</li>
+<li>The probabilities of all the possible outcomes of one variable add to 1. A registered person either attended or did not, so the two probabilities cover every case.</li>
+<li>A probability multiplied by 100 is a percentage. A probability of 0.83 and a share of 83 per cent state the same fact.</li>
+</ul>
+<p>The probability file holds 100 registration records from past events, one row per person who registered. Each row records whether the person attended, the type of ticket and how it was paid for.</p>
+<div id="tbl-prob-file" class="tbl-apa quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-prob-file-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3.2: The three variables in the probability file, 100 registration records
+</figcaption>
+<div aria-describedby="tbl-prob-file-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="tbl-apa caption-top table">
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Categories</th>
+<th>Count</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Attendance</code></td>
+<td>Attended, No_Show</td>
+<td>83, 17</td>
+</tr>
+<tr class="even">
+<td><code>Ticket_Type</code></td>
+<td>Standard, VIP</td>
+<td>80, 20</td>
+</tr>
+<tr class="odd">
+<td><code>Payment_Method</code></td>
+<td>Bank_Transfer, Cash, Credit_Card</td>
+<td>40, 30, 30</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<section id="where-a-probability-comes-from" class="level3">
+<h3 class="anchored" data-anchor-id="where-a-probability-comes-from">Where a probability comes from</h3>
+<p>A probability from records is one of three kinds a manager meets.</p>
+<ul>
+<li><strong>From records:</strong> 83 of 100 registered people attended, so the probability of attending is 0.83. This chapter uses records wherever they exist.</li>
+<li><strong>From judgement:</strong> an experienced events manager estimates that a new venue has a 0.9 chance of being ready on time. Judgement fills the gap when no records exist, and the report names it as judgement.</li>
+<li><strong>From equally likely outcomes:</strong> a fair die has six faces, so each has a probability of <span class="math inline">\(1/6\)</span>. Games of chance work this way. Business events rarely do.</li>
+</ul>
+<p>A probability from records describes the past. It serves as a forecast when the coming event resembles the past ones: a similar audience, a similar price and a similar reminder process. When those conditions change, the probability needs fresh evidence.</p>
+</section>
+<section id="sec-coin-toss" class="level3">
+<h3 class="anchored" data-anchor-id="sec-coin-toss">A probability as a long-run share</h3>
+<p>A probability from records rests on one idea: over many repetitions, the share of cases in which an event happens settles towards its probability. A short run can stray a long way from it. The coin toss below shows the idea on a fair coin, whose probability of heads is 0.5.</p>
+<div class="tool-embed">
+<iframe src="https://flairmi.com/toolkit/probability-explorer-embed.html" title="Coin toss, the share of heads as the tosses add up" width="100%" height="1060" loading="lazy" style="border:1px solid #d1d9e6; border-radius:6px;">
+</iframe>
+<p>If the panel above stays blank, open the <a href="https://flairmi.com/toolkit/probability-explorer.html">probability explorer in a new tab</a>.</p>
+</div>
+<ol type="1">
+<li>Press <strong>Toss 10</strong> three times. Each run gives a different share of heads, and some land well away from 0.50.</li>
+<li>Press <strong>Reset</strong>, then <strong>Toss 10,000</strong>. The chart shows the share wandering over the first few hundred tosses and then settling close to 0.50.</li>
+</ol>
+<p>The 100 registration records work the same way. 83 attendances in 100 give a probability of 0.83, and a file of 10 records could easily have given 0.7 or 0.9. The more records behind a probability, the closer it settles to the rate the next event will show.</p>
+</section>
+<section id="sec-complement" class="level3">
+<h3 class="anchored" data-anchor-id="sec-complement">The complement rule</h3>
+<p>The <strong>complement</strong> of an event is everything outside it. The complement of “attended” is “did not attend”, which the file records as <code>No_Show</code>. An event and its complement cover every case between them, so their probabilities add to 1.</p>
+<p><span class="math display">\[P(\text{not } A) = 1 - P(A)\]</span></p>
+<p>The complement rule simplifies calculation. When an event is hard to count and its complement is easy, count the complement and subtract from 1.</p>
+<div class="worked-example">
+<p><span class="we-label">Worked example 3.1</span></p>
+<section id="attendance-and-its-complement" class="level3">
+<h3 class="anchored" data-anchor-id="attendance-and-its-complement">Attendance and its complement</h3>
+<div class="we-problem">
+<p>The probability file holds 100 registration records, and 83 of them record <code>Attended</code>.</p>
+<p>Calculate the probability that a registered person attends, then use the complement rule to find the probability of a no-show. State what the two figures mean for a team expecting 100 registrations.</p>
+</div>
+<div class="we-solution">
+<p><strong>Attendance:</strong> The question is about all registered people, so the denominator is all 100 records.</p>
+<p><span class="math display">\[P(\text{Attended}) = \frac{83}{100} = 0.83\]</span></p>
+<p><strong>No-show, by the complement rule:</strong></p>
+<p><span class="math display">\[P(\text{No\_Show}) = 1 - 0.83 = 0.17\]</span></p>
+<p>The file confirms it: 17 records read <code>No_Show</code>, and <span class="math inline">\(17 \div 100 = 0.17\)</span>.</p>
+<p><strong>Meaning:</strong> If the next event resembles the past ones, about 83 of every 100 registered people will attend and about 17 seats will stay empty. A team ordering food for every registration will pay for approximately 17 uneaten meals per 100 registrations. <a href="week03-part2.html#sec-binomial">Part 2</a> shows how far the real number can stray from 83.</p>
+</div>
+</section>
+</div>
+<div id="tryit-3-1" class="callout callout-style-default callout-tip callout-titled" title="Try It 3.1: A training centre">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Try It 3.1: A training centre
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A training centre had 120 registrations for its last course, and 90 people attended.</p>
+<ol type="1">
+<li>Calculate the probability that a registered person attended.</li>
+<li>Use the complement rule to find the probability of a no-show.</li>
+<li>The next course has 160 registrations. About how many people should the centre expect to attend, if the next course resembles the last?</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Check your answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Check your answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><span class="math inline">\(P(\text{attended}) = 90 \div 120 = 0.75\)</span>.</li>
+<li><span class="math inline">\(P(\text{no-show}) = 1 - 0.75 = 0.25\)</span>. As a check, <span class="math inline">\(120 - 90 = 30\)</span> people stayed away, and <span class="math inline">\(30 \div 120 = 0.25\)</span>.</li>
+<li><span class="math inline">\(0.75 \times 160 = 120\)</span> people. The centre should plan for about 120 attendees, with about 40 empty seats.</li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="sec-contingency" class="level2">
+<h2 class="anchored" data-anchor-id="sec-contingency">Contingency tables and joint probability</h2>
+<p>A <strong>contingency table</strong> counts the cases that fall into each combination of two categorical variables. Each row is one category of the first variable, each column is one category of the second and each cell counts the cases that belong to both. Chapter 1 called the same layout a cross-tabulation.</p>
+<p><a href="#tbl-ticket-attendance" class="quarto-xref">Table&nbsp;<span>3.3</span></a> crosses ticket type with attendance for the 100 registration records.</p>
+<div id="tbl-ticket-attendance" class="tbl-calc quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ticket-attendance-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3.3: Ticket type by attendance, 100 registration records
+</figcaption>
+<div aria-describedby="tbl-ticket-attendance-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="tbl-calc caption-top table">
+<thead>
+<tr class="header">
+<th>Ticket type</th>
+<th>Attended</th>
+<th>No_Show</th>
+<th>Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Standard</td>
+<td>67</td>
+<td>13</td>
+<td>80</td>
+</tr>
+<tr class="even">
+<td>VIP</td>
+<td>16</td>
+<td>4</td>
+<td>20</td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td>83</td>
+<td>17</td>
+<td>100</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Each number in the table answers a different question.</p>
+<ul>
+<li><strong>A cell</strong> counts the cases in two categories at once. 16 people held a VIP ticket <em>and</em> attended.</li>
+<li><strong>A row total or a column total</strong> counts one category on its own. 20 people held a VIP ticket. These totals sit in the margins of the table, so a probability calculated from one is called a <strong>marginal probability</strong>.</li>
+<li><strong>The grand total</strong>, 100, counts every case.</li>
+</ul>
+<p>A <strong>joint probability</strong> is the probability that two events happen together. Divide a cell by the grand total:</p>
+<p><span class="math display">\[P(A \text{ and } B) = \frac{\text{number of cases in both } A \text{ and } B}{\text{number of cases the question is about}}\]</span></p>
+<p>For example: the probability that a registered person held a VIP ticket and attended is <span class="math inline">\(16 \div 100 = 0.16\)</span>. The marginal probability of a VIP ticket is <span class="math inline">\(20 \div 100 = 0.20\)</span>.</p>
+<p>A joint probability is never larger than either of its marginal probabilities, because every case counted in the cell is also counted in its row and in its column. If a joint probability exceeds a marginal one, a counting error has occurred.</p>
+<div class="worked-example">
+<p><span class="we-label">Worked example 3.2</span></p>
+<section id="reading-a-contingency-table" class="level3">
+<h3 class="anchored" data-anchor-id="reading-a-contingency-table">Reading a contingency table</h3>
+<div class="we-problem">
+<p>The events team crosses payment method with attendance.</p>
+<div id="tbl-payment-attendance" class="tbl-calc quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-payment-attendance-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3.4: Payment method by attendance, 100 registration records
+</figcaption>
+<div aria-describedby="tbl-payment-attendance-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="tbl-calc caption-top table">
+<thead>
+<tr class="header">
+<th>Payment method</th>
+<th>Attended</th>
+<th>No_Show</th>
+<th>Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Bank_Transfer</td>
+<td>34</td>
+<td>6</td>
+<td>40</td>
+</tr>
+<tr class="even">
+<td>Cash</td>
+<td>23</td>
+<td>7</td>
+<td>30</td>
+</tr>
+<tr class="odd">
+<td>Credit_Card</td>
+<td>26</td>
+<td>4</td>
+<td>30</td>
+</tr>
+<tr class="even">
+<td>Total</td>
+<td>83</td>
+<td>17</td>
+<td>100</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Calculate the probability that a registered person paid in cash, the probability that a registered person paid in cash and did not attend, and the probability that a registered person paid by bank transfer and attended. Name which of the three is a marginal probability.</p>
+</div>
+<div class="we-solution">
+<p><strong>Paid in cash:</strong> Read the row total. 30 of the 100 people paid in cash.</p>
+<p><span class="math display">\[P(\text{Cash}) = \frac{30}{100} = 0.30\]</span></p>
+<p>This is the <strong>marginal</strong> probability, taken from the margin of the table.</p>
+<p><strong>Paid in cash and did not attend:</strong> Read the cell where the Cash row meets the No_Show column.</p>
+<p><span class="math display">\[P(\text{Cash and No\_Show}) = \frac{7}{100} = 0.07\]</span></p>
+<p><strong>Paid by bank transfer and attended:</strong></p>
+<p><span class="math display">\[P(\text{Bank\_Transfer and Attended}) = \frac{34}{100} = 0.34\]</span></p>
+<p>Both joint probabilities use all 100 records as the denominator, because the question is about every registered person. Seven people in every 100 registrations are cash payers who stay away.</p>
+</div>
+</section>
+</div>
+</section>
+<section id="sec-conditional" class="level2">
+<h2 class="anchored" data-anchor-id="sec-conditional">Conditional probability</h2>
+<p>A <strong>conditional probability</strong> is the probability of one event among the cases where a second event has happened. The second event narrows the denominator to a subgroup. The word “given” signals it, and so do the phrases “among”, “of those who” and “within”.</p>
+<p><span class="math display">\[P(A \mid B) = \frac{\text{number of cases in both } A \text{ and } B}{\text{number of cases in } B} = \frac{P(A \text{ and } B)}{P(B)}\]</span></p>
+<p><span class="math inline">\(P(A \mid B)\)</span> is read as “the probability of <span class="math inline">\(A\)</span> given <span class="math inline">\(B\)</span>”. The vertical bar stands for “given”.</p>
+<p>For example: among the 20 VIP ticket holders, 16 attended.</p>
+<p><span class="math display">\[P(\text{Attended} \mid \text{VIP}) = \frac{16}{20} = 0.80\]</span></p>
+<p>The same figure comes from the second form of the formula: <span class="math inline">\(0.16 \div 0.20 = 0.80\)</span>.</p>
+<section id="the-denominator-decides-the-question" class="level3">
+<h3 class="anchored" data-anchor-id="the-denominator-decides-the-question">The denominator decides the question</h3>
+<p>The three kinds of probability differ only in their denominator. Choose the denominator from the wording of the question, and the arithmetic follows.</p>
+<div id="tbl-denominators" class="tbl-grid quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-denominators-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3.5: The same cell, four questions, three denominators
+</figcaption>
+<div aria-describedby="tbl-denominators-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="tbl-grid caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Question</th>
+<th>Kind</th>
+<th>Denominator</th>
+<th>Calculation</th>
+<th>Probability</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>What share of registered people hold a VIP ticket?</td>
+<td>Marginal</td>
+<td>All 100 records</td>
+<td><span class="math inline">\(20 \div 100\)</span></td>
+<td>0.20</td>
+</tr>
+<tr class="even">
+<td>What share of registered people hold a VIP ticket and attend?</td>
+<td>Joint</td>
+<td>All 100 records</td>
+<td><span class="math inline">\(16 \div 100\)</span></td>
+<td>0.16</td>
+</tr>
+<tr class="odd">
+<td>Among VIP ticket holders, what share attend?</td>
+<td>Conditional</td>
+<td>The 20 VIP records</td>
+<td><span class="math inline">\(16 \div 20\)</span></td>
+<td>0.80</td>
+</tr>
+<tr class="even">
+<td>Among the people who stayed away, what share held a VIP ticket?</td>
+<td>Conditional</td>
+<td>The 17 no-show records</td>
+<td><span class="math inline">\(4 \div 17\)</span></td>
+<td>0.24</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>The last two rows reverse the condition. <span class="math inline">\(P(\text{Attended} \mid \text{VIP})\)</span> asks about VIP ticket holders. <span class="math inline">\(P(\text{VIP} \mid \text{No\_Show})\)</span> asks about the people who stayed away. Both use the cell of 16 or the cell of 4, and they answer different questions, so they give different numbers. Read the word after “given” or “among” and use its count as the denominator.</p>
+<div class="worked-example">
+<p><span class="we-label">Worked example 3.3</span></p>
+<section id="which-group-needs-a-reminder" class="level3">
+<h3 class="anchored" data-anchor-id="which-group-needs-a-reminder">Which group needs a reminder?</h3>
+<div class="we-problem">
+<p>The events team can afford to send a reminder message to one payment group before the next event. Use <a href="#tbl-payment-attendance" class="quarto-xref">Table&nbsp;<span>3.4</span></a>.</p>
+<p>Calculate the probability of attending within each payment method, decide which group should receive the reminder, and explain why the joint probabilities give the wrong comparison for this decision.</p>
+</div>
+<div class="we-solution">
+<p><strong>Attendance within each payment method:</strong> The question is “among the people who paid this way, what share attended?”, so each row total is the denominator.</p>
+<div id="tbl-attend-given-payment" class="tbl-calc quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-attend-given-payment-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3.6: Attendance given payment method
+</figcaption>
+<div aria-describedby="tbl-attend-given-payment-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="tbl-calc caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Payment method</th>
+<th>Attended</th>
+<th>Row total</th>
+<th>Calculation</th>
+<th><span class="math inline">\(P(\text{Attended} \mid \text{method})\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Bank_Transfer</td>
+<td>34</td>
+<td>40</td>
+<td><span class="math inline">\(34 \div 40\)</span></td>
+<td>0.850</td>
+</tr>
+<tr class="even">
+<td>Cash</td>
+<td>23</td>
+<td>30</td>
+<td><span class="math inline">\(23 \div 30\)</span></td>
+<td>0.767</td>
+</tr>
+<tr class="odd">
+<td>Credit_Card</td>
+<td>26</td>
+<td>30</td>
+<td><span class="math inline">\(26 \div 30\)</span></td>
+<td>0.867</td>
+</tr>
+<tr class="even">
+<td>All methods</td>
+<td>83</td>
+<td>100</td>
+<td><span class="math inline">\(83 \div 100\)</span></td>
+<td>0.830</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p><strong>Decision:</strong> Send the reminder to cash payers. They attend at 0.767, the lowest rate of the three and 6 points below the overall rate of 0.830.</p>
+<p><strong>Why the joint probabilities mislead here:</strong> The joint probabilities of attending, 0.34 for bank transfer, 0.23 for cash and 0.26 for credit card, mostly reflect how many people used each method. Bank transfer has the most payers, so it has the most attenders. Divide by each group’s own size and the comparison becomes fair.</p>
+<p>One caution applies here: with only 30 cash payers, a gap of 6 points is about 2 people. Chapter 10 gives a test that decides whether a gap of this size is larger than chance. For a cheap reminder message, the evidence is enough to act on.</p>
+</div>
+</section>
+</div>
+<div id="tryit-3-2" class="callout callout-style-default callout-tip callout-titled" title="Try It 3.2: Credit card payers">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Try It 3.2: Credit card payers
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Use <a href="#tbl-payment-attendance" class="quarto-xref">Table&nbsp;<span>3.4</span></a>.</p>
+<ol type="1">
+<li>Calculate the probability that a registered person paid by credit card.</li>
+<li>Calculate the probability that a registered person paid by credit card and attended.</li>
+<li>Calculate the probability that a credit card payer attended.</li>
+<li>Calculate the probability that an attender paid by credit card.</li>
+<li>Explain why questions 3 and 4 give different answers from the same cell.</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Check your answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Check your answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Marginal: <span class="math inline">\(P(\text{Credit\_Card}) = 30 \div 100 = 0.30\)</span>.</li>
+<li>Joint: <span class="math inline">\(P(\text{Credit\_Card and Attended}) = 26 \div 100 = 0.26\)</span>.</li>
+<li>Conditional on paying by credit card: <span class="math inline">\(P(\text{Attended} \mid \text{Credit\_Card}) = 26 \div 30 = 0.867\)</span>.</li>
+<li>Conditional on attending: <span class="math inline">\(P(\text{Credit\_Card} \mid \text{Attended}) = 26 \div 83 = 0.313\)</span>.</li>
+<li>All four use the cell of 26 as the numerator. Question 3 is about the 30 credit card payers and question 4 is about the 83 attenders, so the denominators differ. About 87 per cent of credit card payers came, and about 31 per cent of the people who came had paid by credit card.</li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="sec-addition" class="level2">
+<h2 class="anchored" data-anchor-id="sec-addition">The addition rule</h2>
+<p>The <strong>addition rule</strong> gives the probability that at least one of two events happens: <span class="math inline">\(A\)</span>, or <span class="math inline">\(B\)</span>, or both. Add the two probabilities, then subtract the joint probability, because the cases in both events were counted once in each.</p>
+<p><span class="math display">\[P(A \text{ or } B) = P(A) + P(B) - P(A \text{ and } B)\]</span></p>
+<p>For example: a registered person who holds a VIP ticket or paid in cash. From the file, 20 people hold a VIP ticket and 30 paid in cash. Five people did both, so adding 20 and 30 counts those 5 twice.</p>
+<p><span class="math display">\[P(\text{VIP or Cash}) = 0.20 + 0.30 - 0.05 = 0.45\]</span></p>
+<p>A count confirms it: <span class="math inline">\(20 + 30 - 5 = 45\)</span> different people, out of 100.</p>
+<section id="mutually-exclusive-events" class="level3">
+<h3 class="anchored" data-anchor-id="mutually-exclusive-events">Mutually exclusive events</h3>
+<p>Two events are <strong>mutually exclusive</strong> when no case can belong to both. Each registration record carries exactly one payment method, so “paid in cash” and “paid by credit card” are mutually exclusive. Their joint probability is 0, and the addition rule loses its last term:</p>
+<p><span class="math display">\[P(A \text{ or } B) = P(A) + P(B) \quad \text{when } A \text{ and } B \text{ are mutually exclusive}\]</span></p>
+<p><span class="math display">\[P(\text{Cash or Credit\_Card}) = 0.30 + 0.30 = 0.60\]</span></p>
+<p>An event and its complement are always mutually exclusive, and together they cover every case. The complement rule is the addition rule applied to that pair: <span class="math inline">\(P(A) + P(\text{not } A) = 1\)</span>.</p>
+<div class="worked-example">
+<p><span class="we-label">Worked example 3.4</span></p>
+<section id="sizing-a-follow-up-list" class="level3">
+<h3 class="anchored" data-anchor-id="sizing-a-follow-up-list">Sizing a follow-up list</h3>
+<div class="we-problem">
+<p>The events team wants to telephone every registered person who either paid in cash or holds a VIP ticket. <a href="#tbl-ticket-payment" class="quarto-xref">Table&nbsp;<span>3.7</span></a> crosses the two variables.</p>
+<div id="tbl-ticket-payment" class="tbl-calc quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ticket-payment-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3.7: Ticket type by payment method, 100 registration records
+</figcaption>
+<div aria-describedby="tbl-ticket-payment-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="tbl-calc caption-top table">
+<thead>
+<tr class="header">
+<th>Ticket type</th>
+<th>Bank_Transfer</th>
+<th>Cash</th>
+<th>Credit_Card</th>
+<th>Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Standard</td>
+<td>31</td>
+<td>25</td>
+<td>24</td>
+<td>80</td>
+</tr>
+<tr class="even">
+<td>VIP</td>
+<td>9</td>
+<td>5</td>
+<td>6</td>
+<td>20</td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td>40</td>
+<td>30</td>
+<td>30</td>
+<td>100</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Calculate the share of registered people on the call list, and the number of calls to expect for an event with 200 registrations.</p>
+</div>
+<div class="we-solution">
+<p><strong>Addition rule:</strong> The events overlap, since 5 VIP ticket holders paid in cash.</p>
+<p><span class="math display">\[P(\text{VIP or Cash}) = P(\text{VIP}) + P(\text{Cash}) - P(\text{VIP and Cash})\]</span> <span class="math display">\[= \frac{20}{100} + \frac{30}{100} - \frac{5}{100} = 0.20 + 0.30 - 0.05 = 0.45\]</span></p>
+<p><strong>Check by counting cells:</strong> The VIP row holds <span class="math inline">\(9 + 5 + 6 = 20\)</span> people. The Cash column adds the 25 Standard cash payers who are outside the VIP row. <span class="math inline">\(20 + 25 = 45\)</span>.</p>
+<p><strong>Calls for 200 registrations:</strong> <span class="math inline">\(0.45 \times 200 = 90\)</span> calls. Adding the two probabilities without subtracting the overlap would yield 0.50 and 100 calls, incorrectly budgeting for 10 individuals.</p>
+</div>
+</section>
+</div>
+<div id="tryit-3-3" class="callout callout-style-default callout-tip callout-titled" title="Try It 3.3: Or, with and without overlap">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Try It 3.3: Or, with and without overlap
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Use <a href="#tbl-ticket-payment" class="quarto-xref">Table&nbsp;<span>3.7</span></a>.</p>
+<ol type="1">
+<li>Calculate <span class="math inline">\(P(\text{Standard or Credit\_Card})\)</span>.</li>
+<li>Calculate <span class="math inline">\(P(\text{Bank\_Transfer or Credit\_Card})\)</span>, and state why it needs no subtraction.</li>
+<li>Check your answer to question 1 by counting the cells it covers.</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Check your answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Check your answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>The events overlap in 24 people. <span class="math inline">\(0.80 + 0.30 - 0.24 = 0.86\)</span>.</li>
+<li>Each record has one payment method, so the two events are mutually exclusive and their joint probability is 0. <span class="math inline">\(0.40 + 0.30 = 0.70\)</span>.</li>
+<li>The Standard row covers 80 people. The Credit_Card column adds the 6 VIP credit card payers outside that row. <span class="math inline">\(80 + 6 = 86\)</span>, and <span class="math inline">\(86 \div 100 = 0.86\)</span>.</li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="sec-independence" class="level2">
+<h2 class="anchored" data-anchor-id="sec-independence">Independence and the multiplication rule</h2>
+<p>Two events are <strong>independent</strong> when knowing that one has happened leaves the probability of the other unchanged. In symbols, <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are independent when</p>
+<p><span class="math display">\[P(A \mid B) = P(A)\]</span></p>
+<p>Independence is an empirical claim tested by the records. Compare the conditional probability with the overall one.</p>
+<ul>
+<li><strong>Ticket type and attendance:</strong> <span class="math inline">\(P(\text{Attended}) = 0.83\)</span>. Among VIP ticket holders it is 0.80, and among Standard ticket holders it is <span class="math inline">\(67 \div 80 = 0.8375\)</span>. The three figures are close, so ticket type tells you little about whether a person attends. The two variables are close to independent.</li>
+<li><strong>Payment method and attendance:</strong> Among cash payers the rate falls to 0.767, against 0.83 overall. Knowing that a person paid in cash reduces the probability of attendance. Worked example 3.3 used exactly that difference.</li>
+</ul>
+<p>A sample of 100 records rarely gives two exactly equal figures, even when two variables are independent in the wider population. Chapter 10’s chi-squared test decides whether a difference is larger than sampling variation. In this chapter, judge it by size and by what it would change.</p>
+<section id="the-multiplication-rule" class="level3">
+<h3 class="anchored" data-anchor-id="the-multiplication-rule">The multiplication rule</h3>
+<p>The <strong>multiplication rule</strong> turns the conditional probability formula round to give a joint probability:</p>
+<p><span class="math display">\[P(A \text{ and } B) = P(B) \times P(A \mid B)\]</span></p>
+<p>For example: 20 per cent of registered people hold a VIP ticket, and 80 per cent of those attend. <span class="math inline">\(P(\text{VIP and Attended}) = 0.20 \times 0.80 = 0.16\)</span>, the cell value from <a href="#tbl-ticket-attendance" class="quarto-xref">Table&nbsp;<span>3.3</span></a>.</p>
+<p>When <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are independent, <span class="math inline">\(P(A \mid B)\)</span> equals <span class="math inline">\(P(A)\)</span>, and the rule becomes</p>
+<p><span class="math display">\[P(A \text{ and } B) = P(A) \times P(B) \quad \text{when } A \text{ and } B \text{ are independent}\]</span></p>
+<p>This shorter form needs independence. Used on dependent events, it gives the wrong joint probability. For cash payers who stay away, the shortcut gives <span class="math inline">\(0.30 \times 0.17 = 0.051\)</span>, about 5 people in 100, where the records hold 7.</p>
+</section>
+</section>
+<section id="sec-probability-tree" class="level2">
+<h2 class="anchored" data-anchor-id="sec-probability-tree">Probability trees</h2>
+<p>A <strong>probability tree</strong> draws two or more uncertain events in the order they happen. Each branch carries a probability. The branches at the first split carry marginal probabilities, and every later branch carries a probability conditional on the path that leads to it.</p>
+<p><a href="#fig-probability-tree" class="quarto-xref">Figure&nbsp;<span>3.1</span></a> draws the registration records as a tree. The first split is ticket type, the second is attendance.</p>
+<div id="fig-probability-tree" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A probability tree drawn left to right. From a starting circle, two branches lead to Standard, probability 0.80, and VIP, probability 0.20. From Standard, two branches lead to Attended, 67 of 80 equals 0.8375, and No Show, 13 of 80 equals 0.1625. From VIP, two branches lead to Attended, 16 of 20 equals 0.80, and No Show, 4 of 20 equals 0.20. A column on the right gives each path's probability: Standard and attended, 0.80 times 0.8375 equals 0.67. Standard and no-show, 0.13. VIP and attended, 0.16. VIP and no-show, 0.04.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-probability-tree-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/images/figures/ch03/ch03-fig-probability-tree.png" class="img-fluid figure-img" alt="A probability tree drawn left to right. From a starting circle, two branches lead to Standard, probability 0.80, and VIP, probability 0.20. From Standard, two branches lead to Attended, 67 of 80 equals 0.8375, and No Show, 13 of 80 equals 0.1625. From VIP, two branches lead to Attended, 16 of 20 equals 0.80, and No Show, 4 of 20 equals 0.20. A column on the right gives each path's probability: Standard and attended, 0.80 times 0.8375 equals 0.67. Standard and no-show, 0.13. VIP and attended, 0.16. VIP and no-show, 0.04.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-probability-tree-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.1: A probability tree for the 100 registration records: ticket type first, then attendance given the ticket type.
+</figcaption>
+</figure>
+</div>
+<p>Three rules read every probability tree:</p>
+<ol type="1">
+<li><strong>Multiply along a path.</strong> The probability of a complete path is the product of the probabilities on its branches. This is the multiplication rule: <span class="math inline">\(P(\text{Standard and Attended}) = 0.80 \times 0.8375 = 0.67\)</span>.</li>
+<li><strong>Add across paths.</strong> The probability of an outcome that two or more paths share is the sum of those paths. Two paths end in attendance, so <span class="math inline">\(P(\text{Attended}) = 0.67 + 0.16 = 0.83\)</span>, the figure from worked example 3.1.</li>
+<li><strong>Check the totals.</strong> The branches leaving any one point add to 1, and so do the path probabilities: <span class="math inline">\(0.67 + 0.13 + 0.16 + 0.04 = 1.00\)</span>.</li>
+</ol>
+<p>A tree is most useful when the stages happen in sequence, and when the second stage depends on the first. Part 2 adds a second kind of point, where the manager chooses the branch, and the probability tree becomes a decision tree.</p>
+<div class="worked-example">
+<p><span class="we-label">Worked example 3.5</span></p>
+<section id="a-tree-for-a-planned-event" class="level3">
+<h3 class="anchored" data-anchor-id="a-tree-for-a-planned-event">A tree for a planned event</h3>
+<div class="we-problem">
+<p>The events team plans to sell 150 tickets for its next event: 75 per cent Standard and 25 per cent VIP, a higher VIP share than in the past. Assume each ticket type keeps its past attendance rate from <a href="#fig-probability-tree" class="quarto-xref">Figure&nbsp;<span>3.1</span></a>.</p>
+<p>Draw the tree as a table of paths, calculate the overall probability of attending, and work out how many attendees to expect.</p>
+</div>
+<div class="we-solution">
+<p><strong>Paths:</strong> The first split uses the new ticket mix. The second keeps the attendance rate given each ticket type.</p>
+<div id="tbl-planned-tree" class="tbl-calc quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-planned-tree-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3.8: Path probabilities for the planned ticket mix
+</figcaption>
+<div aria-describedby="tbl-planned-tree-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="tbl-calc caption-top table">
+<thead>
+<tr class="header">
+<th>Path</th>
+<th>Calculation</th>
+<th>Path probability</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Standard and attended</td>
+<td><span class="math inline">\(0.75 \times 0.8375\)</span></td>
+<td>0.6281</td>
+</tr>
+<tr class="even">
+<td>Standard and no-show</td>
+<td><span class="math inline">\(0.75 \times 0.1625\)</span></td>
+<td>0.1219</td>
+</tr>
+<tr class="odd">
+<td>VIP and attended</td>
+<td><span class="math inline">\(0.25 \times 0.80\)</span></td>
+<td>0.2000</td>
+</tr>
+<tr class="even">
+<td>VIP and no-show</td>
+<td><span class="math inline">\(0.25 \times 0.20\)</span></td>
+<td>0.0500</td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td></td>
+<td>1.0000</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p><strong>Overall attendance:</strong> Add the two paths that end in attendance.</p>
+<p><span class="math display">\[P(\text{Attended}) = 0.6281 + 0.2000 = 0.8281\]</span></p>
+<p><strong>Expected attendees:</strong> <span class="math inline">\(0.8281 \times 150 = 124.2\)</span>, so plan for about 124 people.</p>
+<p>The new mix barely moves the attendance rate, from 0.830 to 0.828, because the two ticket types attend at almost the same rate. The tree illustrates the reason: a change in the first split matters only when the subsequent branches differ.</p>
+</div>
+</section>
+</div>
+<div id="tryit-3-4" class="callout callout-style-default callout-tip callout-titled" title="Try It 3.4: Payment method first">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Try It 3.4: Payment method first
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Redraw the tree with payment method as the first split and attendance as the second, using <a href="#tbl-payment-attendance" class="quarto-xref">Table&nbsp;<span>3.4</span></a>.</p>
+<ol type="1">
+<li>Write the probability on each of the 9 branches.</li>
+<li>Calculate the 6 path probabilities.</li>
+<li>Add the paths that end in attendance, and check the total against 0.83.</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Check your answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Check your answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>First split: Bank_Transfer <span class="math inline">\(40 \div 100 = 0.40\)</span>, Cash <span class="math inline">\(0.30\)</span>, Credit_Card <span class="math inline">\(0.30\)</span>. Second split, attended then no-show: Bank_Transfer <span class="math inline">\(34 \div 40 = 0.85\)</span> and <span class="math inline">\(6 \div 40 = 0.15\)</span>. Cash <span class="math inline">\(23 \div 30 = 0.767\)</span> and <span class="math inline">\(7 \div 30 = 0.233\)</span>. Credit_Card <span class="math inline">\(26 \div 30 = 0.867\)</span> and <span class="math inline">\(4 \div 30 = 0.133\)</span>.</li>
+<li>Bank_Transfer: <span class="math inline">\(0.40 \times 0.85 = 0.34\)</span> and <span class="math inline">\(0.40 \times 0.15 = 0.06\)</span>. Cash: <span class="math inline">\(0.30 \times 0.767 = 0.23\)</span> and <span class="math inline">\(0.30 \times 0.233 = 0.07\)</span>. Credit_Card: <span class="math inline">\(0.30 \times 0.867 = 0.26\)</span> and <span class="math inline">\(0.30 \times 0.133 = 0.04\)</span>. Each path equals a cell of <a href="#tbl-payment-attendance" class="quarto-xref">Table&nbsp;<span>3.4</span></a> divided by 100.</li>
+<li><span class="math inline">\(0.34 + 0.23 + 0.26 = 0.83\)</span>. The total agrees with worked example 3.1 whichever variable comes first.</li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+<section id="sec-probability-explorer" class="level2">
+<h2 class="anchored" data-anchor-id="sec-probability-explorer">Check your working with the probability explorer</h2>
+<p>The probability explorer below works on the same 100 registration records as this part. It has two tabs. <strong>Coin toss</strong> is the long-run share from <a href="#sec-coin-toss">earlier in this part</a>. <strong>Sample data</strong> loads the registration file and turns any two of its columns into a contingency table. Work each probability by hand first, then use the explorer to check it.</p>
+<div class="tool-embed">
+<iframe src="https://flairmi.com/toolkit/probability-explorer-embed.html" title="Probability explorer, with a coin toss and the registration records" width="100%" height="1060" loading="lazy" style="border:1px solid #d1d9e6; border-radius:6px;">
+</iframe>
+<p>If the panel above stays blank, open the <a href="https://flairmi.com/toolkit/probability-explorer.html">probability explorer in a new tab</a>.</p>
+</div>
+<p>Two checks to run:</p>
+<ol type="1">
+<li><strong>A conditional probability:</strong> On <strong>Sample data</strong>, set the rows to payment method and the columns to attendance, choose Cash as event A and Attended as event B, and set <strong>Show</strong> to <strong>Conditional on the row, P(B | A)</strong>. The Cash row reads 0.767, as in
+<ol class="example" type="1">
+<li></li>
+</ol></li>
+<li><strong>The addition rule and independence:</strong> Set the rows to ticket type, choose VIP as event A and Attended as event B. The explorer gives <span class="math inline">\(P(A \text{ or } B)\)</span> with the addition rule written out, and an independence check: independent events would put about 16.6 people in the VIP and attended cell, and the file holds 16.</li>
+</ol>
+</section>
+<section id="section-summary" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="section-summary">Section summary</h2>
+<p>A decision under uncertainty follows eight steps, from the question to the recommendation, and probability supplies the numbers for steps 4 to 6. A probability from records is a count divided by the number of cases the question is about, and the complement rule gives the chance that an event does not happen. A contingency table holds joint counts in its cells and marginal counts in its margins. A conditional probability narrows the denominator to a subgroup, and reversing the condition changes the question. The addition rule subtracts the overlap that would otherwise be counted twice. Independent events leave each other’s probabilities unchanged, and the multiplication rule joins events along the paths of a probability tree.</p>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Next:</strong> <a href="week03-part2.html">Part 2, expected value and decision trees</a> puts payoffs on the branches and chooses between options.</p>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/mohammedalisharafuddin\.github\.io\/dmm-textbook");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../weeks/week02-independent-study.html" class="pagination-link" aria-label="Independent study">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Independent study</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../weeks/week03-part2.html" class="pagination-link" aria-label="Part 2: Expected value and decision trees">
+        <span class="nav-page-text"><span class="chapter-title">Part 2: Expected value and decision trees</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -32,6 +32,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../weeks/week03.html" rel="next">
 <link href="../weeks/week02-tutorial.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -211,6 +212,120 @@ ul.task-list li input[type="checkbox"] {
         { "@type": "DefinedTerm", "name": "Standard normal distribution", "description": "The normal distribution with a mean of 0 and a standard deviation of 1.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week02-part3.html#sec-standard-normal" },
         { "@type": "DefinedTerm", "name": "Q-Q plot", "description": "A plot of sorted data against the values a normal distribution predicts for each position. Normal data lie on a straight line.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week02-part3.html#sec-normality" },
         { "@type": "DefinedTerm", "name": "Shapiro-Wilk test", "description": "A test of how closely data follow the pattern a normal distribution would produce. Its verdict depends heavily on sample size.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week02-part3.html#sec-normality" }
+      ]
+    },
+    {
+      "@type": ["Chapter", "LearningResource"],
+      "@id": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week03.html#chapter",
+      "name": "Decision Processes, Decision Trees, CPA/CPM, Gantt Charts, and Basics of Probability",
+      "position": 3,
+      "isPartOf": {
+        "@id": "https://mohammedalisharafuddin.github.io/dmm-textbook/#book"
+      },
+      "inLanguage": "en-GB",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "educationalLevel": "undergraduate",
+      "learningResourceType": "chapter",
+      "timeRequired": "PT9H",
+      "educationalUse": ["instruction", "self study"],
+      "assessmentType": ["formative exit check", "checkpoint quiz", "tutorial upload"],
+      "usageInfo": "https://mohammedalisharafuddin.github.io/dmm-textbook/front-matter/ai-use.html",
+      "educationalAlignment": {
+        "@type": "AlignmentObject",
+        "alignmentType": "teaches",
+        "targetName": "Probability, expected value and project scheduling for management decisions"
+      },
+      "teaches": ["Calculate the probability of an event from records, using the denominator the question names, and find the probability of its complement", "Build a contingency table and read joint, marginal and conditional probabilities from it", "Apply the addition rule, and recognise events that are mutually exclusive", "Judge whether two events are independent, and apply the multiplication rule along a probability tree", "Calculate the expected value and the standard deviation of an uncertain payoff, and name the probability and size of the worst outcome", "Draw a decision tree, roll it back to choose an option and review the risk behind the expected value", "Use the binomial model to estimate how many registered people attend, and how far that number varies", "Calculate a PERT expected duration and its variance from three time estimates", "Run a forward and a backward pass to find each task's earliest and latest times, its slack and the critical path", "Estimate the probability of finishing a project by a deadline from the PERT variance of the critical path", "Build and read a Gantt chart, and check it against the critical path", "Write a decision note that joins a probability, an expected value and a schedule into one recommendation"]
+    },
+    {
+      "@type": "DefinedTermSet",
+      "@id": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week03.html#key-terms",
+      "name": "Key terms, Chapter 3",
+      "hasDefinedTerm": [
+        {
+          "@type": "DefinedTerm",
+          "name": "Probability",
+          "description": "A number from 0 to 1 stating how likely an event is. From records, the count of cases in the event divided by the number of cases the question is about.",
+          "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week03.html#sec-probability"
+        },
+        {
+          "@type": "DefinedTerm",
+          "name": "Contingency table",
+          "description": "A table counting the cases in each combination of two categorical variables.",
+          "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week03.html#sec-contingency"
+        },
+        {
+          "@type": "DefinedTerm",
+          "name": "Joint probability",
+          "description": "The probability that two events happen together.",
+          "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week03.html#sec-contingency"
+        },
+        {
+          "@type": "DefinedTerm",
+          "name": "Conditional probability",
+          "description": "The probability of one event among the cases where a second event has happened.",
+          "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week03.html#sec-conditional"
+        },
+        {
+          "@type": "DefinedTerm",
+          "name": "Addition rule",
+          "description": "P(A or B) equals P(A) plus P(B) minus P(A and B).",
+          "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week03.html#sec-addition"
+        },
+        {
+          "@type": "DefinedTerm",
+          "name": "Independent events",
+          "description": "Events where knowing that one happened leaves the probability of the other unchanged.",
+          "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week03.html#sec-independence"
+        },
+        {
+          "@type": "DefinedTerm",
+          "name": "Probability tree",
+          "description": "A diagram of uncertain events in the order they happen, with a probability on each branch.",
+          "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week03.html#sec-probability-tree"
+        },
+        {
+          "@type": "DefinedTerm",
+          "name": "Expected value",
+          "description": "The average of a random variable's possible values, each weighted by its probability.",
+          "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week03-part2.html#sec-expected-value"
+        },
+        {
+          "@type": "DefinedTerm",
+          "name": "Decision tree",
+          "description": "A diagram of options, chance events and payoffs, rolled back from right to left to choose an option.",
+          "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week03-part2.html#sec-decision-trees"
+        },
+        {
+          "@type": "DefinedTerm",
+          "name": "Binomial model",
+          "description": "The probability distribution of the number of successes in a fixed number of independent trials with the same probability of success.",
+          "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week03-part2.html#sec-binomial"
+        },
+        {
+          "@type": "DefinedTerm",
+          "name": "PERT",
+          "description": "An expected task duration, (O + 4M + P) / 6, and a variance from optimistic, most likely and pessimistic estimates.",
+          "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week03-part3.html#sec-pert"
+        },
+        {
+          "@type": "DefinedTerm",
+          "name": "Slack",
+          "description": "The number of days a task can slip without moving the project's finishing date. Also called float.",
+          "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week03-part3.html#sec-backward-pass"
+        },
+        {
+          "@type": "DefinedTerm",
+          "name": "Critical path",
+          "description": "The chain of zero-slack tasks that sets a project's finishing date.",
+          "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week03-part3.html#sec-backward-pass"
+        },
+        {
+          "@type": "DefinedTerm",
+          "name": "Gantt chart",
+          "description": "A project schedule drawn as horizontal bars against a calendar.",
+          "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week03-part3.html#sec-gantt"
+        }
       ]
     }
   ]
@@ -409,6 +524,47 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../weeks/week02-independent-study.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Independent study</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Chapter 3: Decision Processes, Decision Trees, CPA/CPM, Gantt Charts, and Basics of Probability</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week03.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Part 1: Probability from records</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week03-part2.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Part 2: Expected value and decision trees</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week03-part3.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Part 3: Project time, the critical path and Gantt charts</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week03-reference.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Running the analysis, and chapter reference</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week03-tutorial.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Tutorial: Decision trees, CPA/CPM, and Gantt practice</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week03-independent-study.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Independent study</span></a>
   </div>
 </li>
       </ul>
@@ -1280,6 +1436,9 @@ Table&nbsp;2.24: Self-check before the checkpoint quiz
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../weeks/week03.html" class="pagination-link" aria-label="Part 1: Probability from records">
+        <span class="nav-page-text"><span class="chapter-title">Part 1: Probability from records</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

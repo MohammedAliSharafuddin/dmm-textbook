@@ -83,6 +83,21 @@ must be declared in the submission.
   and output annotation, each step shown in both JASP and PocketStat.
 - [Chapter 2 Independent Study](weeks/week02-independent-study.html): exercises, an independent
   analysis, a self-check and worked solutions, for revision. Nothing on it is graded.
+- [Chapter 3, Part 1: Probability from Records](weeks/week03.html): decisions under
+  uncertainty, the complement, contingency tables, joint and conditional probability, the
+  addition rule, independence and probability trees.
+- [Chapter 3, Part 2: Expected Value and Decision Trees](weeks/week03-part2.html): random
+  variables, expected value and the risk behind it, decision trees and rollback, and the
+  binomial model for attendance.
+- [Chapter 3, Part 3: Project Time, the Critical Path and Gantt Charts](weeks/week03-part3.html):
+  PERT three-point estimates, the forward and backward pass, slack, the chance of meeting a
+  deadline, and Gantt charts.
+- [Chapter 3: Running the Analysis and Reference](weeks/week03-reference.html): the same work
+  in Google Sheets and LibreOffice Calc, how to report it, and the chapter key terms and formula review.
+- [Chapter 3 Tutorial](weeks/week03-tutorial.html): a 14-step spreadsheet session on expected
+  value, the critical path and a Gantt chart, each step shown in both Google Sheets and LibreOffice Calc.
+- [Chapter 3 Independent Study](weeks/week03-independent-study.html): exercises, an independent
+  analysis, a self-check and worked solutions, for revision. Nothing on it is graded.
 
 ## Optional
 
