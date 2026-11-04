@@ -633,16 +633,36 @@ window.Quarto = {
 </header>
 
 
-<p>Parts 1 and 2 evaluated uncertain outcomes using monetary values. Part 3 evaluates them using time. It determines the preparation duration, identifies the tasks that dictate the completion date and calculates the probability of meeting a deadline.</p>
+<p>In parts 1 and 2 we evaluated uncertain outcomes in money. In this part we evaluate them in time: we calculate how long preparation will take, identify the tasks that set the completion date and calculate the probability of meeting a deadline.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Where we are in this chapter">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Where we are in this chapter
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Our events team is planning a one-day training event and has three questions to answer:</p>
+<ol type="1">
+<li>How many of the people who register will attend?</li>
+<li>Which of two catering vendors should we book?</li>
+<li>How many working days do we need to be ready?</li>
+</ol>
+<p>In part 1 we used 100 registration records to find that a registered person attends with probability 0.83. In part 2 we compared two catering vendors using expected value and a risk review, and we used the binomial model to estimate how many people will attend.</p>
+<p>In this part we answer the third question, using two files. <code>Week3_CPM_Task_Data.csv</code> lists the 8 tasks we must finish before the event. For each task it gives three estimates of the duration in working days, and the tasks that must finish before it can start. <code>Week3_Gantt_Data.csv</code> holds the same 8 tasks as a schedule, with a start day, an end day and the team responsible for each.</p>
+</div>
+</div>
 <section id="sec-project-network" class="level2">
 <h2 class="anchored" data-anchor-id="sec-project-network">Projects as linked tasks</h2>
-<p>A <strong>project</strong> is a set of tasks that together produce one result by a date. Some tasks can start at once. Others must wait for earlier tasks to finish. A task that must finish before another can start is that task’s <strong>predecessor</strong>.</p>
-<p>Two names cover the same method. <strong>Critical path analysis</strong> (CPA) is the usual name in the UK, and the <strong>critical path method</strong> (CPM) is the usual name in the United States. This chapter uses the abbreviation CPM.</p>
-<p>The CPM file lists the 8 tasks the events team must finish before the event. Each row gives three estimates of the task’s duration in working days, which the next section explains, and the task’s predecessors.</p>
+<p>A <strong>project</strong> is a set of tasks that together produce one result, such as an event, by a fixed date. Some tasks can start at once. Others must wait for earlier tasks to finish. A task that must finish before another can start is that task’s <strong>predecessor</strong>.</p>
+<p>Two names cover the same method. <strong>Critical path analysis</strong> (CPA) is the usual name in the UK, and the <strong>critical path method</strong> (CPM) is the usual name in the United States. In this chapter we use the abbreviation CPM.</p>
+<p>The CPM file, <code>Week3_CPM_Task_Data.csv</code>, lists the 8 tasks we must finish before the event. Each row gives three estimates of the task’s duration in working days, explained in <a href="#sec-pert" class="quarto-xref"><span>Three-point estimates and PERT</span></a>, and the task’s predecessors. To keep <a href="#tbl-cpm-file" class="quarto-xref">Table&nbsp;<span>3.18</span></a> narrow, the predecessors of Staff_Briefing are given by their IDs: “3, 4, 5 and 6” means tasks 3, 4, 5 and 6.</p>
 <div id="tbl-cpm-file" class="tbl-apa quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-cpm-file-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;3.16: The CPM task file, with durations in working days
+Table&nbsp;3.18: The CPM task file, with durations in working days
 </figcaption>
 <div aria-describedby="tbl-cpm-file-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="tbl-apa caption-top table">
@@ -726,7 +746,7 @@ Table&nbsp;3.16: The CPM task file, with durations in working days
 </div>
 </figure>
 </div>
-<p><a href="#fig-project-network" class="quarto-xref">Figure&nbsp;<span>3.4</span></a> draws the tasks as a <strong>network</strong>. Each box is a task, and each arrow runs from a predecessor to the task that waits for it. Reading the arrows from left to right gives the order of work. The figure already marks the result this part works towards: the slack of each task and the critical path.</p>
+<p>In <a href="#fig-project-network" class="quarto-xref">Figure&nbsp;<span>3.4</span></a> the tasks are drawn as a <strong>network</strong>. Each box is a task, and each arrow runs from a predecessor to the task that waits for it. Reading the arrows from left to right gives the order of work. The figure also marks two results you will calculate later in this part: the slack of each task and the critical path.</p>
 <div id="fig-project-network" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A network of 8 boxes connected by arrows, read left to right. Venue Booking, 5 days, slack 0, has thick solid arrows to Catering Arrangement, 4 days, slack 0, then to AV and Equipment Setup, 5 days, slack 0, then to Staff Briefing, 1 day, slack 0, then to Final Rehearsal, 1 day, slack 0. These five boxes are shaded. A dashed arrow runs from Venue Booking to Marketing Launch, 5 days, slack 4, and on to Staff Briefing. Speaker Confirmation, 3 days, slack 6, has a dashed arrow to Registration System Setup, 5 days, slack 6, and on to Staff Briefing. A dotted curved arrow runs from Catering Arrangement to Staff Briefing. Text at the right reads Finish: day 16, and a key explains the three line styles.">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-project-network-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -737,21 +757,21 @@ Figure&nbsp;3.4: The 8 event tasks as a network, with most likely durations, sla
 </figcaption>
 </figure>
 </div>
-<p>Staff_Briefing lists Catering_Arrangement as a predecessor, and AV_and_Equipment_Setup already waits for catering. The direct link from catering to the briefing adds no new constraint, so the figure draws it dotted. A listed predecessor that the network already covers is redundant. Identifying one demonstrates careful reading of both the network and the table.</p>
+<p>One link in the network adds nothing. Staff_Briefing lists Catering_Arrangement as a predecessor, but the briefing also waits for AV_and_Equipment_Setup, which itself starts only once catering has finished. So the briefing can never start before catering ends, and the direct link from catering to the briefing is redundant. In the figure it is drawn as a dotted arrow. To find a redundant link, read the network and the table together.</p>
 </section>
 <section id="sec-pert" class="level2">
 <h2 class="anchored" data-anchor-id="sec-pert">Three-point estimates and PERT</h2>
-<p>A task duration is uncertain, similar to a vendor delivery time. The <strong>programme evaluation and review technique</strong> (PERT) requires task experts to provide three estimates:</p>
+<p>A task duration is uncertain, just as a vendor’s delivery time is. The <strong>programme evaluation and review technique</strong> (PERT) asks the people who know each task for three estimates:</p>
 <ul>
 <li><strong>Optimistic</strong>, <span class="math inline">\(O\)</span>: the duration if everything goes well</li>
 <li><strong>Most likely</strong>, <span class="math inline">\(M\)</span>: the usual duration</li>
 <li><strong>Pessimistic</strong>, <span class="math inline">\(P\)</span>: the duration if things go badly, short of disaster</li>
 </ul>
-<p>PERT combines them into an <strong>expected duration</strong>, <span class="math inline">\(T_E\)</span>, which gives the most likely estimate four times the weight of each of the others:</p>
+<p>PERT combines them into an <strong>expected duration</strong>, <span class="math inline">\(T_E\)</span>. This is a weighted average: the most likely estimate counts four times as much as each of the other two.</p>
 <p><span class="math display">\[T_E = \frac{O + 4M + P}{6}\]</span></p>
-<p>The six in the denominator is the total weight, <span class="math inline">\(1 + 4 + 1\)</span>. PERT also gives each task a <strong>variance</strong>, which measures how uncertain its duration is. The range from optimistic to pessimistic is treated as about six standard deviations wide:</p>
+<p>We divide by 6 because the weights add to <span class="math inline">\(1 + 4 + 1 = 6\)</span>. PERT also gives each task a <strong>variance</strong>, which measures how uncertain its duration is. PERT assumes that the range from the optimistic to the pessimistic estimate covers about six standard deviations, so one standard deviation is one sixth of that range:</p>
 <p><span class="math display">\[\sigma = \frac{P - O}{6} \qquad \sigma^2 = \left(\frac{P - O}{6}\right)^2\]</span></p>
-<p>A task with a wide gap between its optimistic and pessimistic estimates has a large variance. A task with closely aligned estimates has a small variance.</p>
+<p>A task with a wide gap between its optimistic and pessimistic estimates has a large variance, and a task whose estimates sit close together has a small variance.</p>
 <div class="worked-example">
 <p><span class="we-label">Worked example 3.10</span></p>
 <section id="the-expected-duration-of-the-venue-booking" class="level3">
@@ -765,15 +785,15 @@ Figure&nbsp;3.4: The 8 event tasks as a network, with most likely durations, sla
 <p><span class="math display">\[T_E = \frac{2 + 4 \times 5 + 6}{6}\]</span> <span class="math display">\[= \frac{2 + 20 + 6}{6} = \frac{28}{6} = 4.667 \text{ days}\]</span></p>
 <p><strong>Standard deviation and variance:</strong></p>
 <p><span class="math display">\[\sigma = \frac{6 - 2}{6} = 0.667 \text{ days}\]</span> <span class="math display">\[\sigma^2 = \left(\frac{4}{6}\right)^2 = \frac{16}{36} = 0.444\]</span></p>
-<p><strong>Why it falls below 5:</strong> The optimistic estimate sits 3 days below the most likely one, and the pessimistic estimate only 1 day above it. The estimates skew towards an early finish, and the weighted average reflects this. For a task where the pessimistic estimate exceeds the most likely estimate by a wide margin, the expected duration will exceed the most likely estimate.</p>
+<p><strong>Why it falls below 5:</strong> The optimistic estimate sits 3 days below the most likely one, and the pessimistic estimate only 1 day above it. So the estimates lean towards an early finish, and the average falls below 5. When the pessimistic estimate sits far above the most likely one, the opposite happens and the expected duration is above the most likely estimate.</p>
 </div>
 </section>
 </div>
-<p><a href="#tbl-pert" class="quarto-xref">Table&nbsp;<span>3.17</span></a> applies the same arithmetic to all 8 tasks.</p>
+<p>In <a href="#tbl-pert" class="quarto-xref">Table&nbsp;<span>3.19</span></a>, the same arithmetic is applied to all 8 tasks.</p>
 <div id="tbl-pert" class="tbl-calc quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-pert-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;3.17: PERT expected durations and variances for the 8 tasks, in days
+Table&nbsp;3.19: PERT expected durations and variances for the 8 tasks, in days
 </figcaption>
 <div aria-describedby="tbl-pert-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="tbl-calc caption-top table">
@@ -875,16 +895,16 @@ Table&nbsp;3.17: PERT expected durations and variances for the 8 tasks, in days
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Use the estimates in <a href="#tbl-cpm-file" class="quarto-xref">Table&nbsp;<span>3.16</span></a>.</p>
+<p>Use the estimates in <a href="#tbl-cpm-file" class="quarto-xref">Table&nbsp;<span>3.18</span></a> to answer these three questions.</p>
 <ol type="1">
 <li>Calculate the PERT expected duration and variance of Marketing_Launch.</li>
 <li>Calculate the same two figures for Staff_Briefing.</li>
-<li>Marketing_Launch has the largest variance of the 8 tasks. What does that tell the project manager?</li>
+<li>Marketing_Launch has the largest variance of the 8 tasks. What does that mean for the project manager?</li>
 </ol>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled" title="Check your answer">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -893,12 +913,12 @@ Table&nbsp;3.17: PERT expected durations and variances for the 8 tasks, in days
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
 <li><span class="math inline">\(T_E = (2 + 4 \times 5 + 7) \div 6 = 29 \div 6 = 4.833\)</span> days. <span class="math inline">\(\sigma^2 = ((7 - 2) \div 6)^2 = 25 \div 36 = 0.694\)</span>.</li>
 <li><span class="math inline">\(T_E = (1 + 4 \times 1 + 2) \div 6 = 7 \div 6 = 1.167\)</span> days. <span class="math inline">\(\sigma^2 = ((2 - 1) \div 6)^2 = 1 \div 36 = 0.028\)</span>.</li>
-<li>Its duration is the least certain: the estimates run from 2 to 7 days. If marketing were on the critical path, it would be the task most likely to move the finishing date. Part of the answer comes in the next two sections, which show that it has slack.</li>
+<li>Its duration is the least certain: the estimates run from 2 to 7 days. If marketing were on the critical path, it would be the task most likely to move the finishing date. The next two sections show that it has slack. So its uncertainty moves the finishing date only when a delay exceeds that slack.</li>
 </ol>
 </div>
 </div>
@@ -906,7 +926,7 @@ Table&nbsp;3.17: PERT expected durations and variances for the 8 tasks, in days
 </section>
 <section id="sec-forward-pass" class="level2">
 <h2 class="anchored" data-anchor-id="sec-forward-pass">The forward pass</h2>
-<p>The <strong>forward pass</strong> works through the network from left to right and finds the earliest time each task can start and finish. Time is counted in days from the start of the project, so time 0 is the start of day 1, and time 5 is the end of day 5.</p>
+<p>The <strong>forward pass</strong> works through the network from left to right and finds the earliest time each task can start and finish. We count time in days from the start of the project, so time 0 is the start of day 1, and time 5 is the end of day 5.</p>
 <ul>
 <li><strong>Earliest start</strong>, ES: a task with no predecessors starts at 0. A task with predecessors starts when the <em>last</em> of them finishes, so its ES is the <em>largest</em> EF among its predecessors.</li>
 <li><strong>Earliest finish</strong>, EF: the earliest start plus the duration.</li>
@@ -922,7 +942,7 @@ Table&nbsp;3.17: PERT expected durations and variances for the 8 tasks, in days
 <li><strong>Latest start</strong>, LS: the latest finish minus the duration.</li>
 </ul>
 <p><span class="math display">\[LS = LF - \text{duration}\]</span></p>
-<p>The gap between the two passes is the task’s <strong>slack</strong>, also called <strong>float</strong>: the number of days the task can slip without moving the project’s finishing date.</p>
+<p>The gap between the two passes is the task’s <strong>slack</strong>, also called <strong>float</strong>: the number of days the task can be delayed without moving the project’s finishing date.</p>
 <p><span class="math display">\[\text{Slack} = LS - ES = LF - EF\]</span></p>
 <p>A task with zero slack is a <strong>critical task</strong>. The chain of critical tasks from the start of the project to its end is the <strong>critical path</strong>. Its total duration is the project’s finishing time, because it is the longest chain of linked tasks in the network. Any delay to a critical task delays the entire project.</p>
 <div class="worked-example">
@@ -930,7 +950,7 @@ Table&nbsp;3.17: PERT expected durations and variances for the 8 tasks, in days
 <section id="the-critical-path-for-the-event" class="level3">
 <h3 class="anchored" data-anchor-id="the-critical-path-for-the-event">The critical path for the event</h3>
 <div class="we-problem">
-<p>Use the most likely durations from <a href="#tbl-cpm-file" class="quarto-xref">Table&nbsp;<span>3.16</span></a> and the predecessors shown there.</p>
+<p>Use the most likely durations from <a href="#tbl-cpm-file" class="quarto-xref">Table&nbsp;<span>3.18</span></a> and the predecessors shown there.</p>
 <p>Run the forward and backward passes, calculate each task’s slack and name the critical path and the project’s finishing day.</p>
 </div>
 <div class="we-solution">
@@ -941,20 +961,20 @@ Table&nbsp;3.17: PERT expected durations and variances for the 8 tasks, in days
 <li>Registration_System_Setup waits for the speakers: ES 3, EF <span class="math inline">\(3 + 5 = 8\)</span>.</li>
 <li>AV_and_Equipment_Setup waits for catering: ES 9, EF <span class="math inline">\(9 + 5 = 14\)</span>.</li>
 <li>Staff_Briefing waits for four tasks, finishing at 10, 8, 9 and 14. It starts at the largest, 14, and finishes at 15.</li>
-<li>Final_Rehearsal: ES 15, EF 16. The project finishes at 16.</li>
+<li>Final_Rehearsal: ES 15 and EF 16, so the project finishes at 16.</li>
 </ul>
 <p><strong>Backward pass, right to left:</strong></p>
 <ul>
-<li>Final_Rehearsal: LF 16, LS <span class="math inline">\(16 - 1 = 15\)</span>. Staff_Briefing: LF 15, LS 14.</li>
+<li>Final_Rehearsal has LF 16 and LS <span class="math inline">\(16 - 1 = 15\)</span>, so Staff_Briefing has LF 15 and LS 14.</li>
 <li>AV_and_Equipment_Setup, Marketing_Launch and Registration_System_Setup each feed only the briefing, so each has LF 14. Their LS values are <span class="math inline">\(14 - 5 = 9\)</span>, <span class="math inline">\(14 - 5 = 9\)</span> and <span class="math inline">\(14 - 5 = 9\)</span>.</li>
 <li>Catering_Arrangement feeds the AV setup (LS 9) and the briefing (LS 14). Take the smaller: LF 9, LS <span class="math inline">\(9 - 4 = 5\)</span>.</li>
-<li>Venue_Booking feeds marketing (LS 9) and catering (LS 5). LF 5, LS 0.</li>
-<li>Speaker_Confirmation feeds registration (LS 9). LF 9, LS <span class="math inline">\(9 - 3 = 6\)</span>.</li>
+<li>Venue_Booking feeds marketing (LS 9) and catering (LS 5), so its LF is 5 and its LS is 0.</li>
+<li>Speaker_Confirmation feeds registration (LS 9), so its LF is 9 and its LS is <span class="math inline">\(9 - 3 = 6\)</span>.</li>
 </ul>
 <div id="tbl-cpm-schedule" class="tbl-calc quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-cpm-schedule-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;3.18: Forward pass, backward pass and slack, most likely durations in days
+Table&nbsp;3.20: Forward pass, backward pass and slack, most likely durations in days
 </figcaption>
 <div aria-describedby="tbl-cpm-schedule-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="tbl-calc caption-top table">
@@ -1057,15 +1077,15 @@ Table&nbsp;3.18: Forward pass, backward pass and slack, most likely durations in
 </figure>
 </div>
 <p><strong>Critical path:</strong> Venue_Booking, Catering_Arrangement, AV_and_Equipment_Setup, Staff_Briefing, Final_Rehearsal. Its durations add to <span class="math inline">\(5 + 4 + 5 + 1 + 1 = 16\)</span> days, the project’s finishing time.</p>
-<p><strong>Slack:</strong> Marketing can be delayed by up to 4 days. Speaker confirmation and registration setup each have 6 days of slack. These 6 days are shared between the two tasks because they are on the same path. If speaker confirmation is delayed by 6 days, registration setup will have zero slack remaining.</p>
+<p><strong>Slack:</strong> Marketing can be delayed by up to 4 days. Speaker confirmation and registration setup each have 6 days of slack. The two tasks are on the same chain, so they share those 6 days: if speaker confirmation is delayed by 6 days, registration setup has no slack left.</p>
 </div>
 </section>
 </div>
 <section id="the-same-path-with-pert-durations" class="level3">
 <h3 class="anchored" data-anchor-id="the-same-path-with-pert-durations">The same path with PERT durations</h3>
-<p>Repeating the two passes with the PERT expected durations from <a href="#tbl-pert" class="quarto-xref">Table&nbsp;<span>3.17</span></a> yields the same critical path. Its expected length is</p>
+<p>Repeating the two passes with the PERT expected durations from <a href="#tbl-pert" class="quarto-xref">Table&nbsp;<span>3.19</span></a> yields the same critical path, with an expected length of:</p>
 <p><span class="math display">\[4.667 + 4.000 + 5.000 + 1.167 + 1.167 = \frac{28 + 24 + 30 + 7 + 7}{6}\]</span> <span class="math display">\[= \frac{96}{6} = 16.0 \text{ days}\]</span></p>
-<p>The slack shrinks a little for the other tasks: 4.17 days for marketing and 5.83 days for the speaker and registration chain. The next section uses the PERT figures to calculate the probability of meeting the finishing date.</p>
+<p>The slack shrinks a little for the other tasks: 4.17 days for marketing and 5.83 days for the speaker and registration chain. In <a href="#sec-deadline" class="quarto-xref"><span>The probability of meeting a deadline</span></a> we use the PERT figures to calculate the probability of meeting a deadline.</p>
 <div id="tryit-3-9" class="callout callout-style-default callout-tip callout-titled" title="Try It 3.9: Delays">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1076,7 +1096,7 @@ Table&nbsp;3.18: Forward pass, backward pass and slack, most likely durations in
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Use <a href="#tbl-cpm-schedule" class="quarto-xref">Table&nbsp;<span>3.18</span></a>. For each delay on its own, give the new finishing day of the project.</p>
+<p>Using <a href="#tbl-cpm-schedule" class="quarto-xref">Table&nbsp;<span>3.20</span></a>, give the new finishing day of the project for each delay on its own.</p>
 <ol type="1">
 <li>Marketing_Launch takes 7 days in place of 5.</li>
 <li>Marketing_Launch takes 10 days in place of 5.</li>
@@ -1086,7 +1106,7 @@ Table&nbsp;3.18: Forward pass, backward pass and slack, most likely durations in
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled" title="Check your answer">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1095,7 +1115,7 @@ Table&nbsp;3.18: Forward pass, backward pass and slack, most likely durations in
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
 <li><strong>Day 16:</strong> A delay of 2 days is within marketing’s 4 days of slack. It now finishes at 12, and the briefing still starts at 14.</li>
@@ -1110,21 +1130,22 @@ Table&nbsp;3.18: Forward pass, backward pass and slack, most likely durations in
 </section>
 <section id="sec-deadline" class="level2">
 <h2 class="anchored" data-anchor-id="sec-deadline">The probability of meeting a deadline</h2>
-<p>PERT turns the finishing date into a random variable, and chapter 2’s normal model gives the probability of meeting a deadline. Three steps lead there:</p>
+<p>With PERT, each task’s duration is uncertain, so the finishing date is a random variable. We can then use the normal model from <a href="week02-part3.html#sec-standard-normal">chapter 2</a> to estimate the probability of meeting a deadline, in three steps:</p>
 <ol type="1">
-<li><strong>Mean of the path:</strong> Add the expected durations along the critical path. Here, 16.0 days.</li>
+<li><strong>Mean of the path:</strong> Add the expected durations along the critical path: here, 16.0 days.</li>
 <li><strong>Variance of the path:</strong> Add the variances of the tasks on the critical path. This assumes the task durations are independent of one another.</li>
-<li><strong>Probability:</strong> Treat the path’s duration as normal, find the z-score of the deadline and read the share below it from the standard normal table.</li>
+<li><strong>Probability:</strong> Treat the path’s duration as normal, find the z-score of the deadline and read the area below it from the standard normal table.</li>
 </ol>
 <p><span class="math display">\[\sigma^2_{\text{path}} = \sum \sigma^2_{\text{task}} \qquad z = \frac{\text{deadline} - T_{\text{path}}}{\sigma_{\text{path}}}\]</span></p>
-<p>Variances are additive, whereas standard deviations are not. Add the variances first and then take the square root of the total.</p>
+<p>where <span class="math inline">\(T_{\text{path}}\)</span> is the expected length of the critical path and <span class="math inline">\(\sigma_{\text{path}}\)</span> is the square root of its variance.</p>
+<p>Variances add along a path, so to get the standard deviation of the path, add the variances first and then take the square root of the total.</p>
 <div class="worked-example">
 <p><span class="we-label">Worked example 3.12</span></p>
 <section id="ready-in-18-working-days" class="level3">
 <h3 class="anchored" data-anchor-id="ready-in-18-working-days">Ready in 18 working days?</h3>
 <div class="we-problem">
-<p>The venue manager asks the events team to confirm that the event will be ready within 18 working days of the start of planning.</p>
-<p>Calculate the variance and standard deviation of the critical path from <a href="#tbl-pert" class="quarto-xref">Table&nbsp;<span>3.17</span></a>, and estimate the probability of finishing within 18 days. State the limits of the estimate.</p>
+<p>The venue manager asks us to confirm that the event will be ready within 18 working days of the start of planning.</p>
+<p>Calculate the variance and standard deviation of the critical path from <a href="#tbl-pert" class="quarto-xref">Table&nbsp;<span>3.19</span></a>, and estimate the probability of finishing within 18 days. State the limits of the estimate.</p>
 </div>
 <div class="we-solution">
 <p><strong>Variance of the path:</strong> Add the five critical tasks’ variances. Each is a whole number of 36ths, because it is a difference divided by 6 and then squared: 0.444 is <span class="math inline">\(16/36\)</span> and 0.028 is <span class="math inline">\(1/36\)</span>. Adding the fractions avoids rounding error.</p>
@@ -1133,7 +1154,7 @@ Table&nbsp;3.18: Forward pass, backward pass and slack, most likely durations in
 <p><strong>z-score of the deadline:</strong></p>
 <p><span class="math display">\[z = \frac{18 - 16.0}{1.18} = \frac{2.0}{1.18} = 1.70\]</span></p>
 <p>The standard normal table gives an area of 0.9554 below 1.70.</p>
-<p><strong>Answer:</strong> The event has about a 96 per cent chance of being ready within 18 working days. Promising an 18-day completion entails approximately a 1 in 22 probability of missing the deadline.</p>
+<p><strong>Answer:</strong> The event has a probability of about 0.96 of being ready within 18 working days. If we promise 18 days, we will miss the deadline about once in 22 projects.</p>
 <p><strong>Limits:</strong> The estimate assumes the five task durations are independent. A single cause, such as a staff shortage, can delay three tasks simultaneously. It assumes the duration of a five-task path follows a normal distribution, which is an approximation. It also ignores the other paths. The next-longest path, through marketing, is expected to take 11.8 days. It is therefore highly unlikely to exceed the duration of the critical path. In a project where two paths have similar durations, the true risk is higher than this method calculates.</p>
 </div>
 </section>
@@ -1152,12 +1173,12 @@ Table&nbsp;3.18: Forward pass, backward pass and slack, most likely durations in
 <ol type="1">
 <li>Estimate the probability of finishing within 17 days.</li>
 <li>Estimate the probability of finishing within 15 days.</li>
-<li>The venue manager wants a date the team will meet 95 times in 100. Which day should the team promise?</li>
+<li>The venue manager wants a date we will meet 95 times in 100. Which day should we promise?</li>
 </ol>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled" title="Check your answer">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1166,12 +1187,12 @@ Table&nbsp;3.18: Forward pass, backward pass and slack, most likely durations in
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
 <li><span class="math inline">\(z = (17 - 16.0) \div 1.18 = 0.85\)</span>. The area below 0.85 is 0.8023, about 80 per cent.</li>
 <li><span class="math inline">\(z = (15 - 16.0) \div 1.18 = -0.85\)</span>. The area below <span class="math inline">\(-0.85\)</span> is <span class="math inline">\(1 - 0.8023 = 0.1977\)</span>, about 20 per cent.</li>
-<li>The 95th percentile has <span class="math inline">\(z = 1.645\)</span>. <span class="math inline">\(16.0 + 1.645 \times 1.18 = 16.0 + 1.94 = 17.94\)</span> days. Promise <strong>18 working days</strong>.</li>
+<li>The 95th percentile has <span class="math inline">\(z = 1.645\)</span>, which gives <span class="math inline">\(16.0 + 1.645 \times 1.18 = 16.0 + 1.94 = 17.94\)</span> days, so promise <strong>18 working days</strong>.</li>
 </ol>
 </div>
 </div>
@@ -1179,8 +1200,8 @@ Table&nbsp;3.18: Forward pass, backward pass and slack, most likely durations in
 </section>
 <section id="sec-gantt" class="level2">
 <h2 class="anchored" data-anchor-id="sec-gantt">Gantt charts</h2>
-<p>A <strong>Gantt chart</strong> draws a project schedule as horizontal bars against a calendar. Each task has its own row, and its bar runs from its start day to its finish day. A reader sees at a glance which tasks run at the same time, who is responsible for each and when the project ends. The network diagram shows the logic of a project, and the Gantt chart shows its calendar.</p>
-<p>The Gantt file holds the events team’s schedule. It gives each task a start day, a duration, an end day, the team responsible and a flag for the critical path. <a href="#fig-gantt" class="quarto-xref">Figure&nbsp;<span>3.5</span></a> draws it.</p>
+<p>A <strong>Gantt chart</strong> is a project schedule drawn as horizontal bars against a calendar. Each task has its own row, and its bar runs from its start day to its finish day. You can see at a glance which tasks run at the same time, who is responsible for each and when the project ends. From the network diagram we read the order of the tasks, and from the Gantt chart we read their dates.</p>
+<p>The Gantt file, <code>Week3_Gantt_Data.csv</code>, holds our schedule. It gives each task a start day, a duration, an end day, the team responsible and a flag for the critical path. The schedule is drawn in <a href="#fig-gantt" class="quarto-xref">Figure&nbsp;<span>3.5</span></a>.</p>
 <div id="fig-gantt" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A Gantt chart with 8 task rows and a horizontal axis of project days from 1 to 18. Critical tasks are dark bars and are also labelled critical in the row name. Venue Booking, critical, runs days 1 to 5, Operations. Speaker Confirmation runs days 1 to 3, Events Team. Marketing Launch runs days 6 to 10, Marketing. Registration System Setup runs days 4 to 8, IT Department. Catering Arrangement, critical, runs days 6 to 9, Operations. AV and Equipment Setup, critical, runs days 10 to 14, AV Contractor. Staff Briefing, critical, is day 15 and Final Rehearsal, critical, is day 16, both Management. A legend reads Has slack, light bar, and On the critical path, dark bar.">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-gantt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1193,17 +1214,17 @@ Figure&nbsp;3.5: The events team’s schedule as a Gantt chart, drawn from the G
 </div>
 <section id="day-numbers-and-cpm-times" class="level3">
 <h3 class="anchored" data-anchor-id="day-numbers-and-cpm-times">Day numbers and CPM times</h3>
-<p>The Gantt file counts calendar days from 1, and CPM counts time from 0. A task with ES 0 and EF 5 occupies days 1 to 5. Two rules convert one to the other:</p>
+<p>In the Gantt file, days are numbered from 1. In CPM, time is counted from 0. A task with ES 0 and EF 5 occupies days 1 to 5. Two rules convert one to the other:</p>
 <p><span class="math display">\[\text{Start day} = ES + 1 \qquad \text{End day} = EF\]</span></p>
-<p>For example: catering has ES 5 and EF 9 in <a href="#tbl-cpm-schedule" class="quarto-xref">Table&nbsp;<span>3.18</span></a>, so it runs from day 6 to day 9.</p>
+<p>For example: catering has ES 5 and EF 9 in <a href="#tbl-cpm-schedule" class="quarto-xref">Table&nbsp;<span>3.20</span></a>, so it runs from day 6 to day 9.</p>
 </section>
 <section id="reading-and-checking-a-gantt-chart" class="level3">
 <h3 class="anchored" data-anchor-id="reading-and-checking-a-gantt-chart">Reading and checking a Gantt chart</h3>
-<p>A Gantt chart may appear complete once the bars are drawn. Check it against the network before using it for project management. Five checks cover most errors:</p>
+<p>A Gantt chart may appear complete once the bars are drawn. Before you use it to manage the project, check it against the network with the five checks in <a href="#tbl-gantt-checks" class="quarto-xref">Table&nbsp;<span>3.21</span></a>, which cover most errors.</p>
 <div id="tbl-gantt-checks" class="tbl-grid quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-gantt-checks-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;3.19: Five checks for a Gantt chart
+Table&nbsp;3.21: Five checks for a Gantt chart
 </figcaption>
 <div aria-describedby="tbl-gantt-checks-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="tbl-grid caption-top table">
@@ -1228,7 +1249,7 @@ Table&nbsp;3.19: Five checks for a Gantt chart
 <tr class="even">
 <td>Dates</td>
 <td>Does every bar match ES + 1 and EF from the CPM?</td>
-<td>All 8 tasks match <a href="#tbl-cpm-schedule" class="quarto-xref">Table&nbsp;<span>3.18</span></a></td>
+<td>All 8 tasks match <a href="#tbl-cpm-schedule" class="quarto-xref">Table&nbsp;<span>3.20</span></a></td>
 </tr>
 <tr class="odd">
 <td>Critical path</td>
@@ -1242,7 +1263,7 @@ Table&nbsp;3.19: Five checks for a Gantt chart
 </tr>
 <tr class="odd">
 <td>Slack</td>
-<td>Can a reader see where the room to slip lies?</td>
+<td>Does the chart show how much each task can be delayed?</td>
 <td>The bars sit at their earliest starts, so marketing’s 4 days of slack are invisible</td>
 </tr>
 </tbody>
@@ -1250,20 +1271,20 @@ Table&nbsp;3.19: Five checks for a Gantt chart
 </div>
 </figure>
 </div>
-<p>The last check highlights a limitation of the chart. A Gantt chart drawn from earliest starts shows when work <em>can</em> begin, but it does not show how late each task <em>could</em> begin. Some teams draw the slack as a thin line after each bar. Others state it beside the chart.</p>
+<p>In the slack check we find a limitation of the chart. A Gantt chart drawn from earliest starts shows when work <em>can</em> begin and leaves out how late each task <em>could</em> begin. Some teams draw the slack as a thin line after each bar. Others state it beside the chart.</p>
 <div class="worked-example">
 <p><span class="we-label">Worked example 3.13</span></p>
 <section id="moving-a-task-inside-its-slack" class="level3">
 <h3 class="anchored" data-anchor-id="moving-a-task-inside-its-slack">Moving a task inside its slack</h3>
 <div class="we-problem">
-<p>The marketing team is occupied until day 8 and requests to start the marketing launch on day 9 instead of day 6. Use <a href="#tbl-cpm-schedule" class="quarto-xref">Table&nbsp;<span>3.18</span></a> and <a href="#fig-gantt" class="quarto-xref">Figure&nbsp;<span>3.5</span></a>.</p>
-<p>Decide whether the request delays the event, and state how the Gantt chart changes.</p>
+<p>The marketing team is occupied until day 8 and asks to start the marketing launch on day 9, three days after its planned start on day 6.</p>
+<p>Using <a href="#tbl-cpm-schedule" class="quarto-xref">Table&nbsp;<span>3.20</span></a> and <a href="#fig-gantt" class="quarto-xref">Figure&nbsp;<span>3.5</span></a>, decide whether the request delays the event, and state how the Gantt chart changes.</p>
 </div>
 <div class="we-solution">
 <p><strong>The slack:</strong> Marketing_Launch has ES 5 and LS 9, so it can start as late as time 9, which is day 10, with no effect on the finishing date. Day 9 is time 8, which uses 3 of the 4 days of slack.</p>
 <p><strong>The new dates:</strong> Starting on day 9, the 5-day task runs to day 13. The staff briefing starts on day 15, so marketing still ends a day before it is needed.</p>
-<p><strong>Decision:</strong> Approve the request. The event will still finish on day 16.</p>
-<p><strong>The chart:</strong> Move the marketing bar to days 9 to 13. Marketing now has 1 day of slack remaining. Note on the chart that any further delay by marketing will delay the briefing.</p>
+<p><strong>Decision:</strong> Approve the request, because the event will still finish on day 16.</p>
+<p><strong>The chart:</strong> Move the marketing bar to days 9 to 13. Marketing now has 1 day of slack remaining. Note on the chart that a further delay of more than 1 day will delay the briefing.</p>
 </div>
 </section>
 </div>
@@ -1277,7 +1298,7 @@ Table&nbsp;3.19: Five checks for a Gantt chart
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Use <a href="#fig-gantt" class="quarto-xref">Figure&nbsp;<span>3.5</span></a>.</p>
+<p>Use <a href="#fig-gantt" class="quarto-xref">Figure&nbsp;<span>3.5</span></a> to answer these four questions.</p>
 <ol type="1">
 <li>Which tasks are running on day 7?</li>
 <li>Which two teams are each responsible for two tasks, and do their tasks overlap?</li>
@@ -1287,7 +1308,7 @@ Table&nbsp;3.19: Five checks for a Gantt chart
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled" title="Check your answer">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1296,13 +1317,13 @@ Table&nbsp;3.19: Five checks for a Gantt chart
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
 <li>Marketing_Launch (days 6 to 10), Registration_System_Setup (days 4 to 8) and Catering_Arrangement (days 6 to 9).</li>
-<li>Operations has the venue booking (days 1 to 5) and catering (days 6 to 9). Management has the briefing (day 15) and the rehearsal (day 16). Neither team’s tasks overlap.</li>
+<li>Operations has the venue booking (days 1 to 5) and catering (days 6 to 9). Management has the briefing (day 15) and the rehearsal (day 16), so each team runs its two tasks one after the other.</li>
 <li><strong>Day 18:</strong> AV setup is critical, so the 2 days pass straight to the end. It runs from day 12 to day 16, the briefing is on day 17 and the rehearsal on day 18.</li>
-<li>Monitor the venue booking, catering and the AV setup closely. They are critical, they account for 14 of the 16 days, and any delay to these tasks delays the entire event. Marketing can absorb a delay of 4 days, and the speaker and registration chain a delay of 6.</li>
+<li>Monitor the venue booking, catering and the AV setup closely. They are critical and account for 14 of the 16 days, so any delay to them delays the entire event. Marketing can absorb a delay of 4 days, and the speaker and registration chain a delay of 6.</li>
 </ol>
 </div>
 </div>
@@ -1317,17 +1338,17 @@ Table&nbsp;3.19: Five checks for a Gantt chart
 </iframe>
 <p>If the panel above stays blank, open the <a href="https://flairmi.com/toolkit/cpm-pert-gantt-planner.html">CPM/PERT and Gantt planner in a new tab</a>.</p>
 </div>
-<p>Four checks to run:</p>
+<p>Run these four checks against your hand calculations:</p>
 <ol type="1">
-<li><strong>The two passes:</strong> The <strong>Schedule</strong> table matches <a href="#tbl-cpm-schedule" class="quarto-xref">Table&nbsp;<span>3.18</span></a>, with slack of 0, 6, 4, 6, 0, 0, 0 and 0, and the critical path runs from the venue booking to the final rehearsal.</li>
-<li><strong>The deadline:</strong> The planner gives a 95.5 per cent chance of finishing within 18 days, as worked example 3.12 does. It calculates the normal area exactly, whereas the table method rounds the z-score to 1.70. Change the deadline to 17 and compare the result with Try It 3.10.</li>
+<li><strong>The two passes:</strong> The <strong>Schedule</strong> table matches <a href="#tbl-cpm-schedule" class="quarto-xref">Table&nbsp;<span>3.20</span></a>, with slack of 0, 6, 4, 6, 0, 0, 0 and 0, and the critical path runs from the venue booking to the final rehearsal.</li>
+<li><strong>The deadline:</strong> The planner gives a probability of 0.955 of finishing within 18 days, as worked example 3.12 does. It calculates the normal area exactly, whereas the table method rounds the z-score to 1.70. Change the deadline to 17 and compare the result with Try It 3.10.</li>
 <li><strong>A delay:</strong> Open <strong>Edit tasks</strong>, change the most likely duration of Catering_Arrangement from 4 to 6, and check your answer to question 3 of Try It 3.9: day 18. Press <strong>Load the CPM file</strong> afterwards to restore the original tasks, because the planner retains your edits in the browser.</li>
-<li><strong>The Gantt check:</strong> The table at the foot reads 8 of 8 tasks agree. It carries out the order, dates and critical path checks of <a href="#tbl-gantt-checks" class="quarto-xref">Table&nbsp;<span>3.19</span></a>, and leaves workload and slack to you.</li>
+<li><strong>The Gantt check:</strong> The table at the foot reads 8 of 8 tasks agree. It carries out the order, dates and critical path checks of <a href="#tbl-gantt-checks" class="quarto-xref">Table&nbsp;<span>3.21</span></a>, and leaves workload and slack to you.</li>
 </ol>
 </section>
 <section id="section-summary" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="section-summary">Section summary</h2>
-<p>A project is a network of tasks linked by predecessors. PERT turns three estimates into an expected duration, <span class="math inline">\((O + 4M + P)/6\)</span>, and a variance, <span class="math inline">\(((P - O)/6)^2\)</span>. The forward pass finds each task’s earliest start and finish, taking the largest finish among its predecessors. The backward pass finds the latest start and finish, taking the smallest start among its successors. Slack is the gap between the two, and the tasks with zero slack form the critical path, which sets the finishing date: 16 days for the events team. Adding the variances along the critical path and applying chapter 2’s normal model gives the probability of meeting a deadline. A Gantt chart draws the schedule on a calendar, and it needs checking against the network before anyone relies on it.</p>
+<p>A project is a network of tasks linked by predecessors. PERT turns three estimates into an expected duration, <span class="math inline">\((O + 4M + P)/6\)</span>, and a variance, <span class="math inline">\(((P - O)/6)^2\)</span>. The forward pass finds each task’s earliest start and finish, taking the largest finish among its predecessors. The backward pass finds the latest start and finish, taking the smallest start among its successors. Slack is the gap between the two, and the tasks with zero slack form the critical path, which sets the finishing date: 16 days for our event. Adding the variances along the critical path and applying chapter 2’s normal model gives the probability of meeting a deadline. A Gantt chart is the schedule drawn on a calendar, and you need to check it against the network before you rely on it.</p>
 <div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">

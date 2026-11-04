@@ -587,7 +587,12 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#sec-random-variable" id="toc-sec-random-variable" class="nav-link active" data-scroll-target="#sec-random-variable">Random variables and probability distributions</a></li>
+  <li><a href="#sec-random-variable" id="toc-sec-random-variable" class="nav-link active" data-scroll-target="#sec-random-variable">Random variables and probability distributions</a>
+  <ul class="collapse">
+  <li><a href="#sec-payoff" id="toc-sec-payoff" class="nav-link" data-scroll-target="#sec-payoff">Where the profit comes from</a></li>
+  <li><a href="#sec-distribution" id="toc-sec-distribution" class="nav-link" data-scroll-target="#sec-distribution">Probability distributions</a></li>
+  <li><a href="#sec-vendor-scenarios" id="toc-sec-vendor-scenarios" class="nav-link" data-scroll-target="#sec-vendor-scenarios">The vendor scenarios</a></li>
+  </ul></li>
   <li><a href="#sec-expected-value" id="toc-sec-expected-value" class="nav-link" data-scroll-target="#sec-expected-value">Expected value</a></li>
   <li><a href="#sec-payoff-risk" id="toc-sec-payoff-risk" class="nav-link" data-scroll-target="#sec-payoff-risk">Risk behind the expected value</a>
   <ul class="collapse">
@@ -633,17 +638,43 @@ window.Quarto = {
 </header>
 
 
-<p>Part 1 turned records into probabilities. Part 2 assigns monetary values to those probabilities, so that you can compare two options with uncertain outcomes and then estimate how many registered people will attend.</p>
+<p>In part 1 we turned records into probabilities. In this part we assign monetary values to those probabilities, so that we can compare two options with uncertain outcomes and then estimate how many registered people will attend.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Where we are in this chapter">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Where we are in this chapter
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Our events team is planning a one-day training event and has three questions to answer:</p>
+<ol type="1">
+<li>How many of the people who register will attend?</li>
+<li>Which of two catering vendors should we book?</li>
+<li>How many working days do we need to be ready?</li>
+</ol>
+<p>In part 1 we started on the first question. The file <code>Week3_Probability_Basics_Data.csv</code> holds 100 registration records from past events. In those records, 83 of the 100 registered people attended, so the probability that a registered person attends is 0.83.</p>
+<p>In this part we answer the second question. We use the file <code>Week3_Decision_Tree_Data.csv</code>, which holds 50 scenarios. In each scenario we compare a local vendor with an international vendor for the same catering contract. For each vendor, the file gives the probability that it delivers on time, the probability that it delivers late, and our profit or loss in each case. <a href="#sec-vendor-scenarios" class="quarto-xref"><span>The vendor scenarios</span></a> explains the file column by column. At the end of this part we return to the first question and use the probability of 0.83 to estimate how many people will attend an event with 120 registrations.</p>
+<p>In part 3 we answer the third question, using two more files.</p>
+</div>
+</div>
 <section id="sec-random-variable" class="level2">
 <h2 class="anchored" data-anchor-id="sec-random-variable">Random variables and probability distributions</h2>
-<p>A <strong>random variable</strong> is a quantity whose value depends on an uncertain event. The profit from a vendor contract is a random variable: it takes one value if the vendor delivers on time and another if it delivers late. The number of registered people who attend is another.</p>
-<p>A <strong>probability distribution</strong> lists every value a random variable can take, with the probability of each. Two rules hold for every distribution:</p>
-<ol type="1">
-<li>Each probability lies between 0 and 1.</li>
-<li>The probabilities add to 1, because the list covers every possible value.</li>
-</ol>
-<p>The decision tree file holds 50 vendor scenarios, numbered by <code>Group_ID</code>. In each one the events team compares a local vendor with an international vendor for the same catering contract. Each row gives the probability that the vendor delivers on time, the probability that it delivers late and the payoff in USD for each outcome. A payoff is the profit the team keeps from the event after the vendor’s costs. A late delivery forces emergency purchases, so its payoff is negative, a loss.</p>
-<p>For example: in scenario 1, the local vendor’s payoff is a random variable with this distribution.</p>
+<p>Some numbers we can only know after something uncertain has happened. For example: our events team signs a catering contract with a local vendor. We do not yet know our profit from the event, because it depends on whether the vendor delivers on time or late. Until the delivery happens, our profit could take one of two values.</p>
+<p>A number like this is called a <strong>random variable</strong>: a number whose value is decided by chance. The number of registered people who attend an event is another random variable, since we learn its value only on the day of the event.</p>
+<section id="sec-payoff" class="level3">
+<h3 class="anchored" data-anchor-id="sec-payoff">Where the profit comes from</h3>
+<p>For example: imagine the event earns 20,000 USD from tickets and the local vendor charges 13,056.38 USD. If the vendor delivers on time, our profit is:</p>
+<p><span class="math display">\[20{,}000 - 13{,}056.38 = 6{,}943.62 \text{ USD}\]</span></p>
+<p>If the vendor delivers late, we must also buy emergency supplies, which cost 8,762.09 USD. Our costs are now greater than our income, so we make a loss:</p>
+<p><span class="math display">\[20{,}000 - 13{,}056.38 - 8{,}762.09 = -1{,}818.47 \text{ USD}\]</span></p>
+<p>The money we are left with at the end of each outcome is called the <strong>payoff</strong>. A positive payoff is a profit, and a negative payoff is a loss.</p>
+</section>
+<section id="sec-distribution" class="level3">
+<h3 class="anchored" data-anchor-id="sec-distribution">Probability distributions</h3>
+<p>A <strong>probability distribution</strong> lists every value a random variable can take, together with the probability of each value. For example: the local vendor delivers on time with probability 0.740 and late with probability 0.260. These probabilities come from scenario 1 of our data file, described in <a href="#sec-vendor-scenarios" class="quarto-xref"><span>The vendor scenarios</span></a>. So our profit has this distribution:</p>
 <div id="tbl-payoff-distribution" class="tbl-calc quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-payoff-distribution-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -679,26 +710,138 @@ Table&nbsp;3.9: The local vendor’s payoff in scenario 1
 </div>
 </figure>
 </div>
-<p>The file stores each probability to 16 decimal places. This chapter rounds them to three, which is enough for any decision and short enough to calculate by hand. Your spreadsheet in the tutorial uses the full figures, so its answers differ from the hand calculations by a few dollars.</p>
+<p>Two rules hold for every probability distribution:</p>
+<ol type="1">
+<li>Each probability lies between 0 and 1.</li>
+<li>The probabilities add to 1, because the list covers every possible value: in <a href="#tbl-payoff-distribution" class="quarto-xref">Table&nbsp;<span>3.9</span></a>, <span class="math inline">\(0.740 + 0.260 = 1.000\)</span>.</li>
+</ol>
+</section>
+<section id="sec-vendor-scenarios" class="level3">
+<h3 class="anchored" data-anchor-id="sec-vendor-scenarios">The vendor scenarios</h3>
+<p>In this part we use the file <code>Week3_Decision_Tree_Data.csv</code>, which we call the vendor scenario file and which holds 50 scenarios. In each scenario our events team compares two vendors for the same catering contract: a local vendor and an international vendor. Each vendor has its own row, so the file has 100 rows, 2 for each scenario.</p>
+<p>The file uses its own column names. It says “success” for an on-time delivery and “failure” for a late one. <a href="#tbl-vendor-columns" class="quarto-xref">Table&nbsp;<span>3.10</span></a> translates each column into the words we use in this chapter.</p>
+<div id="tbl-vendor-columns" class="tbl-grid quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-vendor-columns-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3.10: The columns of the vendor scenario file
+</figcaption>
+<div aria-describedby="tbl-vendor-columns-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="tbl-grid caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Column</th>
+<th>Meaning in this chapter</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Group_ID</code></td>
+<td>The scenario number, 1 to 50</td>
+</tr>
+<tr class="even">
+<td><code>Option</code></td>
+<td>The vendor: <code>Local_Vendor</code> or <code>International_Vendor</code></td>
+</tr>
+<tr class="odd">
+<td><code>Probability_Success</code></td>
+<td>The probability that the vendor delivers on time</td>
+</tr>
+<tr class="even">
+<td><code>Probability_Failure</code></td>
+<td>The probability that the vendor delivers late</td>
+</tr>
+<tr class="odd">
+<td><code>Payoff_Success</code></td>
+<td>Our payoff in USD if the vendor delivers on time</td>
+</tr>
+<tr class="even">
+<td><code>Payoff_Failure</code></td>
+<td>Our payoff in USD if the vendor delivers late</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>For example: scenario 1 is the 2 rows with <code>Group_ID</code> 1. The first row holds the local vendor’s figures from <a href="#tbl-payoff-distribution" class="quarto-xref">Table&nbsp;<span>3.9</span></a>.</p>
+<div id="tbl-scenario-1-raw" class="tbl-apa quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-scenario-1-raw-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3.11: Scenario 1 as it appears in the vendor scenario file, probabilities to four decimal places
+</figcaption>
+<div aria-describedby="tbl-scenario-1-raw-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="tbl-apa caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Group_ID</th>
+<th>Option</th>
+<th>Probability_Success</th>
+<th>Probability_Failure</th>
+<th>Payoff_Success</th>
+<th>Payoff_Failure</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Local_Vendor</td>
+<td>0.7397</td>
+<td>0.2603</td>
+<td>6,943.62</td>
+<td>-1,818.47</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>International_Vendor</td>
+<td>0.8246</td>
+<td>0.1754</td>
+<td>11,552.23</td>
+<td>-2,298.97</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>The file stores each probability to 16 decimal places. In our hand calculations we round them to three, so 0.7397 becomes 0.740. Three decimal places are accurate enough for the decision and short enough to calculate by hand. In the tutorial, your spreadsheet uses the full figures, so its answers differ from ours by a few dollars.</p>
+</section>
 </section>
 <section id="sec-expected-value" class="level2">
 <h2 class="anchored" data-anchor-id="sec-expected-value">Expected value</h2>
-<p>The <strong>expected value</strong> of a random variable is the average of its possible values, with each value weighted by its probability. Multiply each value by its probability and add the results.</p>
-<p><span class="math display">\[EV = \sum p \, x = p_1 x_1 + p_2 x_2 + \dots + p_k x_k\]</span></p>
-<p>The symbol <span class="math inline">\(\sum\)</span> means “add up over every outcome”. For an option with two outcomes, success and failure, the formula has two terms:</p>
+<p>When we choose a vendor, we need one figure that sums up what each contract is worth to us before we know the outcome, and the expected value gives us that figure.</p>
+<p>For example: suppose we signed the local vendor’s contract from scenario 1 100 times. With an on-time probability of 0.740, about 74 deliveries would arrive on time, each giving a profit of 6,943.62 USD. The other 26 would arrive late, each giving a loss of 1,818.47 USD. Our total over the 100 contracts would be:</p>
+<p><span class="math display">\[74 \times 6{,}943.62 - 26 \times 1{,}818.47 = 513{,}827.88 - 47{,}280.22 = 466{,}547.66 \text{ USD}\]</span></p>
+<p>Shared across the 100 contracts, that is <span class="math inline">\(466{,}547.66 \div 100 = 4{,}665.48\)</span> USD per contract. This average per contract is the <strong>expected value</strong> of the contract.</p>
+<p>We reach the same figure in one line by multiplying each payoff by its probability and adding the results:</p>
+<p><span class="math display">\[EV = 0.740 \times 6{,}943.62 + 0.260 \times (-1{,}818.47) = 5{,}138.28 - 472.80 = 4{,}665.48 \text{ USD}\]</span></p>
+<p>Each payoff counts in proportion to its probability: the on-time payoff contributes 74 per cent of its value and the late payoff 26 per cent. In general, the expected value of a random variable is:</p>
+<p><span class="math display">\[EV = \sum p_i \, x_i = p_1 x_1 + p_2 x_2 + \dots\]</span></p>
+<p>where <span class="math inline">\(x_i\)</span> is the <span class="math inline">\(i\)</span>th possible value of the random variable (here, a payoff in USD) and <span class="math inline">\(p_i\)</span> is the probability of that value. The symbol <span class="math inline">\(\sum\)</span> means “add up over every outcome”. The vendor file calls an on-time delivery a success and a late delivery a failure, so for a vendor the formula has two terms:</p>
 <p><span class="math display">\[EV = p_{\text{success}} \times x_{\text{success}} + p_{\text{failure}} \times x_{\text{failure}}\]</span></p>
-<p>An expected value of money is often called the <strong>expected monetary value</strong>.</p>
-<p>The expected value is a long-run average. A team that signed the same contract many times would earn, on average, its expected value per contract. On any single contract the team earns one of the listed payoffs. The local vendor in scenario 1 yields either a payoff of 6,943.62 USD or a loss of 1,818.47 USD. Its expected value, calculated below, lies between the two payoffs and equals neither.</p>
+<p>An expected value measured in money is called the <strong>expected monetary value</strong>.</p>
+<p>On any one contract we receive one of the two payoffs, either +6,943.62 USD or −1,818.47 USD. The expected value of 4,665.48 USD lies between them, and we receive it only as an average across many contracts.</p>
 <div class="worked-example">
 <p><span class="we-label">Worked example 3.6</span></p>
 <section id="two-vendors-one-contract" class="level3">
 <h3 class="anchored" data-anchor-id="two-vendors-one-contract">Two vendors, one contract</h3>
 <div class="we-problem">
-<p>In scenario 1 of the decision tree file, the two vendors offer these outcomes.</p>
+<p>In scenario 1 of the vendor scenario file (<a href="#tbl-scenario-1-raw" class="quarto-xref">Table&nbsp;<span>3.11</span></a>), the two vendors offer these outcomes, with probabilities rounded to three decimal places:</p>
 <div id="tbl-scenario-1" class="tbl-apa quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-scenario-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;3.10: Scenario 1 of the decision tree file, probabilities to three decimal places
+Table&nbsp;3.12: Scenario 1 of the vendor scenario file, probabilities to three decimal places
 </figcaption>
 <div aria-describedby="tbl-scenario-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="tbl-apa caption-top table">
@@ -731,39 +874,43 @@ Table&nbsp;3.10: Scenario 1 of the decision tree file, probabilities to three de
 </div>
 </figure>
 </div>
-<p>Calculate the expected value of each vendor and choose the one that expected value favours.</p>
+<p>The local vendor’s expected value is 4,665.48 USD, calculated in <a href="#sec-expected-value" class="quarto-xref"><span>Expected value</span></a>. Calculate the international vendor’s expected value and decide which vendor we should book on expected value alone.</p>
 </div>
 <div class="we-solution">
-<p><strong>Local vendor:</strong></p>
-<p><span class="math display">\[EV = 0.740 \times 6{,}943.62 + 0.260 \times (-1{,}818.47)\]</span> <span class="math display">\[= 5{,}138.28 - 472.80 = 4{,}665.48 \text{ USD}\]</span></p>
 <p><strong>International vendor:</strong></p>
 <p><span class="math display">\[EV = 0.825 \times 11{,}552.23 + 0.175 \times (-2{,}298.97)\]</span> <span class="math display">\[= 9{,}530.59 - 402.32 = 9{,}128.27 \text{ USD}\]</span></p>
-<p><strong>Choice:</strong> The international vendor’s expected value is higher by <span class="math inline">\(9{,}128.27 - 4{,}665.48 = 4{,}462.79\)</span> USD. It is more likely to deliver on time and it pays more when it does.</p>
-<p>With the file’s unrounded probabilities, the spreadsheet gives 4,663.15 and 9,123.24 USD. The rounding moves each answer by about 5 USD and leaves the choice unchanged.</p>
+<p><strong>Choice:</strong> On expected value alone, we should book the international vendor. Its expected value exceeds the local vendor’s by <span class="math inline">\(9{,}128.27 - 4{,}665.48 = 4{,}462.79\)</span> USD, because it is more likely to deliver on time and our payoff is higher when it does.</p>
+<p>With the file’s unrounded probabilities, your spreadsheet in the tutorial gives 4,663.15 USD for the local vendor and 9,123.24 USD for the international vendor. Rounding changes the two answers by 2.33 and 5.03 USD, and the choice stays the same.</p>
 </div>
 </section>
 </div>
 </section>
 <section id="sec-payoff-risk" class="level2">
 <h2 class="anchored" data-anchor-id="sec-payoff-risk">Risk behind the expected value</h2>
-<p>An expected value reduces an option to one number, and that number does not show how far the actual outcome may deviate from it. Two options with the same expected value can carry very different risks. A risk review examines three additional figures before any choice is final.</p>
+<p>An expected value sums up a contract in one number: the average payoff over many contracts. A single contract can give a payoff far from that average, so we also need to know how far. For example: imagine that contract A gives us 5,000 USD whatever happens, while contract B gives us a profit of 15,000 USD with probability 0.5, or a loss of 5,000 USD with probability 0.5. The two contracts have the same expected value of 5,000 USD:</p>
+<p><span class="math display">\[EV_B = 0.5 \times 15{,}000 + 0.5 \times (-5{,}000) = 7{,}500 - 2{,}500 = 5{,}000 \text{ USD}\]</span></p>
+<p>Contract A can never lose us money, and contract B loses us 5,000 USD half the time. So before we choose, we look at three more figures in a <strong>risk review</strong>.</p>
 <p><strong>The probability of a loss:</strong> For a vendor, this is the probability of a late delivery.</p>
-<p><strong>The worst outcome:</strong> The largest loss the option can produce. A manager asks whether the organisation can absorb it.</p>
-<p><strong>The standard deviation of the payoff:</strong> How far the payoff typically falls from the expected value. It measures spread exactly as the standard deviation of chapter 1 does, with each squared distance weighted by its probability:</p>
-<p><span class="math display">\[\sigma = \sqrt{\sum p \, (x - EV)^2}\]</span></p>
-<p>For an option with two outcomes, the formula simplifies to a shortcut, which gives the same answer in one line:</p>
-<p><span class="math display">\[\sigma = (x_{\text{success}} - x_{\text{failure}}) \times \sqrt{p \, (1 - p)}\]</span></p>
-<p>where <span class="math inline">\(p\)</span> is the probability of success. A wider gap between the two payoffs, or a probability nearer 0.5, gives a larger standard deviation.</p>
+<p><strong>The worst outcome:</strong> This is the largest loss we can make on the contract. We need to ask whether we can absorb that loss.</p>
+<p><strong>The standard deviation of the payoff:</strong> This measures how far the payoff typically falls from the expected value. It is the same measure of spread as the standard deviation in <a href="week01-part3.html#sec-spread">chapter 1</a>. The difference is that each squared distance counts in proportion to its probability, just as each payoff did in the expected value:</p>
+<p><span class="math display">\[\sigma = \sqrt{\sum p_i \, (x_i - EV)^2}\]</span></p>
+<p>For example: the local vendor in scenario 1 has an expected value of 4,665.48 USD. The on-time payoff lies <span class="math inline">\(6{,}943.62 - 4{,}665.48 = 2{,}278.14\)</span> USD above it, and the late payoff lies <span class="math inline">\(-1{,}818.47 - 4{,}665.48 = -6{,}483.95\)</span> USD below it. So the standard deviation is:</p>
+<p><span class="math display">\[\sigma = \sqrt{0.740 \times 2{,}278.14^2 + 0.260 \times 6{,}483.95^2}\]</span> <span class="math display">\[= \sqrt{3{,}840{,}542 + 10{,}930{,}818} = \sqrt{14{,}771{,}360} = 3{,}843 \text{ USD}\]</span></p>
+<p>When there are only two outcomes, the same answer comes from a shorter formula:</p>
+<p><span class="math display">\[\sigma = (x_{\text{success}} - x_{\text{failure}}) \times \sqrt{p_{\text{success}} \, (1 - p_{\text{success}})}\]</span></p>
+<p>The first bracket is the gap between the two payoffs. The late payoff is negative, so subtracting it adds its size: <span class="math inline">\(6{,}943.62 - (-1{,}818.47) = 6{,}943.62 + 1{,}818.47 = 8{,}762.09\)</span> USD, and the standard deviation is:</p>
+<p><span class="math display">\[\sigma = 8{,}762.09 \times \sqrt{0.740 \times 0.260} = 8{,}762.09 \times 0.43863 = 3{,}843 \text{ USD}\]</span></p>
+<p>This is the same as the long formula. A wider gap between the two payoffs, or a probability nearer 0.5, gives a larger standard deviation.</p>
 <div class="worked-example">
 <p><span class="we-label">Worked example 3.7</span></p>
 <section id="reviewing-the-risk" class="level3">
 <h3 class="anchored" data-anchor-id="reviewing-the-risk">Reviewing the risk</h3>
 <div class="we-problem">
-<p>Scenario 38 has the smallest gap in expected value between the two vendors of all 50 scenarios.</p>
+<p>Scenario 38 has the smallest gap in expected value between the two vendors of all 50 scenarios in the vendor scenario file (<a href="#sec-vendor-scenarios" class="quarto-xref"><span>The vendor scenarios</span></a>).</p>
 <div id="tbl-scenario-38" class="tbl-apa quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-scenario-38-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;3.11: Scenario 38 of the decision tree file, probabilities to three decimal places
+Table&nbsp;3.13: Scenario 38 of the vendor scenario file, probabilities to three decimal places
 </figcaption>
 <div aria-describedby="tbl-scenario-38-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="tbl-apa caption-top table">
@@ -796,20 +943,20 @@ Table&nbsp;3.11: Scenario 38 of the decision tree file, probabilities to three d
 </div>
 </figure>
 </div>
-<p>Calculate each vendor’s expected value and standard deviation, compare the probability and size of a loss and recommend a vendor for a team that can absorb a loss of up to 2,000 USD.</p>
+<p>Calculate each vendor’s expected value and standard deviation. Compare the probability and the size of a loss. Then recommend a vendor, given that we can absorb a loss of up to 2,000 USD.</p>
 </div>
 <div class="we-solution">
 <p><strong>Expected values:</strong></p>
 <p><span class="math display">\[EV_{\text{local}} = 0.695 \times 6{,}854.85 + 0.305 \times (-1{,}237.64)\]</span> <span class="math display">\[= 4{,}764.12 - 377.48 = 4{,}386.64 \text{ USD}\]</span></p>
 <p><span class="math display">\[EV_{\text{intl}} = 0.821 \times 8{,}286.90 + 0.179 \times (-3{,}822.62)\]</span> <span class="math display">\[= 6{,}803.54 - 684.25 = 6{,}119.29 \text{ USD}\]</span></p>
-<p><strong>Standard deviations, by the two-outcome shortcut, to the nearest dollar:</strong></p>
+<p><strong>Standard deviations, by the two-outcome formula, to the nearest dollar:</strong></p>
 <p><span class="math display">\[\sigma_{\text{local}} = (6{,}854.85 + 1{,}237.64) \times \sqrt{0.695 \times 0.305}\]</span> <span class="math display">\[= 8{,}092.49 \times 0.46041 = 3{,}726 \text{ USD}\]</span></p>
 <p><span class="math display">\[\sigma_{\text{intl}} = (8{,}286.90 + 3{,}822.62) \times \sqrt{0.821 \times 0.179}\]</span> <span class="math display">\[= 12{,}109.52 \times 0.38335 = 4{,}642 \text{ USD}\]</span></p>
 <p><strong>Risk review:</strong></p>
 <div id="tbl-risk-review" class="tbl-calc quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-risk-review-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;3.12: Risk review for scenario 38
+Table&nbsp;3.14: Risk review for scenario 38
 </figcaption>
 <div aria-describedby="tbl-risk-review-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="tbl-calc caption-top table">
@@ -846,18 +993,19 @@ Table&nbsp;3.12: Risk review for scenario 38
 </div>
 </figure>
 </div>
-<p>The international vendor has the higher expected value and the lower chance of a loss. Its worst outcome is three times the local vendor’s, and its payoff is more spread out.</p>
-<p><strong>Recommendation:</strong> A team that can absorb a loss of up to 2,000 USD should book the local vendor. The international vendor’s worst case, a loss of 3,822.62 USD, would happen about once in every 6 contracts. That loss is greater than the team can absorb. The local vendor forgoes 1,732.65 USD of expected value to keep every outcome within the limit. A team with more reserves would book the international vendor.</p>
+<p>The international vendor has the higher expected value and the lower probability of a loss. Its worst outcome is about three times the local vendor’s, and its payoff is more spread out.</p>
+<p><strong>Recommendation:</strong> We should book the local vendor. With the international vendor, a loss of 3,822.62 USD would happen about once in every 6 contracts, and that loss is greater than the 2,000 USD we can absorb. By booking the local vendor we give up <span class="math inline">\(6{,}119.29 - 4{,}386.64 =
+1{,}732.65\)</span> USD of expected value, and in return every outcome stays within our limit. If our reserves were larger, we would book the international vendor.</p>
 </div>
 </section>
 </div>
 <section id="across-the-50-scenarios" class="level3">
 <h3 class="anchored" data-anchor-id="across-the-50-scenarios">Across the 50 scenarios</h3>
-<p><a href="#tbl-ev-summary" class="quarto-xref">Table&nbsp;<span>3.13</span></a> summarises all 50 scenarios in the file, using the full probabilities.</p>
+<p><a href="#tbl-ev-summary" class="quarto-xref">Table&nbsp;<span>3.15</span></a> summarises all 50 scenarios in the vendor scenario file, using the full probabilities.</p>
 <div id="tbl-ev-summary" class="tbl-apa quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ev-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;3.13: Expected value and loss across the 50 vendor scenarios
+Table&nbsp;3.15: Expected value and loss across the 50 vendor scenarios
 </figcaption>
 <div aria-describedby="tbl-ev-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="tbl-apa caption-top table">
@@ -904,7 +1052,7 @@ Table&nbsp;3.13: Expected value and loss across the 50 vendor scenarios
 </div>
 </figure>
 </div>
-<p>The pattern holds throughout the file. The international vendor wins on expected value every time, and in 49 scenarios of 50 it also carries the larger loss. Expected value alone would select the international vendor in every case. The risk review turns the choice into a question about how large a loss the team can carry, and so the right vendor depends on the team.</p>
+<p>In every one of the 50 scenarios, the international vendor has the higher expected value, and in 49 of them it also has the larger loss. If we judged on expected value alone, we would book the international vendor every time. The risk review adds a second question: how large a loss can we absorb? We choose the vendor by answering that question.</p>
 <div id="tryit-3-5" class="callout callout-style-default callout-tip callout-titled" title="Try It 3.5: Scenario 10">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -915,17 +1063,17 @@ Table&nbsp;3.13: Expected value and loss across the 50 vendor scenarios
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>In scenario 10, the local vendor delivers on time with probability 0.716, paying 5,402.27 USD, or late, losing 1,114.46 USD. The international vendor delivers on time with probability 0.804, paying 10,298.62 USD, or late, losing 2,384.15 USD.</p>
+<p>In scenario 10 of the vendor scenario file (<a href="#sec-vendor-scenarios" class="quarto-xref"><span>The vendor scenarios</span></a>), the local vendor delivers on time with probability 0.716, giving a payoff of 5,402.27 USD, or late, giving a loss of 1,114.46 USD. The international vendor delivers on time with probability 0.804, giving a payoff of 10,298.62 USD, or late, giving a loss of 2,384.15 USD.</p>
 <ol type="1">
 <li>Calculate each vendor’s expected value.</li>
-<li>Calculate each vendor’s standard deviation with the two-outcome shortcut, to the nearest dollar.</li>
+<li>Calculate each vendor’s standard deviation with the two-outcome formula, to the nearest dollar.</li>
 <li>State the probability and the size of each vendor’s loss.</li>
-<li>Recommend a vendor for a team whose reserves cover a loss of 3,000 USD.</li>
+<li>Recommend a vendor, given that our reserves cover a loss of up to 3,000 USD.</li>
 </ol>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled" title="Check your answer">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -934,13 +1082,16 @@ Table&nbsp;3.13: Expected value and loss across the 50 vendor scenarios
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
-<li>Local: <span class="math inline">\(0.716 \times 5{,}402.27 + 0.284 \times (-1{,}114.46) = 3{,}868.03 - 316.51 = 3{,}551.52\)</span> USD. International: <span class="math inline">\(0.804 \times 10{,}298.62 + 0.196 \times (-2{,}384.15) = 8{,}280.09 - 467.29 = 7{,}812.80\)</span> USD.</li>
-<li>Local: <span class="math inline">\((5{,}402.27 + 1{,}114.46) \times \sqrt{0.716 \times 0.284} = 6{,}516.73 \times 0.45094 = 2{,}939\)</span> USD. International: <span class="math inline">\((10{,}298.62 + 2{,}384.15) \times \sqrt{0.804 \times 0.196} = 12{,}682.77 \times 0.39697 = 5{,}035\)</span> USD.</li>
+<li>Local: <span class="math inline">\(0.716 \times 5{,}402.27 + 0.284 \times (-1{,}114.46) = 3{,}868.03 - 316.51 = 3{,}551.52\)</span> USD. International: <span class="math inline">\(0.804 \times 10{,}298.62 + 0.196 \times (-2{,}384.15) = 8{,}280.09 -
+467.29 = 7{,}812.80\)</span> USD.</li>
+<li>Local: <span class="math inline">\((5{,}402.27 + 1{,}114.46) \times \sqrt{0.716 \times 0.284} = 6{,}516.73 \times 0.45094
+= 2{,}939\)</span> USD. International: <span class="math inline">\((10{,}298.62 + 2{,}384.15) \times \sqrt{0.804 \times 0.196} =
+12{,}682.77 \times 0.39697 = 5{,}035\)</span> USD.</li>
 <li>Local: a loss of 1,114.46 USD with probability 0.284. International: a loss of 2,384.15 USD with probability 0.196.</li>
-<li><strong>The international vendor:</strong> Its worst case, 2,384.15 USD, is within the 3,000 USD the team can carry, and its expected value is higher by 4,261.28 USD. The risk review does not overturn the expected-value choice.</li>
+<li><strong>The international vendor:</strong> Its worst case, a loss of 2,384.15 USD, is within the 3,000 USD we can absorb, and its expected value is higher by <span class="math inline">\(7{,}812.80 - 3{,}551.52 = 4{,}261.28\)</span> USD. Here the risk review confirms the expected-value choice.</li>
 </ol>
 </div>
 </div>
@@ -949,11 +1100,11 @@ Table&nbsp;3.13: Expected value and loss across the 50 vendor scenarios
 </section>
 <section id="sec-decision-trees" class="level2">
 <h2 class="anchored" data-anchor-id="sec-decision-trees">Decision trees</h2>
-<p>A <strong>decision tree</strong> sets out a decision from left to right: the options, the uncertain events that follow each option and the payoff at the end of every path. It is a probability tree with one addition: points where the manager chooses the branch.</p>
+<p>A <strong>decision tree</strong> sets out a decision on paper from left to right: the options we can choose from, the uncertain events that follow each option and the payoff at the end of every path. It is the probability tree from <a href="week03.html#sec-probability-tree">part 1</a> with one addition: points where we choose which branch to take.</p>
 <div id="tbl-tree-parts" class="tbl-grid quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-tree-parts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;3.14: The parts of a decision tree
+Table&nbsp;3.16: The parts of a decision tree
 </figcaption>
 <div aria-describedby="tbl-tree-parts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="tbl-grid caption-top table">
@@ -975,13 +1126,13 @@ Table&nbsp;3.14: The parts of a decision tree
 <tr class="odd">
 <td>Decision node</td>
 <td>Square</td>
-<td>A point where the manager chooses one branch</td>
+<td>A point where we choose one branch</td>
 <td>Book the local or the international vendor</td>
 </tr>
 <tr class="even">
 <td>Chance node</td>
 <td>Circle</td>
-<td>A point where an uncertain event chooses the branch</td>
+<td>A point where the outcome is uncertain</td>
 <td>The vendor delivers on time or late</td>
 </tr>
 <tr class="odd">
@@ -1001,14 +1152,14 @@ Table&nbsp;3.14: The parts of a decision tree
 </div>
 </figure>
 </div>
-<p>Draw a tree in four steps:</p>
+<p>We draw a tree in four steps:</p>
 <ol type="1">
 <li>Put a decision node at the left and draw one branch for each option.</li>
 <li>At the end of each option, put a chance node and draw one branch for each outcome. Write its probability on the branch. The probabilities leaving a chance node add to 1.</li>
 <li>At the end of each outcome, put an end node and write the payoff.</li>
-<li>Roll the tree back from right to left, as the next section shows, and mark the chosen branch.</li>
+<li>Roll the tree back from right to left, as described in <a href="#sec-rollback" class="quarto-xref"><span>Rolling back a tree</span></a>, and mark the chosen branch.</li>
 </ol>
-<p><a href="#fig-decision-tree" class="quarto-xref">Figure&nbsp;<span>3.2</span></a> draws worked example 3.6 as a tree.</p>
+<p>In <a href="#fig-decision-tree" class="quarto-xref">Figure&nbsp;<span>3.2</span></a>, the vendor decision from worked example 3.6 is drawn as a tree.</p>
 <div id="fig-decision-tree" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A decision tree drawn left to right. A square decision node at the left has two branches. The upper branch, Local Vendor, is crossed by two short strokes to show it was rejected, and leads to a circular chance node labelled EV 4,665.48 USD. Its two branches are On time 0.740, ending at a triangle with 6,943.62 USD, and Late 0.260, ending at minus 1,818.47 USD. The lower branch, International Vendor, is drawn thicker and leads to a chance node labelled EV 9,128.27 USD, with branches On time 0.825 to 11,552.23 USD and Late 0.175 to minus 2,298.97 USD. A label under the decision node reads Choose, EV 9,128.27 USD.">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-decision-tree-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1022,22 +1173,22 @@ Figure&nbsp;3.2: The vendor decision in scenario 1 as a decision tree, rolled ba
 </section>
 <section id="sec-rollback" class="level2">
 <h2 class="anchored" data-anchor-id="sec-rollback">Rolling back a tree</h2>
-<p><strong>Rolling back</strong> a decision tree means working from the payoffs on the right towards the decision on the left, replacing each node with a single value.</p>
+<p><strong>Rolling back</strong> a decision tree means working from the payoffs on the right towards the decision on the left. At each node we write a single value:</p>
 <ul>
 <li>At a <strong>chance node</strong>, the value is the expected value of its branches.</li>
-<li>At a <strong>decision node</strong>, the value is the largest of its branches. Strike through the branches you reject, as <a href="#fig-decision-tree" class="quarto-xref">Figure&nbsp;<span>3.2</span></a> does with two short strokes.</li>
+<li>At a <strong>decision node</strong>, the value is the value of the best branch, the one with the largest value. We strike through the branches we reject, as in <a href="#fig-decision-tree" class="quarto-xref">Figure&nbsp;<span>3.2</span></a>, where the rejected branch carries two short strokes.</li>
 </ul>
-<p>In a one-stage tree, rolling back is the expected value calculation from worked example 3.6. The method earns its name in a tree with two stages, where a later decision depends on an earlier chance event. Rolling back answers the later decision first, and the earlier decision then uses that answer.</p>
+<p>In a one-stage tree, such as the vendor tree, rolling back is the expected value calculation from worked example 3.6. Rolling back is more useful when we face a second decision after a chance event. For example: we book an outdoor venue, and if it rains we must decide on the day whether to move indoors. We can only value the outdoor venue once we know what we would do in the rain, so we make the later decision first and work back to the first one.</p>
 <div class="worked-example">
 <p><span class="we-label">Worked example 3.8</span></p>
 <section id="an-outdoor-venue-with-a-fallback" class="level3">
 <h3 class="anchored" data-anchor-id="an-outdoor-venue-with-a-fallback">An outdoor venue with a fallback</h3>
 <div class="we-problem">
-<p>These figures are illustrative and separate from the data files. The events team can book an indoor hall for a certain profit of 8,000 USD, or an outdoor venue. Outdoors, good weather (probability 0.7) gives a profit of 12,000 USD. In bad weather (probability 0.3) the team decides on the day: move indoors at short notice for a profit of 4,000 USD, or stay outdoors and make a loss of 2,000 USD.</p>
-<p>Draw the tree, roll it back and choose a venue. Then calculate the value of the option to move indoors.</p>
+<p>In this illustrative example, separate from the data files, we can book an indoor hall for a guaranteed profit of 8,000 USD, or an outdoor venue. Outdoors, good weather (probability 0.7) gives a profit of 12,000 USD. In bad weather (probability 0.3) we decide on the day: move indoors at short notice for a profit of 4,000 USD, or stay outdoors and make a loss of 2,000 USD.</p>
+<p>Draw the tree, roll it back and choose a venue. Then calculate how much the possibility of moving indoors is worth to us.</p>
 </div>
 <div class="we-solution">
-<p><strong>The tree:</strong> <a href="#fig-two-stage-tree" class="quarto-xref">Figure&nbsp;<span>3.3</span></a> draws it. The decision node at the left chooses the venue. The chance node after “Outdoor venue” is the weather. A second decision node follows bad weather.</p>
+<p><strong>The tree:</strong> In <a href="#fig-two-stage-tree" class="quarto-xref">Figure&nbsp;<span>3.3</span></a>, the decision node at the left is the choice of venue, the chance node after “Outdoor venue” is the weather and a second decision node follows bad weather.</p>
 <div id="fig-two-stage-tree" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A two-stage decision tree drawn left to right. A square decision node has two branches. Indoor hall leads straight to a triangle with 8,000 USD and is crossed by two strokes as rejected. Outdoor venue leads to a chance node labelled EV 9,600 USD, with Good weather 0.7 ending at 12,000 USD and Bad weather 0.3 leading to a second square decision node labelled Value 4,000 USD. From it, Move indoors ends at 4,000 USD and Stay outdoors ends at minus 2,000 USD, crossed by two strokes as rejected. A label under the first node reads Choose outdoor, EV 9,600 USD.">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-two-stage-tree-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1048,13 +1199,13 @@ Figure&nbsp;3.3: The outdoor venue decision, a two-stage tree rolled back from r
 </figcaption>
 </figure>
 </div>
-<p><strong>Step 1, the later decision:</strong> After bad weather, moving indoors pays 4,000 USD and staying outdoors loses 2,000 USD. Move indoors. The bad-weather node is worth 4,000 USD.</p>
+<p><strong>Step 1, the later decision:</strong> In bad weather, moving indoors gives a profit of 4,000 USD and staying outdoors gives a loss of 2,000 USD. We would move indoors, so we write 4,000 USD on the bad-weather decision node.</p>
 <p><strong>Step 2, the chance node:</strong></p>
 <p><span class="math display">\[EV_{\text{outdoor}} = 0.7 \times 12{,}000 + 0.3 \times 4{,}000\]</span> <span class="math display">\[= 8{,}400 + 1{,}200 = 9{,}600 \text{ USD}\]</span></p>
-<p><strong>Step 3, the first decision:</strong> The outdoor venue’s 9,600 USD exceeds the hall’s 8,000 USD. Book the outdoor venue.</p>
-<p><strong>The value of the fallback:</strong> Remove the option to move, so the team must stay outdoors in bad weather.</p>
+<p><strong>Step 3, the first decision:</strong> The outdoor venue’s 9,600 USD exceeds the hall’s 8,000 USD, so we book the outdoor venue.</p>
+<p><strong>The value of the fallback:</strong> Suppose moving indoors were impossible, so we had to stay outdoors in bad weather.</p>
 <p><span class="math display">\[EV = 0.7 \times 12{,}000 + 0.3 \times (-2{,}000)\]</span> <span class="math display">\[= 8{,}400 - 600 = 7{,}800 \text{ USD}\]</span></p>
-<p>That falls below the hall’s 8,000 USD, and the choice reverses. The option to move indoors is worth <span class="math inline">\(9{,}600 - 7{,}800 = 1{,}800\)</span> USD in expected value. A manager negotiating the outdoor booking should secure that fallback in writing before signing.</p>
+<p>That is less than the hall’s 8,000 USD, so without the fallback we would book the hall. Being able to move indoors is worth <span class="math inline">\(9{,}600 - 7{,}800 = 1{,}800\)</span> USD to us in expected value. When we negotiate the outdoor booking, we should secure that fallback in writing before signing.</p>
 </div>
 </section>
 </div>
@@ -1068,16 +1219,16 @@ Figure&nbsp;3.3: The outdoor venue decision, a two-stage tree rolled back from r
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>These figures are illustrative. A team can sign a fixed contract now for a profit of 6,000 USD, or bid for a conference contract. A winning bid (probability 0.4) brings a profit of 15,000 USD. If the bid fails (probability 0.6), the team decides again: take a smaller fixed contract for 3,000 USD, or take nothing for 0 USD.</p>
+<p>In this illustrative example, we can sign a fixed contract now for a profit of 6,000 USD, or bid for a conference contract. A winning bid (probability 0.4) brings a profit of 15,000 USD. If the bid fails (probability 0.6), we decide again: take a smaller fixed contract for 3,000 USD, or take nothing for 0 USD.</p>
 <ol type="1">
 <li>Draw the decision tree.</li>
 <li>Roll it back and choose between bidding and signing now.</li>
-<li>State the probability that the team ends up with less than the 6,000 USD it could have signed for.</li>
+<li>State the probability that we end up with less than the 6,000 USD we could have signed for.</li>
 </ol>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled" title="Check your answer">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1086,12 +1237,12 @@ Figure&nbsp;3.3: The outdoor venue decision, a two-stage tree rolled back from r
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
 <li>A decision node with two branches: “Sign now”, ending at 6,000 USD, and “Bid”, leading to a chance node. From the chance node, “Win 0.4” ends at 15,000 USD and “Lose 0.6” leads to a second decision node with “Smaller contract”, 3,000 USD, and “Nothing”, 0 USD.</li>
-<li>The later decision: 3,000 beats 0, so take the smaller contract. The chance node: <span class="math inline">\(0.4 \times 15{,}000 + 0.6 \times 3{,}000 = 6{,}000 + 1{,}800 = 7{,}800\)</span> USD. Bidding, at 7,800 USD, beats signing now at 6,000 USD, so bid.</li>
-<li>The team ends with less than 6,000 USD whenever the bid fails, probability 0.6. The bid has the higher expected value and a higher probability of an outcome below 6,000 USD, and the recommendation should mention both.</li>
+<li>The later decision: 3,000 exceeds 0, so take the smaller contract. At the chance node, <span class="math inline">\(0.4 \times 15{,}000 + 0.6 \times 3{,}000 = 6{,}000 + 1{,}800 = 7{,}800\)</span> USD. Bidding, at 7,800 USD, exceeds signing now at 6,000 USD, so bid.</li>
+<li>We end with less than 6,000 USD whenever the bid fails, probability 0.6. The bid has the higher expected value and a higher probability of an outcome below 6,000 USD, and a recommendation needs to report both.</li>
 </ol>
 </div>
 </div>
@@ -1099,37 +1250,37 @@ Figure&nbsp;3.3: The outdoor venue decision, a two-stage tree rolled back from r
 </section>
 <section id="sec-tree-calculator" class="level2">
 <h2 class="anchored" data-anchor-id="sec-tree-calculator">Check your working with the decision tree calculator</h2>
-<p>The calculator below opens on the decision tree file and draws the tree for one scenario at a time. It calls each scenario a group, and each delivery outcome a success or a failure. It works with the file’s full probabilities, so its expected values match your spreadsheet and differ from the hand calculations in this part by a few dollars.</p>
+<p>The calculator below opens on the vendor scenario file and draws the tree for one scenario at a time. In the calculator, each scenario is labelled a group, after the file’s <code>Group_ID</code> column. The calculator uses the file’s full probabilities, so its expected values match your spreadsheet and differ from the hand calculations in this part by a few dollars.</p>
 <div class="tool-embed">
 <iframe src="https://flairmi.com/toolkit/decision-tree-calculator-embed.html" title="Decision tree and expected value calculator, opened on the vendor scenarios" width="100%" height="1060" loading="lazy" style="border:1px solid #d1d9e6; border-radius:6px;">
 </iframe>
 <p>If the panel above stays blank, open the <a href="https://flairmi.com/toolkit/decision-tree-calculator.html">decision tree calculator in a new tab</a>.</p>
 </div>
-<p>Three checks to run:</p>
+<p>Run these three checks against your hand calculations:</p>
 <ol type="1">
-<li><strong>Scenario 1:</strong> Leave <strong>Group 1</strong> selected. The expected values read 4,663.15 and 9,123.24 USD, against 4,665.48 and 9,128.27 in worked example 3.6, and the rejected local vendor branch carries the same two strokes as <a href="#fig-decision-tree" class="quarto-xref">Figure&nbsp;<span>3.2</span></a>.</li>
-<li><strong>All 50 scenarios:</strong> The table under <strong>All 50 groups</strong> gives a mean expected value of 3,711.8 USD for the local vendor and 8,317.9 USD for the international one, and shows the international vendor best in all 50, as <a href="#tbl-ev-summary" class="quarto-xref">Table&nbsp;<span>3.13</span></a> does. Choose <strong>Group 38</strong> and <strong>Group 10</strong> to check worked example 3.7 and Try It 3.5.</li>
-<li><strong>Your own tree:</strong> Rebuild the outdoor venue from worked example 3.8 with one stage. Enter the outdoor option with good weather at 0.7 and 12,000 USD, and bad weather at 0.3 and 4,000 USD, the value of the bad-weather decision once it is rolled back. Enter the indoor hall as one outcome with probability 1 and 8,000 USD. The calculator gives 9,600 and 8,000 USD.</li>
+<li><strong>Scenario 1:</strong> With <strong>Group 1</strong> selected, the expected values read 4,663.15 and 9,123.24 USD, against 4,665.48 and 9,128.27 in worked example 3.6, and the rejected local vendor branch carries the same two strokes as <a href="#fig-decision-tree" class="quarto-xref">Figure&nbsp;<span>3.2</span></a>.</li>
+<li><strong>All 50 scenarios:</strong> The table under <strong>All 50 groups</strong> gives a mean expected value of 3,711.8 USD for the local vendor and 8,317.9 USD for the international one, and shows the international vendor best in all 50, as <a href="#tbl-ev-summary" class="quarto-xref">Table&nbsp;<span>3.15</span></a> does. Choose <strong>Group 38</strong> and <strong>Group 10</strong> to check worked example 3.7 and Try It 3.5.</li>
+<li><strong>Your own tree:</strong> Enter the outdoor venue from worked example 3.8 as a one-stage tree. For bad weather, use 4,000 USD, the value we found for the bad-weather decision in step 1. So the outdoor option has good weather at 0.7 and 12,000 USD, and bad weather at 0.3 and 4,000 USD. Enter the indoor hall as one outcome with probability 1 and 8,000 USD. The calculator gives 9,600 and 8,000 USD.</li>
 </ol>
-<p>The calculator gives the expected value and the best choice. The risk review, the probability and size of a loss, stays with you.</p>
+<p>The calculator gives the expected value and the best choice. We carry out the risk review ourselves: the probability and the size of a loss.</p>
 </section>
 <section id="sec-binomial" class="level2">
 <h2 class="anchored" data-anchor-id="sec-binomial">Counting successes: the binomial model</h2>
-<p>The events team’s first question was how many registered people will attend. Each registration has two outcomes, attend or stay away, and the event has many registrations. The <strong>binomial model</strong> gives the probability distribution of the number of successes in a fixed number of trials. It applies when four conditions hold:</p>
+<p>Now we return to our first question: how many registered people will attend? Each registration has two outcomes, attend or stay away, and an event has many registrations. The <strong>binomial model</strong> gives the probability distribution of the number of successes in a fixed number of trials. Here a trial is one registration, and a success is a person who attends. The model applies when four conditions hold:</p>
 <ol type="1">
-<li>There is a fixed number of trials, <span class="math inline">\(n\)</span>. Here, the registrations.</li>
-<li>Each trial has two outcomes, success or failure. Here, attended or no-show.</li>
-<li>The probability of success, <span class="math inline">\(p\)</span>, is the same for every trial. Here, 0.83 from the records.</li>
-<li>The trials are independent. One person’s attendance leaves another’s unchanged.</li>
+<li>There is a fixed number of trials, <span class="math inline">\(n\)</span>: here, the registrations.</li>
+<li>Each trial has two outcomes, success or failure: here, attended or no-show.</li>
+<li>The probability of success, <span class="math inline">\(p\)</span>, is the same for every trial: here, 0.83 from the records.</li>
+<li>The trials are independent: whether one person attends has no effect on whether another attends.</li>
 </ol>
-<p>The fourth condition requires checking in every application. Colleagues who registered as a group travel together, so they tend to attend or stay away together. Group bookings break independence, and the model then understates how far attendance can vary.</p>
+<p>The fourth condition needs checking every time we use the model. For example: colleagues who registered as a group travel together, so they tend to attend or stay away together. Group bookings break independence, and attendance then varies more than the model predicts.</p>
 <section id="where-the-binomial-probabilities-come-from" class="level3">
 <h3 class="anchored" data-anchor-id="where-the-binomial-probabilities-come-from">Where the binomial probabilities come from</h3>
-<p>A probability tree shows where the model comes from. Take three registrations, each attending with probability 0.83. The tree has <span class="math inline">\(2 \times 2 \times 2 = 8\)</span> paths, and independence lets you multiply along each one. Exactly two of the three attend on three paths, because the one absence can fall on the first, the second or the third registration. Each of those paths has probability <span class="math inline">\(0.83 \times 0.83 \times 0.17\)</span>.</p>
+<p>We can see where the model comes from by drawing a probability tree. Take three registrations, each attending with probability 0.83. The tree has <span class="math inline">\(2 \times 2 \times 2 = 8\)</span> paths, and because the registrations are independent, we multiply the probabilities along each path. Three of the paths have exactly two people attending, because the one person who stays away can be the first, the second or the third. Each of those paths has probability <span class="math inline">\(0.83 \times 0.83 \times 0.17\)</span>.</p>
 <div id="tbl-binomial-3" class="tbl-calc quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-binomial-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;3.15: The binomial distribution for 3 registrations, each attending with probability 0.83
+Table&nbsp;3.17: The binomial distribution for 3 registrations, each attending with probability 0.83
 </figcaption>
 <div aria-describedby="tbl-binomial-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="tbl-calc caption-top table">
@@ -1177,32 +1328,34 @@ Table&nbsp;3.15: The binomial distribution for 3 registrations, each attending w
 </div>
 </figure>
 </div>
-<p>The general formula counts the paths with <span class="math inline">\(\binom{n}{k}\)</span>, read “n choose k”, and multiplies by the probability of one path:</p>
+<p>The general formula multiplies the number of paths by the probability of one path. The number of paths with exactly <span class="math inline">\(k\)</span> successes is written <span class="math inline">\(\binom{n}{k}\)</span> and read “n choose k”. For example: with three registrations and two attending, <span class="math inline">\(\binom{3}{2} = 3\)</span>, as in <a href="#tbl-binomial-3" class="quarto-xref">Table&nbsp;<span>3.17</span></a>.</p>
 <p><span class="math display">\[P(X = k) = \binom{n}{k} \, p^k (1 - p)^{n - k}\]</span></p>
-<p>You will rarely calculate it by hand. A spreadsheet does it in one function: <code>=BINOM.DIST(k, n, p, FALSE)</code> gives <span class="math inline">\(P(X = k)\)</span>, and <code>=BINOM.DIST(k, n, p, TRUE)</code> gives the probability of <span class="math inline">\(k\)</span> or fewer.</p>
+<p>where <span class="math inline">\(X\)</span> is the number of successes, <span class="math inline">\(n\)</span> the number of trials, <span class="math inline">\(k\)</span> the number of successes you want the probability of, and <span class="math inline">\(p\)</span> the probability of success on one trial.</p>
+<p>We rarely calculate it by hand, because a spreadsheet does it in one function: <code>=BINOM.DIST(k, n, p, FALSE)</code> gives <span class="math inline">\(P(X = k)\)</span>, and <code>=BINOM.DIST(k, n, p, TRUE)</code> gives the probability of <span class="math inline">\(k\)</span> or fewer.</p>
 </section>
 <section id="the-mean-and-standard-deviation-of-a-binomial" class="level3">
 <h3 class="anchored" data-anchor-id="the-mean-and-standard-deviation-of-a-binomial">The mean and standard deviation of a binomial</h3>
 <p>The expected number of successes and its standard deviation have short formulas:</p>
 <p><span class="math display">\[\mu = n \, p \qquad \sigma = \sqrt{n \, p \, (1 - p)}\]</span></p>
-<p>For the three registrations: <span class="math inline">\(\mu = 3 \times 0.83 = 2.49\)</span>. The expected value formula from earlier in this part gives the same figure: <span class="math inline">\(3 \times 0.5718 + 2 \times 0.3513 + 1 \times 0.0720 + 0 \times 0.0049 = 2.49\)</span>.</p>
-<p>When <span class="math inline">\(n p\)</span> and <span class="math inline">\(n (1 - p)\)</span> are both at least 10, the binomial distribution is close to normal, and the z-scores and normal table from chapter 2 support probability calculations for it. Because the binomial counts whole people, add or subtract a half when you turn a count into a boundary: “more than 105” begins at 106, so its boundary is 105.5.</p>
+<p>where <span class="math inline">\(\mu\)</span> (the Greek letter mu) is the expected number of successes and <span class="math inline">\(\sigma\)</span> is its standard deviation.</p>
+<p>For the three registrations, <span class="math inline">\(\mu = 3 \times 0.83 = 2.49\)</span>, and the expected value formula from earlier in this part gives the same figure: <span class="math inline">\(3 \times 0.5718 + 2 \times 0.3513 + 1 \times 0.0720 + 0 \times 0.0049 = 2.49\)</span>.</p>
+<p>When <span class="math inline">\(n p\)</span> and <span class="math inline">\(n (1 - p)\)</span> are both at least 10, the binomial distribution has close to a normal shape. We can then estimate its probabilities with the z-scores and the normal table from <a href="week02-part3.html#sec-standard-normal">chapter 2</a>. The binomial counts whole people, and the normal model treats attendance as a smooth scale. So when we turn a count into a boundary, we move it by half a person: “more than 105” means 106 or more, so its boundary on the smooth scale is 105.5.</p>
 <div class="worked-example">
 <p><span class="we-label">Worked example 3.9</span></p>
 <section id="is-the-room-big-enough" class="level3">
 <h3 class="anchored" data-anchor-id="is-the-room-big-enough">Is the room big enough?</h3>
 <div class="we-problem">
 <p>The next event has 120 registrations and the room seats 105. Each registered person attends with probability 0.83, independently of the others.</p>
-<p>Calculate the expected attendance and its standard deviation, then estimate the probability that more than 105 people attend. Decide whether the team should move to a larger room.</p>
+<p>Calculate the expected attendance and its standard deviation, then estimate the probability that more than 105 people attend. Decide whether we should move to a larger room.</p>
 </div>
 <div class="we-solution">
-<p><strong>Check the conditions:</strong> 120 fixed registrations, two outcomes each, the same probability from the records and independence assumed. <span class="math inline">\(n p = 99.6\)</span> and <span class="math inline">\(n (1 - p) = 20.4\)</span>, both at least 10, so the normal model applies.</p>
+<p><strong>Check the conditions:</strong> There are 120 fixed registrations with two outcomes each, the same probability from the records, and we assume independence. <span class="math inline">\(n p = 99.6\)</span> and <span class="math inline">\(n (1 - p) = 20.4\)</span>, both at least 10, so the normal model applies.</p>
 <p><strong>Mean and standard deviation:</strong></p>
 <p><span class="math display">\[\mu = 120 \times 0.83 = 99.6\]</span> <span class="math display">\[\sigma = \sqrt{120 \times 0.83 \times 0.17} = \sqrt{16.932} = 4.115\]</span></p>
-<p><strong>More than 105:</strong> The boundary is 105.5.</p>
+<p><strong>More than 105:</strong> The count “more than 105” begins at 106, so the boundary is 105.5.</p>
 <p><span class="math display">\[z = \frac{105.5 - 99.6}{4.115} = \frac{5.9}{4.115} = 1.43\]</span></p>
 <p>The standard normal table gives an area above 1.43 of 0.0764. The spreadsheet’s exact figure, <code>=1-BINOM.DIST(105, 120, 0.83, TRUE)</code>, is 0.0710.</p>
-<p><strong>Decision:</strong> About 7 events in 100 with this registration pattern would overflow the room. The team should decide whether a 1 in 14 chance of turning people away is acceptable. If a larger room costs little, take it. If it is expensive, a waiting list and a reminder to confirm attendance a week ahead would manage the risk at lower cost.</p>
+<p><strong>Decision:</strong> About 7 events in 100 with this registration pattern would have more people than seats. We need to decide whether a 1 in 14 probability of turning people away is acceptable. If a larger room costs little, we should take it. If it is expensive, a waiting list and a reminder to confirm attendance a week ahead would manage the risk at lower cost.</p>
 </div>
 </section>
 </div>
@@ -1221,12 +1374,12 @@ Table&nbsp;3.15: The binomial distribution for 3 registrations, each attending w
 <li>Calculate the expected attendance and its standard deviation.</li>
 <li>Estimate the probability that more than 130 people attend, using the normal model.</li>
 <li>Write the spreadsheet formula that gives the exact probability.</li>
-<li>Is 130 meals a defensible order? Explain in two sentences.</li>
+<li>Explain in two sentences whether 130 meals is a defensible order.</li>
 </ol>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled" title="Check your answer">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1235,13 +1388,13 @@ Table&nbsp;3.15: The binomial distribution for 3 registrations, each attending w
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
 <li><span class="math inline">\(\mu = 150 \times 0.83 = 124.5\)</span>. <span class="math inline">\(\sigma = \sqrt{150 \times 0.83 \times 0.17} = \sqrt{21.165} = 4.601\)</span>.</li>
-<li>The boundary is 130.5. <span class="math inline">\(z = (130.5 - 124.5) \div 4.601 = 6.0 \div 4.601 = 1.30\)</span>. The area above 1.30 is 0.0968, about 10 per cent.</li>
+<li>With the boundary at 130.5, <span class="math inline">\(z = (130.5 - 124.5) \div 4.601 = 6.0 \div 4.601 = 1.30\)</span>. The area above 1.30 is 0.0968, about 10 per cent.</li>
 <li><code>=1-BINOM.DIST(130, 150, 0.83, TRUE)</code>, which returns 0.0927.</li>
-<li>130 meals covers the expected 124.5 attendees with 5 or 6 to spare, and runs short at about 1 event in 10. For a buffet with some flexibility this is defensible, and for a seated dinner the team may want a few more meals or a late top-up arrangement with the caterer.</li>
+<li>130 meals covers the expected 124.5 attendees with 5 or 6 to spare, and falls short in about 1 event in 10. For a buffet with some flexibility this is defensible. For a seated dinner we may want a few more meals or a late top-up arrangement with the caterer.</li>
 </ol>
 </div>
 </div>
@@ -1250,14 +1403,14 @@ Table&nbsp;3.15: The binomial distribution for 3 registrations, each attending w
 </section>
 <section id="section-summary" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="section-summary">Section summary</h2>
-<p>A random variable takes its value from an uncertain event, and its probability distribution lists every value with its probability. The expected value weights each value by its probability, and it serves as a long-run average. A risk review sets the probability of a loss, the worst outcome and the standard deviation beside the expected value. A decision tree draws decisions as squares, chance events as circles and payoffs as triangles, and rolling it back from right to left chooses the option. In the vendor file, the international vendor wins on expected value in all 50 scenarios and carries the larger loss in 49, so the choice depends on the loss the team can absorb. The binomial model counts successes in a fixed number of independent trials, with mean <span class="math inline">\(n p\)</span> and standard deviation <span class="math inline">\(\sqrt{n p (1 - p)}\)</span>.</p>
+<p>A random variable is a number whose value is decided by chance, and its probability distribution lists every value with its probability. The expected value counts each value in proportion to its probability, and it gives the average payoff over many repeats of the same decision. A risk review sets the probability of a loss, the worst outcome and the standard deviation beside the expected value. A decision tree draws decisions as squares, chance events as circles and payoffs as triangles, and rolling it back from right to left identifies the option with the highest expected value. In the vendor scenario file, the international vendor has the higher expected value in all 50 scenarios and the larger loss in 49, so our choice depends on the loss we can absorb. The binomial model counts successes in a fixed number of independent trials, with mean <span class="math inline">\(n p\)</span> and standard deviation <span class="math inline">\(\sqrt{n p (1 - p)}\)</span>.</p>
 <div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<p><strong>Next:</strong> <a href="week03-part3.html">Part 3, project time</a> turns from money to days, and finds the tasks that set the date of the event.</p>
+<p><strong>Next:</strong> In <a href="week03-part3.html">part 3, project time</a>, we turn from money to days and find the tasks that set the date of the event.</p>
 </div>
 </div>
 </div>
