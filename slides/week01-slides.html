@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="week01-slides_files/libs/clipboard/clipboard.min.js"></script>
+<script src="week01-slides_files/libs/quarto-html/tabby.min.js"></script>
+<script src="week01-slides_files/libs/quarto-html/popper.min.js"></script>
+<script src="week01-slides_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="week01-slides_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="week01-slides_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="week01-slides_files/libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.24">
+
+  <meta name="author" content="Mohammed Ali Sharafuddin">
+  <title>Chapter 1: Data, Measurement Scales and Descriptive Statistics</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="week01-slides_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="week01-slides_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="week01-slides_files/libs/revealjs/dist/theme/quarto-0fde88a82f0356838740f155f1088782.css">
+  <link href="week01-slides_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="week01-slides_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="week01-slides_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="week01-slides_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="week01-slides_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="week01-slides_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <style>
+    .demo-box { border: 1px solid #cfcfcf; border-radius: 12px; padding: 14px 18px; background: #fafafa; }
+    .small-note { font-size: 0.8em; }
+    .nb { display:inline-block; width:1.35em; height:1.35em; line-height:1.35em; border-radius:50%;
+          background:#D9A441; color:#23415A; text-align:center; font-weight:700; margin-right:0.3em; font-size:0.85em; }
+    .nb.t { background:#2A7F7F; color:#fff; } .nb.g { background:#8A97A3; color:#fff; }
+    .shot { display:block; margin:0 auto; max-width:100%; max-height:450px; border:1px solid #cfcfcf; border-radius:8px; }
+    .reveal { font-size: 38px; }   /* week 1 standard (owner, 2026-11-20) */
+    .reveal table { font-size: 0.85em; }
+    .reveal .slides section div.callout { font-size: 1em; }   /* div matches Quarto's own 0.7em rule, which wins otherwise */
+    .reveal .slides section div.callout .callout-body-container { font-size: 1em; }
+    .reveal ul li, .reveal ol li { margin-bottom: 0.15em; }
+    /* Activity-card opener, as in the Digital Marketing decks */
+    .reveal .lp-grid { display:grid; gap:0.6rem; }
+    .reveal .lp-grid.lp-5 { grid-template-columns:repeat(5,1fr); margin:1rem auto 0; }
+    .reveal .lp-card { background:#fff; border:1px solid #d1d9e6; border-top:5px solid #0063b2; border-radius:4px;
+                       padding:0.6rem 0.7rem; font-size:0.62em; line-height:1.4; text-align:left; }
+    .reveal .lp-card p { margin:0 0 0.3em; }
+    .reveal .badge { display:inline-block; font-size:0.75em; font-weight:700; padding:0.1em 0.45em; border-radius:3px;
+                     text-transform:uppercase; letter-spacing:0.04em; }
+    .reveal .bg-discussion { background:#fcd34d; color:#78350f; } .reveal .bg-acquisition { background:#34d399; color:#064e3b; }
+    .reveal .bg-practice { background:#60a5fa; color:#1e3a8a; } .reveal .bg-assessment { background:#f87171; color:#7f1d1d; }
+    .reveal .bg-investigation { background:#22d3ee; color:#164e63; } .reveal .bg-production { background:#fb923c; color:#7c2d12; }
+    .reveal .act-num { display:inline-flex; align-items:center; justify-content:center; width:1.5em; height:1.5em; border-radius:50%;
+                       background:#0063b2; color:#fff; font-weight:800; font-size:0.8em; margin-right:0.25em; }
+    .reveal .act-time { font-size:0.85em; color:#555f70; font-weight:600; }
+    /* Chapter decks (2026-11-19): 4-card lecture grid, CLO and objective tags, module arc, title slide. */
+    .reveal .lp-grid.lp-4 { grid-template-columns:repeat(4,1fr); margin:1rem auto 0; }
+    .reveal .clo-tag { display:inline-block; margin-left:0.35em; padding:0.02em 0.45em; border-radius:0.7em;
+                       background:#2A7F7F; color:#fff; font-weight:700; font-size:0.62em; vertical-align:0.12em; white-space:nowrap; }
+    .reveal .obj-tag { display:inline-block; padding:0.05em 0.5em; border-radius:3px; background:#eef3f2;
+                       color:#1F3347; border-left:4px solid #2A7F7F; font-size:0.6em; font-weight:700; }
+    .reveal .arc { display:flex; gap:0.3rem; margin:0.6rem 0 1rem; }
+    .reveal .arc > div { flex:1; background:#f4f6f9; color:#23415A; border:2px solid #d1d9e6; border-radius:8px;
+                         padding:0.45em 0.3em; font-size:0.6em; line-height:1.3; text-align:center; }
+    .reveal .arc > div.here { background:#2A7F7F; color:#fff; border-color:#2A7F7F; font-weight:700; }
+    /* Text-only slides (SLIDE_STYLE.md section 2), added 2026-11-19 for session 2. */
+    .reveal .slides section.big > p, .reveal .slides section.big ul, .reveal .slides section.big ol { font-size: 1.2em; }
+    .reveal .slides section.big table { font-size: 1.1em; }
+    .reveal .slides section.big div.callout { font-size: 1.25em; }
+    .reveal .work-time { font-size:1.6em; font-weight:800; color:#2A7F7F; text-align:center; margin:0.2em 0; }
+    /* Phone scroll view: show every bullet at once in place of stepping through them. */
+    .reveal-scroll .reveal .fragment { opacity: 1 !important; visibility: inherit !important; transform: none !important; }
+  </style>
+  <script>
+    // Reveal's template blocks pinch-zoom (user-scalable=no). Students reading a
+    // deck on a phone need to zoom into tables and screenshots, so allow it.
+    document.addEventListener("DOMContentLoaded", function () {
+      var m = document.querySelector('meta[name="viewport"]');
+      if (m) m.setAttribute("content", "width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes");
+    });
+  </script>
+  <!-- slides/_chapter-style.html: chapter decks only (week*-slides.qmd), included after _session-style.html.
+       The chapter deck standard from slides/SLIDE_STYLE.md, approved by the owner on 2026-11-19 with the
+       chapter 1 decks. The session decks never include this file. -->
+  <style>
+    /* Title over the dark book cover, in the empty band at the top right. */
+    .reveal .slides section#title-slide { text-align:left; top:14px !important; }
+    .reveal #title-slide h1, .reveal #title-slide p, .reveal #title-slide .quarto-title-author-name { text-shadow:0 1px 3px rgba(0,0,0,0.6); }
+    .reveal #title-slide .title, .reveal #title-slide .subtitle,
+    .reveal #title-slide .quarto-title-author-name, .reveal #title-slide .quarto-title-affiliation { color:#fff; }
+    .reveal #title-slide .title { font-size:1.05em; line-height:1.15; margin:0 0 0.15em 49%; }
+    .reveal #title-slide .subtitle { font-size:0.62em; margin:0 0 0.1em 49%; color:#D9E8F5; }
+    .reveal #title-slide .quarto-title-author-name { font-size:0.55em; }
+    .reveal #title-slide .quarto-title-authors { margin-left:48%; justify-content:flex-start; }
+
+    /* Type sizes. */
+    .reveal { font-size: 38px; }
+    .reveal .lp-card { font-size: 0.72em; }
+    .reveal table { font-size: 0.85em; }
+    .reveal .slides section .callout { font-size: 1em; }
+    .reveal .slides section .callout .callout-body-container { font-size: 1em; }
+    .reveal .obj-tag { font-size: 0.55em; }
+    .reveal pre { font-size: 0.8em; }
+
+    /* Module arc: the current block is three times wider than the others. */
+    .reveal .arc { align-items: stretch; margin-top: 0; }
+    .reveal .arc > div { font-size: 0.55em; display: flex; align-items: center; justify-content: center; }
+    .reveal .arc > div.here { flex: 3; font-size: 1.1em; padding: 0.6em 0.4em; }
+
+    /* Text-only slides (class big): larger body text to fill the slide. Headings unchanged. */
+    .reveal .slides section.big > p, .reveal .slides section.big ul, .reveal .slides section.big ol { font-size: 1.2em; }
+    .reveal .slides section.big table { font-size: 1.1em; }
+    .reveal .slides section.big .callout { font-size: 1.25em; }
+    .reveal .slides section.big > p .obj-tag { font-size: 0.5em; }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" data-background-color="#15263A" data-background-image="../assets/images/cover-landscape.png" data-background-position="center" data-background-size="contain" class="quarto-title-block center">
+  <h1 class="title">Chapter 1: Data, Measurement Scales and Descriptive Statistics</h1>
+  <p class="subtitle">Lecture: Does the service meet expectations?</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Mohammed Ali Sharafuddin 
+</div>
+</div>
+</div>
+
+</section>
+<section id="where-this-chapter-sits" class="slide level2 unnumbered center">
+<h2></h2>
+<div class="arc">
+<div class="here">
+<p>Chapters 1⁠–⁠2<br>Describing data</p>
+</div>
+<div>
+<p>Chapter 3<br>Decision tools</p>
+</div>
+<div>
+<p>Chapters 4⁠–⁠5<br>Testing differences</p>
+</div>
+<div>
+<p>Chapters 6⁠–⁠8<br>Strategy and ethics</p>
+</div>
+<div>
+<p>Chapters 9⁠–⁠11<br>Relationships</p>
+</div>
+<div>
+<p>Chapters 12⁠–⁠15<br>Measurement models</p>
+</div>
+</div>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>The decision question</strong></p>
+</div>
+<div class="callout-content">
+<p>A service manager hands us a file of 200 customer records and asks: <strong>does the service meet expectations?</strong> To answer, we first need to understand what is in the file.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="lecture-activities" class="slide level2 unnumbered center">
+<h2>Lecture activities</h2>
+<div class="lp-grid lp-4">
+<div class="lp-card lecture">
+<p><span class="badge bg-discussion">Discussion</span></p>
+<p><strong><span class="act-num">1</span> Welcome and weekly goals</strong></p>
+<p><span class="act-time">⏱ 10 min</span></p>
+<p>How the module is organised, and why data types and descriptive statistics come before any management decision</p>
+</div>
+<div class="lp-card lecture">
+<p><span class="badge bg-acquisition">Acquisition</span></p>
+<p><strong><span class="act-num">2</span> Core concepts</strong></p>
+<p><span class="act-time">⏱ 30 min</span></p>
+<p>How data, variables and measurement scales connect to frequency tables, measures of centre and measures of spread</p>
+</div>
+<div class="lp-card lecture">
+<p><span class="badge bg-practice">Practice</span></p>
+<p><strong><span class="act-num">3</span> Worked example and discussion</strong></p>
+<p><span class="act-time">⏱ 15 min</span></p>
+<p>Interpreting a short set of descriptive outputs, and what a manager can infer from them</p>
+</div>
+<div class="lp-card lecture">
+<p><span class="badge bg-assessment">Assessment</span></p>
+<p><strong><span class="act-num">4</span> Exit check</strong></p>
+<p><span class="act-time">⏱ 5 min</span></p>
+<p>A short check on variable type and the most suitable descriptive summary</p>
+</div>
+</div>
+</section>
+<section id="learning-objectives" class="slide level2 unnumbered center">
+<h2>Learning objectives</h2>
+<p>After studying this chapter you should be able to:</p>
+<ol type="1">
+<li>Distinguish a sample statistic from a population parameter. <span class="clo-tag">CLO 1</span></li>
+<li>Classify a variable by its measurement scale. <span class="clo-tag">CLO 1</span></li>
+<li>Interpret a frequency table and its cumulative column. <span class="clo-tag">CLO 1</span></li>
+<li>Select a graph that suits a variable’s type. <span class="clo-tag">CLO 1</span></li>
+<li>Calculate measures of centre and spread for a variable. <span class="clo-tag">CLO 1</span></li>
+<li>Interpret a descriptive summary for a manager. <span class="clo-tag">CLO 6</span></li>
+</ol>
+</section>
+<section>
+<section id="activity-1-welcome-and-weekly-goals" class="title-slide slide level1 center">
+<h1>Activity 1: Welcome and weekly goals</h1>
+
+</section>
+<section id="why-we-describe-the-data-first" class="slide level2 unnumbered big center">
+<h2>Why we describe the data first</h2>
+<p>The manager asks: <em>“Does the service meet expectations?”</em></p>
+<p>Before we can answer, we need three things from the file:</p>
+<ol type="1">
+<li class="fragment">What each column records: a number, a category or a rating</li>
+<li class="fragment">What a typical customer looks like</li>
+<li class="fragment">How much customers differ from one another</li>
+</ol>
+<p><strong>Question for the room:</strong> the average wait was 45 minutes. Is that good news?</p>
+</section>
+<section id="the-dataset-for-the-term" class="slide level2 unnumbered center">
+<h2>The dataset for the term</h2>
+<div class="columns">
+<div class="column" style="width:45%;">
+<p><strong><code>DMM_Teaching_Data_Full.csv</code></strong></p>
+<ul>
+<li class="fragment">200 customers, 26 columns</li>
+<li class="fragment">We use it today and in most chapters</li>
+<li class="fragment">Every number in this lecture comes from it</li>
+<li class="fragment"><a href="https://mohammedalisharafuddin.github.io/dmm-textbook/data/DMM_Teaching_Data_Full.csv">Download the file</a></li>
+</ul>
+</div><div class="column" style="width:55%;">
+<p><img class="shot" src="../assets/images/screenshots/ch01/ch01-jasp-f1-dataset-view.png" alt="The teaching dataset open in JASP, 200 rows and 26 columns" style="max-height:480px;"></p>
+</div></div>
+</section></section>
+<section>
+<section id="activity-2-core-concepts" class="title-slide slide level1 center">
+<h1>Activity 2: Core concepts</h1>
+
+</section>
+<section id="cases-variables-observations-and-values" class="slide level2 unnumbered center">
+<h2>Cases, variables, observations and values</h2>
+<div class="columns">
+<div class="column" style="width:55%;">
+<ul>
+<li class="fragment"><strong>Case:</strong> one customer, one row</li>
+<li class="fragment"><strong>Variable:</strong> something we record for every customer, one column, such as <code>Age</code> or <code>Region</code></li>
+<li class="fragment"><strong>Observation:</strong> everything recorded for one customer, a full row</li>
+<li class="fragment"><strong>Value:</strong> one entry, one cell</li>
+</ul>
+</div><div class="column" style="width:45%;">
+<p><img class="shot" src="../assets/images/screenshots/ch01/ch01-jasp-f2-one-case-one-variable.png" alt="One row highlighted as a case, one column highlighted as a variable, in JASP" style="max-height:480px;"></p>
+</div></div>
+</section>
+<section id="the-four-terms-in-this-dataset" class="slide level2 unnumbered big center">
+<h2>The four terms in this dataset</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Term</th>
+<th>In this dataset</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Case</td>
+<td>One respondent, one row, 200 in total</td>
+</tr>
+<tr class="even">
+<td>Variable</td>
+<td><code>Age</code>, <code>Gender</code>, <code>Region</code>, <code>Satisfaction</code>, <code>Waiting_Time_Mins</code>: 26 in total</td>
+</tr>
+<tr class="odd">
+<td>Observation</td>
+<td>All 26 values recorded for respondent 1</td>
+</tr>
+<tr class="even">
+<td>Value</td>
+<td><code>32</code>, or <code>East</code>, or <code>3.72</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="practice-question-cases-and-variables" class="slide level2 unnumbered big center">
+<h2>Practice question: cases and variables</h2>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>A clinic’s records</strong></p>
+</div>
+<div class="callout-content">
+<p>A clinic records, for each patient seen in March: patient number, age, presenting complaint, minutes waited, and whether the patient was referred onward.</p>
+<p>Name the case and the variables. What is the observation for patient 12? What is the value <code>28</code> in the waiting column? What is “March”?</p>
+</div>
+</div>
+</div>
+</section>
+<section id="practice-question-answer" class="slide level2 unnumbered big center">
+<h2>Practice question: answer</h2>
+<ul>
+<li class="fragment">The <strong>case</strong> is the patient</li>
+<li class="fragment">The <strong>variables</strong> are age, presenting complaint, minutes waited and referral</li>
+<li class="fragment">The <strong>observation</strong> for patient 12 is that patient’s full row of five values, and <code>28</code> is one <strong>value</strong></li>
+<li class="fragment"><strong>“March” is a constant:</strong> every patient shares it, so it tells us nothing about differences between patients</li>
+</ul>
+</section>
+<section id="population-sample-parameter-and-statistic" class="slide level2 unnumbered center">
+<h2>Population, sample, parameter and statistic</h2>
+<p><span class="obj-tag">Objective 1</span></p>
+<p>Surveying every customer costs too much, so we survey some of them.</p>
+<ul>
+<li class="fragment"><strong>Population:</strong> all the customers we want to know about</li>
+<li class="fragment"><strong>Sample:</strong> the customers we surveyed</li>
+<li class="fragment"><strong>Parameter:</strong> a number for the whole population, usually unknown</li>
+<li class="fragment"><strong>Statistic:</strong> a number from our sample, which changes a little from sample to sample</li>
+</ul>
+</section>
+<section id="notation-for-the-module" class="slide level2 unnumbered big center">
+<h2>Notation for the module</h2>
+<p><span class="obj-tag">Objective 1</span></p>
+<p>Greek letters are for populations. Ordinary letters are for samples.</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Quantity</th>
+<th>Population parameter</th>
+<th>Sample statistic</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Mean</td>
+<td>μ</td>
+<td>x̄</td>
+</tr>
+<tr class="even">
+<td>Proportion</td>
+<td>π</td>
+<td>p</td>
+</tr>
+<tr class="odd">
+<td>Size</td>
+<td>N</td>
+<td>n</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="practice-question-population-and-sample" class="slide level2 unnumbered big center">
+<h2>Practice question: population and sample</h2>
+<p><span class="obj-tag">Objective 1</span></p>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Forty branches</strong></p>
+</div>
+<div class="callout-content">
+<p>A regional manager oversees 40 branches. She surveys customers at 6 of them and calculates a mean satisfaction of 3.8.</p>
+<p>Name the population, the sample, the statistic and the parameter.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="practice-question-answer-1" class="slide level2 unnumbered big center">
+<h2>Practice question: answer</h2>
+<ul>
+<li class="fragment"><strong>Population:</strong> customers of all 40 branches</li>
+<li class="fragment"><strong>Sample:</strong> customers of the 6 surveyed branches</li>
+<li class="fragment"><strong>Statistic:</strong> the 3.8 she calculated (x̄)</li>
+<li class="fragment"><strong>Parameter:</strong> the unknown mean across all 40 branches (μ)</li>
+<li class="fragment"><strong>An accurate report names the sample:</strong> “Mean satisfaction among customers surveyed at 6 of our 40 branches was 3.8.”</li>
+</ul>
+</section>
+<section id="the-four-measurement-scales" class="slide level2 unnumbered big center">
+<h2>The four measurement scales</h2>
+<p><span class="obj-tag">Objective 2</span></p>
+<p>Each scale adds one property to the scale before it.</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Scale</th>
+<th>Order</th>
+<th>Equal gaps</th>
+<th>True zero</th>
+<th>Example in this dataset</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Nominal</td>
+<td>No</td>
+<td>No</td>
+<td>No</td>
+<td><code>Region</code>, <code>Ticket_Type</code></td>
+</tr>
+<tr class="even">
+<td>Ordinal</td>
+<td>Yes</td>
+<td>No</td>
+<td>No</td>
+<td><code>Return_Intention</code> (1 to 5)</td>
+</tr>
+<tr class="odd">
+<td>Interval</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+<td>Temperature in Celsius</td>
+</tr>
+<tr class="even">
+<td>Ratio</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+<td><code>Age</code>, <code>Spending</code>, <code>Waiting_Time_Mins</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="measurement-levels-in-jasp" class="slide level2 unnumbered center">
+<h2>Measurement levels in JASP</h2>
+<p><span class="obj-tag">Objective 2</span></p>
+<div class="columns">
+<div class="column" style="width:38%;">
+<ul>
+<li class="fragment">Each column header carries an icon for its type</li>
+<li class="fragment"><strong>Ruler:</strong> Scale</li>
+<li class="fragment"><strong>Bars:</strong> Ordinal</li>
+<li class="fragment"><strong>Circles:</strong> Nominal</li>
+<li class="fragment">Click a column to open its type menu and correct the guess</li>
+</ul>
+</div><div class="column" style="width:62%;">
+<p><img class="shot" src="../assets/images/screenshots/ch01/ch01-jasp-04-variable-type-icons.png" alt="JASP with the column type menu open on Respondent_ID, and the column headers below showing the ruler icon for Scale, the bar icon for Ordinal and the circles icon for Nominal" style="max-height:520px;"></p>
+</div></div>
+</section>
+<section id="practice-question-classify-the-scale" class="slide level2 unnumbered big center">
+<h2>Practice question: classify the scale</h2>
+<p><span class="obj-tag">Objective 2</span></p>
+<p>Classify each variable as nominal, ordinal, interval or ratio:</p>
+<ol type="1">
+<li class="fragment"><code>Ticket_Type</code> (Standard, Student, VIP)</li>
+<li class="fragment"><code>Return_Intention</code> (1 to 5, where 5 means certain to return)</li>
+<li class="fragment"><code>Waiting_Time_Mins</code></li>
+<li class="fragment">Temperature recorded in Celsius</li>
+</ol>
+</section>
+<section id="why-the-scale-check-matters" class="slide level2 unnumbered center">
+<h2>Why the scale check matters</h2>
+<p><span class="obj-tag">Objective 2</span></p>
+<div class="columns">
+<div class="column" style="width:45%;">
+<p>JASP read a column of group codes as numbers and calculated its mean.</p>
+<p><strong>Question:</strong> what does an average group code tell a manager?</p>
+</div><div class="column" style="width:55%;">
+<p><img class="shot" src="../assets/images/screenshots/ch01/ch01-jasp-f6-wrong-type-mean.png" alt="A nominal variable read as Scale in JASP, and the meaningless mean it allows" style="max-height:480px;"></p>
+</div></div>
+</section>
+<section id="frequency-distributions" class="slide level2 unnumbered big center">
+<h2>Frequency distributions</h2>
+<p><span class="obj-tag">Objective 3</span></p>
+<p>How many customers bought each type of ticket? A <strong>frequency distribution</strong> counts the cases in each category.</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Ticket type</th>
+<th>Frequency</th>
+<th>Relative frequency</th>
+<th>Percentage</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Standard</td>
+<td>124</td>
+<td>0.620</td>
+<td>62.0%</td>
+</tr>
+<tr class="even">
+<td>Student</td>
+<td>46</td>
+<td>0.230</td>
+<td>23.0%</td>
+</tr>
+<tr class="odd">
+<td>VIP</td>
+<td>30</td>
+<td>0.150</td>
+<td>15.0%</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="two-checks-for-every-frequency-table" class="slide level2 unnumbered big center">
+<h2>Two checks for every frequency table</h2>
+<p><span class="obj-tag">Objective 3</span></p>
+<ul>
+<li class="fragment">The frequencies sum to n: 124 + 46 + 30 = 200</li>
+<li class="fragment">The relative frequencies sum to 1: 0.620 + 0.230 + 0.150 = 1.000</li>
+<li class="fragment">If a check fails, a value is missing or a sum is wrong</li>
+<li class="fragment">The cumulative column, built in the tutorial, answers threshold questions such as “what share waited under 40 minutes?”</li>
+</ul>
+</section>
+<section id="mean-median-and-mode" class="slide level2 unnumbered big center">
+<h2>Mean, median and mode</h2>
+<p><span class="obj-tag">Objective 5</span></p>
+<p>Three test scores: 86, 75 and 92.</p>
+<ul>
+<li class="fragment"><strong>Mean:</strong> add the scores and divide by 3: 253 ÷ 3 = 84.3. It uses every value</li>
+<li class="fragment"><strong>Median:</strong> in order, 75, 86, 92, the middle score is 86</li>
+<li class="fragment"><strong>Mode:</strong> each score appears once, so these data have no mode</li>
+</ul>
+</section>
+<section id="standard-deviation-how-much-customers-differ" class="slide level2 unnumbered center">
+<h2>Standard deviation: how much customers differ</h2>
+<p><span class="obj-tag">Objective 5</span></p>
+<p>Waiting time: mean <strong>45.46 minutes</strong>, standard deviation <strong>11.91 minutes</strong>.</p>
+<ul>
+<li class="fragment">The <strong>standard deviation</strong> is the typical distance of a value from the mean</li>
+<li class="fragment">So a typical customer waits about 12 minutes more or less than 45</li>
+<li class="fragment">In our file, two customers in three (133 of 200) waited between 33.5 and 57.4 minutes</li>
+</ul>
+<p><strong>So what?</strong> The manager can plan for waits of about 33 to 57 minutes for most customers. A larger standard deviation would mean a less predictable service.</p>
+</section>
+<section id="coefficient-of-variation-comparing-spread" class="slide level2 unnumbered center">
+<h2>Coefficient of variation: comparing spread</h2>
+<p><span class="obj-tag">Objective 5</span></p>
+<p>The three standard deviations are in years, minutes and USD, so we divide each by its own mean.</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Mean</th>
+<th>Standard deviation</th>
+<th>Coefficient of variation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Age</code></td>
+<td>35.35 years</td>
+<td>7.35</td>
+<td>7.35 ÷ 35.35 = 20.8%</td>
+</tr>
+<tr class="even">
+<td><code>Waiting_Time_Mins</code></td>
+<td>45.46 minutes</td>
+<td>11.91</td>
+<td>11.91 ÷ 45.46 = 26.2%</td>
+</tr>
+<tr class="odd">
+<td><code>Spending</code></td>
+<td>505.65 USD</td>
+<td>256.84</td>
+<td>256.84 ÷ 505.65 = 50.8%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question:</strong> which of the three is hardest to predict for next month?</p>
+</section></section>
+<section>
+<section id="activity-3-worked-example-and-discussion" class="title-slide slide level1 center">
+<h1>Activity 3: Worked example and discussion</h1>
+
+</section>
+<section id="worked-example-a-staffing-decision" class="slide level2 unnumbered big center">
+<h2>Worked example: a staffing decision</h2>
+<p><span class="obj-tag">Objectives 5 and 6</span></p>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Five shifts</strong></p>
+</div>
+<div class="callout-content">
+<p>Five shifts record 28, 39, 22, 51 and 34 calls.</p>
+<p>Calculate the mean, then decide whether it is the right basis for a staffing rule.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="worked-example-the-calculation" class="slide level2 unnumbered big center">
+<h2>Worked example: the calculation</h2>
+<p><span class="obj-tag">Objectives 5 and 6</span></p>
+<ul>
+<li class="fragment">Add the five counts: 28 + 39 + 22 + 51 + 34 = 174</li>
+<li class="fragment">Divide by 5: 174 ÷ 5 = <strong>34.8 calls</strong></li>
+<li class="fragment">As a description of the month, 34.8 is correct</li>
+</ul>
+</section>
+<section id="worked-example-the-interpretation" class="slide level2 unnumbered center">
+<h2>Worked example: the interpretation</h2>
+<p><span class="obj-tag">Objectives 5 and 6</span></p>
+<div class="columns">
+<div class="column" style="width:58%;">
+<ul>
+<li class="fragment">Staff for 34.8 calls, and the 51-call shift is short of people</li>
+<li class="fragment">Staff for 51 calls, and the quieter shifts have spare staff</li>
+<li class="fragment">The mean is the right average for the month</li>
+<li class="fragment">Choosing the staffing level is the manager’s decision</li>
+</ul>
+</div><div class="column" style="width:42%;">
+<p><img class="shot" src="../assets/images/screenshots/ch01/ch01-jasp-18-histogram-boxplot-waiting.png" alt="A histogram and boxplot of Waiting_Time_Mins, showing the long right-hand tail that the mean alone hides" style="max-height:480px;"></p>
+</div></div>
+</section>
+<section id="discussion" class="slide level2 unnumbered big center">
+<h2>Discussion</h2>
+<p><span class="obj-tag">Objective 6</span></p>
+<p><strong>What should the manager staff to, and why?</strong></p>
+</section></section>
+<section>
+<section id="activity-4-exit-check" class="title-slide slide level1 center">
+<h1>Activity 4: Exit check</h1>
+
+</section>
+<section id="exit-check" class="slide level2 unnumbered center">
+<h2>Exit check</h2>
+<p><span class="obj-tag">Objectives 2 and 5</span></p>
+<div class="columns">
+<div class="column" style="width:55%;">
+<p><strong>Before you leave:</strong> choose one variable from the teaching dataset and write down</p>
+<ol type="1">
+<li class="fragment">Its measurement scale</li>
+<li class="fragment">One summary that suits it</li>
+<li class="fragment">One summary that would be invalid for it</li>
+</ol>
+</div><div class="column" style="width:45%;">
+<p><img class="shot" src="../assets/images/screenshots/ch01/ch01-jasp-06-read-six-variables.png" alt="The six audit variables and their current measurement types in JASP" style="max-height:480px;"></p>
+</div></div>
+</section>
+<section id="back-to-the-managers-question" class="slide level2 unnumbered big center">
+<h2>Back to the manager’s question</h2>
+<p><em>“Does the service meet expectations?”</em></p>
+<p>To answer properly, we need three figures from the file:</p>
+<ul>
+<li class="fragment">The average wait</li>
+<li class="fragment">The range that the middle half of customers waited within</li>
+<li class="fragment">How many customers waited longer than the one-hour promise</li>
+</ul>
+<p><strong>In the tutorial, you will find all three in your own output.</strong></p>
+</section>
+<section id="recap" class="slide level2 unnumbered big center">
+<h2>Recap</h2>
+<ul>
+<li class="fragment">A <strong>statistic</strong> is a number from our <strong>sample</strong> of customers</li>
+<li class="fragment">Check each column’s type first</li>
+<li class="fragment">A frequency table adds up to the number of customers</li>
+<li class="fragment">The cumulative column answers “how many waited under 40 minutes?”</li>
+<li class="fragment">Report the average and the spread together</li>
+<li class="fragment">Tell the manager which customers, branch and month the figures cover</li>
+</ul>
+</section>
+<section id="before-the-tutorial" class="slide level2 unnumbered big center">
+<h2>Before the tutorial</h2>
+<ul>
+<li class="fragment">Open <code>DMM_Teaching_Data_Full.csv</code> in JASP, or in PocketStat in the browser</li>
+<li class="fragment">Bring today’s four measurement scales: the tutorial opens with an audit of six variables</li>
+<li class="fragment">The tutorial produces four outputs and a 120-word summary for the service manager</li>
+</ul>
+
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="week01-slides_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="week01-slides_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="week01-slides_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="week01-slides_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="week01-slides_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="week01-slides_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="week01-slides_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="week01-slides_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="week01-slides_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="week01-slides_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="week01-slides_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'scrollSnap': "proximity",
+'scrollLayout': "compact",
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true,"theme":"whiteboard","boardmarkerWidth":4,"chalkWidth":5},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'fade',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1280,
+
+        height: 720,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 6.0e-2,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>

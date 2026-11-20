@@ -1,0 +1,1885 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-GB" xml:lang="en-GB"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.24">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="keywords" content="Pearson correlation, Spearman’s rank correlation, Spearman’s rho, correlation coefficient, coefficient of determination, scatterplot, correlation and causation">
+<meta name="description" content="Chapter 9. Pearson’s r and Spearman’s rho: read a scatterplot, calculate and interpret each coefficient, R², causation, and run and report both in JASP.">
+
+<title>Correlation: Pearson and Spearman – Decision Making for Management</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../weeks/week10.html" rel="next">
+<link href="../weeks/week08.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-d9ba4417da1a30e293bc69403693b164.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<!-- Structured data for search and answer engines. The book is CC BY, so a
+     model that cites it can say so. DefinedTermSet mirrors the Key terms
+     section, whose entries carry the section ids these URLs point at. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Book",
+      "@id": "https://mohammedalisharafuddin.github.io/dmm-textbook/#book",
+      "name": "Decision Making for Management",
+      "alternateName": "A Student Textbook for Data-Informed Managerial Judgement",
+      "inLanguage": "en-GB",
+      "learningResourceType": "textbook",
+      "educationalLevel": "undergraduate",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "author": {
+        "@type": "Person",
+        "name": "Mohammed Ali Sharafuddin",
+        "affiliation": {
+          "@type": "CollegeOrUniversity",
+          "name": "Qasim Ibrahim School of Business, Villa College"
+        }
+      },
+      "educationalUse": ["instruction", "self study"],
+      "audience": {
+        "@type": "EducationalAudience",
+        "educationalRole": "student"
+      },
+      "usageInfo": "https://mohammedalisharafuddin.github.io/dmm-textbook/front-matter/ai-use.html",
+      "about": [
+        "Business statistics",
+        "Descriptive statistics",
+        "Data-informed decision making"
+      ]
+    },
+    {
+      "@type": ["Chapter", "LearningResource"],
+      "@id": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week01.html#chapter",
+      "name": "Data, Measurement Scales, and Descriptive Statistics",
+      "position": 1,
+      "isPartOf": { "@id": "https://mohammedalisharafuddin.github.io/dmm-textbook/#book" },
+      "inLanguage": "en-GB",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "educationalLevel": "undergraduate",
+      "learningResourceType": "chapter",
+      "timeRequired": "PT9H",
+      "educationalUse": ["instruction", "self study"],
+      "assessmentType": ["formative exit check", "checkpoint quiz", "tutorial upload"],
+      "usageInfo": "https://mohammedalisharafuddin.github.io/dmm-textbook/front-matter/ai-use.html",
+      "educationalAlignment": {
+        "@type": "AlignmentObject",
+        "alignmentType": "teaches",
+        "targetName": "Descriptive statistics for management decisions"
+      },
+      "teaches": [
+        "Distinguish a sample statistic from a population parameter",
+        "Classify a variable by its measurement scale",
+        "Interpret a frequency table and its cumulative column",
+        "Select a graph that suits a variable's type",
+        "Calculate measures of centre and spread for a variable",
+        "Interpret a descriptive summary for a manager"
+      ]
+    },
+    {
+      "@type": "DefinedTermSet",
+      "@id": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week01.html#key-terms",
+      "name": "Key terms, Chapter 1",
+      "hasDefinedTerm": [
+        { "@type": "DefinedTerm", "name": "Case", "description": "The unit the data describe.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week01.html#sec-cases" },
+        { "@type": "DefinedTerm", "name": "Variable", "description": "A characteristic measured on each case.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week01.html#sec-cases" },
+        { "@type": "DefinedTerm", "name": "Population", "description": "Every case of interest.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week01.html#sec-population" },
+        { "@type": "DefinedTerm", "name": "Sample", "description": "The subset of the population actually measured.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week01.html#sec-population" },
+        { "@type": "DefinedTerm", "name": "Parameter", "description": "A number describing a population.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week01.html#sec-population" },
+        { "@type": "DefinedTerm", "name": "Statistic", "description": "A number describing a sample.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week01.html#sec-population" },
+        { "@type": "DefinedTerm", "name": "Nominal", "description": "Named categories with no order. You may count them, find the mode and take proportions.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week01-part2.html#sec-scales" },
+        { "@type": "DefinedTerm", "name": "Ordinal", "description": "Ordered categories where the size of the gaps between them is unknown.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week01-part2.html#sec-scales" },
+        { "@type": "DefinedTerm", "name": "Interval", "description": "Numeric with equal gaps and a zero placed by convention, so ratios have no meaning.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week01-part2.html#sec-scales" },
+        { "@type": "DefinedTerm", "name": "Ratio", "description": "Numeric with equal gaps and a true zero, so ratios are meaningful.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week01-part2.html#sec-scales" },
+        { "@type": "DefinedTerm", "name": "Mean", "description": "The sum of all values divided by how many there are.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week01-part3.html#sec-centre" },
+        { "@type": "DefinedTerm", "name": "Median", "description": "The middle value once the data are in order.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week01-part3.html#sec-centre" },
+        { "@type": "DefinedTerm", "name": "Mode", "description": "The value that occurs most often, read off a frequency table.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week01-part3.html#sec-centre" },
+        { "@type": "DefinedTerm", "name": "Standard deviation", "description": "The square root of the variance, in the original units of the data.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week01-part3.html#sec-spread" },
+        { "@type": "DefinedTerm", "name": "Interquartile range", "description": "The third quartile minus the first, the spread of the middle half.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week01-part3.html#sec-quartiles" },
+        { "@type": "DefinedTerm", "name": "Outlier", "description": "A value beyond 1.5 times the interquartile range from the nearer quartile.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week01-part3.html#sec-shape" }
+      ]
+    },
+    {
+      "@type": ["Chapter", "LearningResource"],
+      "@id": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week02.html#chapter",
+      "name": "Introduction to JASP and the Normal Distribution",
+      "position": 2,
+      "isPartOf": { "@id": "https://mohammedalisharafuddin.github.io/dmm-textbook/#book" },
+      "inLanguage": "en-GB",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "educationalLevel": "undergraduate",
+      "learningResourceType": "chapter",
+      "timeRequired": "PT9H",
+      "educationalUse": ["instruction", "self study"],
+      "assessmentType": ["formative exit check", "checkpoint quiz", "tutorial upload"],
+      "usageInfo": "https://mohammedalisharafuddin.github.io/dmm-textbook/front-matter/ai-use.html",
+      "educationalAlignment": {
+        "@type": "AlignmentObject",
+        "alignmentType": "teaches",
+        "targetName": "The normal distribution and z-scores for management decisions"
+      },
+      "teaches": [
+        "Describe the shape of a distribution from a histogram and a boxplot",
+        "Interpret skewness and kurtosis against their standard errors",
+        "Apply the empirical rule to estimate the share of cases near the mean",
+        "Calculate a z-score to compare values measured in different units",
+        "Calculate shares and percentiles from the standard normal table",
+        "Assess whether a variable is close enough to normal in JASP or PocketStat"
+      ]
+    },
+    {
+      "@type": "DefinedTermSet",
+      "@id": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week02.html#key-terms",
+      "name": "Key terms, Chapter 2",
+      "hasDefinedTerm": [
+        { "@type": "DefinedTerm", "name": "Distribution", "description": "The values a variable takes, and how often each occurs.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week02.html#sec-position" },
+        { "@type": "DefinedTerm", "name": "Ceiling effect", "description": "Cases piled up at the highest value a scale allows, which cuts off the right tail.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week02.html#sec-shape-reading" },
+        { "@type": "DefinedTerm", "name": "Skewness", "description": "How far a distribution leans to one side. Positive for a longer right tail, negative for a longer left tail.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week02.html#sec-skewness" },
+        { "@type": "DefinedTerm", "name": "Standard error", "description": "How much a statistic would typically vary from one sample to the next.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week02.html#sec-skewness" },
+        { "@type": "DefinedTerm", "name": "Kurtosis", "description": "How heavy the tails of a distribution are compared with a normal distribution, reported as excess kurtosis with 0 for normal.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week02.html#sec-kurtosis" },
+        { "@type": "DefinedTerm", "name": "Normal distribution", "description": "A symmetric bell-shaped model fixed by its mean and standard deviation, whose areas are shares of cases.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week02-part2.html#sec-normal" },
+        { "@type": "DefinedTerm", "name": "Empirical rule", "description": "In a normal distribution about 68, 95 and 99.7 per cent of cases lie within one, two and three standard deviations of the mean.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week02-part2.html#sec-empirical" },
+        { "@type": "DefinedTerm", "name": "Chebyshev's rule", "description": "For any distribution, at least 1 minus 1 over k squared of the cases lie within k standard deviations of the mean.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week02-part2.html#sec-chebyshev" },
+        { "@type": "DefinedTerm", "name": "z-score", "description": "How many standard deviations a value lies above or below the mean.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week02-part2.html#sec-zscores" },
+        { "@type": "DefinedTerm", "name": "Standard normal distribution", "description": "The normal distribution with a mean of 0 and a standard deviation of 1.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week02-part3.html#sec-standard-normal" },
+        { "@type": "DefinedTerm", "name": "Q-Q plot", "description": "A plot of sorted data against the values a normal distribution predicts for each position. Normal data lie on a straight line.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week02-part3.html#sec-normality" },
+        { "@type": "DefinedTerm", "name": "Shapiro-Wilk test", "description": "A test of how closely data follow the pattern a normal distribution would produce. Its verdict depends heavily on sample size.", "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week02-part3.html#sec-normality" }
+      ]
+    },
+    {
+      "@type": ["Chapter", "LearningResource"],
+      "@id": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week03.html#chapter",
+      "name": "Decision Processes, Decision Trees, CPA/CPM, Gantt Charts, and Basics of Probability",
+      "position": 3,
+      "isPartOf": {
+        "@id": "https://mohammedalisharafuddin.github.io/dmm-textbook/#book"
+      },
+      "inLanguage": "en-GB",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "educationalLevel": "undergraduate",
+      "learningResourceType": "chapter",
+      "timeRequired": "PT9H",
+      "educationalUse": ["instruction", "self study"],
+      "assessmentType": ["formative exit check", "checkpoint quiz", "tutorial upload"],
+      "usageInfo": "https://mohammedalisharafuddin.github.io/dmm-textbook/front-matter/ai-use.html",
+      "educationalAlignment": {
+        "@type": "AlignmentObject",
+        "alignmentType": "teaches",
+        "targetName": "Probability, expected value and project scheduling for management decisions"
+      },
+      "teaches": ["Calculate joint, marginal and conditional probabilities from a contingency table", "Apply the addition and multiplication rules to combined events", "Evaluate options by rolling back a decision tree", "Determine the critical path of a project network", "Estimate the probability of completing a project by a deadline", "Construct a Gantt chart from a project schedule"]
+    },
+    {
+      "@type": "DefinedTermSet",
+      "@id": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week03.html#key-terms",
+      "name": "Key terms, Chapter 3",
+      "hasDefinedTerm": [
+        {
+          "@type": "DefinedTerm",
+          "name": "Probability",
+          "description": "A number from 0 to 1 stating how likely an event is. From records, the count of cases in the event divided by the number of cases the question is about.",
+          "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week03.html#sec-probability"
+        },
+        {
+          "@type": "DefinedTerm",
+          "name": "Contingency table",
+          "description": "A table counting the cases in each combination of two categorical variables.",
+          "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week03.html#sec-contingency"
+        },
+        {
+          "@type": "DefinedTerm",
+          "name": "Joint probability",
+          "description": "The probability that two events happen together.",
+          "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week03.html#sec-contingency"
+        },
+        {
+          "@type": "DefinedTerm",
+          "name": "Conditional probability",
+          "description": "The probability of one event among the cases where a second event has happened.",
+          "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week03.html#sec-conditional"
+        },
+        {
+          "@type": "DefinedTerm",
+          "name": "Addition rule",
+          "description": "P(A or B) equals P(A) plus P(B) minus P(A and B).",
+          "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week03.html#sec-addition"
+        },
+        {
+          "@type": "DefinedTerm",
+          "name": "Independent events",
+          "description": "Events where knowing that one happened leaves the probability of the other unchanged.",
+          "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week03.html#sec-independence"
+        },
+        {
+          "@type": "DefinedTerm",
+          "name": "Probability tree",
+          "description": "A diagram of uncertain events in the order they happen, with a probability on each branch.",
+          "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week03.html#sec-probability-tree"
+        },
+        {
+          "@type": "DefinedTerm",
+          "name": "Expected value",
+          "description": "The average of a random variable's possible values, each weighted by its probability.",
+          "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week03-part2.html#sec-expected-value"
+        },
+        {
+          "@type": "DefinedTerm",
+          "name": "Decision tree",
+          "description": "A diagram of options, chance events and payoffs, rolled back from right to left to choose an option.",
+          "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week03-part2.html#sec-decision-trees"
+        },
+        {
+          "@type": "DefinedTerm",
+          "name": "Binomial model",
+          "description": "The probability distribution of the number of successes in a fixed number of independent trials with the same probability of success.",
+          "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week03-part2.html#sec-binomial"
+        },
+        {
+          "@type": "DefinedTerm",
+          "name": "PERT",
+          "description": "An expected task duration, (O + 4M + P) / 6, and a variance from optimistic, most likely and pessimistic estimates.",
+          "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week03-part3.html#sec-pert"
+        },
+        {
+          "@type": "DefinedTerm",
+          "name": "Slack",
+          "description": "The number of days a task can slip without moving the project's finishing date. Also called float.",
+          "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week03-part3.html#sec-backward-pass"
+        },
+        {
+          "@type": "DefinedTerm",
+          "name": "Critical path",
+          "description": "The chain of zero-slack tasks that sets a project's finishing date.",
+          "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week03-part3.html#sec-backward-pass"
+        },
+        {
+          "@type": "DefinedTerm",
+          "name": "Gantt chart",
+          "description": "A project schedule drawn as horizontal bars against a calendar.",
+          "url": "https://mohammedalisharafuddin.github.io/dmm-textbook/weeks/week03-part3.html#sec-gantt"
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../assets/css/fonts.css">
+<link rel="stylesheet" href="../assets/css/typography.css">
+<link rel="stylesheet" href="../assets/css/student-book.css">
+<meta property="og:title" content="Correlation: Pearson and Spearman – Decision Making for Management">
+<meta property="og:description" content="A CC BY undergraduate textbook that teaches descriptive and inferential statistics through management decisions, using JASP and PocketStat.">
+<meta property="og:image" content="https://mohammedalisharafuddin.github.io/dmm-textbook/assets/images/screenshots/ch09/ch09-jasp-01-correlation-setup.png">
+<meta property="og:site_name" content="Decision Making for Management">
+<meta property="og:locale" content="en_GB">
+<meta property="og:image:alt" content="The JASP Correlation panel with Satisfaction_Pre and Satisfaction_Post in the Variables box, Pearson's r, Display pairwise and Report significance ticked, and Scatter plots ticked under Plots. The results pane shows the finished output.">
+<meta property="og:image:height" content="900">
+<meta property="og:image:width" content="1400">
+<meta name="twitter:title" content="Correlation: Pearson and Spearman – Decision Making for Management">
+<meta name="twitter:description" content="A CC BY undergraduate textbook that teaches descriptive and inferential statistics through management decisions, using JASP and PocketStat.">
+<meta name="twitter:image" content="https://mohammedalisharafuddin.github.io/dmm-textbook/assets/images/screenshots/ch09/ch09-jasp-01-correlation-setup.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image:alt" content="The JASP Correlation panel with Satisfaction_Pre and Satisfaction_Post in the Variables box, Pearson's r, Display pairwise and Report significance ticked, and Scatter plots ticked under Plots. The results pane shows the finished output.">
+<meta name="twitter:image-height" content="900">
+<meta name="twitter:image-width" content="1400">
+<meta name="dmm-crossref-renumbered" content="1"></head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/week09.html">Chapter 9: Correlation</a></li><li class="breadcrumb-item"><a href="../weeks/week09.html"><span class="chapter-title">Correlation: Pearson and Spearman</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Decision Making for Management</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Decision Making for Management</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../front-matter/copyright.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Copyright and Attribution</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../front-matter/ai-use.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Using AI on This Module</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../front-matter/how-to-use-this-book.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">How to Use This Book</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../front-matter/software-guide.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software Guide</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../front-matter/dataset-overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Dataset Overview</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Chapter 1: Data, Measurement Scales, and Descriptive Statistics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week01.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Part 1: Foundations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week01-part2.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Part 2: Variables and displays</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week01-part3.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Part 3: Centre and spread</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week01-reference.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Running the analysis, and chapter reference</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week01-tutorial.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Tutorial: First descriptive statistics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week01-independent-study.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Independent study</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Chapter 2: Introduction to JASP and the Normal Distribution</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week02.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Part 1: The shape of a distribution</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week02-part2.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Part 2: The normal curve and z-scores</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week02-part3.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Part 3: Areas, percentiles and checking normality</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week02-reference.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Running the analysis, and chapter reference</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week02-tutorial.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Tutorial: JASP setup, normality, and z-scores</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week02-independent-study.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Independent study</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Chapter 3: Decision Processes, Decision Trees, CPA/CPM, Gantt Charts, and Basics of Probability</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week03.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Part 1: Probability from records</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week03-part2.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Part 2: Expected value and decision trees</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week03-part3.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Part 3: Project time, the critical path and Gantt charts</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week03-reference.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Running the analysis, and chapter reference</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week03-tutorial.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Tutorial: Decision trees, CPA/CPM, and Gantt practice</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week03-independent-study.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Independent study</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Chapter 4: Single-sample Tests</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week04.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">One mean against a benchmark</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Chapter 5: Comparing Groups</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week05.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Comparing two groups and paired data</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Chapter 6: External Factors for Decision Making</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week06.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Porter’s Five Forces and the Strategic Options Matrix</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Chapter 7: Internal Factors for Decision Making</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week07.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">RBV, VRIO and dynamic capabilities</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">Chapter 8: Ethical Decision Making</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week08.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Ethical decision making</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
+ <span class="menu-text">Chapter 9: Correlation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week09.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Correlation: Pearson and Spearman</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
+ <span class="menu-text">Chapter 10: Chi-squared Tests</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week10.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Chi-squared: goodness of fit and association</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lecture-slides.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lecture slides</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#chapter-9-correlation" id="toc-chapter-9-correlation" class="nav-link active" data-scroll-target="#chapter-9-correlation">Chapter 9: Correlation</a>
+  <ul class="collapse">
+  <li><a href="#this-chapters-lecture" id="toc-this-chapters-lecture" class="nav-link" data-scroll-target="#this-chapters-lecture">This chapter’s lecture</a></li>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives">Learning objectives</a></li>
+  <li><a href="#sec-scatterplot" id="toc-sec-scatterplot" class="nav-link" data-scroll-target="#sec-scatterplot">The scatterplot</a></li>
+  <li><a href="#sec-pearson-definition" id="toc-sec-pearson-definition" class="nav-link" data-scroll-target="#sec-pearson-definition">Pearson’s r</a></li>
+  <li><a href="#sec-pearson-interpret" id="toc-sec-pearson-interpret" class="nav-link" data-scroll-target="#sec-pearson-interpret">Interpreting r</a>
+  <ul class="collapse">
+  <li><a href="#sec-r-squared" id="toc-sec-r-squared" class="nav-link" data-scroll-target="#sec-r-squared">The coefficient of determination, R²</a></li>
+  </ul></li>
+  <li><a href="#sec-causation" id="toc-sec-causation" class="nav-link" data-scroll-target="#sec-causation">Correlation and causation</a></li>
+  <li><a href="#sec-jasp-pearson" id="toc-sec-jasp-pearson" class="nav-link" data-scroll-target="#sec-jasp-pearson">Running a Pearson correlation in JASP</a></li>
+  <li><a href="#sec-spearman" id="toc-sec-spearman" class="nav-link" data-scroll-target="#sec-spearman">Spearman’s rho</a></li>
+  <li><a href="#sec-jasp-spearman" id="toc-sec-jasp-spearman" class="nav-link" data-scroll-target="#sec-jasp-spearman">Running Spearman’s rho in JASP</a></li>
+  <li><a href="#sec-choose-correlation" id="toc-sec-choose-correlation" class="nav-link" data-scroll-target="#sec-choose-correlation">Choosing Pearson or Spearman</a></li>
+  <li><a href="#sec-pearson-limits" id="toc-sec-pearson-limits" class="nav-link" data-scroll-target="#sec-pearson-limits">Limitations</a></li>
+  <li><a href="#section-summary" id="toc-section-summary" class="nav-link" data-scroll-target="#section-summary">Section summary</a></li>
+  <li><a href="#references-and-further-reading" id="toc-references-and-further-reading" class="nav-link" data-scroll-target="#references-and-further-reading">References and further reading</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/week09.html">Chapter 9: Correlation</a></li><li class="breadcrumb-item"><a href="../weeks/week09.html"><span class="chapter-title">Correlation: Pearson and Spearman</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-title">Correlation: Pearson and Spearman</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+<div>
+  <div class="keywords">
+    <div class="block-title">Keywords</div>
+    <p>Pearson correlation, Spearman’s rank correlation, Spearman’s rho, correlation coefficient, coefficient of determination, scatterplot, correlation and causation</p>
+  </div>
+</div>
+
+</header>
+
+
+<section id="chapter-9-correlation" class="level1 unnumbered">
+<h1 class="unnumbered">Chapter 9: Correlation</h1>
+<div class="callout callout-style-default callout-note callout-titled" title="The decision question for this chapter">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>The decision question for this chapter
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The service manager asks: <strong>do customers who are pleased before the event stay pleased after it, and are the most satisfied customers the ones most likely to come back?</strong> Both questions ask whether two measures move together. The first pairs two scale scores. The second pairs a score with a 1 to 5 rating, and needs a correlation built on ranks.</p>
+<p>This chapter uses <code>DMM_Teaching_Data_Full.csv</code>, the same 200 customer records as chapters 1, 2, 4 and 5. Every figure quoted from it comes from that file. The two hand-calculation examples use small illustrative data sets, and each is marked as such.</p>
+</div>
+</div>
+<section id="this-chapters-lecture" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="this-chapters-lecture">This chapter’s lecture</h2>
+<div class="lp-header lecture">
+<p><span class="lp-type">Lecture</span> <strong>Correlation for scale data</strong> <span class="lp-meta">1 hour · 4 activities</span></p>
+</div>
+<div class="lp-grid lp-4">
+<div class="lp-card lecture">
+<p><span class="badge bg-discussion">Discussion</span></p>
+<p><strong><span class="act-num">1</span> Welcome and weekly goals</strong></p>
+<p><span class="act-time">⏱ 10 min</span></p>
+<p>Return to statistical analysis by looking at how variables move together in management data.</p>
+</div>
+<div class="lp-card lecture">
+<p><span class="badge bg-acquisition">Acquisition</span></p>
+<p><strong><span class="act-num">2</span> Correlation logic</strong></p>
+<p><span class="act-time">⏱ 30 min</span></p>
+<p>How to choose and interpret a correlation for scale data, and why association is not the same as causation.</p>
+</div>
+<div class="lp-card lecture">
+<p><span class="badge bg-practice">Practice</span></p>
+<p><strong><span class="act-num">3</span> Worked example and discussion</strong></p>
+<p><span class="act-time">⏱ 15 min</span></p>
+<p>Read a short output example and explain the direction, strength and limitation of the relationship.</p>
+</div>
+<div class="lp-card lecture">
+<p><span class="badge bg-assessment">Assessment</span></p>
+<p><strong><span class="act-num">4</span> Exit check</strong></p>
+<p><span class="act-time">⏱ 5 min</span></p>
+<p>A short exit check on correlation choice or interpretation.</p>
+</div>
+</div>
+</section>
+<section id="learning-objectives" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="learning-objectives">Learning objectives</h2>
+<p>After studying this chapter you should be able to:</p>
+<ol type="1">
+<li>Calculate Pearson’s r for a small dataset. <span class="clo-tag">CLO 4</span></li>
+<li>Interpret a correlation by its scatterplot, sign, size, R² and p-value. <span class="clo-tag">CLO 4</span></li>
+<li>Calculate Spearman’s rho from ranks. <span class="clo-tag">CLO 4</span></li>
+<li>Select between Pearson’s r and Spearman’s rho. <span class="clo-tag">CLO 4</span></li>
+<li>Explain the limits a correlation places on causal claims. <span class="clo-tag">CLO 6</span></li>
+<li>Report a correlation in APA style and for a manager. <span class="clo-tag">CLO 6</span></li>
+</ol>
+<p>The tag after each objective names the <a href="../index.html#learning-outcomes">course learning outcome</a> it serves.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="How to use this chapter">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>How to use this chapter
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This week’s learning plan is 9 hours: 1 hour of synchronous lecture, 2 hours of synchronous tutorial and 6 hours of asynchronous self-study. Put your self-study time into the worked examples and the Try It exercises first.</p>
+<p>This chapter uses the p-value and the significance level from <a href="week04.html">chapter 4</a>, and the reporting rules from <a href="week05.html#sec-report-t">chapter 5</a>. We run the analyses in JASP, and the hand calculations need a calculator.</p>
+<p>You are permitted to use Google NotebookLM to brainstorm the concepts. Complete the worked examples and the Try It exercises yourself, with no AI assistance. The full policy is on the <a href="../front-matter/ai-use.html">Using AI on This Module</a> page.</p>
+</div>
+</div>
+<p>In chapter 5 we compared the means of two groups. In this chapter we take two measures on the same customers and ask whether they move together.</p>
+</section>
+<section id="sec-scatterplot" class="level2">
+<h2 class="anchored" data-anchor-id="sec-scatterplot">The scatterplot</h2>
+<p>Each of our 200 customers rated the event before it, in <code>Satisfaction_Pre</code>, and after it, in <code>Satisfaction_Post</code>. If we draw one dot per customer, placed across by the first rating and up by the second, we get a <strong>scatterplot</strong>. The dots for these two ratings rise from lower left to upper right in a narrow band: customers who start high tend to finish high.</p>
+<p>We read three things from a scatterplot:</p>
+<ul>
+<li>The <strong>direction</strong> of the dots: rising from left to right shows a <strong>positive</strong> relationship, and falling shows a <strong>negative</strong> one.</li>
+<li>The <strong>form</strong> of the pattern: a straight band, a curve, or a shapeless cloud.</li>
+<li>Any <strong>unusual points</strong>: a dot far from the rest, an <strong>outlier</strong>, can pull a correlation up or down on its own.</li>
+</ul>
+<p>A <strong>correlation coefficient</strong> reduces the plot to one number. We look at the plot first, because that number carries no information about the form or the outliers.</p>
+</section>
+<section id="sec-pearson-definition" class="level2">
+<h2 class="anchored" data-anchor-id="sec-pearson-definition">Pearson’s r</h2>
+<p><strong>Pearson’s correlation coefficient</strong>, written <span class="math inline">\(r\)</span>, measures how closely two scale variables follow a straight line. It runs from <span class="math inline">\(-1\)</span> to <span class="math inline">\(+1\)</span>:</p>
+<ul>
+<li><span class="math inline">\(r\)</span> near <span class="math inline">\(+1\)</span>: when one variable is high, the other tends to be high</li>
+<li><span class="math inline">\(r\)</span> near <span class="math inline">\(-1\)</span>: when one variable is high, the other tends to be low</li>
+<li><span class="math inline">\(r\)</span> near 0: the dots show no straight-line pattern.</li>
+</ul>
+<p>For a sample of <span class="math inline">\(n\)</span> cases, each with a pair of values <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>:</p>
+<p><span class="math display">\[r = \frac{\sum (x - \bar{x})(y - \bar{y})}{\sqrt{\sum (x - \bar{x})^2 \times \sum (y - \bar{y})^2}}\]</span></p>
+<p>where <span class="math inline">\(r\)</span> is the sample Pearson correlation, <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> are each case’s two values, <span class="math inline">\(\bar{x}\)</span> and <span class="math inline">\(\bar{y}\)</span> are the two means, <span class="math inline">\(n\)</span> is the number of cases and <span class="math inline">\(\sum\)</span> adds over all <span class="math inline">\(n\)</span> cases. A case above both means, or below both, gives a positive product <span class="math inline">\((x - \bar{x})(y - \bar{y})\)</span> and pushes <span class="math inline">\(r\)</span> up. A case above one mean and below the other gives a negative product and pushes <span class="math inline">\(r\)</span> down. The denominator rescales the total, so <span class="math inline">\(r\)</span> lies between <span class="math inline">\(-1\)</span> and <span class="math inline">\(+1\)</span> whatever the units of <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>.</p>
+<div class="worked-example">
+<p><span class="we-label">Worked example 9.1</span></p>
+<section id="advertising-days-and-bookings-illustrative" class="level3">
+<h3 class="anchored" data-anchor-id="advertising-days-and-bookings-illustrative">Advertising days and bookings (illustrative)</h3>
+<div class="we-problem">
+<p>An events company advertised five events for different numbers of days, <span class="math inline">\(x\)</span>, and recorded the bookings, <span class="math inline">\(y\)</span>, in tens: (2, 3), (4, 5), (5, 4), (6, 7) and (8, 6). The figures are illustrative.</p>
+<p>Calculate Pearson’s r, and describe the relationship.</p>
+</div>
+<div class="we-solution">
+<p><strong>Step 1, the means:</strong> <span class="math inline">\(\bar{x} = 25 \div 5 = 5\)</span> and <span class="math inline">\(\bar{y} = 25 \div 5 = 5\)</span>.</p>
+<p><strong>Step 2, the deviations, their products and their squares:</strong></p>
+<div id="tbl-pearson-hand" class="tbl-calc quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-pearson-hand-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;9.1: Pearson’s r by hand
+</figcaption>
+<div aria-describedby="tbl-pearson-hand-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="tbl-calc caption-top table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(x\)</span></th>
+<th><span class="math inline">\(y\)</span></th>
+<th><span class="math inline">\(x - \bar{x}\)</span></th>
+<th><span class="math inline">\(y - \bar{y}\)</span></th>
+<th>Product</th>
+<th><span class="math inline">\((x - \bar{x})^2\)</span></th>
+<th><span class="math inline">\((y - \bar{y})^2\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>2</td>
+<td>3</td>
+<td>−3</td>
+<td>−2</td>
+<td>6</td>
+<td>9</td>
+<td>4</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>5</td>
+<td>−1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>4</td>
+<td>0</td>
+<td>−1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>7</td>
+<td>1</td>
+<td>2</td>
+<td>2</td>
+<td>1</td>
+<td>4</td>
+</tr>
+<tr class="odd">
+<td>8</td>
+<td>6</td>
+<td>3</td>
+<td>1</td>
+<td>3</td>
+<td>9</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td><strong>Total</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td><strong>11</strong></td>
+<td><strong>20</strong></td>
+<td><strong>10</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p><strong>Step 3, the coefficient:</strong></p>
+<p><span class="math display">\[r = \frac{11}{\sqrt{20 \times 10}} = \frac{11}{\sqrt{200}} = \frac{11}{14.142} = .78\]</span></p>
+<p><strong>Reading:</strong> the relationship is positive and strong. Events advertised for longer tended to take more bookings.</p>
+</div>
+</section>
+</div>
+</section>
+<section id="sec-pearson-interpret" class="level2">
+<h2 class="anchored" data-anchor-id="sec-pearson-interpret">Interpreting r</h2>
+<p>We read the <strong>sign</strong> first, then the <strong>size</strong>. For the size, ignoring the sign, we use this rough guide, based on the benchmarks Cohen (1988) suggested:</p>
+<div id="tbl-r-size" class="tbl-grid quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-r-size-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;9.2: A rough guide to the size of r
+</figcaption>
+<div aria-describedby="tbl-r-size-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="tbl-grid caption-top table">
+<thead>
+<tr class="header">
+<th>Size of r</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>About .10</td>
+<td>Weak</td>
+</tr>
+<tr class="even">
+<td>About .30</td>
+<td>Moderate</td>
+</tr>
+<tr class="odd">
+<td>.50 or above</td>
+<td>Strong</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>These cut-offs are conventions, and the setting matters: <span class="math inline">\(r = .30\)</span> can be important in a field where most relationships are weak.</p>
+<p>Each <span class="math inline">\(r\)</span> comes with a <strong>p-value</strong>. It tests the null hypothesis that the two variables have no linear relationship in the population:</p>
+<p><span class="math display">\[H_0: \rho = 0 \qquad H_1: \rho \neq 0\]</span></p>
+<p>where <span class="math inline">\(H_0\)</span> is the null hypothesis, <span class="math inline">\(H_1\)</span> is the alternative hypothesis, and <span class="math inline">\(\rho\)</span> (rho) is the population correlation, the value <span class="math inline">\(r\)</span> would take if we had every customer. The decision rule is the one from chapter 4 (<a href="week04.html#sec-alpha">making the decision</a>): below .05, we reject <span class="math inline">\(H_0\)</span>. The degrees of freedom are <span class="math inline">\(n - 2\)</span>, where <span class="math inline">\(n\)</span> is the number of cases, so 198 for our 200 customers.</p>
+<section id="sec-r-squared" class="level3">
+<h3 class="anchored" data-anchor-id="sec-r-squared">The coefficient of determination, R²</h3>
+<p>Squaring <span class="math inline">\(r\)</span> gives the <strong>coefficient of determination</strong>, <span class="math inline">\(R^2\)</span>. We read it as the share of the variation in one variable that is shared with the other. For example: <span class="math inline">\(r = .88\)</span> gives <span class="math inline">\(R^2 = .88 \times .88 = .77\)</span>. So about 77% of the variation in post-event satisfaction is shared with pre-event satisfaction. The other 23% is unshared, and <span class="math inline">\(R^2\)</span> gives no account of where it comes from. JASP prints <span class="math inline">\(r\)</span>, and we calculate <span class="math inline">\(R^2\)</span> ourselves.</p>
+<div id="tryit-9-1" class="callout callout-style-default callout-tip callout-titled" title="Try It 9.1: Reading three correlations">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Try It 9.1: Reading three correlations
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Three pairs of measures in a hotel group give <span class="math inline">\(r = -.45\)</span>, <span class="math inline">\(r = .08\)</span> and <span class="math inline">\(r = .72\)</span>.</p>
+<ol type="1">
+<li>Describe each by its direction and size, using <a href="#tbl-r-size" class="quarto-xref">Table&nbsp;<span>9.2</span></a>.</li>
+<li>Calculate <span class="math inline">\(R^2\)</span> for each, as a percentage.</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Check your answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Check your answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><span class="math inline">\(r = -.45\)</span>: negative and moderate, close to strong. <span class="math inline">\(r = .08\)</span>: positive and weak, close to none. <span class="math inline">\(r = .72\)</span>: positive and strong.</li>
+<li><span class="math inline">\((-.45)^2 = .2025\)</span>, about 20%. <span class="math inline">\(.08^2 = .0064\)</span>, under 1%. <span class="math inline">\(.72^2 = .5184\)</span>, about 52%. The sign drops out when we square, so <span class="math inline">\(R^2\)</span> is never negative.</li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="sec-causation" class="level2">
+<h2 class="anchored" data-anchor-id="sec-causation">Correlation and causation</h2>
+<p>With a correlation we measure how far two variables move together. The reason they move together needs separate evidence. A strong <span class="math inline">\(r\)</span> is consistent with four explanations:</p>
+<ul>
+<li><span class="math inline">\(x\)</span> affects <span class="math inline">\(y\)</span></li>
+<li><span class="math inline">\(y\)</span> affects <span class="math inline">\(x\)</span>, the <strong>reverse direction</strong></li>
+<li>a <strong>third variable</strong> affects both</li>
+<li><strong>coincidence</strong> in this sample.</li>
+</ul>
+<p>For example: ice-cream sales and drowning incidents rise and fall together, because both rise in hot weather. To show a cause, we need a design built for it, such as an experiment. Every report of a correlation states this limitation.</p>
+</section>
+<section id="sec-jasp-pearson" class="level2">
+<h2 class="anchored" data-anchor-id="sec-jasp-pearson">Running a Pearson correlation in JASP</h2>
+<p>We run a Pearson correlation in JASP on <code>DMM_Teaching_Data_Full.csv</code>. Open the file and follow these steps:</p>
+<ol type="1">
+<li>Choose <strong>Regression → Classical → Correlation</strong>.</li>
+<li>Move <code>Satisfaction_Pre</code> and <code>Satisfaction_Post</code> into <em>Variables</em>.</li>
+<li>Keep <strong>Pearson’s r</strong> and <strong>Report significance</strong> ticked.</li>
+<li>Under <em>Plots</em>, tick <strong>Scatter plots</strong>.</li>
+</ol>
+<div id="fig-jasp-corr-setup" class="quarto-float quarto-figure quarto-figure-center anchored" alt="The JASP Correlation panel with Satisfaction_Pre and Satisfaction_Post in the Variables box, Pearson's r, Display pairwise and Report significance ticked, and Scatter plots ticked under Plots. The results pane shows the finished output.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-jasp-corr-setup-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/images/screenshots/ch09/ch09-jasp-01-correlation-setup.png" class="img-fluid figure-img" alt="The JASP Correlation panel with Satisfaction_Pre and Satisfaction_Post in the Variables box, Pearson's r, Display pairwise and Report significance ticked, and Scatter plots ticked under Plots. The results pane shows the finished output.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-jasp-corr-setup-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9.1: The Correlation panel with the two satisfaction variables and Scatter plots ticked
+</figcaption>
+</figure>
+</div>
+<div id="fig-jasp-corr-output" class="quarto-float quarto-figure quarto-figure-center anchored" alt="JASP output: the Pearson's Correlations table gives r = 0.880 and p < .001 for Satisfaction_Pre with Satisfaction_Post. Below it, a scatterplot with Satisfaction_Pre on the horizontal axis and Satisfaction_Post on the vertical axis shows points rising from lower left to upper right around a straight line.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-jasp-corr-output-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/images/screenshots/ch09/ch09-jasp-02-correlation-output.png" class="img-fluid figure-img" alt="JASP output: the Pearson's Correlations table gives r = 0.880 and p < .001 for Satisfaction_Pre with Satisfaction_Post. Below it, a scatterplot with Satisfaction_Pre on the horizontal axis and Satisfaction_Post on the vertical axis shows points rising from lower left to upper right around a straight line.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-jasp-corr-output-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9.2: Pearson correlation and scatterplot for Satisfaction_Pre and Satisfaction_Post
+</figcaption>
+</figure>
+</div>
+<div class="worked-example">
+<p><span class="we-label">Worked example 9.2</span></p>
+<section id="reading-and-reporting-the-satisfaction-correlation" class="level3">
+<h3 class="anchored" data-anchor-id="reading-and-reporting-the-satisfaction-correlation">Reading and reporting the satisfaction correlation</h3>
+<div class="we-problem">
+<p>Use the JASP output in <a href="#fig-jasp-corr-output" class="quarto-xref">Figure&nbsp;<span>9.2</span></a>, for 200 customers.</p>
+<p>Read <span class="math inline">\(r\)</span> and <span class="math inline">\(p\)</span>, calculate <span class="math inline">\(R^2\)</span>, decide at <span class="math inline">\(\alpha = .05\)</span>, and report the result in APA style and for the manager.</p>
+</div>
+<div class="we-solution">
+<p><strong>Reading:</strong> JASP reports <span class="math inline">\(r = .880\)</span> and <span class="math inline">\(p &lt; .001\)</span>, and the dots rise along a straight band. The relationship is positive and strong.</p>
+<p><strong>R²:</strong> <span class="math inline">\(.880 \times .880 = .774\)</span>, so 77% of the variation is shared.</p>
+<p><strong>Decision:</strong> <span class="math inline">\(p\)</span> is below .05, so we reject the null hypothesis of no linear relationship.</p>
+<p><strong>In APA style:</strong> Pre-event and post-event satisfaction were strongly and positively related, <span class="math inline">\(r(198) = .88\)</span>, <span class="math inline">\(p &lt; .001\)</span>, <span class="math inline">\(R^2 = .77\)</span>.</p>
+<p><strong>For the manager:</strong> Customers who rate the event highly beforehand tend to rate it highly afterwards, so first impressions carry through the event. Whether the first rating causes the second would need a different design to establish.</p>
+</div>
+</section>
+</div>
+<p>For contrast, the same steps with <code>Age</code> and <code>Spending</code> give <span class="math inline">\(r = .063\)</span> and <span class="math inline">\(p = .372\)</span>. The scatterplot is a shapeless cloud, and <span class="math inline">\(R^2 = .004\)</span>: less than 1% of the variation is shared.</p>
+<div id="fig-jasp-corr-negligible" class="quarto-float quarto-figure quarto-figure-center anchored" alt="JASP output: the Pearson's Correlations table gives r = 0.063 and p = .372 for Age with Spending. Below it, a scatterplot of Spending against Age shows a shapeless cloud of points with an almost flat line.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-jasp-corr-negligible-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/images/screenshots/ch09/ch09-jasp-03-negligible-output.png" class="img-fluid figure-img" alt="JASP output: the Pearson's Correlations table gives r = 0.063 and p = .372 for Age with Spending. Below it, a scatterplot of Spending against Age shows a shapeless cloud of points with an almost flat line.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-jasp-corr-negligible-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9.3: Pearson correlation and scatterplot for Age and Spending
+</figcaption>
+</figure>
+</div>
+<p>Three APA rules apply to every correlation:</p>
+<ol type="1">
+<li><strong>The degrees of freedom go in brackets after <span class="math inline">\(r\)</span>:</strong> <span class="math inline">\(r(198)\)</span>.</li>
+<li><strong>The values of <span class="math inline">\(r\)</span>, <span class="math inline">\(p\)</span> and <span class="math inline">\(R^2\)</span> have no zero before the point</strong>, because none can exceed 1.</li>
+<li><strong>A p-value below .001 is written <span class="math inline">\(p &lt; .001\)</span>.</strong></li>
+</ol>
+<div id="tryit-9-2" class="callout callout-style-default callout-tip callout-titled" title="Try It 9.2: Waiting time and satisfaction">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Try It 9.2: Waiting time and satisfaction
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Run a Pearson correlation of <code>Waiting_Time_Mins</code> and <code>Satisfaction</code> in JASP, with the scatterplot.</p>
+<ol type="1">
+<li>Describe the scatterplot’s direction and form, and note any unusual points.</li>
+<li>Report <span class="math inline">\(r\)</span>, its degrees of freedom and <span class="math inline">\(p\)</span>.</li>
+<li>Calculate <span class="math inline">\(R^2\)</span> as a percentage.</li>
+<li>Write one sentence for the manager. Then give two of the four explanations in <a href="#sec-causation">correlation and causation</a> that a correlation between waiting time and satisfaction would leave open.</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Check your answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Check your answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>The dots form a shapeless cloud with no rising or falling direction. One customer who waited 90 minutes sits far to the right, and one who waited 12 minutes far to the left. Without these two customers <span class="math inline">\(r\)</span> is <span class="math inline">\(-.047\)</span>, so neither changes the reading.</li>
+<li>JASP gives <span class="math inline">\(r = -.016\)</span> and <span class="math inline">\(p = .822\)</span>, reported as <span class="math inline">\(r(198) = -.02\)</span>, <span class="math inline">\(p = .822\)</span>: a negligible negative relationship, not statistically significant.</li>
+<li><span class="math inline">\(R^2 = (-.016)^2 = .0003\)</span>, well under 1%.</li>
+<li>For the manager: in our records, waiting time and satisfaction move independently of each other. Had the correlation been strong, two of the explanations would be that waiting lowers satisfaction, or that a third variable, such as a crowded event day, raises waits and lowers satisfaction together.</li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+<section id="sec-spearman" class="level2">
+<h2 class="anchored" data-anchor-id="sec-spearman">Spearman’s rho</h2>
+<p>Our second question pairs <code>Satisfaction</code>, a score from 1 to 5, with <code>Return_Intention</code>, a single 1 to 5 rating. A rating is ordinal: we know that 4 is above 3, but the gap between a 3 and a 4 need not equal the gap between a 4 and a 5. For an outcome like this we compare <strong>ranks</strong>: we put the customers in order on each measure, and ask whether the two orders agree.</p>
+<p>For example: two managers rank six venues from 1, the best, to 6. If the managers agree exactly, every venue has the same rank twice. If they disagree completely, the venue one ranks 1st the other ranks 6th.</p>
+<p><strong>Spearman’s rank correlation coefficient</strong>, written <span class="math inline">\(r_s\)</span> or <span class="math inline">\(\rho\)</span> (rho), is Pearson’s r calculated on the ranks (Spearman, 1904). It measures a <strong>monotonic</strong> relationship: as one variable rises, the other tends to rise, or tends to fall, though not necessarily along a straight line. It runs from <span class="math inline">\(-1\)</span> to <span class="math inline">\(+1\)</span> and reads like <span class="math inline">\(r\)</span>, with the same size guide in <a href="#tbl-r-size" class="quarto-xref">Table&nbsp;<span>9.2</span></a>. When no two cases share a rank:</p>
+<p><span class="math display">\[r_s = 1 - \frac{6 \sum d^2}{n(n^2 - 1)}\]</span></p>
+<p>where <span class="math inline">\(r_s\)</span> is the sample Spearman correlation, <span class="math inline">\(d\)</span> is the difference between a case’s two ranks and <span class="math inline">\(n\)</span> is the number of cases. When cases share a rank, a <strong>tie</strong>, each takes the average of the ranks they span. JASP calculates Pearson’s r from those average ranks.</p>
+<div class="worked-example">
+<p><span class="we-label">Worked example 9.3</span></p>
+<section id="two-managers-rank-six-venues-illustrative" class="level3">
+<h3 class="anchored" data-anchor-id="two-managers-rank-six-venues-illustrative">Two managers rank six venues (illustrative)</h3>
+<div class="we-problem">
+<p>Manager A ranks venues A to F as 1, 2, 3, 4, 5 and 6. Manager B ranks the same venues 2, 1, 4, 3, 6 and 5, in an illustrative ranking.</p>
+<p>Calculate Spearman’s rho, and describe how far the managers agree.</p>
+</div>
+<div class="we-solution">
+<p><strong>Step 1, the rank differences:</strong></p>
+<div id="tbl-spearman-hand" class="tbl-calc quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-spearman-hand-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;9.3: Spearman’s rho by hand
+</figcaption>
+<div aria-describedby="tbl-spearman-hand-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="tbl-calc caption-top table">
+<thead>
+<tr class="header">
+<th>Venue</th>
+<th>Rank A</th>
+<th>Rank B</th>
+<th><span class="math inline">\(d\)</span></th>
+<th><span class="math inline">\(d^2\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td>1</td>
+<td>2</td>
+<td>−1</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>C</td>
+<td>3</td>
+<td>4</td>
+<td>−1</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>D</td>
+<td>4</td>
+<td>3</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>E</td>
+<td>5</td>
+<td>6</td>
+<td>−1</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>F</td>
+<td>6</td>
+<td>5</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td><strong>Total</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td><strong>6</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p><strong>Step 2, the coefficient,</strong> with <span class="math inline">\(n = 6\)</span>:</p>
+<p><span class="math display">\[r_s = 1 - \frac{6 \times 6}{6 \times (36 - 1)} = 1 - \frac{36}{210} = 1 - .171 = .83\]</span></p>
+<p><strong>Reading:</strong> the managers agree strongly. Each swaps only neighbouring venues, so the two orders run close together.</p>
+</div>
+</section>
+</div>
+<div id="tryit-9-3" class="callout callout-style-default callout-tip callout-titled" title="Try It 9.3: Attendance and satisfaction ranks">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Try It 9.3: Attendance and satisfaction ranks
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Five events are ranked by attendance as 1, 2, 3, 4 and 5, and by mean satisfaction as 3, 1, 2, 5 and 4, in illustrative data.</p>
+<ol type="1">
+<li>Calculate <span class="math inline">\(\sum d^2\)</span>.</li>
+<li>Calculate Spearman’s rho.</li>
+<li>Describe the relationship.</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Check your answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Check your answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>The differences are <span class="math inline">\(-2, 1, 1, -1, 1\)</span>, so <span class="math inline">\(\sum d^2 = 4 + 1 + 1 + 1 + 1 = 8\)</span>.</li>
+<li><span class="math inline">\(r_s = 1 - (6 \times 8) \div (5 \times 24)\)</span>, which is <span class="math inline">\(1 - 48 \div 120 = .60\)</span>.</li>
+<li>Positive and strong: the better-attended events tended to be the better-rated ones, with some swaps in the order.</li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+<section id="sec-jasp-spearman" class="level2">
+<h2 class="anchored" data-anchor-id="sec-jasp-spearman">Running Spearman’s rho in JASP</h2>
+<p>Spearman’s rho runs from the same panel as Pearson’s r:</p>
+<ol type="1">
+<li>Choose <strong>Regression → Classical → Correlation</strong>.</li>
+<li>Move <code>Satisfaction</code> and <code>Return_Intention</code> into <em>Variables</em>.</li>
+<li>Under <em>Sample Correlation Coefficient</em>, untick <strong>Pearson’s r</strong> and tick <strong>Spearman’s rho</strong>.</li>
+<li>Keep <strong>Report significance</strong> ticked.</li>
+</ol>
+<div id="fig-jasp-spearman" class="quarto-float quarto-figure quarto-figure-center anchored" alt="The JASP Correlation panel with Satisfaction and Return_Intention in the Variables box, Pearson's r unticked and Spearman's rho ticked. The results pane shows the Spearman's Correlations table: rho = 0.633 and p < .001 for Satisfaction with Return_Intention.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-jasp-spearman-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/images/screenshots/ch09/ch09-jasp-04-spearman-output.png" class="img-fluid figure-img" alt="The JASP Correlation panel with Satisfaction and Return_Intention in the Variables box, Pearson's r unticked and Spearman's rho ticked. The results pane shows the Spearman's Correlations table: rho = 0.633 and p < .001 for Satisfaction with Return_Intention.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-jasp-spearman-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9.4: Spearman’s rho for Satisfaction and Return_Intention
+</figcaption>
+</figure>
+</div>
+<p>JASP reports <span class="math inline">\(r_s = .633\)</span> and <span class="math inline">\(p &lt; .001\)</span>. The relationship is positive and strong, and we reject the null hypothesis of no monotonic relationship.</p>
+<p><strong>In APA style:</strong> Satisfaction and return intention were strongly and positively related, <span class="math inline">\(r_s(198) = .63\)</span>, <span class="math inline">\(p &lt; .001\)</span>.</p>
+<p><strong>For the manager:</strong> Customers with higher satisfaction also tend to report a stronger intention to return, so we can track both measures together at each event. Stated intention and actual repeat bookings are different measures, and this file records only the first.</p>
+<div id="tryit-9-4" class="callout callout-style-default callout-tip callout-titled" title="Try It 9.4: Content and return intention">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Try It 9.4: Content and return intention
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Run Spearman’s rho for <code>Content_Q1</code>, a 1 to 5 rating of the event’s content, and <code>Return_Intention</code> in JASP.</p>
+<ol type="1">
+<li>Report <span class="math inline">\(r_s\)</span>, its degrees of freedom and <span class="math inline">\(p\)</span>.</li>
+<li>Describe the relationship, and write one sentence for the manager.</li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Check your answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Check your answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><span class="math inline">\(r_s(198) = .45\)</span>, <span class="math inline">\(p &lt; .001\)</span>.</li>
+<li>Positive and moderate to strong. For the manager: customers who rate the content highly also tend to report a stronger intention to return. Testing whether better content raises that intention would need a designed comparison, such as a trial of a revised programme.</li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+<section id="sec-choose-correlation" class="level2">
+<h2 class="anchored" data-anchor-id="sec-choose-correlation">Choosing Pearson or Spearman</h2>
+<p>We choose the coefficient from the type of each variable, just as we chose the test from the design in chapter 5:</p>
+<div id="tbl-choose-correlation" class="tbl-grid quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-choose-correlation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;9.4: Choosing a correlation coefficient
+</figcaption>
+<div aria-describedby="tbl-choose-correlation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="tbl-grid caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variables</th>
+<th>Coefficient</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Both scale, with a straight-line pattern</td>
+<td>Pearson’s r</td>
+</tr>
+<tr class="even">
+<td>One or both ordinal, such as 1 to 5 ratings or ranks</td>
+<td>Spearman’s rho</td>
+</tr>
+<tr class="odd">
+<td>Scale, with a curved but steady rise or fall</td>
+<td>Spearman’s rho</td>
+</tr>
+<tr class="even">
+<td>Scale, with outliers that pull r on their own</td>
+<td>Spearman’s rho, reported alongside r</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>We choose the coefficient from the variables, before we look at the results.</p>
+<div class="worked-example">
+<p><span class="we-label">Worked example 9.4</span></p>
+<section id="value-ratings-and-return-intention" class="level3">
+<h3 class="anchored" data-anchor-id="value-ratings-and-return-intention">Value ratings and return intention</h3>
+<div class="we-problem">
+<p><code>Value_Q1</code> and <code>Return_Intention</code> are both 1 to 5 ratings. JASP gives Pearson’s <span class="math inline">\(r = .193\)</span>, <span class="math inline">\(p = .006\)</span>, and Spearman’s <span class="math inline">\(r_s = .126\)</span>, <span class="math inline">\(p = .075\)</span>.</p>
+<p>Choose the coefficient to report, and state the conclusion at <span class="math inline">\(\alpha = .05\)</span>.</p>
+</div>
+<div class="we-solution">
+<p><strong>Choice:</strong> both variables are ordinal ratings with only five values, so we report Spearman’s rho, following <a href="#tbl-choose-correlation" class="quarto-xref">Table&nbsp;<span>9.4</span></a>.</p>
+<p><strong>Decision:</strong> <span class="math inline">\(p = .075\)</span> is above .05, so we retain the null hypothesis. The evidence of a monotonic relationship between value ratings and return intention is insufficient at <span class="math inline">\(\alpha = .05\)</span>.</p>
+<p><strong>The lesson:</strong> the two coefficients lead to different decisions here. Choosing the coefficient after seeing both results would let us pick the significant one, so the choice comes from the variables, and it comes first.</p>
+<p><strong>In APA style:</strong> Value ratings and return intention were not significantly related, <span class="math inline">\(r_s(198) = .13\)</span>, <span class="math inline">\(p = .075\)</span>.</p>
+</div>
+</section>
+</div>
+<div id="tryit-9-5" class="callout callout-style-default callout-tip callout-titled" title="Try It 9.5: Which coefficient?">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Try It 9.5: Which coefficient?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Choose Pearson’s r or Spearman’s rho for each pair, and give the reason.</p>
+<ol type="1">
+<li><code>Age</code> and <code>Spending</code></li>
+<li><code>Content_Q1</code> and <code>Value_Q1</code></li>
+<li>Two judges’ rankings of 10 trade stands</li>
+<li><code>Satisfaction_Pre</code> and <code>Satisfaction_Post</code></li>
+</ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Check your answer">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Check your answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><strong>Pearson’s r:</strong> both are scale variables, years and US dollars.</li>
+<li><strong>Spearman’s rho:</strong> both are 1 to 5 ratings, so both are ordinal.</li>
+<li><strong>Spearman’s rho:</strong> the data are ranks.</li>
+<li><strong>Pearson’s r:</strong> both are satisfaction scores on a continuous 1 to 5 scale, and the scatterplot shows a straight band. Spearman’s rho gives a similar value, <span class="math inline">\(r_s = .87\)</span>.</li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+<section id="sec-pearson-limits" class="level2">
+<h2 class="anchored" data-anchor-id="sec-pearson-limits">Limitations</h2>
+<ul>
+<li>Pearson’s r applies to straight-line relationships. A curved relationship can produce <span class="math inline">\(r\)</span> near 0.</li>
+<li>One extreme case, an outlier, can make <span class="math inline">\(r\)</span> much larger or smaller. Ranks reduce that case’s influence on Spearman’s rho.</li>
+<li>Spearman’s rho applies to a steady rise or fall. A pattern that rises and then falls can produce <span class="math inline">\(r_s\)</span> near 0.</li>
+<li>Neither coefficient establishes why the variables are associated.</li>
+</ul>
+</section>
+<section id="section-summary" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="section-summary">Section summary</h2>
+<p>We read a scatterplot first, for its direction, form and outliers. Pearson’s r measures a straight-line relationship between two scale variables and runs from <span class="math inline">\(-1\)</span> to <span class="math inline">\(+1\)</span>, with about .10 weak, .30 moderate and .50 or above strong. Its p-value tests <span class="math inline">\(\rho = 0\)</span> on <span class="math inline">\(n - 2\)</span> degrees of freedom, and <span class="math inline">\(R^2\)</span>, the square of <span class="math inline">\(r\)</span>, gives the share of variation the two variables have in common. Spearman’s rho is Pearson’s r on ranks, so it suits ordinal ratings, ranks and curved but steady patterns, and we choose between the two from the variables, before seeing the results. In the teaching dataset, pre-event and post-event satisfaction were strongly related, <span class="math inline">\(r(198) = .88\)</span>, <span class="math inline">\(p &lt; .001\)</span>, <span class="math inline">\(R^2 = .77\)</span>, and satisfaction and return intention were strongly related, <span class="math inline">\(r_s(198) = .63\)</span>, <span class="math inline">\(p &lt; .001\)</span>, and neither result establishes a cause.</p>
+</section>
+<section id="references-and-further-reading" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="references-and-further-reading">References and further reading</h2>
+<p>Cohen, J. (1988). <em>Statistical power analysis for the behavioral sciences</em> (2nd ed.). Lawrence Erlbaum.</p>
+<p>Holmes, A., Illowsky, B., &amp; Dean, S. (2023). <em>Introductory business statistics 2e</em>. OpenStax. <a href="https://openstax.org/details/books/introductory-business-statistics-2e" class="uri">https://openstax.org/details/books/introductory-business-statistics-2e</a></p>
+<p>Spearman, C. (1904). The proof and measurement of association between two things. <em>The American Journal of Psychology, 15</em>(1), 72-101. <a href="https://doi.org/10.2307/1412159" class="uri">https://doi.org/10.2307/1412159</a></p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/mohammedalisharafuddin\.github\.io\/dmm-textbook");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../weeks/week08.html" class="pagination-link" aria-label="Ethical decision making">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Ethical decision making</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../weeks/week10.html" class="pagination-link" aria-label="Chi-squared: goodness of fit and association">
+        <span class="nav-page-text"><span class="chapter-title">Chi-squared: goodness of fit and association</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

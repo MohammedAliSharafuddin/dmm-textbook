@@ -6,8 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="keywords" content="lecture slides, teaching sessions">
-<meta name="description" content="Lecture slide decks for Decision Making for Management, one per teaching session, each opening with the session’s activities and ending with a short recap.">
+<meta name="keywords" content="lecture slides, teaching sessions, chapter slides">
+<meta name="description" content="Slide decks for Decision Making for Management: a lecture and a tutorial deck for each chapter, plus two decks on the coursework report, each with a recap.">
 
 <title>Lecture slides – Decision Making for Management</title>
 <style>
@@ -32,7 +32,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./weeks/week05.html" rel="prev">
+<link href="./weeks/week10.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -43,7 +43,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-f4b9810437ab3d39bd583d8cb295f5db.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-d9ba4417da1a30e293bc69403693b164.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -127,16 +127,12 @@ ul.task-list li input[type="checkbox"] {
         "targetName": "Descriptive statistics for management decisions"
       },
       "teaches": [
-        "Explain why a manager describes evidence before acting on it",
-        "Distinguish a case, a variable, an observation and a value in a real dataset",
-        "Separate a population from a sample, and a parameter from a statistic",
-        "Say what descriptive statistics can establish and what only inference can",
-        "Classify a variable as nominal, ordinal, interval or ratio, and as discrete or continuous",
-        "Identify which variable is independent and which is dependent in a stated question",
-        "Build and read frequency, relative frequency, grouped and cumulative frequency tables",
-        "Choose a graph that suits the variable type and the question",
-        "Calculate and interpret the mean, median, mode, range, variance, standard deviation, quartiles and the interquartile range",
-        "Recognise a misleading summary or display and say why it misleads"
+        "Distinguish a sample statistic from a population parameter",
+        "Classify a variable by its measurement scale",
+        "Interpret a frequency table and its cumulative column",
+        "Select a graph that suits a variable's type",
+        "Calculate measures of centre and spread for a variable",
+        "Interpret a descriptive summary for a manager"
       ]
     },
     {
@@ -182,16 +178,12 @@ ul.task-list li input[type="checkbox"] {
         "targetName": "The normal distribution and z-scores for management decisions"
       },
       "teaches": [
-        "Describe the shape of a distribution from a histogram and a boxplot, naming its peaks, its symmetry and its tails",
-        "Interpret skewness and kurtosis, and judge each against its standard error",
-        "Follow a repeatable workflow in JASP or PocketStat from loading a file to an annotated output",
-        "State the properties of the normal distribution and use the empirical rule to estimate the share of cases within one, two and three standard deviations of the mean",
-        "Apply Chebyshev's rule when the shape of a distribution is unknown or clearly non-normal",
-        "Calculate a z-score, convert a z-score back into the original units, and use z-scores to compare values measured in different units",
-        "Classify a value as typical, unusual or extreme from its z-score, and explain in plain language what that means for a manager",
-        "Use the standard normal table to find the share of cases above, below or between two values, and the value that marks a given percentile",
-        "Judge whether a variable is close enough to normal for the normal model, using a histogram, a Q-Q plot, skewness, kurtosis and the Shapiro-Wilk test",
-        "Recognise when the normal model gives impossible or distorted answers, and report the alternative"
+        "Describe the shape of a distribution from a histogram and a boxplot",
+        "Interpret skewness and kurtosis against their standard errors",
+        "Apply the empirical rule to estimate the share of cases near the mean",
+        "Calculate a z-score to compare values measured in different units",
+        "Calculate shares and percentiles from the standard normal table",
+        "Assess whether a variable is close enough to normal in JASP or PocketStat"
       ]
     },
     {
@@ -234,7 +226,7 @@ ul.task-list li input[type="checkbox"] {
         "alignmentType": "teaches",
         "targetName": "Probability, expected value and project scheduling for management decisions"
       },
-      "teaches": ["Calculate the probability of an event from records, using the denominator the question names, and find the probability of its complement", "Build a contingency table and read joint, marginal and conditional probabilities from it", "Apply the addition rule, and recognise events that are mutually exclusive", "Judge whether two events are independent, and apply the multiplication rule along a probability tree", "Calculate the expected value and the standard deviation of an uncertain payoff, and name the probability and size of the worst outcome", "Draw a decision tree, roll it back to choose an option and review the risk behind the expected value", "Use the binomial model to estimate how many registered people attend, and how far that number varies", "Calculate a PERT expected duration and its variance from three time estimates", "Run a forward and a backward pass to find each task's earliest and latest times, its slack and the critical path", "Estimate the probability of finishing a project by a deadline from the PERT variance of the critical path", "Build and read a Gantt chart, and check it against the critical path", "Write a decision note that joins a probability, an expected value and a schedule into one recommendation"]
+      "teaches": ["Calculate joint, marginal and conditional probabilities from a contingency table", "Apply the addition and multiplication rules to combined events", "Evaluate options by rolling back a decision tree", "Determine the critical path of a project network", "Estimate the probability of completing a project by a deadline", "Construct a Gantt chart from a project schedule"]
     },
     {
       "@type": "DefinedTermSet",
@@ -571,6 +563,86 @@ ul.task-list li input[type="checkbox"] {
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Chapter 6: External Factors for Decision Making</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./weeks/week06.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Porter’s Five Forces and the Strategic Options Matrix</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Chapter 7: Internal Factors for Decision Making</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./weeks/week07.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">RBV, VRIO and dynamic capabilities</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">Chapter 8: Ethical Decision Making</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./weeks/week08.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Ethical decision making</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
+ <span class="menu-text">Chapter 9: Correlation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./weeks/week09.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Correlation: Pearson and Spearman</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
+ <span class="menu-text">Chapter 10: Chi-squared Tests</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./weeks/week10.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Chi-squared: goodness of fit and association</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lecture-slides.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Lecture slides</span></a>
@@ -588,8 +660,13 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#lecture-slides" id="toc-lecture-slides" class="nav-link active" data-scroll-target="#lecture-slides">Lecture slides</a>
   <ul class="collapse">
+  <li><a href="#chapter-1-data-measurement-scales-and-descriptive-statistics" id="toc-chapter-1-data-measurement-scales-and-descriptive-statistics" class="nav-link" data-scroll-target="#chapter-1-data-measurement-scales-and-descriptive-statistics">Chapter 1: Data, measurement scales and descriptive statistics</a></li>
+  <li><a href="#chapters-9-and-10-spearmans-rho-and-chi-squared-tests" id="toc-chapters-9-and-10-spearmans-rho-and-chi-squared-tests" class="nav-link" data-scroll-target="#chapters-9-and-10-spearmans-rho-and-chi-squared-tests">Chapters 9 and 10: Spearman’s rho and chi-squared tests</a></li>
+  <li><a href="#coursework-sessions" id="toc-coursework-sessions" class="nav-link" data-scroll-target="#coursework-sessions">Coursework sessions</a>
+  <ul class="collapse">
   <li><a href="#session-1-methods-for-the-coursework-report" id="toc-session-1-methods-for-the-coursework-report" class="nav-link" data-scroll-target="#session-1-methods-for-the-coursework-report">Session 1: Methods for the coursework report</a></li>
   <li><a href="#session-2-tests-for-one-and-two-groups" id="toc-session-2-tests-for-one-and-two-groups" class="nav-link" data-scroll-target="#session-2-tests-for-one-and-two-groups">Session 2: Tests for one and two groups</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -615,7 +692,7 @@ ul.task-list li input[type="checkbox"] {
 <div>
   <div class="keywords">
     <div class="block-title">Keywords</div>
-    <p>lecture slides, teaching sessions</p>
+    <p>lecture slides, teaching sessions, chapter slides</p>
   </div>
 </div>
 
@@ -624,10 +701,53 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="lecture-slides" class="level1 unnumbered">
 <h1 class="unnumbered">Lecture slides</h1>
-<p>Each teaching session has one slide deck. A deck opens with the session’s activities and ends with a recap. It is a summary of the chapters it draws on, so read the chapter for the full explanation, the worked examples and the Try It exercises.</p>
+<p>Each chapter has a lecture deck and a tutorial deck. Two further decks, for sessions 1 and 2, cover the coursework report.</p>
+<section id="chapter-1-data-measurement-scales-and-descriptive-statistics" class="level2">
+<h2 class="anchored" data-anchor-id="chapter-1-data-measurement-scales-and-descriptive-statistics">Chapter 1: Data, measurement scales and descriptive statistics</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Deck</th>
+<th>Covers</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="slides/week01-slides.html">Chapter 1 lecture</a></td>
+<td>Cases and variables, population and sample, measurement scales, frequency tables, centre and spread, and a staffing decision</td>
+</tr>
+<tr class="even">
+<td><a href="slides/week01-tutorial-slides.html">Chapter 1 tutorial</a></td>
+<td>The variable audit, four outputs in JASP or PocketStat, three questions from your own output, and the manager summary</td>
+</tr>
+</tbody>
+</table>
+<p>Chapter: <a href="weeks/week01.html">1</a>.</p>
+</section>
+<section id="chapters-9-and-10-spearmans-rho-and-chi-squared-tests" class="level2">
+<h2 class="anchored" data-anchor-id="chapters-9-and-10-spearmans-rho-and-chi-squared-tests">Chapters 9 and 10: Spearman’s rho and chi-squared tests</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Deck</th>
+<th>Covers</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="slides/chapter09-10-spearman-chi-squared.html">Chapters 9 and 10 slides</a></td>
+<td>Spearman’s rho for ranked data, the chi-squared goodness-of-fit test, the chi-squared test of association with Cramér’s V, and a self-checking practice table</td>
+</tr>
+</tbody>
+</table>
+<p>Chapters: <a href="weeks/week09.html">9</a> and <a href="weeks/week10.html">10</a>.</p>
+</section>
+<section id="coursework-sessions" class="level2">
+<h2 class="anchored" data-anchor-id="coursework-sessions">Coursework sessions</h2>
+<p>Each coursework session has one slide deck. A deck opens with the session’s activities and ends with a recap. It is a summary of the chapters it draws on, so read the chapter for the full explanation, the worked examples and the Try It exercises.</p>
 <p>The decks open in the browser. Press <strong>F</strong> for full screen and <strong>Esc</strong> for an overview of every slide. The live tools in some decks need an internet connection.</p>
-<section id="session-1-methods-for-the-coursework-report" class="level2">
-<h2 class="anchored" data-anchor-id="session-1-methods-for-the-coursework-report">Session 1: Methods for the coursework report</h2>
+<section id="session-1-methods-for-the-coursework-report" class="level3">
+<h3 class="anchored" data-anchor-id="session-1-methods-for-the-coursework-report">Session 1: Methods for the coursework report</h3>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -642,10 +762,10 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
-<p>Chapters: <a href="weeks/week02-part3.html">2</a>, <a href="weeks/week05.html">5</a>, 6 and 9.</p>
+<p>Chapters: <a href="weeks/week02-part3.html">2</a>, <a href="weeks/week05.html">5</a>, <a href="weeks/week06.html">6</a> and <a href="weeks/week09.html">9</a>.</p>
 </section>
-<section id="session-2-tests-for-one-and-two-groups" class="level2">
-<h2 class="anchored" data-anchor-id="session-2-tests-for-one-and-two-groups">Session 2: Tests for one and two groups</h2>
+<section id="session-2-tests-for-one-and-two-groups" class="level3">
+<h3 class="anchored" data-anchor-id="session-2-tests-for-one-and-two-groups">Session 2: Tests for one and two groups</h3>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -664,6 +784,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Further decks are added as each session is taught.</p>
 
 
+</section>
 </section>
 </section>
 
@@ -1075,8 +1196,8 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./weeks/week05.html" class="pagination-link" aria-label="Comparing two groups and paired data">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Comparing two groups and paired data</span></span>
+      <a href="./weeks/week10.html" class="pagination-link" aria-label="Chi-squared: goodness of fit and association">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Chi-squared: goodness of fit and association</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
