@@ -215,10 +215,28 @@
        1. Every "Your answer:" callout: each ____ blank becomes a text field, a "Managerial decision"
           box is added (unless the template already asks for the manager), and a Copy answer button
           puts the filled-in write-up on the clipboard for a Word file or a Moodle forum post.
+          A callout holding ::: {.af-key answers="a | b/c | d"} gets a Check button: answers follow
+          the order of the blanks, "/" separates accepted alternatives, and data-unordered="0,1"
+          accepts those blanks in either order. A callout holding ::: {.af-model} gets a Sample
+          decision button that shows or hides it (added 2026-11-25).
        2. Every .check-table: inputs carry data-a (answer), data-tol (tolerance) and data-abs (sign
-          ignored). Check marks cells green or red, Clear empties them, Copy copies the table as text.
+          ignored), and a select is right when its value equals data-a. Check marks cells green or
+          red, Clear empties them, Copy copies the table as text.
        Entries are kept in the browser (localStorage) so a reload keeps them. -->
   <style>
+    .reveal .af-key { display: none; }
+    .reveal .af-model { display: none; margin-top: 0.3em; padding: 0.2em 0.5em; font-size: 0.72em;
+      border-left: 4px solid #2A7F7F; background: #eef6f5; }
+    .reveal .af-model.af-show { display: block; }
+    .reveal .af-model p { margin: 0; }
+    .reveal .af-blank.ct-ok { background: #e3f2f1; border-bottom-color: #2A7F7F; }
+    .reveal .af-blank.ct-no { background: #fbeaea; border-bottom-color: #b03a2e; }
+    .reveal .check-table select { font: inherit; font-size: 0.85em; padding: 0.05em 0.2em;
+      border: 2px solid #9aa6b2; border-radius: 6px; background: #fff; max-width: 100%; }
+    .reveal .check-table select.ct-ok { border-color: #2A7F7F; background: #e3f2f1; }
+    .reveal .check-table select.ct-no { border-color: #b03a2e; background: #fbeaea; }
+    .reveal .check-table input.ct-num { width: 2.4em; }
+    .reveal .check-table td.ct-left { text-align: left; }
     .reveal .af-blank { font: inherit; width: 3.4em; padding: 0 0.2em; margin: 0 0.1em; text-align: center;
       border: 0; border-bottom: 2px solid #23415A; background: #f3f6f9; border-radius: 4px 4px 0 0; }
     .reveal .af-blank:focus, .reveal .af-manager:focus, .reveal .check-table input:focus { outline: 3px solid #D9A441; }
@@ -248,6 +266,16 @@
       set: function (k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
     };
     function num(s) { s = String(s).trim().replace(/−/g, "-").replace(/,/g, "."); return s === "" ? NaN : Number(s); }
+    // Answer-box matching: case, spaces and a leading zero are ignored; numbers allow ±0.005.
+    function norm(s) { return String(s).toLowerCase().replace(/−/g, "-").replace(/\s+/g, "").replace(/(^|[^0-9])0\./g, "$1."); }
+    function matches(v, alts) {
+      if (v === "") return false;
+      return alts.some(function (a) {
+        if (a === "*" || v === a) return true;   // "*" accepts any answer (free-text blank)
+        var x = Number(v), y = Number(a);
+        return !isNaN(x) && !isNaN(y) && Math.abs(x - y) <= 0.005;
+      });
+    }
     function copy(text, msg) {
       function done(ok) { msg.textContent = ok ? "Copied" : "Select the text and copy it by hand"; }
       if (navigator.clipboard && window.isSecureContext) { navigator.clipboard.writeText(text).then(function () { done(true); }, function () { done(false); }); return; }
@@ -283,11 +311,29 @@
         area.setAttribute("aria-label", "managerial decision"); area.placeholder = "What should the manager do, and why?";
         bar.appendChild(lab); bar.appendChild(area);
       }
+      var callout = p.closest(".callout") || box;
+      var key = callout.querySelector(".af-key"), model = callout.querySelector(".af-model");
       var cp = button("Copy answer"), cl = button("Clear", "af-alt"), msg = document.createElement("span"); msg.className = "af-msg";
-      bar.appendChild(cp); bar.appendChild(cl); bar.appendChild(msg); box.appendChild(bar);
+      var ck = key ? button("Check") : null, sm = model ? button("Sample decision", "af-alt") : null;
+      if (ck) bar.appendChild(ck);
+      bar.appendChild(cp); bar.appendChild(cl); if (sm) bar.appendChild(sm); bar.appendChild(msg); box.appendChild(bar);
+      if (model) box.appendChild(model);
       var fields = Array.prototype.slice.call(inputs); if (area) fields.push(area);
       fields.forEach(function (f, i) { var k = store.key(p, id + "." + i); f.value = store.get(k); f.dispatchEvent(new Event("input"));
-        f.addEventListener("input", function () { store.set(k, f.value); msg.textContent = ""; }); });
+        f.addEventListener("input", function () { store.set(k, f.value); msg.textContent = ""; f.classList.remove("ct-ok", "ct-no"); }); });
+      if (ck) ck.addEventListener("click", function () {
+        var keys = key.dataset.answers.split("|").map(function (s) { return s.split("/").map(norm); });
+        var vals = Array.prototype.map.call(inputs, function (el) { return norm(el.value); });
+        var good = vals.map(function (v, i) { return keys[i] ? matches(v, keys[i]) : true; });
+        if (key.dataset.unordered) {
+          var ix = key.dataset.unordered.split(",").map(Number), a = ix[0], b = ix[1];
+          if (matches(vals[a], keys[b]) && matches(vals[b], keys[a])) { good[a] = true; good[b] = true; }
+        }
+        var ok = 0;
+        Array.prototype.forEach.call(inputs, function (el, i) { el.classList.toggle("ct-ok", good[i]); el.classList.toggle("ct-no", !good[i]); if (good[i]) ok++; });
+        msg.textContent = ok === inputs.length ? "All " + ok + " correct" : ok + " of " + inputs.length + " correct: fix the red blanks";
+      });
+      if (sm) sm.addEventListener("click", function () { model.classList.toggle("af-show"); });
       function text() {
         var c = p.cloneNode(true), src = p.querySelectorAll(".af-blank");
         c.querySelectorAll(".af-blank").forEach(function (inp, i) { inp.replaceWith(document.createTextNode(src[i].value.trim() || "____")); });
@@ -303,14 +349,19 @@
 
     // 2. Self-checking tables
     document.querySelectorAll(".reveal .check-table").forEach(function (box, t) {
-      var inputs = box.querySelectorAll("input"), msg = box.querySelector(".ct-msg");
-      inputs.forEach(function (el, i) { var k = store.key(box, "t" + t + "." + i); el.value = store.get(k);
-        el.addEventListener("input", function () { store.set(k, el.value); el.classList.remove("ct-ok", "ct-no"); }); });
+      var inputs = box.querySelectorAll("input, select"), msg = box.querySelector(".ct-msg");
+      inputs.forEach(function (el, i) { var k = store.key(box, "t" + t + "." + i); var s = store.get(k); if (s || el.tagName !== "SELECT") el.value = s;
+        function save() { store.set(k, el.value); el.classList.remove("ct-ok", "ct-no"); }
+        el.addEventListener("input", save); el.addEventListener("change", save); });
       box.querySelector(".ct-check").addEventListener("click", function () {
         var ok = 0;
         inputs.forEach(function (el) {
-          var v = num(el.value), a = Number(el.dataset.a), tol = Number(el.dataset.tol || 0);
-          var good = !isNaN(v) && (el.dataset.abs ? Math.abs(Math.abs(v) - Math.abs(a)) <= tol : Math.abs(v - a) <= tol);
+          var good;
+          if (el.tagName === "SELECT") good = el.value !== "" && el.value === el.dataset.a;
+          else {
+            var v = num(el.value), a = Number(el.dataset.a), tol = Number(el.dataset.tol || 0);
+            good = !isNaN(v) && (el.dataset.abs ? Math.abs(Math.abs(v) - Math.abs(a)) <= tol : Math.abs(v - a) <= tol);
+          }
           el.classList.toggle("ct-ok", good); el.classList.toggle("ct-no", !good); if (good) ok++;
         });
         msg.textContent = ok === inputs.length ? "All " + ok + " correct" : ok + " of " + inputs.length + " correct: fix the red cells";
@@ -321,7 +372,12 @@
       box.querySelector(".ct-copy").addEventListener("click", function () {
         var lines = [heading(box)];
         box.querySelectorAll("tr").forEach(function (tr) {
-          lines.push(Array.prototype.map.call(tr.children, function (c) { var i = c.querySelector("input"); return i ? (i.value.trim() || "____") : c.textContent.trim(); }).join("\t"));
+          lines.push(Array.prototype.map.call(tr.children, function (c) {
+            var i = c.querySelector("input, select");
+            if (!i) return c.textContent.trim();
+            if (i.tagName === "SELECT") return i.value ? i.options[i.selectedIndex].text : "____";
+            return i.value.trim() || "____";
+          }).join("\t"));
         });
         box.querySelectorAll(".ct-line").forEach(function (l) {
           var c = l.cloneNode(true); c.querySelectorAll("input").forEach(function (i, k) { i.replaceWith(document.createTextNode(l.querySelectorAll("input")[k].value.trim() || "____")); });
@@ -398,7 +454,7 @@ Mohammed Ali Sharafuddin
 <p><span class="badge bg-acquisition">Acquisition</span></p>
 <p><strong><span class="act-num">2</span> Chi-squared test types</strong></p>
 <p><span class="act-time">⏱ 30 min</span></p>
-<p>Observed and expected counts, χ² by hand, goodness of fit or association</p>
+<p>Observed and expected counts, χ² by hand, goodness-of-fit test or test of association</p>
 </div>
 <div class="lp-card lecture">
 <p><span class="badge bg-investigation">Investigation</span></p>
@@ -463,10 +519,11 @@ Mohammed Ali Sharafuddin
 <li class="fragment"><strong>Tie:</strong> two cases share the average of the ranks they span</li>
 </ul>
 </section>
-<section id="spearmans-rho-pearsons-r-on-ranks" class="slide level2 unnumbered big center">
-<h2>Spearman’s rho: Pearson’s r on ranks</h2>
+<section id="spearmans-rho-correlate-the-ranks" class="slide level2 unnumbered big center">
+<h2>Spearman’s rho: correlate the ranks</h2>
 <ul>
-<li class="fragment"><strong>Spearman’s rank correlation coefficient</strong>, written <strong>ρ</strong> (rho) or <strong>r<sub>s</sub></strong></li>
+<li class="fragment">Replace each score with its <strong>rank</strong>, then work out <strong>Pearson’s r on the ranks</strong></li>
+<li class="fragment"><strong>Spearman’s rank correlation coefficient</strong>, <strong>rho (ρ)</strong>, the Greek letter r. In a report we write <strong>r<sub>s</sub></strong></li>
 <li class="fragment">Measures a <strong>monotonic</strong> pattern: as one rises, the other tends to rise, or tends to fall</li>
 <li class="fragment">Runs from <strong>−1</strong> to <strong>+1</strong>, read like Pearson’s r</li>
 <li class="fragment">Size: about <strong>.10</strong> weak, <strong>.30</strong> moderate, <strong>.50</strong> or above strong</li>
@@ -474,6 +531,7 @@ Mohammed Ali Sharafuddin
 </section>
 <section id="two-managers-rank-six-venues" class="slide level2 unnumbered center">
 <h2>Two managers rank six venues</h2>
+<div style="font-size: 0.78em">
 <table class="caption-top">
 <thead>
 <tr class="header">
@@ -528,22 +586,31 @@ Mohammed Ali Sharafuddin
 <td>1</td>
 </tr>
 <tr class="odd">
-<td><strong>Total</strong></td>
+<td><strong>n = 6 venues</strong></td>
 <td></td>
 <td></td>
-<td></td>
+<td><strong>Sum of d²</strong></td>
 <td><strong>6</strong></td>
 </tr>
 </tbody>
 </table>
+</div>
 <ul>
-<li class="fragment"><strong>Rule:</strong> rho = 1 − (6 × sum of d²) ÷ (n × (n² − 1)), with n = 6 venues</li>
-<li class="fragment"><strong>rho</strong> = 1 − (6 × 6) ÷ (6 × 35) = 1 − 0.171 = <strong>.83</strong></li>
+<li class="fragment"><strong>Rule:</strong> rho = 1 − (6 × sum of d²) ÷ (n × (n² − 1)). The 6 is a fixed constant in the formula</li>
+<li class="fragment"><strong>rho</strong> = 1 − (6 × 6) ÷ (6 × (6² − 1)) = 1 − 36 ÷ 210 = <strong>.83</strong></li>
+</ul>
+</section>
+<section id="reading-rho-.83-for-the-manager" class="slide level2 unnumbered big center">
+<h2>Reading rho = .83 for the manager</h2>
+<ul>
+<li class="fragment"><strong>Size and direction:</strong> rho = .83, a strong positive relationship</li>
+<li class="fragment"><strong>The ranks:</strong> the two managers rank the venues in almost the same order, and each swap is between neighbouring venues</li>
+<li class="fragment"><strong>For the manager:</strong> either ranking can guide the venue shortlist</li>
 </ul>
 </section>
 <section id="practice-question-five-events-ranked-twice" class="slide level2 unnumbered center">
 <h2>Practice question: five events ranked twice</h2>
-<p><strong>Open the deck on your laptop or phone. Fill in d and d², then rho, and press Check.</strong></p>
+<p><strong>Open the deck on your laptop or phone. Fill in d, d², the formula and rho, then press Check.</strong></p>
 <div class="check-table">
 
 <table class="caption-top">
@@ -602,7 +669,7 @@ Mohammed Ali Sharafuddin
 </tbody>
 </table>
 
-<p class="ct-line">rho = 1 − (6 × sum of d²) ÷ (5 events × 24) = <input data-a="0.6" data-tol="0.005" aria-label="rho"></p>
+<p class="ct-line">rho = 1 − (6 × <input class="ct-num" data-a="8" aria-label="sum of d squared in the formula">) ÷ (<input class="ct-num" data-a="5" aria-label="n, the number of events"> × <input class="ct-num" data-a="24" aria-label="n squared minus 1">) = <input data-a="0.6" data-tol="0.005" aria-label="rho"></p>
 <div class="ct-bar"><button type="button" class="ct-check">Check</button><button type="button" class="ct-clear af-alt">Clear</button><button type="button" class="ct-copy af-alt">Copy table</button><span class="ct-msg" aria-live="polite"></span></div>
 </div>
 </section>
@@ -613,6 +680,24 @@ Mohammed Ali Sharafuddin
 <li class="fragment"><strong>rho</strong> and one sentence on what it tells the events manager</li>
 <li class="fragment">Post it in the <strong>chapter 9 forum</strong> on Moodle, then read two classmates’ posts</li>
 </ul>
+<div class="callout callout-note no-icon callout-style-simple">
+<div class="callout-body">
+<div class="callout-content">
+<p><strong>Your answer:</strong> rho = ____, a ____ ____ relationship. Events with a higher attendance rank tended to have a ____ satisfaction rank, so the events manager can ____.</p>
+<div class="af-key" data-answers=".60/.6 | strong | positive | higher | *">
+
+</div>
+<div class="af-model">
+<p><strong>Sample:</strong> rho = .60, a strong positive relationship. Events with a higher attendance rank tended to have a higher satisfaction rank, so the events manager can use attendance as an early sign of which events satisfy customers, and look at the 2 pairs of events that swapped places.</p>
+</div>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="choosing-between-pearsons-r-and-spearmans-rho" class="title-slide slide level1 center">
+<h1>Choosing between Pearson’s r and Spearman’s rho</h1>
+<p>You used Pearson’s r with chapter 9 for 2 scale variables. Now you choose between Pearson’s r and Spearman’s rho.</p>
 </section>
 <section id="pearson-or-spearman-the-variables-decide" class="slide level2 unnumbered center">
 <h2>Pearson or Spearman: the variables decide</h2>
@@ -648,31 +733,50 @@ Mohammed Ali Sharafuddin
 </section>
 <section id="choosing-the-coefficient-for-four-pairs" class="slide level2 unnumbered center">
 <h2>Choosing the coefficient for four pairs</h2>
-<div class="callout callout-important callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Question for the room</strong></p>
-</div>
-<div class="callout-content">
-<p><strong>Pearson or Spearman, and why?</strong></p>
-<ol type="1">
-<li class="fragment"><code>Age</code> and <code>Spending</code></li>
-<li class="fragment"><code>Content_Q1</code> and <code>Value_Q1</code></li>
-<li class="fragment">Two judges’ rankings of 10 trade stands</li>
-<li class="fragment"><code>Satisfaction_Pre</code> and <code>Satisfaction_Post</code></li>
-</ol>
-</div>
-</div>
+<p><strong>Choose the coefficient and the reason for each pair, then press Check.</strong></p>
+<div class="check-table">
+
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">Pair</th>
+<th data-quarto-table-cell-role="th">Coefficient</th>
+<th data-quarto-table-cell-role="th">Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td class="ct-left"><code>Age</code> and <code>Spending</code></td>
+<td><select data-a="pearson" aria-label="coefficient for Age and Spending"><option value="">Choose</option><option value="pearson">Pearson's r</option><option value="spearman">Spearman's rho</option></select></td>
+<td><select data-a="scale" aria-label="reason for Age and Spending"><option value="">Choose</option><option value="scale">Both scale, straight line</option><option value="ordinal">Ordinal: ratings or ranks</option><option value="curved">Scale, curved or outliers</option></select></td>
+</tr>
+<tr class="even">
+<td class="ct-left"><code>Content_Q1</code> and <code>Value_Q1</code></td>
+<td><select data-a="spearman" aria-label="coefficient for Content_Q1 and Value_Q1"><option value="">Choose</option><option value="pearson">Pearson's r</option><option value="spearman">Spearman's rho</option></select></td>
+<td><select data-a="ordinal" aria-label="reason for Content_Q1 and Value_Q1"><option value="">Choose</option><option value="scale">Both scale, straight line</option><option value="ordinal">Ordinal: ratings or ranks</option><option value="curved">Scale, curved or outliers</option></select></td>
+</tr>
+<tr class="odd">
+<td class="ct-left">Two judges' rankings of 10 trade stands</td>
+<td><select data-a="spearman" aria-label="coefficient for the judges' rankings"><option value="">Choose</option><option value="pearson">Pearson's r</option><option value="spearman">Spearman's rho</option></select></td>
+<td><select data-a="ordinal" aria-label="reason for the judges' rankings"><option value="">Choose</option><option value="scale">Both scale, straight line</option><option value="ordinal">Ordinal: ratings or ranks</option><option value="curved">Scale, curved or outliers</option></select></td>
+</tr>
+<tr class="even">
+<td class="ct-left"><code>Satisfaction_Pre</code> and <code>Satisfaction_Post</code></td>
+<td><select data-a="pearson" aria-label="coefficient for Satisfaction_Pre and Satisfaction_Post"><option value="">Choose</option><option value="pearson">Pearson's r</option><option value="spearman">Spearman's rho</option></select></td>
+<td><select data-a="scale" aria-label="reason for Satisfaction_Pre and Satisfaction_Post"><option value="">Choose</option><option value="scale">Both scale, straight line</option><option value="ordinal">Ordinal: ratings or ranks</option><option value="curved">Scale, curved or outliers</option></select></td>
+</tr>
+</tbody>
+</table>
+
+<div class="ct-bar"><button type="button" class="ct-check">Check</button><button type="button" class="ct-clear af-alt">Clear</button><button type="button" class="ct-copy af-alt">Copy table</button><span class="ct-msg" aria-live="polite"></span></div>
 </div>
 </section>
 <section id="hypotheses-for-satisfaction-and-intention-to-return" class="slide level2 unnumbered center">
 <h2>Hypotheses for satisfaction and intention to return</h2>
 <ul>
-<li class="fragment"><strong>H₀:</strong> satisfaction and intention to return have <strong>no</strong> monotonic relationship</li>
-<li class="fragment"><strong>H₁:</strong> satisfaction and intention to return <strong>are</strong> related</li>
+<li class="fragment"><strong>H₀:</strong> in the population, satisfaction and intention to return have <strong>no</strong> monotonic relationship (ρs = 0)</li>
+<li class="fragment"><strong>H₁:</strong> in the population, they <strong>have</strong> a monotonic relationship (ρs ≠ 0)</li>
+<li class="fragment"><strong>Monotonic:</strong> as one rises, the other tends to rise, or tends to fall</li>
 </ul>
 <div class="callout callout-tip callout-titled callout-style-default">
 <div class="callout-body">
@@ -728,30 +832,29 @@ Mohammed Ali Sharafuddin
 <p><img data-src="../assets/images/slides/chapter09-10/spearman-panel.png" class="shot" alt="The JASP Correlation panel, annotated. Box 1 marks the Variables box holding Satisfaction and Return_Intention. Box 2, dashed teal, marks Pearson's r, unticked. Box 3 marks Spearman's rho, ticked. Box 4, teal, marks Report significance, ticked."></p>
 </div></div>
 </section>
-<section id="rho-the-spearman-rank-correlation" class="slide level2 unnumbered big center">
-<h2>rho: the Spearman rank correlation</h2>
-<ul>
-<li class="fragment"><strong>ρ (rho):</strong> Spearman’s rank correlation coefficient</li>
-<li class="fragment">Rank the 200 customers on satisfaction, then on intention to return</li>
-<li class="fragment"><strong>rho = .633:</strong> the two orders run together <strong>strongly</strong></li>
-<li class="fragment"><strong>df = 198:</strong> 200 customers − 2</li>
-<li class="fragment"><strong>Positive:</strong> higher satisfaction goes with higher intention</li>
-</ul>
-</section>
 <section id="spearman-output-satisfaction-and-intention-to-return" class="slide level2 unnumbered center">
 <h2>Spearman output: satisfaction and intention to return</h2>
 
 <img data-src="../assets/images/slides/chapter09-10/spearman-output.png" class="shot r-stretch" alt="JASP Spearman's Correlations table for Satisfaction and Return_Intention, annotated. A teal box marks the pair. Box 1 marks Spearman's rho, 0.633. Box 2 marks p, less than .001."><ul>
-<li class="fragment"><span class="nb">1</span><strong>rho = .633:</strong> positive and strong</li>
-<li class="fragment"><span class="nb">2</span><strong>p &lt; .001:</strong> below .05, significant</li>
-<li class="fragment"><strong>For the manager:</strong> track satisfaction and intention to return together at every event</li>
+<li class="fragment"><span class="nb">1</span><strong>rho = .633</strong></li>
+<li class="fragment"><span class="nb">2</span><strong>p &lt; .001:</strong> below .05</li>
+</ul>
+</section>
+<section id="reading-the-spearman-output" class="slide level2 unnumbered big center">
+<h2>Reading the Spearman output</h2>
+<ul>
+<li class="fragment">JASP ranked the 200 customers on satisfaction, then on intention to return</li>
+<li class="fragment"><strong>rho = .633:</strong> the two orders run together <strong>strongly</strong></li>
+<li class="fragment"><strong>Positive:</strong> higher satisfaction goes with higher intention</li>
+<li class="fragment"><strong>df = 198:</strong> 200 customers − 2</li>
+<li class="fragment"><strong>For the manager:</strong> a fall in satisfaction scores is an early warning for repeat bookings. Act on it before the next event</li>
 </ul>
 </section>
 <section id="satisfaction-and-intention-to-return-reject-h₀" class="slide level2 unnumbered center">
 <h2>Satisfaction and intention to return: reject H₀</h2>
 <ul>
-<li class="fragment"><strong>H₀:</strong> no monotonic relationship</li>
-<li class="fragment"><strong>H₁:</strong> satisfaction and intention to return are related</li>
+<li class="fragment"><strong>H₀:</strong> in the population, no monotonic relationship (ρs = 0)</li>
+<li class="fragment"><strong>H₁:</strong> in the population, a monotonic relationship (ρs ≠ 0)</li>
 </ul>
 <div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
@@ -806,6 +909,12 @@ Mohammed Ali Sharafuddin
 <div class="callout-body">
 <div class="callout-content">
 <p><strong>Your answer:</strong> <em>r<sub>s</sub></em>(____) = ____, <em>p</em> ____. The <em>p</em>-value is ____ .05, so we ____ H₀.</p>
+<div class="af-key" data-answers="198 | .450/.45 | <.001 | below/less than/smaller than | reject">
+
+</div>
+<div class="af-model">
+<p><strong>Sample:</strong> content ratings and intention to return are positively related, <em>r<sub>s</sub></em>(198) = .45, <em>p</em> &lt; .001. Customers who rate the content highly tend to say they will return, so the manager can protect repeat visits by keeping programme content strong and checking content ratings after every event.</p>
+</div>
 </div>
 </div>
 </div>
@@ -818,30 +927,106 @@ Mohammed Ali Sharafuddin
 </div>
 <ul>
 <li>A new <strong>Correlation</strong>: <code>Value_Q1</code> and <code>Return_Intention</code></li>
-<li>Tick <strong>both</strong> Pearson’s r and Spearman’s rho</li>
+<li>Tick <strong>both</strong> Pearson’s r and Spearman’s rho, this once, to see whether they agree</li>
 <li>Then answer question 2</li>
+<li>In your own analysis, choose one coefficient <strong>before</strong> you run it</li>
 </ul>
 </section>
 <section id="question-2-which-coefficient-do-we-report" class="slide level2 unnumbered center">
 <h2>Question 2: which coefficient do we report?</h2>
-<p><strong><code>Value_Q1</code> and <code>Return_Intention</code> are both 1 to 5 ratings. Which result do we report, and what do we decide?</strong></p>
-<div class="callout callout-note no-icon callout-style-simple">
-<div class="callout-body">
-<div class="callout-content">
-<p><strong>Your answer:</strong> we report ____, because ____. <em>p</em> = ____, so we ____ H₀.</p>
+<p><strong>Follow the rule for choosing a coefficient, fill in each row, then press Check.</strong></p>
+<div class="columns">
+<div class="column" style="width:58%;">
+<div class="check-table" style="font-size: 0.8em">
+
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">Step</th>
+<th data-quarto-table-cell-role="th">Your answer</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td class="ct-left">1. Type of both variables</td>
+<td><select data-a="ordinal" aria-label="type of both variables"><option value="">Choose</option><option value="scale">Scale</option><option value="ordinal">Ordinal</option></select></td>
+</tr>
+<tr class="even">
+<td class="ct-left">2. Coefficient the rule picks</td>
+<td><select data-a="spearman" aria-label="coefficient the rule picks"><option value="">Choose</option><option value="pearson">Pearson's r</option><option value="spearman">Spearman's rho</option></select></td>
+</tr>
+<tr class="odd">
+<td class="ct-left">3. Spearman's rho</td>
+<td><input data-a="0.126" data-tol="0.005" aria-label="Spearman's rho"></td>
+</tr>
+<tr class="even">
+<td class="ct-left">4. Its p-value</td>
+<td><input data-a="0.075" data-tol="0.0005" aria-label="Spearman p-value"></td>
+</tr>
+<tr class="odd">
+<td class="ct-left">5. Decision</td>
+<td><select data-a="retain" aria-label="decision"><option value="">Choose</option><option value="reject">Reject H₀</option><option value="retain">Retain H₀</option></select></td>
+</tr>
+<tr class="even">
+<td class="ct-left">6. Pearson's p, for comparison</td>
+<td><input data-a="0.006" data-tol="0.0005" aria-label="Pearson p-value"></td>
+</tr>
+<tr class="odd">
+<td class="ct-left">7. Pearson's decision</td>
+<td><select data-a="reject" aria-label="Pearson decision"><option value="">Choose</option><option value="reject">Reject H₀</option><option value="retain">Retain H₀</option></select></td>
+</tr>
+</tbody>
+</table>
+
+<div class="ct-bar"><button type="button" class="ct-check">Check</button><button type="button" class="ct-clear af-alt">Clear</button><button type="button" class="ct-copy af-alt">Copy table</button><span class="ct-msg" aria-live="polite"></span></div>
 </div>
-</div>
-</div>
-<p><img data-src="../assets/images/slides/chapter09-10/yourturn-value-both.png" class="shot" style="height: 320px; max-height: none; width: auto" alt="JASP Correlation Table for Return_Intention and Value_Q1 with both coefficients, annotated. Boxes 1 and 2, teal, mark Pearson's r, 0.193, and its p, .006. Boxes 3 and 4, gold, mark Spearman's rho, 0.126, and its p, .075."></p>
+</div><div class="column" style="width:42%;">
+<p><img data-src="../assets/images/slides/chapter09-10/yourturn-value-both.png" class="shot" style="max-height: 360px; width: auto" alt="JASP Correlation Table for Return_Intention and Value_Q1 with both coefficients, annotated. Boxes 1 and 2, teal, mark Pearson's r, 0.193, and its p, .006. Boxes 3 and 4, gold, mark Spearman's rho, 0.126, and its p, .075."></p>
+</div></div>
+<ul>
+<li class="fragment">Same data, opposite decisions: choose from the variables first</li>
+</ul>
 </section>
 <section id="break" class="slide level2 unnumbered big center">
 <h2>Break</h2>
-<p>10 minutes</p>
+<p>8 minutes</p>
 </section></section>
 <section>
 <section id="activity-2-chi-squared-test-types" class="title-slide slide level1 center">
 <h1>Activity 2: Chi-squared test types</h1>
 
+</section>
+<section id="two-chi-squared-tests" class="slide level2 unnumbered center">
+<h2>Two chi-squared tests</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Test</th>
+<th>Question it answers</th>
+<th>Example today</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Chi-squared goodness-of-fit test</strong></td>
+<td>Does one categorical variable match expected proportions?</td>
+<td>Ticket mix against the 50/30/20 plan</td>
+</tr>
+<tr class="even">
+<td><strong>Chi-squared test of association</strong> (also called the test of independence)</td>
+<td>Are two categorical variables related?</td>
+<td>Ticket type and attendance</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li class="fragment">Both compare <strong>observed counts</strong> with <strong>expected counts</strong></li>
+</ul>
 </section>
 <section id="ticket-sales-against-the-marketing-plan" class="slide level2 unnumbered center">
 <h2>Ticket sales against the marketing plan</h2>
@@ -861,6 +1046,7 @@ Mohammed Ali Sharafuddin
 <ul>
 <li class="fragment">A ticket type is a <strong>category</strong>: no mean, no standard deviation</li>
 <li class="fragment">We compare <strong>counts</strong></li>
+<li class="fragment">This is a <strong>chi-squared goodness-of-fit test</strong>: one variable against expected proportions</li>
 </ul>
 </section>
 <section id="observed-and-expected-counts" class="slide level2 unnumbered big center">
@@ -872,18 +1058,62 @@ Mohammed Ali Sharafuddin
 <li class="fragment">Standard: 200 × 0.50 = <strong>100</strong> expected, <strong>124</strong> observed</li>
 </ul>
 </section>
-<section id="χ²-the-chi-squared-statistic" class="slide level2 unnumbered big center">
-<h2>χ²: the chi-squared statistic</h2>
+<section id="hypotheses-for-the-ticket-mix" class="slide level2 unnumbered center">
+<h2>Hypotheses for the ticket mix</h2>
 <ul>
-<li class="fragment"><strong>χ² (chi-squared):</strong> the gaps between observed and expected counts, added up</li>
-<li class="fragment">Each category: gap squared, divided by its expected count</li>
-<li class="fragment"><strong>0</strong> when the counts match the plan, <strong>larger</strong> the further they sit from it</li>
+<li class="fragment"><strong>H₀:</strong> the ticket mix <strong>is</strong> 50% Standard, 30% Student and 20% VIP</li>
+<li class="fragment"><strong>H₁:</strong> the ticket mix <strong>differs</strong> from these proportions</li>
+</ul>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Decision rule for the ticket mix</strong></p>
+</div>
+<div class="callout-content">
+<table class="caption-top">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 17%">
+<col style="width: 58%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>If</th>
+<th>Decision</th>
+<th>Write</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><em>p</em> below .05</td>
+<td>Reject H₀</td>
+<td>The ticket mix <strong>differs</strong> from the plan</td>
+</tr>
+<tr class="even">
+<td><em>p</em> .05 or above</td>
+<td>Retain H₀</td>
+<td><strong>No evidence</strong> that the mix differs from the plan</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="χ²-the-difference-between-observed-and-expected-counts" class="slide level2 unnumbered big center">
+<h2>χ²: the difference between observed and expected counts</h2>
+<ul>
+<li class="fragment"><strong>χ² = Σ (O − E)² ÷ E</strong>, the sum over every category</li>
+<li class="fragment">Each category: square the gap, then divide by its expected count</li>
+<li class="fragment"><strong>0</strong> when observed counts equal expected counts, <strong>larger</strong> as the observed counts deviate further from the expected counts</li>
 <li class="fragment"><strong>df (degrees of freedom):</strong> categories − 1, so 3 − 1 = <strong>2</strong> for ticket type</li>
-<li class="fragment">Ticket mix: <strong>χ² = 11.53</strong>, above the critical value of <strong>5.99</strong> for 2 df</li>
 </ul>
 </section>
-<section id="ticket-mix-by-hand-χ²-11.53" class="slide level2 unnumbered center">
-<h2>Ticket mix by hand: χ² = 11.53</h2>
+<section id="ticket-mix-by-hand-each-categorys-gap" class="slide level2 unnumbered center">
+<h2>Ticket mix by hand: each category’s gap</h2>
 <table class="caption-top">
 <thead>
 <tr class="header">
@@ -921,14 +1151,85 @@ Mohammed Ali Sharafuddin
 <td><strong>200</strong></td>
 <td><strong>200</strong></td>
 <td><strong>0</strong></td>
-<td><strong>11.53</strong></td>
+<td><strong>χ² = 11.53</strong></td>
 </tr>
 </tbody>
 </table>
 <ul>
-<li class="fragment"><strong>11.53</strong> is above <strong>5.99</strong>, so p is below .05</li>
-<li class="fragment"><strong>Standard</strong> contributes most: 24 more than planned</li>
+<li class="fragment"><strong>Standard</strong> gives the largest share: 5.76 of 11.53, from 24 more tickets than expected</li>
 </ul>
+</section>
+<section id="where-5.99-comes-from-the-critical-value" class="slide level2 unnumbered center">
+<h2>Where 5.99 comes from: the critical value</h2>
+<div class="columns">
+<div class="column" style="width:52%;">
+<p><img data-src="../assets/images/slides/chapter09-10/chi-critical-df2.png" class="shot" alt="The chi-squared curve for 2 degrees of freedom, falling from left to right. The area to the right of 5.99 is shaded gold and labelled top 5 per cent. A dashed gold line marks the critical value 5.99, and a solid navy line marks our chi-squared of 11.53, far inside the shaded tail."></p>
+</div><div class="column" style="width:48%;">
+<div style="font-size: 0.8em">
+<ul>
+<li class="fragment"><strong>Critical value:</strong> the χ² that only <strong>5%</strong> of samples pass when H₀ is true</li>
+<li class="fragment">Each df has its own curve, so its own critical value</li>
+</ul>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>df</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>8</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Critical</strong></td>
+<td>3.84</td>
+<td><strong>5.99</strong></td>
+<td>7.81</td>
+<td>9.49</td>
+<td>15.51</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li class="fragment">Spreadsheet: <strong>=CHISQ.INV.RT(0.05, 2)</strong> = 5.99</li>
+<li class="fragment"><strong>11.53 &gt; 5.99</strong>, so p is below .05 and we <strong>reject H₀</strong>: the ticket mix differs from the plan</li>
+</ul>
+</div>
+</div></div>
+</section>
+<section id="χ²-in-jasp-under-frequencies" class="slide level2 unnumbered center">
+<h2>χ² in JASP: under Frequencies</h2>
+<ul>
+<li class="fragment">By hand first, so you can see what χ² measures. In practice JASP does the arithmetic</li>
+</ul>
+<table class="caption-top">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Test</th>
+<th>JASP menu</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Chi-squared goodness-of-fit test</td>
+<td><strong>Frequencies → Multinomial Test</strong>, Custom expected proportions (χ² test)</td>
+</tr>
+<tr class="even">
+<td>Chi-squared test of association</td>
+<td><strong>Frequencies → Contingency Tables</strong>, tick <strong>χ²</strong></td>
+</tr>
+<tr class="odd">
+<td>Binomial Test</td>
+<td>one variable with <strong>2</strong> categories against a stated share. Exact p from the binomial model in chapter 3. With 2 categories the goodness-of-fit test gives almost the same p, so we use χ²</td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="ticket-type-and-attendance" class="slide level2 unnumbered center">
 <h2>Ticket type and attendance</h2>
@@ -986,218 +1287,9 @@ Mohammed Ali Sharafuddin
 <h2>Two categorical variables: the test of association</h2>
 <ul>
 <li class="fragment"><strong>Contingency table:</strong> one row per category of one variable, one column per category of the other</li>
-<li class="fragment"><strong>Goodness of fit:</strong> one variable against a plan</li>
-<li class="fragment"><strong>Test of association:</strong> two variables, related or not</li>
+<li class="fragment"><strong>Chi-squared test of association:</strong> are the two variables related?</li>
 <li class="fragment"><strong>Independent:</strong> the attendance rate is the same for every ticket type</li>
 </ul>
-</section>
-<section id="expected-counts-in-a-contingency-table" class="slide level2 unnumbered big center">
-<h2>Expected counts in a contingency table</h2>
-<ul>
-<li class="fragment"><strong>E</strong> = row total × column total ÷ N</li>
-<li class="fragment">Standard, stayed away: 124 × 30 ÷ 200 = <strong>18.6</strong></li>
-<li class="fragment">Observed: <strong>21</strong>, so 2.4 more Standard holders stayed away than expected</li>
-<li class="fragment"><strong>df</strong> = (rows − 1) × (columns − 1) = 2 × 1 = <strong>2</strong></li>
-</ul>
-</section>
-<section id="which-test-for-each-question" class="slide level2 unnumbered center">
-<h2>Which test for each question?</h2>
-<div class="callout callout-important callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Question for the room</strong></p>
-</div>
-<div class="callout-content">
-<p><strong>Goodness of fit, test of association, or Spearman’s rho?</strong></p>
-<ol type="1">
-<li class="fragment">Is the share of VIP tickets different from the 20% in the plan?</li>
-<li class="fragment">Is region related to whether a customer attends?</li>
-<li class="fragment">Do the five regions supply equal numbers of customers?</li>
-<li class="fragment">Do customers who rate value highly also rate content highly?</li>
-</ol>
-</div>
-</div>
-</div>
-</section>
-<section id="question-3-region-and-ticket-type" class="slide level2 unnumbered center">
-<h2>Question 3: region and ticket type</h2>
-<p><strong><code>Region</code> has 5 categories and <code>Ticket_Type</code> has 3. JASP gives χ² = 6.81, p = .558.</strong></p>
-<div class="callout callout-note no-icon callout-style-simple">
-<div class="callout-body">
-<div class="callout-content">
-<p><strong>Your answer:</strong> df = (____ − 1) × (____ − 1) = ____, critical value ____. 6.81 is ____ than the critical value, so we ____ H₀.</p>
-</div>
-</div>
-</div>
-</section></section>
-<section>
-<section id="activity-3-goodness-of-fit-task" class="title-slide slide level1 center">
-<h1>Activity 3: Goodness-of-fit task</h1>
-
-</section>
-<section id="hypotheses-for-the-ticket-mix" class="slide level2 unnumbered center">
-<h2>Hypotheses for the ticket mix</h2>
-<ul>
-<li class="fragment"><strong>H₀:</strong> the ticket mix <strong>is</strong> 50% Standard, 30% Student and 20% VIP</li>
-<li class="fragment"><strong>H₁:</strong> the ticket mix <strong>differs</strong> from the plan</li>
-</ul>
-<div class="callout callout-tip callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Decision rule for the ticket mix</strong></p>
-</div>
-<div class="callout-content">
-<table class="caption-top">
-<colgroup>
-<col style="width: 23%">
-<col style="width: 17%">
-<col style="width: 58%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>If</th>
-<th>Decision</th>
-<th>Write</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><em>p</em> below .05</td>
-<td>Reject H₀</td>
-<td>The ticket mix <strong>differs</strong> from the plan</td>
-</tr>
-<tr class="even">
-<td><em>p</em> .05 or above</td>
-<td>Retain H₀</td>
-<td><strong>No evidence</strong> that the mix differs from the plan</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-</section>
-<section id="goodness-of-fit-test-in-jasp" class="slide level2 unnumbered center">
-<h2>Goodness-of-fit test in JASP</h2>
-<div class="columns">
-<div class="column" style="width:42%;">
-<p><strong>Frequencies → Multinomial Test</strong></p>
-<ul>
-<li class="fragment"><span class="nb">1</span><code>Ticket_Type</code> into <strong>Factor</strong></li>
-<li class="fragment"><span class="nb">2</span><strong>Custom expected proportions</strong></li>
-<li class="fragment"><span class="nb">3</span>Type <strong>50, 30, 20</strong></li>
-<li class="fragment"><span class="nb">4</span>Tick <strong>Descriptives</strong></li>
-</ul>
-</div><div class="column" style="width:58%;">
-<p><img data-src="../assets/images/slides/chapter09-10/gof-panel.png" class="shot" alt="The JASP Multinomial Test panel, annotated. Box 1 marks the Factor box holding Ticket_Type. Box 2 marks Custom expected proportions (chi-squared test), selected. Box 3 marks the table of planned values, 50, 30 and 20. Box 4 marks Descriptives, ticked." height="430"></p>
-</div></div>
-</section>
-<section id="goodness-of-fit-output-ticket-mix-against-the-plan" class="slide level2 unnumbered center">
-<h2>Goodness-of-fit output: ticket mix against the plan</h2>
-<div class="columns">
-<div class="column" style="width:45%;">
-<ul>
-<li class="fragment"><span class="nb">1</span><strong>χ² = 11.53</strong></li>
-<li class="fragment"><span class="nb">2</span><strong>df = 2:</strong> 3 ticket types − 1</li>
-<li class="fragment"><span class="nb">3</span><strong>p = .003:</strong> below .05, significant</li>
-<li class="fragment"><span class="nb t">4</span><strong>Expected:</strong> 100, 60, 40</li>
-<li class="fragment"><strong>For the manager:</strong> start next season’s plan from the mix sold</li>
-</ul>
-</div><div class="column" style="width:55%;">
-<p><img data-src="../assets/images/slides/chapter09-10/gof-output.png" class="shot" alt="JASP Multinomial Test output for Ticket_Type, annotated. Box 1 marks chi-squared, 11.527. Box 2 marks df, 2. Box 3 marks p, .003. Box 4, teal, marks the expected counts in the Descriptives table, 100, 60 and 40, beside the observed 124, 46 and 30."></p>
-</div></div>
-</section>
-<section id="ticket-mix-against-the-plan-reject-h₀" class="slide level2 unnumbered center">
-<h2>Ticket mix against the plan: reject H₀</h2>
-<ul>
-<li class="fragment"><strong>H₀:</strong> the ticket mix is 50%, 30% and 20%</li>
-<li class="fragment"><strong>H₁:</strong> the ticket mix differs from the plan</li>
-</ul>
-<div class="callout callout-note callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Decision on the ticket mix</strong></p>
-</div>
-<div class="callout-content">
-<p><em>p</em> = .003 is <strong>below .05</strong>, so we <strong>reject H₀</strong>. The ticket mix differs from the plan: more Standard and fewer Student and VIP tickets, χ²(2, <em>N</em> = 200) = 11.53, <em>p</em> = .003.</p>
-</div>
-</div>
-</div>
-</section>
-<section id="what-to-report-for-a-goodness-of-fit-test" class="slide level2 unnumbered center">
-<h2>What to report for a goodness-of-fit test</h2>
-<ul>
-<li class="fragment">the observed and expected counts</li>
-<li class="fragment"><strong>χ²</strong> with <strong>df</strong> and <strong>N</strong> in brackets, and <strong>p</strong></li>
-<li class="fragment">which categories sit above or below the plan</li>
-</ul>
-<div class="callout callout-note callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Report sentence for the ticket mix</strong></p>
-</div>
-<div class="callout-content">
-<p>A chi-squared goodness-of-fit test found that ticket sales differed from the planned mix, χ²(2, <em>N</em> = 200) = 11.53, <em>p</em> = .003. We sold 124 Standard tickets against 100 planned.</p>
-</div>
-</div>
-</div>
-</section>
-<section id="your-turn-female-and-male-customers-5050" class="slide level2 unnumbered big center">
-<h2>Your turn: female and male customers, 50:50?</h2>
-<div class="work-time">
-<p>4 minutes</p>
-</div>
-<ul>
-<li>A new <strong>Multinomial Test</strong>, with <code>Gender</code> in <strong>Factor</strong></li>
-<li>Keep <strong>Equal proportions</strong> selected</li>
-<li>Tick <strong>Descriptives</strong></li>
-<li>Then answer questions 4 and 5</li>
-</ul>
-</section>
-<section id="question-4-gender-split-by-hand" class="slide level2 unnumbered center">
-<h2>Question 4: gender split by hand</h2>
-<p><strong>112 female and 88 male customers. Calculate χ² against a 50:50 split.</strong></p>
-<div class="callout callout-note no-icon callout-style-simple">
-<div class="callout-body">
-<div class="callout-content">
-<p><strong>Your answer:</strong> each expected count is ____. χ² = ____ + ____ = ____, on ____ df.</p>
-</div>
-</div>
-</div>
-<p><img data-src="../assets/images/slides/chapter09-10/yourturn-gender-gof.png" class="shot" style="height: 260px; max-height: none; width: auto" alt="JASP Multinomial Test output for Gender against equal proportions, trimmed to the test row and the female and male counts. Gold boxes mark chi-squared, 2.880, df, 1, and p, .090. A teal box marks the expected counts, 100 and 100."></p>
-</section>
-<section id="question-5-gender-split-the-decision" class="slide level2 unnumbered center">
-<h2>Question 5: gender split, the decision</h2>
-<p><strong>Does the customer base differ from a 50:50 split?</strong></p>
-<div class="callout callout-note no-icon callout-style-simple">
-<div class="callout-body">
-<div class="callout-content">
-<p><strong>Your answer:</strong> χ²(____, <em>N</em> = 200) = ____, <em>p</em> = ____. The <em>p</em>-value is ____ .05, so we ____ H₀.</p>
-</div>
-</div>
-</div>
-<p><img data-src="../assets/images/slides/chapter09-10/yourturn-gender-gof.png" class="shot" style="height: 260px; max-height: none; width: auto" alt="The same JASP output for Gender. Gold boxes mark chi-squared, 2.880, df, 1, and p, .090."></p>
-</section>
-<section id="break-1" class="slide level2 unnumbered big center">
-<h2>Break</h2>
-<p>10 minutes</p>
-</section></section>
-<section>
-<section id="activity-4-association-task" class="title-slide slide level1 center">
-<h1>Activity 4: Association task</h1>
-
 </section>
 <section id="hypotheses-for-ticket-type-and-attendance" class="slide level2 unnumbered center">
 <h2>Hypotheses for ticket type and attendance</h2>
@@ -1244,49 +1336,319 @@ Mohammed Ali Sharafuddin
 </div>
 </div>
 </section>
-<section id="test-of-association-in-jasp" class="slide level2 unnumbered center">
-<h2>Test of association in JASP</h2>
-
-<img data-src="../assets/images/slides/chapter09-10/association-panel.png" class="shot r-stretch" alt="The JASP Contingency Tables panel in three annotated parts. Box 1 marks Rows, holding Ticket_Type. Box 2 marks Columns, holding Attendance. Box 3 marks chi-squared under Statistics, ticked. Box 4 marks Phi and Cramer's V, ticked. Box 5 marks Expected under Cells, ticked."><p><strong>Frequencies → Classical → Contingency Tables:</strong> <span class="nb">1</span><code>Ticket_Type</code> in <strong>Rows</strong> <span class="nb">2</span><code>Attendance</code> in <strong>Columns</strong> <span class="nb">3</span><strong>χ²</strong> ticked <span class="nb">4</span><strong>Phi and Cramer’s V</strong> <span class="nb">5</span><strong>Cells → Expected</strong></p>
+<section id="expected-counts-in-a-contingency-table" class="slide level2 unnumbered big center">
+<h2>Expected counts in a contingency table</h2>
+<ul>
+<li class="fragment"><strong>E</strong> = row total × column total ÷ N</li>
+<li class="fragment">Standard, stayed away: 124 × 30 ÷ 200 = <strong>18.6</strong></li>
+<li class="fragment">Observed: <strong>21</strong>, so 2.4 more Standard holders stayed away than expected</li>
+<li class="fragment"><strong>df</strong> = (rows − 1) × (columns − 1) = 2 × 1 = <strong>2</strong></li>
+</ul>
 </section>
-<section id="checking-the-expected-counts" class="slide level2 unnumbered center">
-<h2>Checking the expected counts</h2>
+<section id="ticket-type-and-attendance-the-decision-written-up" class="slide level2 unnumbered center">
+<h2>Ticket type and attendance: the decision, written up</h2>
+<ul>
+<li class="fragment">Adding (O − E)² ÷ E over the 6 cells gives <strong>χ² = 6.09</strong></li>
+</ul>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Write-up</strong></p>
+</div>
+<div class="callout-content">
+<p>df = (3 − 1) × (2 − 1) = <strong>2</strong>, critical value <strong>5.99</strong>. χ² = 6.09 is <strong>larger</strong> than the critical value, so we <strong>reject H₀</strong>. Attendance is associated with ticket type.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Managerial decision</strong></p>
+</div>
+<div class="callout-content">
+<p>Student holders almost all attend (44 of 46). VIP holders stay away most (7 of 30), so send them a reminder and a seat-release deadline, and fill released seats from a waiting list.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="which-test-for-each-question" class="slide level2 unnumbered center">
+<h2>Which test for each question?</h2>
+<p><strong>Choose the test for each question, then press Check.</strong></p>
+<div class="check-table" style="font-size: 0.85em">
+
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">Question</th>
+<th data-quarto-table-cell-role="th">Test</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td class="ct-left">1. Is the share of VIP tickets different from the 20% in the plan?</td>
+<td><select data-a="gof" aria-label="test for question 1"><option value="">Choose</option><option value="gof">Goodness-of-fit test</option><option value="assoc">Test of association</option><option value="spearman">Spearman's rho</option></select></td>
+</tr>
+<tr class="even">
+<td class="ct-left">2. Is region related to whether a customer attends?</td>
+<td><select data-a="assoc" aria-label="test for question 2"><option value="">Choose</option><option value="gof">Goodness-of-fit test</option><option value="assoc">Test of association</option><option value="spearman">Spearman's rho</option></select></td>
+</tr>
+<tr class="odd">
+<td class="ct-left">3. Do the five regions supply equal numbers of customers?</td>
+<td><select data-a="gof" aria-label="test for question 3"><option value="">Choose</option><option value="gof">Goodness-of-fit test</option><option value="assoc">Test of association</option><option value="spearman">Spearman's rho</option></select></td>
+</tr>
+<tr class="even">
+<td class="ct-left">4. Do customers who rate value highly also rate content highly?</td>
+<td><select data-a="spearman" aria-label="test for question 4"><option value="">Choose</option><option value="gof">Goodness-of-fit test</option><option value="assoc">Test of association</option><option value="spearman">Spearman's rho</option></select></td>
+</tr>
+</tbody>
+</table>
+
+<div class="ct-bar"><button type="button" class="ct-check">Check</button><button type="button" class="ct-clear af-alt">Clear</button><button type="button" class="ct-copy af-alt">Copy table</button><span class="ct-msg" aria-live="polite"></span></div>
+</div>
+</section>
+<section id="question-3-region-and-ticket-type" class="slide level2 unnumbered center">
+<h2>Question 3: region and ticket type</h2>
+<p><strong><code>Region</code> has 5 categories and <code>Ticket_Type</code> has 3. JASP gives χ² = 6.81, p = .558. Read the critical value for your df from the critical value table.</strong></p>
+<div class="callout callout-note no-icon callout-style-simple">
+<div class="callout-body">
+<div class="callout-content">
+<p><strong>Your answer:</strong> df = (____ − 1) × (____ − 1) = ____, critical value ____. χ² = 6.81 is ____ than the critical value, so we ____ H₀.</p>
+<div class="af-key" data-answers="5 | 3 | 8 | 15.51 | smaller/less/lower | retain/fail to reject" data-unordered="0,1">
+
+</div>
+<div class="af-model">
+<p><strong>Sample decision:</strong> region and ticket type are not associated (p = .558). One ticket mix and one marketing plan can serve all 5 regions, and no region needs its own pricing.</p>
+</div>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="activity-3-goodness-of-fit-task" class="title-slide slide level1 center">
+<h1>Activity 3: Goodness-of-fit task</h1>
+
+</section>
+<section id="goodness-of-fit-test-in-jasp" class="slide level2 unnumbered center">
+<h2>Goodness-of-fit test in JASP</h2>
+<div class="columns">
+<div class="column" style="width:42%;">
+<p><strong>Frequencies → Multinomial Test</strong></p>
+<p>This <strong>is</strong> the chi-squared goodness-of-fit test</p>
+<ul>
+<li class="fragment"><span class="nb">1</span><code>Ticket_Type</code> into <strong>Factor</strong></li>
+<li class="fragment"><span class="nb">2</span><strong>Custom expected proportions</strong></li>
+<li class="fragment"><span class="nb">3</span>Type <strong>50, 30, 20</strong></li>
+<li class="fragment"><span class="nb">4</span>Tick <strong>Descriptives</strong></li>
+</ul>
+</div><div class="column" style="width:58%;">
+<p><img data-src="../assets/images/slides/chapter09-10/gof-panel.png" class="shot" alt="The JASP Multinomial Test panel, annotated. Box 1 marks the Factor box holding Ticket_Type. Box 2 marks Custom expected proportions (chi-squared test), selected. Box 3 marks the table of planned values, 50, 30 and 20. Box 4 marks Descriptives, ticked." height="430"></p>
+</div></div>
+</section>
+<section id="goodness-of-fit-output-ticket-mix-against-the-plan" class="slide level2 unnumbered center">
+<h2>Goodness-of-fit output: ticket mix against the plan</h2>
 <div class="columns">
 <div class="column" style="width:45%;">
 <ul>
+<li class="fragment"><span class="nb">1</span><strong>χ² = 11.53</strong></li>
+<li class="fragment"><span class="nb">2</span><strong>df = 2:</strong> 3 ticket types − 1</li>
+<li class="fragment"><span class="nb">3</span><strong>p = .003:</strong> below .05</li>
+<li class="fragment"><span class="nb t">4</span><strong>Expected:</strong> 100, 60, 40</li>
+<li class="fragment">χ² above the critical value and p below .05 are the <strong>same decision</strong>. JASP gives the exact p</li>
+<li class="fragment"><strong>For the manager:</strong> start next season’s plan from the mix sold</li>
+</ul>
+</div><div class="column" style="width:55%;">
+<p><img data-src="../assets/images/slides/chapter09-10/gof-output.png" class="shot" alt="JASP Multinomial Test output for Ticket_Type, annotated. Box 1 marks chi-squared, 11.527. Box 2 marks df, 2. Box 3 marks p, .003. Box 4, teal, marks the expected counts in the Descriptives table, 100, 60 and 40, beside the observed 124, 46 and 30."></p>
+</div></div>
+</section>
+<section id="ticket-mix-against-the-plan-reject-h₀" class="slide level2 unnumbered center">
+<h2>Ticket mix against the plan: reject H₀</h2>
+<ul>
+<li class="fragment"><strong>H₀:</strong> the ticket mix is 50%, 30% and 20%</li>
+<li class="fragment"><strong>H₁:</strong> the ticket mix differs from these proportions</li>
+</ul>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Decision on the ticket mix</strong></p>
+</div>
+<div class="callout-content">
+<p><em>p</em> = .003 is <strong>below .05</strong>, so we <strong>reject H₀</strong>. The ticket mix differs from the plan: more Standard and fewer Student and VIP tickets, χ²(2, <em>N</em> = 200) = 11.53, <em>p</em> = .003.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="what-to-report-for-a-goodness-of-fit-test" class="slide level2 unnumbered center">
+<h2>What to report for a goodness-of-fit test</h2>
+<ul>
+<li class="fragment">the observed and expected counts</li>
+<li class="fragment"><strong>χ²</strong> with <strong>df</strong> and <strong>N</strong> in brackets, and <strong>p</strong></li>
+<li class="fragment">which categories have observed counts above or below their expected counts</li>
+</ul>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Report sentence for the ticket mix</strong></p>
+</div>
+<div class="callout-content">
+<p>A chi-squared goodness-of-fit test found that ticket sales differed from the planned mix, χ²(2, <em>N</em> = 200) = 11.53, <em>p</em> = .003. We sold 124 Standard tickets against 100 planned.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="question-4-gender-split-by-hand" class="slide level2 unnumbered center">
+<h2>Question 4: gender split by hand</h2>
+<p><strong>112 female and 88 male customers. Calculate χ² against a 50:50 split, by hand, before you open JASP.</strong></p>
+<div class="callout callout-note no-icon callout-style-simple">
+<div class="callout-body">
+<div class="callout-content">
+<p><strong>Your answer:</strong> each expected count is ____. χ² = ____ + ____ = ____, on ____ df.</p>
+<div class="af-key" data-answers="100 | 1.44 | 1.44 | 2.88 | 1">
+
+</div>
+<div class="af-model">
+<p><strong>Sample decision:</strong> 112 against 100 expected and 88 against 100 expected, a gap of 12 either way. Hold any gender-targeted campaign until question 5 shows whether this gap is larger than chance.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="your-turn-female-and-male-customers-5050" class="slide level2 unnumbered big center">
+<h2>Your turn: female and male customers, 50:50?</h2>
+<div class="work-time">
+<p>4 minutes</p>
+</div>
+<ul>
+<li>A new <strong>Multinomial Test</strong>, with <code>Gender</code> in <strong>Factor</strong></li>
+<li>Keep <strong>Equal proportions</strong> selected</li>
+<li>Tick <strong>Descriptives</strong></li>
+<li>Check your question 4 answer, then answer question 5</li>
+</ul>
+</section>
+<section id="question-5-gender-split-the-decision" class="slide level2 unnumbered center">
+<h2>Question 5: gender split, the decision</h2>
+<p><strong>Does the customer base differ from a 50:50 split?</strong></p>
+<div class="callout callout-note no-icon callout-style-simple">
+<div class="callout-body">
+<div class="callout-content">
+<p><strong>Your answer:</strong> χ²(____, <em>N</em> = 200) = ____, <em>p</em> = ____. The <em>p</em>-value is ____ .05, so we ____ H₀.</p>
+<div class="af-key" data-answers="1 | 2.88/2.880 | .090/.09 | above/greater than/more than | retain/fail to reject">
+
+</div>
+<div class="af-model">
+<p><strong>Sample decision:</strong> a 112 to 88 split could arise by chance from a 50:50 customer base (p = .090). There is no evidence for a gender-targeted campaign, so keep one campaign for all customers.</p>
+</div>
+</div>
+</div>
+</div>
+<p><img data-src="../assets/images/slides/chapter09-10/yourturn-gender-gof.png" class="shot" style="height: 260px; max-height: none; width: auto" alt="The same JASP output for Gender. Gold boxes mark chi-squared, 2.880, df, 1, and p, .090."></p>
+</section>
+<section id="break-1" class="slide level2 unnumbered big center">
+<h2>Break</h2>
+<p>8 minutes</p>
+</section></section>
+<section>
+<section id="activity-4-association-task" class="title-slide slide level1 center">
+<h1>Activity 4: Association task</h1>
+
+</section>
+<section id="test-of-association-in-jasp" class="slide level2 unnumbered center">
+<h2>Test of association in JASP</h2>
+<p>Contingency Tables with <strong>χ²</strong> ticked <strong>is</strong> the chi-squared test of association</p>
+
+<img data-src="../assets/images/slides/chapter09-10/association-panel.png" class="shot r-stretch" alt="The JASP Contingency Tables panel in three annotated parts. Box 1 marks Rows, holding Ticket_Type. Box 2 marks Columns, holding Attendance. Box 3 marks chi-squared under Statistics, ticked. Box 4 marks Phi and Cramer's V, ticked. Box 5 marks Expected under Cells, ticked."><p><strong>Frequencies → Classical → Contingency Tables:</strong> <span class="nb">1</span><code>Ticket_Type</code> in <strong>Rows</strong> <span class="nb">2</span><code>Attendance</code> in <strong>Columns</strong> <span class="nb">3</span><strong>χ²</strong> ticked <span class="nb">4</span><strong>Phi and Cramer’s V</strong> <span class="nb">5</span><strong>Cells → Expected</strong></p>
+</section>
+<section id="expected-counts-the-guideline" class="slide level2 unnumbered center">
+<h2>Expected counts: the guideline</h2>
+<div class="columns">
+<div class="column" style="width:45%;">
+<ul>
+<li class="fragment">The chi-squared p-value can be relied on when the expected counts are large enough</li>
 <li class="fragment"><strong>Guideline:</strong> at least 80% of cells with E of <strong>5 or more</strong>, none below <strong>1</strong></li>
-<li class="fragment"><span class="nb">1</span><strong>VIP, stayed away: 4.5</strong>, 1 cell of 6</li>
-<li class="fragment">1 of 6 is 17%, inside the 20% limit</li>
-<li class="fragment"><span class="nb t">2</span>Next smallest: <strong>6.9</strong></li>
-<li class="fragment"><strong>For the manager:</strong> the result can be used, with care</li>
+<li class="fragment">Find the <strong>smallest E</strong> in the table</li>
 </ul>
 </div><div class="column" style="width:55%;">
 <p><img data-src="../assets/images/slides/chapter09-10/association-expected.png" class="shot" alt="JASP contingency table of Ticket_Type by Attendance with counts and expected counts, annotated. Box 1 marks the smallest expected count, 4.500, for VIP registered-only. Box 2, teal, marks the next smallest, 6.900, for Student registered-only."></p>
 </div></div>
 </section>
-<section id="association-output-ticket-type-and-attendance" class="slide level2 unnumbered center">
-<h2>Association output: ticket type and attendance</h2>
+<section id="expected-counts-our-table-passes" class="slide level2 unnumbered center">
+<h2>Expected counts: our table passes</h2>
 <div class="columns">
 <div class="column" style="width:45%;">
 <ul>
-<li class="fragment"><span class="nb">1</span><strong>χ² = 6.09</strong></li>
+<li class="fragment"><span class="nb">1</span><strong>VIP, registered only: 4.5</strong>, 1 cell of 6</li>
+<li class="fragment">1 of 6 is 17%, inside the 20% limit, and above 1</li>
+<li class="fragment"><span class="nb t">2</span>Next smallest: <strong>6.9</strong></li>
+<li class="fragment"><strong>For the manager:</strong> the p-value can be relied on. Report the one cell below 5</li>
+</ul>
+</div><div class="column" style="width:55%;">
+<p><img data-src="../assets/images/slides/chapter09-10/association-expected.png" class="shot" alt="JASP contingency table of Ticket_Type by Attendance with counts and expected counts, annotated. Box 1 marks the smallest expected count, 4.500, for VIP registered-only. Box 2, teal, marks the next smallest, 6.900, for Student registered-only."></p>
+</div></div>
+</section>
+<section id="association-output-χ²-df-and-p" class="slide level2 unnumbered center">
+<h2>Association output: χ², df and p</h2>
+<div class="columns">
+<div class="column" style="width:45%;">
+<ul>
+<li class="fragment"><span class="nb">1</span><strong>χ² = 6.09</strong>, as we found by hand</li>
 <li class="fragment"><span class="nb">2</span><strong>df = 2:</strong> (3 − 1) × (2 − 1)</li>
-<li class="fragment"><span class="nb">3</span><strong>p = .048:</strong> just below .05</li>
-<li class="fragment"><strong>For the manager:</strong> attendance differs by ticket type, mostly through Student holders, 44 of 46 attended</li>
+<li class="fragment"><span class="nb">3</span><strong>p = .048:</strong> below .05, so we <strong>reject H₀</strong></li>
 </ul>
 </div><div class="column" style="width:55%;">
 <p><img data-src="../assets/images/slides/chapter09-10/association-output.png" class="shot" alt="JASP Chi-Squared Tests and Nominal tables for Ticket_Type by Attendance, annotated. Box 1 marks chi-squared, 6.092. Box 2 marks df, 2. Box 3 marks p, .048. Box 4 marks Cramer's V, 0.175."></p>
 </div></div>
 </section>
-<section id="cramérs-v-how-strong-is-the-association" class="slide level2 unnumbered big center">
-<h2>Cramér’s V: how strong is the association?</h2>
+<section id="which-cells-drive-the-result" class="slide level2 unnumbered center">
+<h2>Which cells drive the result</h2>
+<div class="columns">
+<div class="column" style="width:45%;">
 <ul>
-<li class="fragment"><strong>Cramér’s V:</strong> the size of an association, from <strong>0</strong> (none) to <strong>1</strong> (perfect)</li>
-<li class="fragment">V = square root of χ² ÷ (N × (k − 1)), k = the smaller of rows and columns</li>
-<li class="fragment">Ticket type: √(6.09 ÷ (200 × 1)) = √0.0305 = <strong>.17</strong></li>
+<li class="fragment">Each cell adds <strong>(O − E)² ÷ E</strong> to χ²</li>
+<li class="fragment"><strong>Student, registered only: 3.48</strong>. 2 stayed away against 6.9 expected</li>
+<li class="fragment"><strong>VIP, registered only: 1.39</strong>. 7 stayed away against 4.5 expected</li>
+<li class="fragment"><strong>For the manager:</strong> Student holders almost all attend, 44 of 46. VIP holders stay away most, 7 of 30</li>
+</ul>
+</div><div class="column" style="width:55%;">
+<p><img data-src="../assets/images/slides/chapter09-10/association-expected.png" class="shot" alt="JASP contingency table of Ticket_Type by Attendance with counts and expected counts, annotated. Box 1 marks the smallest expected count, 4.500, for VIP registered-only. Box 2, teal, marks the next smallest, 6.900, for Student registered-only."></p>
+</div></div>
+</section>
+<section id="cramérs-v-the-size-of-the-association" class="slide level2 unnumbered center">
+<h2>Cramér’s V: the size of the association</h2>
+<div class="columns">
+<div class="column" style="width:45%;">
+<ul>
+<li class="fragment"><strong>Cramér’s V:</strong> from <strong>0</strong> (none) to <strong>1</strong> (perfect)</li>
+<li class="fragment">V = √(χ² ÷ (N × (k − 1))), k = the smaller of rows and columns</li>
+<li class="fragment">√(6.09 ÷ (200 × 1)) = √0.0305 = <strong>.17</strong></li>
+<li class="fragment"><span class="nb">4</span>JASP prints <strong>0.175</strong>: 0.1745 to 3 places</li>
+</ul>
+</div><div class="column" style="width:55%;">
+<p><img data-src="../assets/images/slides/chapter09-10/association-output.png" class="shot" alt="JASP Chi-Squared Tests and Nominal tables for Ticket_Type by Attendance, annotated. Box 1 marks chi-squared, 6.092. Box 2 marks df, 2. Box 3 marks p, .048. Box 4 marks Cramer's V, 0.175."></p>
+</div></div>
+</section>
+<section id="reading-v-small-medium-large" class="slide level2 unnumbered center">
+<h2>Reading V: small, medium, large</h2>
+<div class="columns">
+<div class="column" style="width:45%;">
+<ul>
 <li class="fragment">With k = 2: about <strong>.10</strong> small, <strong>.30</strong> medium, <strong>.50</strong> large</li>
 <li class="fragment"><strong>.17:</strong> a <strong>small</strong> association</li>
+<li class="fragment"><strong>p</strong> says the association is larger than chance. <strong>V</strong> says how large</li>
 </ul>
+</div><div class="column" style="width:55%;">
+<p><img data-src="../assets/images/slides/chapter09-10/association-output.png" class="shot" alt="JASP Chi-Squared Tests and Nominal tables for Ticket_Type by Attendance, annotated. Box 1 marks chi-squared, 6.092. Box 2 marks df, 2. Box 3 marks p, .048. Box 4 marks Cramer's V, 0.175."></p>
+</div></div>
 </section>
 <section id="ticket-type-and-attendance-reject-h₀" class="slide level2 unnumbered center">
 <h2>Ticket type and attendance: reject H₀</h2>
@@ -1324,7 +1686,7 @@ Mohammed Ali Sharafuddin
 <p><strong>Report sentence for ticket type and attendance</strong></p>
 </div>
 <div class="callout-content">
-<p>A chi-squared test found a small association between ticket type and attendance, χ²(2, <em>N</em> = 200) = 6.09, <em>p</em> = .048, Cramér’s <em>V</em> = .17. One expected count of six was below 5. Student holders attended most often.</p>
+<p>A chi-squared test of association found a small association between ticket type and attendance, χ²(2, <em>N</em> = 200) = 6.09, <em>p</em> = .048, Cramér’s <em>V</em> = .17. 1 of the 6 expected counts was below 5. Student holders attended most often.</p>
 </div>
 </div>
 </div>
@@ -1348,6 +1710,12 @@ Mohammed Ali Sharafuddin
 <div class="callout-body">
 <div class="callout-content">
 <p><strong>Your answer:</strong> χ²(____, <em>N</em> = 200) = ____, <em>p</em> = ____. The <em>p</em>-value is ____ .05, so we ____ H₀.</p>
+<div class="af-key" data-answers="1 | 2.81/2.807 | .094 | above/greater than/more than | retain/fail to reject">
+
+</div>
+<div class="af-model">
+<p><strong>Sample decision:</strong> attendance is not associated with gender (p = .094). One reminder plan serves female and male customers.</p>
+</div>
 </div>
 </div>
 </div>
@@ -1359,11 +1727,17 @@ Mohammed Ali Sharafuddin
 <div class="callout callout-note no-icon callout-style-simple">
 <div class="callout-body">
 <div class="callout-content">
-<p><strong>Your answer:</strong> V = √(____ ÷ (200 × 1)) = ____, a ____ association. The smallest expected count is ____, so ____.</p>
+<p><strong>Your answer:</strong> V = √(____ ÷ (200 × 1)) = ____, a ____ association. The smallest expected count is ____, which is ____ 5, so the test ____ be relied on.</p>
+<div class="af-key" data-answers="2.807/2.81 | .12/.118 | small/weak | 13.2/13.20 | above/over/more than/greater than | can">
+
+</div>
+<div class="af-model">
+<p><strong>Sample decision:</strong> 91 of 112 female and 79 of 88 male customers attended. A gap this size could be sampling variation, so one reminder plan serves both.</p>
 </div>
 </div>
 </div>
-<p><img data-src="../assets/images/slides/chapter09-10/yourturn-gender-attendance.png" class="shot" style="height: 290px; max-height: none; width: auto" alt="The same JASP output for Gender by Attendance. A gold box marks Cramer's V, 0.118, and a teal box marks the smallest expected count, 13.200."></p>
+</div>
+<p><img data-src="../assets/images/slides/chapter09-10/yourturn-gender-attendance.png" class="shot" style="height: 220px; max-height: none; width: auto" alt="The same JASP output for Gender by Attendance. A gold box marks Cramer's V, 0.118, and a teal box marks the smallest expected count, 13.200."></p>
 </section>
 <section id="five-common-mistakes-with-these-tests" class="slide level2 unnumbered big center">
 <h2>Five common mistakes with these tests</h2>
@@ -1389,7 +1763,7 @@ Mohammed Ali Sharafuddin
 <ul>
 <li class="fragment"><strong>Two scale variables, straight line</strong> → Pearson’s r</li>
 <li class="fragment"><strong>Two ordinal variables, or ranks</strong> → Spearman’s rho</li>
-<li class="fragment"><strong>One categorical variable against a plan</strong> → chi-squared goodness of fit</li>
+<li class="fragment"><strong>One categorical variable against expected proportions</strong> → chi-squared goodness-of-fit test</li>
 <li class="fragment"><strong>Two categorical variables</strong> → chi-squared test of association</li>
 <li class="fragment"><strong>Every chi-squared test:</strong> check expected counts, report Cramér’s V for an association</li>
 </ul>
