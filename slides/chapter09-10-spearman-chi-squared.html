@@ -611,13 +611,18 @@ Mohammed Ali Sharafuddin
 <li class="fragment"><strong>rho</strong> = 1 − (6 × 6) ÷ (6 × (6² − 1)) = 1 − 36 ÷ 210 = <strong>.83</strong></li>
 </ul>
 </section>
-<section id="reading-rho-.83-for-the-manager" class="slide level2 unnumbered big center">
+<section id="reading-rho-.83-for-the-manager" class="slide level2 unnumbered center">
 <h2>Reading rho = .83 for the manager</h2>
+<div class="columns">
+<div class="column" style="width:55%;">
 <ul>
 <li class="fragment"><strong>Size and direction:</strong> rho = .83, a strong positive relationship</li>
 <li class="fragment"><strong>The ranks:</strong> the two managers rank the venues in almost the same order, and each swap is between neighbouring venues</li>
 <li class="fragment"><strong>For the manager:</strong> either ranking can guide the venue shortlist</li>
 </ul>
+</div><div class="column" style="width:45%;">
+<p><img data-src="../assets/images/slides/chapter09-10/plot-venue-ranks.png" class="shot" alt="JASP scatter plot of Rank_by_A against Rank_by_B for the six venues. The six points rise from bottom left to top right around a rising line, each a small step off it."></p>
+</div></div>
 </section>
 <section id="practice-question-five-events-ranked-twice" class="slide level2 unnumbered center">
 <h2>Practice question: five events ranked twice</h2>
@@ -683,6 +688,19 @@ Mohammed Ali Sharafuddin
 <p class="ct-line">rho = 1 − (6 × <input class="ct-num" data-a="8" aria-label="sum of d squared in the formula">) ÷ (<input class="ct-num" data-a="5" aria-label="n, the number of events"> × <input class="ct-num" data-a="24" aria-label="n squared minus 1">) = <input data-a="0.6" data-tol="0.005" aria-label="rho"></p>
 <div class="ct-bar"><button type="button" class="ct-check">Check</button><button type="button" class="ct-clear af-alt">Clear</button><button type="button" class="ct-copy af-alt">Copy table</button><span class="ct-msg" aria-live="polite"></span></div>
 </div>
+</section>
+<section id="what-rho-.60-looks-like" class="slide level2 unnumbered center">
+<h2>What rho = .60 looks like</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li class="fragment">The points <strong>rise</strong> from left to right: positive</li>
+<li class="fragment">They sit <strong>further from the line</strong> than the six venues: .60 against .83</li>
+<li class="fragment">Events 1 and 4 sit above the line: they rank further down on satisfaction than on attendance</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><img data-src="../assets/images/slides/chapter09-10/plot-event-ranks.png" class="shot" alt="JASP scatter plot of Attendance_rank against Satisfaction_rank for the five events. The points rise from left to right around a rising line, with two points well off the line."></p>
+</div></div>
 </section>
 <section id="forum-post-five-events-ranked-twice" class="slide level2 unnumbered center">
 <h2>Forum post: five events ranked twice</h2>
@@ -852,6 +870,20 @@ Mohammed Ali Sharafuddin
 <li class="fragment"><span class="nb">2</span><strong>p &lt; .001:</strong> below .05</li>
 </ul>
 </section>
+<section id="the-picture-satisfaction-and-intention-to-return" class="slide level2 unnumbered center">
+<h2>The picture: satisfaction and intention to return</h2>
+<div class="columns">
+<div class="column" style="width:45%;">
+<ul>
+<li class="fragment">In the same panel: <strong>Plots → Scatter plots</strong> and <strong>Densities for variables</strong></li>
+<li class="fragment">The line <strong>rises</strong>: higher satisfaction goes with higher intention</li>
+<li class="fragment">Intention sits on <strong>5 rows</strong>: a 1 to 5 item, so we rank it</li>
+<li class="fragment">Satisfaction spreads across the axis: a score with many values</li>
+</ul>
+</div><div class="column" style="width:55%;">
+<p><img data-src="../assets/images/slides/chapter09-10/plot-satisfaction-return.png" class="shot" alt="JASP scatter plot of Satisfaction against Return_Intention with density plots. Satisfaction spreads from 1.5 to 5 along the bottom, with its histogram above. Return_Intention sits on five horizontal rows, 1 to 5, with its histogram on the right. A rising line runs through the points."></p>
+</div></div>
+</section>
 <section id="reading-the-spearman-output" class="slide level2 unnumbered big center">
 <h2>Reading the Spearman output</h2>
 <ul>
@@ -903,16 +935,22 @@ Mohammed Ali Sharafuddin
 </div>
 </div>
 </section>
-<section id="your-turn-content-rating-and-intention-to-return" class="slide level2 unnumbered big center">
+<section id="your-turn-content-rating-and-intention-to-return" class="slide level2 unnumbered center">
 <h2>Your turn: content rating and intention to return</h2>
 <div class="work-time">
 <p>4 minutes</p>
 </div>
+<div class="columns">
+<div class="column" style="width:55%;">
 <ul>
 <li>A new <strong>Correlation</strong>, with <code>Content_Q1</code> and <code>Return_Intention</code> in <strong>Variables</strong></li>
 <li><strong>Pearson’s r</strong> unticked, <strong>Spearman’s rho</strong> ticked</li>
+<li><strong>Plots → Scatter plots</strong>, then the dots sit on a grid: two 1 to 5 items</li>
 <li>Then answer question 1</li>
 </ul>
+</div><div class="column" style="width:45%;">
+<p><img data-src="../assets/images/slides/chapter09-10/plot-content-return.png" class="shot" alt="JASP scatter plot of Content_Q1 against Return_Intention with density plots. The points sit on a grid of whole numbers, and a gently rising line runs through them."></p>
+</div></div>
 </section>
 <section id="question-1-content-rating-and-intention-to-return" class="slide level2 unnumbered center">
 <h2>Question 1: content rating and intention to return</h2>
@@ -932,17 +970,22 @@ Mohammed Ali Sharafuddin
 </div>
 <p><img data-src="../assets/images/slides/chapter09-10/yourturn-content-spearman.png" class="shot" style="height: 320px; max-height: none; width: auto" alt="JASP Spearman's Correlations table for Content_Q1 and Return_Intention, annotated. Box 1 marks Spearman's rho, 0.450. Box 2 marks p, less than .001."></p>
 </section>
-<section id="your-turn-value-rating-both-coefficients" class="slide level2 unnumbered big center">
+<section id="your-turn-value-rating-both-coefficients" class="slide level2 unnumbered center">
 <h2>Your turn: value rating, both coefficients</h2>
 <div class="work-time">
 <p>3 minutes</p>
 </div>
+<div class="columns">
+<div class="column" style="width:55%;">
 <ul>
 <li>A new <strong>Correlation</strong>: <code>Value_Q1</code> and <code>Return_Intention</code></li>
-<li>Tick <strong>both</strong> Pearson’s r and Spearman’s rho, this once, to see whether they agree</li>
-<li>Then answer question 2</li>
+<li>Tick <strong>both</strong> Pearson’s r and Spearman’s rho, this once, to see whether they agree. Then answer question 2</li>
 <li>In your own analysis, choose one coefficient <strong>before</strong> you run it</li>
+<li><strong>Plots → Scatter plots</strong>: a flatter line than for content</li>
 </ul>
+</div><div class="column" style="width:45%;">
+<p><img data-src="../assets/images/slides/chapter09-10/plot-value-return.png" class="shot" alt="JASP scatter plot of Value_Q1 against Return_Intention with density plots. The points sit on a grid of whole numbers, and a nearly flat line rises slightly from left to right."></p>
+</div></div>
 </section>
 <section id="question-2-which-coefficient-do-we-report" class="slide level2 unnumbered center">
 <h2>Question 2: which coefficient do we report?</h2>
@@ -1478,6 +1521,20 @@ Mohammed Ali Sharafuddin
 <p><img data-src="../assets/images/slides/chapter09-10/gof-output.png" class="shot" alt="JASP Multinomial Test output for Ticket_Type, annotated. Box 1 marks chi-squared, 11.527. Box 2 marks df, 2. Box 3 marks p, .003. Box 4, teal, marks the expected counts in the Descriptives table, 100, 60 and 40, beside the observed 124, 46 and 30."></p>
 </div></div>
 </section>
+<section id="the-picture-ticket-mix-against-the-plan" class="slide level2 unnumbered center">
+<h2>The picture: ticket mix against the plan</h2>
+<div class="columns">
+<div class="column" style="width:45%;">
+<ul>
+<li class="fragment">In the same panel: <strong>Plots → Descriptives plot</strong></li>
+<li class="fragment">Each bar is an <strong>observed count</strong>, with its 95% interval</li>
+<li class="fragment"><strong>Standard: 124</strong>, well past the 100 expected</li>
+<li class="fragment"><strong>Student: 46</strong> and <strong>VIP: 30</strong>, short of 60 and 40</li>
+</ul>
+</div><div class="column" style="width:55%;">
+<p><img data-src="../assets/images/slides/chapter09-10/plot-ticket-mix.png" class="shot" alt="JASP Multinomial Test descriptives table and plot for Ticket_Type. The table lists observed 124, 46 and 30 against expected 100, 60 and 40. The bar chart shows horizontal bars of observed counts with interval whiskers: Standard about 124, Student about 46, VIP about 30."></p>
+</div></div>
+</section>
 <section id="ticket-mix-against-the-plan-reject-h₀" class="slide level2 unnumbered center">
 <h2>Ticket mix against the plan: reject H₀</h2>
 <ul>
@@ -1536,17 +1593,23 @@ Mohammed Ali Sharafuddin
 </div>
 </div>
 </section>
-<section id="your-turn-female-and-male-customers-5050" class="slide level2 unnumbered big center">
+<section id="your-turn-female-and-male-customers-5050" class="slide level2 unnumbered center">
 <h2>Your turn: female and male customers, 50:50?</h2>
 <div class="work-time">
 <p>4 minutes</p>
 </div>
+<div class="columns">
+<div class="column" style="width:55%;">
 <ul>
 <li>A new <strong>Multinomial Test</strong>, with <code>Gender</code> in <strong>Factor</strong></li>
 <li>Keep <strong>Equal proportions</strong> selected</li>
 <li>Tick <strong>Descriptives</strong></li>
+<li>Tick <strong>Descriptives plot</strong>: compare each bar with 100</li>
 <li>Check your question 4 answer, then answer question 5</li>
 </ul>
+</div><div class="column" style="width:45%;">
+<p><img data-src="../assets/images/slides/chapter09-10/plot-gender-split.png" class="shot" alt="JASP Multinomial Test descriptives table and plot for Gender. The table lists observed 112 female and 88 male against 100 expected each. The bar chart shows Female about 112 and Male about 88, with interval whiskers that reach past 100."></p>
+</div></div>
 </section>
 <section id="question-5-gender-split-the-decision" class="slide level2 unnumbered center">
 <h2>Question 5: gender split, the decision</h2>
@@ -1635,6 +1698,14 @@ Mohammed Ali Sharafuddin
 <p><img data-src="../assets/images/slides/chapter09-10/association-expected.png" class="shot" alt="JASP contingency table of Ticket_Type by Attendance with counts and expected counts, annotated. Box 1 marks the smallest expected count, 4.500, for VIP registered-only. Box 2, teal, marks the next smallest, 6.900, for Student registered-only."></p>
 </div></div>
 </section>
+<section id="the-picture-ticket-type-and-attendance" class="slide level2 unnumbered center">
+<h2>The picture: ticket type and attendance</h2>
+
+<img data-src="../assets/images/slides/chapter09-10/plot-ticket-attendance.png" class="shot r-stretch" alt="Three JASP bar charts of Attendance, one per ticket type, side by side. Standard: about 103 attended and 21 registered only. Student: 44 attended and a very short bar of 2 registered only. VIP: 23 attended and 7 registered only."><ul>
+<li class="fragment">Contingency Tables draws no plot. Use <strong>Descriptives</strong>: <code>Attendance</code> in <strong>Variables</strong>, <code>Ticket_Type</code> in <strong>Split</strong>, <strong>Basic Plots → Distribution plots</strong></li>
+<li class="fragment">Compare the <strong>two bars within each panel</strong>: Student has almost no stay-aways, VIP the most for its size</li>
+</ul>
+</section>
 <section id="cramérs-v-the-size-of-the-association" class="slide level2 unnumbered center">
 <h2>Cramér’s V: the size of the association</h2>
 <div class="columns">
@@ -1703,17 +1774,23 @@ Mohammed Ali Sharafuddin
 </div>
 </div>
 </section>
-<section id="your-turn-gender-and-attendance" class="slide level2 unnumbered big center">
+<section id="your-turn-gender-and-attendance" class="slide level2 unnumbered center">
 <h2>Your turn: gender and attendance</h2>
 <div class="work-time">
 <p>4 minutes</p>
 </div>
+<div class="columns">
+<div class="column" style="width:50%;">
 <ul>
 <li>A new <strong>Contingency Tables</strong>: <code>Gender</code> in <strong>Rows</strong>, <code>Attendance</code> in <strong>Columns</strong></li>
 <li><strong>χ²</strong> and <strong>Phi and Cramer’s V</strong> ticked</li>
 <li><strong>Cells → Expected</strong> ticked</li>
+<li>For the picture: <strong>Descriptives</strong>, <code>Attendance</code> split by <code>Gender</code>, <strong>Distribution plots</strong></li>
 <li>Then answer questions 6 and 7</li>
 </ul>
+</div><div class="column" style="width:50%;">
+<p><img data-src="../assets/images/slides/chapter09-10/plot-gender-attendance.png" class="shot" alt="Two JASP bar charts of Attendance, female and male side by side. Female: about 91 attended and 21 registered only. Male: about 79 attended and 9 registered only."></p>
+</div></div>
 </section>
 <section id="question-6-gender-and-attendance-the-decision" class="slide level2 unnumbered center">
 <h2>Question 6: gender and attendance, the decision</h2>
