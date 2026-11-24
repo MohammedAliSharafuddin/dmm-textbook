@@ -1146,11 +1146,18 @@ Figure&nbsp;9.3: Pearson correlation and scatterplot for Age and Spending
 </section>
 <section id="sec-spearman" class="level2">
 <h2 class="anchored" data-anchor-id="sec-spearman">Spearman’s rho</h2>
-<p>Our second question pairs <code>Satisfaction</code>, a score from 1 to 5, with <code>Return_Intention</code>, a single 1 to 5 rating. A rating is ordinal: we know that 4 is above 3, but the gap between a 3 and a 4 need not equal the gap between a 4 and a 5. For an outcome like this we compare <strong>ranks</strong>: we put the customers in order on each measure, and ask whether the two orders agree.</p>
+<p>Our second question pairs <code>Satisfaction</code> with <code>Return_Intention</code>. Both run from 1 to 5, but they are measured differently. <code>Return_Intention</code> is a <strong>single item</strong>, one answer to one question, so it takes only the whole numbers 1 to 5. A single rating is ordinal: we know that 4 is above 3, but the gap between a 3 and a 4 need not equal the gap between a 4 and a 5. <code>Satisfaction</code> is a <strong>score built from a set of answers</strong>, so it takes many values, such as 3.77 and 4.14, and we treat it as scale. A quick check on any dataset: a variable with five possible values is ordinal, and a score with many values is scale.</p>
+<p>With one ordinal variable in the pair, we compare <strong>ranks</strong>: we put the customers in order on each measure, and ask whether the two orders agree.</p>
 <p>For example: two managers rank six venues from 1, the best, to 6. If the managers agree exactly, every venue has the same rank twice. If they disagree completely, the venue one ranks 1st the other ranks 6th.</p>
-<p><strong>Spearman’s rank correlation coefficient</strong>, written <span class="math inline">\(r_s\)</span> or <span class="math inline">\(\rho\)</span> (rho), is Pearson’s r calculated on the ranks (Spearman, 1904). It measures a <strong>monotonic</strong> relationship: as one variable rises, the other tends to rise, or tends to fall, though not necessarily along a straight line. It runs from <span class="math inline">\(-1\)</span> to <span class="math inline">\(+1\)</span> and reads like <span class="math inline">\(r\)</span>, with the same size guide in <a href="#tbl-r-size" class="quarto-xref">Table&nbsp;<span>9.2</span></a>. When no two cases share a rank:</p>
+<p><strong>Spearman’s rank correlation coefficient</strong> works in two steps: rank each variable, then calculate Pearson’s r on the ranks (Spearman, 1904). Its name, rho (<span class="math inline">\(\rho\)</span>), is the Greek letter r, and in a report we write it <span class="math inline">\(r_s\)</span>. It measures a <strong>monotonic</strong> relationship: as one variable rises, the other tends to rise, or tends to fall, along a straight line or a curve. It runs from <span class="math inline">\(-1\)</span> to <span class="math inline">\(+1\)</span> and reads like <span class="math inline">\(r\)</span>, with the same size guide in <a href="#tbl-r-size" class="quarto-xref">Table&nbsp;<span>9.2</span></a>. When no two cases share a rank, a shortcut formula gives the same value:</p>
 <p><span class="math display">\[r_s = 1 - \frac{6 \sum d^2}{n(n^2 - 1)}\]</span></p>
-<p>where <span class="math inline">\(r_s\)</span> is the sample Spearman correlation, <span class="math inline">\(d\)</span> is the difference between a case’s two ranks and <span class="math inline">\(n\)</span> is the number of cases. When cases share a rank, a <strong>tie</strong>, each takes the average of the ranks they span. JASP calculates Pearson’s r from those average ranks.</p>
+<p>where <span class="math inline">\(r_s\)</span> is the sample Spearman correlation, <span class="math inline">\(d\)</span> is the difference between a case’s two ranks and <span class="math inline">\(n\)</span> is the number of cases. The 6 is a fixed constant in the formula, the same in every calculation. When cases share a rank, a <strong>tie</strong>, each takes the average of the ranks they span. JASP calculates Pearson’s r from those average ranks.</p>
+<p>The p-value for <span class="math inline">\(r_s\)</span> tests the same form of hypothesis as for Pearson’s r, with monotonic in place of linear:</p>
+<ul>
+<li><span class="math inline">\(H_0\)</span>: in the population, the two variables have no monotonic relationship, <span class="math inline">\(\rho_s = 0\)</span></li>
+<li><span class="math inline">\(H_1\)</span>: in the population, they have a monotonic relationship, <span class="math inline">\(\rho_s \neq 0\)</span></li>
+</ul>
+<p>where <span class="math inline">\(\rho_s\)</span> is the population value and <span class="math inline">\(r_s\)</span> is the value our sample gives.</p>
 <div class="worked-example">
 <p><span class="we-label">Worked example 9.3</span></p>
 <section id="two-managers-rank-six-venues-illustrative" class="level3">
@@ -1221,10 +1228,10 @@ Table&nbsp;9.3: Spearman’s rho by hand
 <td>1</td>
 </tr>
 <tr class="odd">
-<td><strong>Total</strong></td>
+<td><strong><span class="math inline">\(n\)</span> = 6 venues</strong></td>
 <td></td>
 <td></td>
-<td></td>
+<td><strong><span class="math inline">\(\sum d^2\)</span></strong></td>
 <td><strong>6</strong></td>
 </tr>
 </tbody>
@@ -1232,9 +1239,9 @@ Table&nbsp;9.3: Spearman’s rho by hand
 </div>
 </figure>
 </div>
-<p><strong>Step 2, the coefficient,</strong> with <span class="math inline">\(n = 6\)</span>:</p>
-<p><span class="math display">\[r_s = 1 - \frac{6 \times 6}{6 \times (36 - 1)} = 1 - \frac{36}{210} = 1 - .171 = .83\]</span></p>
-<p><strong>Reading:</strong> the managers agree strongly. Each swaps only neighbouring venues, so the two orders run close together.</p>
+<p><strong>Step 2, the coefficient.</strong> Three 6s appear, and each has its own job: the fixed constant, the sum of <span class="math inline">\(d^2\)</span> from the table and <span class="math inline">\(n\)</span>, the 6 venues. With <span class="math inline">\(n = 6\)</span>, <span class="math inline">\(n^2 - 1 = 36 - 1 = 35\)</span>:</p>
+<p><span class="math display">\[r_s = 1 - \frac{6 \times 6}{6 \times (6^2 - 1)} = 1 - \frac{36}{210} = 1 - .171 = .83\]</span></p>
+<p><strong>Reading:</strong> <span class="math inline">\(r_s = .83\)</span>, a strong positive relationship. The two managers rank the venues in almost the same order, and each swap is between neighbouring venues. For the manager: either ranking can guide the venue shortlist.</p>
 </div>
 </section>
 </div>
@@ -1270,8 +1277,8 @@ Table&nbsp;9.3: Spearman’s rho by hand
 <div class="callout-body-container callout-body">
 <ol type="1">
 <li>The differences are <span class="math inline">\(-2, 1, 1, -1, 1\)</span>, so <span class="math inline">\(\sum d^2 = 4 + 1 + 1 + 1 + 1 = 8\)</span>.</li>
-<li><span class="math inline">\(r_s = 1 - (6 \times 8) \div (5 \times 24)\)</span>, which is <span class="math inline">\(1 - 48 \div 120 = .60\)</span>.</li>
-<li>Positive and strong: the better-attended events tended to be the better-rated ones, with some swaps in the order.</li>
+<li>With <span class="math inline">\(n = 5\)</span> events, <span class="math inline">\(n^2 - 1 = 25 - 1 = 24\)</span>, so <span class="math inline">\(r_s = 1 - (6 \times 8) \div (5 \times 24)\)</span>, which is <span class="math inline">\(1 - 48 \div 120 = .60\)</span>.</li>
+<li><span class="math inline">\(r_s = .60\)</span>, a strong positive relationship. Events with a higher attendance rank tended to have a higher satisfaction rank. The order shifts at two points: event 1 drops from 1st to 3rd on satisfaction, and events 4 and 5 swap places.</li>
 </ol>
 </div>
 </div>
@@ -1285,6 +1292,7 @@ Table&nbsp;9.3: Spearman’s rho by hand
 <li>Move <code>Satisfaction</code> and <code>Return_Intention</code> into <em>Variables</em>.</li>
 <li>Under <em>Sample Correlation Coefficient</em>, untick <strong>Pearson’s r</strong> and tick <strong>Spearman’s rho</strong>.</li>
 <li>Keep <strong>Report significance</strong> ticked.</li>
+<li>Under <em>Plots</em>, tick <strong>Scatter plots</strong> and <strong>Densities for variables</strong> to see the pattern.</li>
 </ol>
 <div id="fig-jasp-spearman" class="quarto-float quarto-figure quarto-figure-center anchored" alt="The JASP Correlation panel with Satisfaction and Return_Intention in the Variables box, Pearson's r unticked and Spearman's rho ticked. The results pane shows the Spearman's Correlations table: rho = 0.633 and p < .001 for Satisfaction with Return_Intention.">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1296,9 +1304,20 @@ Figure&nbsp;9.4: Spearman’s rho for Satisfaction and Return_Intention
 </figcaption>
 </figure>
 </div>
-<p>JASP reports <span class="math inline">\(r_s = .633\)</span> and <span class="math inline">\(p &lt; .001\)</span>. The relationship is positive and strong, and we reject the null hypothesis of no monotonic relationship.</p>
+<p>JASP reports <span class="math inline">\(r_s = .633\)</span> and <span class="math inline">\(p &lt; .001\)</span>. The relationship is positive and strong. The p-value is below .05, so we reject the null hypothesis of no monotonic relationship.</p>
+<div id="fig-jasp-spearman-scatter" class="quarto-float quarto-figure quarto-figure-center anchored" alt="The JASP Correlation panel with Spearman's rho, Scatter plots and Densities for variables ticked. The results pane shows rho = 0.633 and a scatter plot of Satisfaction against Return_Intention. Satisfaction spreads from 1.5 to 5 along the bottom, with its histogram above. Return_Intention sits on five horizontal rows, 1 to 5, with its histogram on the right. A rising line runs through the points.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-jasp-spearman-scatter-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/images/screenshots/ch09/ch09-jasp-05-spearman-scatter.png" class="img-fluid figure-img" alt="The JASP Correlation panel with Spearman's rho, Scatter plots and Densities for variables ticked. The results pane shows rho = 0.633 and a scatter plot of Satisfaction against Return_Intention. Satisfaction spreads from 1.5 to 5 along the bottom, with its histogram above. Return_Intention sits on five horizontal rows, 1 to 5, with its histogram on the right. A rising line runs through the points.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-jasp-spearman-scatter-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9.5: The scatter plot for Satisfaction and Return_Intention, with Scatter plots and Densities for variables ticked
+</figcaption>
+</figure>
+</div>
+<p><a href="#fig-jasp-spearman-scatter" class="quarto-xref">Figure&nbsp;<span>9.5</span></a> shows the same result as a picture. The line rises, so higher satisfaction goes with higher intention. The points sit on 5 rows, because <code>Return_Intention</code> is a single 1 to 5 item, while <code>Satisfaction</code> spreads along its axis, because it is a score.</p>
 <p><strong>In APA style:</strong> Satisfaction and return intention were strongly and positively related, <span class="math inline">\(r_s(198) = .63\)</span>, <span class="math inline">\(p &lt; .001\)</span>.</p>
-<p><strong>For the manager:</strong> Customers with higher satisfaction also tend to report a stronger intention to return, so we can track both measures together at each event. Stated intention and actual repeat bookings are different measures, and this file records only the first.</p>
+<p><strong>For the manager:</strong> Customers with higher satisfaction also tend to report a stronger intention to return, so a fall in satisfaction scores is an early warning for repeat bookings. Stated intention and actual repeat bookings are different measures, and this file records only the first.</p>
 <div id="tryit-9-4" class="callout callout-style-default callout-tip callout-titled" title="Try It 9.4: Content and return intention">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1378,7 +1397,7 @@ Table&nbsp;9.4: Choosing a correlation coefficient
 </div>
 </figure>
 </div>
-<p>We choose the coefficient from the variables, before we look at the results.</p>
+<p>To place a variable in <a href="#tbl-choose-correlation" class="quarto-xref">Table&nbsp;<span>9.4</span></a>, recall the check from <a href="#sec-spearman" class="quarto-xref"><span>Spearman’s rho</span></a>: a single 1 to 5 item is ordinal, and a score built from a set of items is scale. We choose the coefficient from the variables, before we look at the results.</p>
 <div class="worked-example">
 <p><span class="we-label">Worked example 9.4</span></p>
 <section id="value-ratings-and-return-intention" class="level3">
@@ -1390,7 +1409,7 @@ Table&nbsp;9.4: Choosing a correlation coefficient
 <div class="we-solution">
 <p><strong>Choice:</strong> both variables are ordinal ratings with only five values, so we report Spearman’s rho, following <a href="#tbl-choose-correlation" class="quarto-xref">Table&nbsp;<span>9.4</span></a>.</p>
 <p><strong>Decision:</strong> <span class="math inline">\(p = .075\)</span> is above .05, so we retain the null hypothesis. The evidence of a monotonic relationship between value ratings and return intention is insufficient at <span class="math inline">\(\alpha = .05\)</span>.</p>
-<p><strong>The lesson:</strong> the two coefficients lead to different decisions here. Choosing the coefficient after seeing both results would let us pick the significant one, so the choice comes from the variables, and it comes first.</p>
+<p><strong>The lesson:</strong> the two coefficients lead to opposite decisions here. Pearson’s <span class="math inline">\(p = .006\)</span> would reject the null hypothesis, and Spearman’s <span class="math inline">\(p = .075\)</span> retains it. Choosing the coefficient after seeing both results would let us pick the significant one, so the choice comes from the variables, and it comes first.</p>
 <p><strong>In APA style:</strong> Value ratings and return intention were not significantly related, <span class="math inline">\(r_s(198) = .13\)</span>, <span class="math inline">\(p = .075\)</span>.</p>
 </div>
 </section>
@@ -1430,7 +1449,7 @@ Table&nbsp;9.4: Choosing a correlation coefficient
 <li><strong>Pearson’s r:</strong> both are scale variables, years and US dollars.</li>
 <li><strong>Spearman’s rho:</strong> both are 1 to 5 ratings, so both are ordinal.</li>
 <li><strong>Spearman’s rho:</strong> the data are ranks.</li>
-<li><strong>Pearson’s r:</strong> both are satisfaction scores on a continuous 1 to 5 scale, and the scatterplot shows a straight band. Spearman’s rho gives a similar value, <span class="math inline">\(r_s = .87\)</span>.</li>
+<li><strong>Pearson’s r:</strong> both are satisfaction scores with many values, built from a set of answers, so both are scale, and the scatterplot shows a straight band. Spearman’s rho gives a similar value, <span class="math inline">\(r_s = .87\)</span>.</li>
 </ol>
 </div>
 </div>

@@ -830,17 +830,55 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="sec-counts">Counts in categories</h2>
 <p>Our 200 customers bought three ticket types: 124 Standard, 46 Student and 30 VIP. A ticket type is a category, so it has no mean or standard deviation. What we can compare is the <strong>observed count</strong> in each category, the number we recorded, with an <strong>expected count</strong>, the number expected under a hypothesis.</p>
 <p>For example: the marketing plan puts Standard tickets at 50%. Out of 200 sales that is <span class="math inline">\(200 \times 0.50 = 100\)</span> expected Standard tickets, and we observed 124. The question is whether a gap of 24 tickets, together with the gaps in the other categories, is larger than sampling variation usually produces.</p>
+<p>This chapter uses two chi-squared tests, and each keeps one name throughout:</p>
+<div id="tbl-two-chi-tests" class="tbl-grid quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-two-chi-tests-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;10.1: The two chi-squared tests
+</figcaption>
+<div aria-describedby="tbl-two-chi-tests-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="tbl-grid caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Test</th>
+<th>Question it answers</th>
+<th>Example in this chapter</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Chi-squared goodness-of-fit test</strong></td>
+<td>Does one categorical variable match expected proportions?</td>
+<td>Ticket mix against the 50/30/20 plan</td>
+</tr>
+<tr class="even">
+<td><strong>Chi-squared test of association</strong>, also called the test of independence</td>
+<td>Are two categorical variables related?</td>
+<td>Ticket type and attendance</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Both compare observed counts with expected counts, through the same statistic.</p>
 </section>
 <section id="sec-chi-statistic" class="level2">
 <h2 class="anchored" data-anchor-id="sec-chi-statistic">The chi-squared statistic</h2>
-<p>Karl Pearson (1900) proposed adding up the gaps between observed and expected counts across all the categories:</p>
+<p>Karl Pearson (1900) proposed squaring the gap between the observed and expected count in each category, scaling it by the expected count, and adding the results:</p>
 <p><span class="math display">\[\chi^2 = \sum \frac{(O - E)^2}{E}\]</span></p>
 <p>where <span class="math inline">\(\chi^2\)</span> (chi-squared) is the test statistic, <span class="math inline">\(O\)</span> is the observed count in a category, <span class="math inline">\(E\)</span> is the expected count in that category, and <span class="math inline">\(\sum\)</span> adds over all the categories. Squaring makes every gap positive, and dividing by <span class="math inline">\(E\)</span> scales each gap to the size of its category: a gap of 10 is large when 5 were expected and small when 500 were.</p>
-<p>A <span class="math inline">\(\chi^2\)</span> of 0 means the counts match the hypothesis exactly. The larger <span class="math inline">\(\chi^2\)</span>, the further the counts sit from it. We compare <span class="math inline">\(\chi^2\)</span> with a <strong>critical value</strong> from the chi-squared distribution, which depends on the <strong>degrees of freedom</strong>, <span class="math inline">\(df\)</span>:</p>
+<p>A <span class="math inline">\(\chi^2\)</span> of 0 means the observed counts equal the expected counts exactly. The larger <span class="math inline">\(\chi^2\)</span>, the further the observed counts deviate from the expected counts.</p>
+<p>To judge whether a <span class="math inline">\(\chi^2\)</span> is large, we compare it with a <strong>critical value</strong>. The critical value comes from the chi-squared distribution, never from our data: it is the value that only 5% of samples pass when the null hypothesis is true. The distribution, and so the critical value, depends on the <strong>degrees of freedom</strong>, <span class="math inline">\(df\)</span>:</p>
 <div id="tbl-chi-critical" class="tbl-def quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-chi-critical-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;10.1: Critical values of the chi-squared distribution at α = .05
+Table&nbsp;10.2: Critical values of the chi-squared distribution at α = .05
 </figcaption>
 <div aria-describedby="tbl-chi-critical-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="tbl-def caption-top table">
@@ -868,11 +906,11 @@ Table&nbsp;10.1: Critical values of the chi-squared distribution at α = .05
 </div>
 </figure>
 </div>
-<p>When <span class="math inline">\(\chi^2\)</span> is larger than the critical value, <span class="math inline">\(p\)</span> is below .05 and we reject the null hypothesis. JASP gives the exact p-value.</p>
+<p>Read the column for your <span class="math inline">\(df\)</span>. A spreadsheet gives the same values: <code>=CHISQ.INV.RT(0.05, 2)</code> returns 5.99. When <span class="math inline">\(\chi^2\)</span> is larger than the critical value, <span class="math inline">\(p\)</span> is below .05 and we reject the null hypothesis. The two routes always reach the same decision, and JASP gives the exact p-value.</p>
 </section>
 <section id="sec-goodness-of-fit" class="level2">
 <h2 class="anchored" data-anchor-id="sec-goodness-of-fit">The goodness-of-fit test</h2>
-<p>We use a <strong>goodness-of-fit test</strong> to compare the counts of one categorical variable with the proportions set by a hypothesis. For the ticket mix:</p>
+<p>We use the <strong>chi-squared goodness-of-fit test</strong> to compare the counts of one categorical variable with the proportions set by a hypothesis. We state the hypotheses before any calculation. For the ticket mix:</p>
 <ul>
 <li><span class="math inline">\(H_0\)</span>: the population ticket mix is 50% Standard, 30% Student and 20% VIP</li>
 <li><span class="math inline">\(H_1\)</span>: the population ticket mix differs from that plan.</li>
@@ -892,7 +930,7 @@ Table&nbsp;10.1: Critical values of the chi-squared distribution at α = .05
 <div id="tbl-gof-hand" class="tbl-calc quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-gof-hand-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;10.2: Goodness of fit by hand
+Table&nbsp;10.3: Goodness of fit by hand
 </figcaption>
 <div aria-describedby="tbl-gof-hand-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="tbl-calc caption-top table">
@@ -940,12 +978,13 @@ Table&nbsp;10.2: Goodness of fit by hand
 </figure>
 </div>
 <p><strong>Step 3, the degrees of freedom:</strong> <span class="math inline">\(k - 1 = 3 - 1 = 2\)</span>.</p>
-<p><strong>Step 4, the decision:</strong> 11.53 is larger than the critical value of 5.99 for 2 degrees of freedom, so we reject the null hypothesis. JASP gives <span class="math inline">\(p = .003\)</span>. We sold more Standard tickets than planned, and fewer Student and VIP tickets.</p>
+<p><strong>Step 4, the decision:</strong> 11.53 is larger than the critical value of 5.99 for 2 degrees of freedom, so we reject the null hypothesis. JASP gives <span class="math inline">\(p = .003\)</span>. We sold more Standard tickets than planned, and fewer Student and VIP tickets. Standard gives the largest share of the statistic, 5.76 of 11.53.</p>
 </div>
 </section>
 </div>
 <section id="sec-jasp-gof" class="level3">
 <h3 class="anchored" data-anchor-id="sec-jasp-gof">Running the goodness-of-fit test in JASP</h3>
+<p>JASP has no menu item called chi-squared. Both chi-squared tests sit under <strong>Frequencies</strong>: the goodness-of-fit test is the <em>Multinomial Test</em> with custom expected proportions, and the test of association is <em>Contingency Tables</em> with χ² ticked. The same menu offers a <em>Binomial Test</em>, an exact test for one variable with only 2 categories. With 2 categories and 200 customers, the goodness-of-fit test gives almost the same p-value, so this chapter uses the chi-squared test for both.</p>
 <p>We run the goodness-of-fit test in JASP on <code>DMM_Teaching_Data_Full.csv</code>. Open the file and follow these steps:</p>
 <ol type="1">
 <li>Choose <strong>Frequencies → Classical → Multinomial Test</strong>.</li>
@@ -965,6 +1004,18 @@ Figure&nbsp;10.1: The Multinomial Test of Ticket_Type against the planned mix of
 </figure>
 </div>
 <p>To test against equal proportions, leave <strong>Equal proportions (multinomial test)</strong> selected.</p>
+<p>For a picture of the result, tick <strong>Descriptives plot</strong> under <em>Plots</em>. Each bar is an observed count with its 95% confidence interval, and the Descriptives table above it lists the expected counts for comparison.</p>
+<div id="fig-jasp-gof-plot" class="quarto-float quarto-figure quarto-figure-center anchored" alt="The JASP Multinomial Test panel with Ticket_Type as the Factor, custom expected proportions 50, 30 and 20, and Descriptives and Descriptives plot ticked. The output shows chi-squared = 11.527, df = 2, p = .003, a Descriptives table of observed 124, 46 and 30 against expected 100, 60 and 40, and a horizontal bar chart of the observed counts with interval whiskers: Standard about 124, Student about 46, VIP about 30.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-jasp-gof-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/images/screenshots/ch10/ch10-jasp-04-gof-plot.png" class="img-fluid figure-img" alt="The JASP Multinomial Test panel with Ticket_Type as the Factor, custom expected proportions 50, 30 and 20, and Descriptives and Descriptives plot ticked. The output shows chi-squared = 11.527, df = 2, p = .003, a Descriptives table of observed 124, 46 and 30 against expected 100, 60 and 40, and a horizontal bar chart of the observed counts with interval whiskers: Standard about 124, Student about 46, VIP about 30.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-jasp-gof-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10.2: The Descriptives plot for the ticket mix, beside the observed and expected counts
+</figcaption>
+</figure>
+</div>
+<p>In <a href="#fig-jasp-gof-plot" class="quarto-xref">Figure&nbsp;<span>10.2</span></a> the Standard bar reaches 124, well past the 100 expected, while Student and VIP fall short of 60 and 40.</p>
 <p><strong>In APA style:</strong> A chi-squared goodness-of-fit test found that ticket sales differed from the planned mix, <span class="math inline">\(\chi^2(2, N = 200) = 11.53\)</span>, <span class="math inline">\(p = .003\)</span>.</p>
 <p><strong>For the manager:</strong> We sold 124 Standard tickets against a plan of 100, and fewer Student and VIP tickets than planned. We recommend starting next season’s plan from the mix sold this season.</p>
 <div id="tryit-10-1" class="callout callout-style-default callout-tip callout-titled" title="Try It 10.1: Female and male customers">
@@ -980,7 +1031,7 @@ Figure&nbsp;10.1: The Multinomial Test of Ticket_Type against the planned mix of
 <p>The dataset contains 112 female and 88 male customers. Test whether the population splits 50:50.</p>
 <ol type="1">
 <li>Calculate the expected counts and <span class="math inline">\(\chi^2\)</span>.</li>
-<li>Find the degrees of freedom, and decide using <a href="#tbl-chi-critical" class="quarto-xref">Table&nbsp;<span>10.1</span></a>.</li>
+<li>Find the degrees of freedom, and decide using <a href="#tbl-chi-critical" class="quarto-xref">Table&nbsp;<span>10.2</span></a>.</li>
 </ol>
 </div>
 </div>
@@ -1036,11 +1087,11 @@ Figure&nbsp;10.1: The Multinomial Test of Ticket_Type against the planned mix of
 </section>
 <section id="sec-association" class="level2">
 <h2 class="anchored" data-anchor-id="sec-association">The test of association</h2>
-<p>We use a <strong>test of association</strong> to judge whether two categorical variables are related. We set out the counts in a <strong>contingency table</strong>, one row per category of the first variable and one column per category of the second:</p>
+<p>We use the <strong>chi-squared test of association</strong>, also called the test of independence, to judge whether two categorical variables are related. We set out the counts in a <strong>contingency table</strong>, one row per category of the first variable and one column per category of the second:</p>
 <div id="tbl-ticket-attendance" class="tbl-apa quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ticket-attendance-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;10.3: Ticket type by attendance
+Table&nbsp;10.4: Ticket type by attendance
 </figcaption>
 <div aria-describedby="tbl-ticket-attendance-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="tbl-apa caption-top table">
@@ -1095,7 +1146,7 @@ Table&nbsp;10.3: Ticket type by attendance
 <section id="ticket-type-and-attendance" class="level3">
 <h3 class="anchored" data-anchor-id="ticket-type-and-attendance">Ticket type and attendance</h3>
 <div class="we-problem">
-<p>Use <a href="#tbl-ticket-attendance" class="quarto-xref">Table&nbsp;<span>10.3</span></a>.</p>
+<p>Use <a href="#tbl-ticket-attendance" class="quarto-xref">Table&nbsp;<span>10.4</span></a>.</p>
 <p>Calculate the expected counts, the chi-squared statistic and the degrees of freedom, and decide at <span class="math inline">\(\alpha = .05\)</span>.</p>
 </div>
 <div class="we-solution">
@@ -1103,7 +1154,7 @@ Table&nbsp;10.3: Ticket type by attendance
 <div id="tbl-expected-counts" class="tbl-calc quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-expected-counts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;10.4: Expected counts for ticket type by attendance
+Table&nbsp;10.5: Expected counts for ticket type by attendance
 </figcaption>
 <div aria-describedby="tbl-expected-counts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="tbl-calc caption-top table">
@@ -1144,7 +1195,7 @@ Table&nbsp;10.4: Expected counts for ticket type by attendance
 <div id="tbl-cell-contributions" class="tbl-calc quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-cell-contributions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;10.5: Cell contributions to chi-squared
+Table&nbsp;10.6: Cell contributions to chi-squared
 </figcaption>
 <div aria-describedby="tbl-cell-contributions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="tbl-calc caption-top table">
@@ -1189,23 +1240,23 @@ Table&nbsp;10.5: Cell contributions to chi-squared
 </div>
 <section id="sec-chi-assumptions" class="level3">
 <h3 class="anchored" data-anchor-id="sec-chi-assumptions">Checking the expected counts</h3>
-<p>We judge whether the chi-squared p-value can be relied on from two conditions:</p>
+<p>Two conditions decide whether we can rely on the chi-squared p-value:</p>
 <ol type="1">
 <li><strong>Independence:</strong> each customer appears in one cell only. This comes from how the data were collected.</li>
 <li><strong>Large enough expected counts:</strong> a common guideline asks for at least 80% of the cells to have an expected count of 5 or more, and every expected count to be at least 1 (Cochran, 1954).</li>
 </ol>
-<p>In <a href="#tbl-expected-counts" class="quarto-xref">Table&nbsp;<span>10.4</span></a> one cell of six, VIP registered-only at 4.5, sits below 5. That is 17% of the cells, inside the 20% limit, so the table meets the guideline. With a p-value of .048 and one small cell, we report the result with care: a few customers either way would move it across the line.</p>
+<p>In <a href="#tbl-expected-counts" class="quarto-xref">Table&nbsp;<span>10.5</span></a> one cell of six, VIP registered-only at 4.5, is below 5. That is 17% of the cells, inside the 20% limit, and above 1, so the table meets the guideline and the p-value can be relied on. We report the one cell below 5. With a p-value of .048, a few customers either way would move <span class="math inline">\(p\)</span> across .05, so we also report the result with care.</p>
 </section>
 <section id="sec-cell-contributions" class="level3">
 <h3 class="anchored" data-anchor-id="sec-cell-contributions">Which cells contribute most</h3>
-<p>With the cell contributions in <a href="#tbl-cell-contributions" class="quarto-xref">Table&nbsp;<span>10.5</span></a> we find which categories account for most of the statistic. The largest, 3.48, is Student registered-only: 2 Student holders stayed away, against 6.9 expected. The second, 1.39, is VIP registered-only: 7 stayed away, against 4.5 expected. Student holders, who attended more often than the overall rate, account for most of the statistic, and VIP holders, who stayed away more often, for a smaller share. Chapter 8 uses this result in an ethical decision: a policy aimed at VIP buyers would address the smaller part of the pattern.</p>
+<p>With the cell contributions in <a href="#tbl-cell-contributions" class="quarto-xref">Table&nbsp;<span>10.6</span></a> we find which categories account for most of the statistic. The largest, 3.48, is Student registered-only: 2 Student holders stayed away, against 6.9 expected. The second, 1.39, is VIP registered-only: 7 stayed away, against 4.5 expected. Student holders, who attended more often than the overall rate, account for most of the statistic, and VIP holders, who stayed away more often, for a smaller share. Chapter 8 uses this result in an ethical decision: a policy aimed at VIP buyers would address the smaller part of the pattern.</p>
 </section>
 <section id="sec-cramers-v" class="level3">
 <h3 class="anchored" data-anchor-id="sec-cramers-v">Effect size: Cramér’s V</h3>
 <p>From a p-value we learn whether an association is larger than sampling variation usually produces. To measure how strong it is we use <strong>Cramér’s V</strong>:</p>
 <p><span class="math display">\[V = \sqrt{\frac{\chi^2}{N(k - 1)}}\]</span></p>
 <p>where <span class="math inline">\(V\)</span> is Cramér’s V, <span class="math inline">\(\chi^2\)</span> is the test statistic, <span class="math inline">\(N\)</span> is the grand total and <span class="math inline">\(k\)</span> is the smaller of the number of rows and the number of columns. V runs from 0, no association, to 1, a perfect one. When <span class="math inline">\(k = 2\)</span>, as for any table with two rows or two columns, Cohen (1988) suggested about .10 as small, .30 as medium and .50 as large.</p>
-<p>For ticket type and attendance, <span class="math inline">\(k = 2\)</span>, so <span class="math inline">\(V = \sqrt{6.09 \div (200 \times 1)}\)</span>, which is <span class="math inline">\(\sqrt{.0305} = .17\)</span>: a small association.</p>
+<p>For ticket type and attendance, <span class="math inline">\(k = 2\)</span>, so <span class="math inline">\(V = \sqrt{6.09 \div (200 \times 1)}\)</span>, which is <span class="math inline">\(\sqrt{.0305} = .17\)</span>: a small association. JASP prints 0.175, which is 0.1745 to three decimal places. The p-value tells us the association is larger than chance, and V tells us how large.</p>
 </section>
 </section>
 <section id="sec-jasp-contingency" class="level2">
@@ -1223,7 +1274,7 @@ Table&nbsp;10.5: Cell contributions to chi-squared
 <img src="../assets/images/screenshots/ch10/ch10-jasp-02-contingency-setup.png" class="img-fluid figure-img" alt="The JASP Contingency Tables panel with Ticket_Type in Rows and Attendance in Columns. Under Statistics, chi-squared and Phi and Cramer's V are ticked. The output shows the observed and expected counts, chi-squared = 6.092 with df 2 and p = .048, and Cramer's V = 0.175.">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-jasp-contingency-setup-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;10.2: The Contingency Tables panel with Ticket_Type in Rows and Attendance in Columns
+Figure&nbsp;10.3: The Contingency Tables panel with Ticket_Type in Rows and Attendance in Columns
 </figcaption>
 </figure>
 </div>
@@ -1233,23 +1284,35 @@ Figure&nbsp;10.2: The Contingency Tables panel with Ticket_Type in Rows and Atte
 <img src="../assets/images/screenshots/ch10/ch10-jasp-03-contingency-output.png" class="img-fluid figure-img" alt="The JASP Contingency Tables output with the Statistics and Cells options open, Observed and Expected ticked. Expected counts: Standard 105.4 and 18.6, Student 39.1 and 6.9, VIP 25.5 and 4.5. Chi-squared = 6.092, df 2, p = .048. Cramer's V = 0.175.">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-jasp-contingency-output-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;10.3: Contingency table output with expected counts, the chi-squared test and Cramér’s V
+Figure&nbsp;10.4: Contingency table output with expected counts, the chi-squared test and Cramér’s V
 </figcaption>
 </figure>
 </div>
 <p>JASP prints the phi coefficient as NaN for this table, because phi applies only to a table with two rows and two columns. For a 2 × 2 table, phi and Cramér’s V give the same size.</p>
+<p>Contingency Tables draws no plot. For a picture of the association, open <strong>Descriptives → Descriptive Statistics</strong>, move <code>Attendance</code> into <em>Variables</em> and <code>Ticket_Type</code> into <em>Split</em>, and tick <strong>Distribution plots</strong> under <em>Basic Plots</em>. JASP draws one bar chart per ticket type.</p>
+<div id="fig-jasp-attendance-plots" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Three JASP bar charts of Attendance, one per ticket type, placed side by side. Standard: about 103 attended and 21 registered only. Student: 44 attended and a very short bar of 2 registered only. VIP: 23 attended and 7 registered only.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-jasp-attendance-plots-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../assets/images/screenshots/ch10/ch10-jasp-05-attendance-plots.png" class="img-fluid figure-img" alt="Three JASP bar charts of Attendance, one per ticket type, placed side by side. Standard: about 103 attended and 21 registered only. Student: 44 attended and a very short bar of 2 registered only. VIP: 23 attended and 7 registered only.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-jasp-attendance-plots-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10.5: Attendance by ticket type, from Descriptives with Distribution plots ticked
+</figcaption>
+</figure>
+</div>
+<p>Each panel in <a href="#fig-jasp-attendance-plots" class="quarto-xref">Figure&nbsp;<span>10.5</span></a> has its own axis, so compare the two bars within a panel: Student holders have almost no stay-aways, and VIP holders the most for their number.</p>
 <div class="worked-example">
 <p><span class="we-label">Worked example 10.3</span></p>
 <section id="reporting-the-association" class="level3">
 <h3 class="anchored" data-anchor-id="reporting-the-association">Reporting the association</h3>
 <div class="we-problem">
-<p>Use the JASP output in <a href="#fig-jasp-contingency-output" class="quarto-xref">Figure&nbsp;<span>10.3</span></a>.</p>
+<p>Use the JASP output in <a href="#fig-jasp-contingency-output" class="quarto-xref">Figure&nbsp;<span>10.4</span></a>.</p>
 <p>Read <span class="math inline">\(\chi^2\)</span>, <span class="math inline">\(df\)</span>, <span class="math inline">\(p\)</span> and Cramér’s V, check the expected counts, and report the result in APA style and for the manager.</p>
 </div>
 <div class="we-solution">
 <p><strong>Reading:</strong> <span class="math inline">\(\chi^2 = 6.092\)</span>, <span class="math inline">\(df = 2\)</span>, <span class="math inline">\(p = .048\)</span> and <span class="math inline">\(V = 0.175\)</span>. The smallest expected count is 4.5, in 1 cell of 6.</p>
-<p><strong>In APA style:</strong> A chi-squared test of association found a significant but small association between ticket type and attendance, <span class="math inline">\(\chi^2(2, N = 200) = 6.09\)</span>, <span class="math inline">\(p = .048\)</span>, Cramér’s <span class="math inline">\(V = .17\)</span>. One expected count of six was below 5.</p>
-<p><strong>For the manager:</strong> Attendance rates differ by ticket type, mostly through Student holders, who attended more often than the others: 44 of 46. The association is small, and a few customers either way could move <span class="math inline">\(p\)</span> across .05. The reasons for staying away are unrecorded.</p>
+<p><strong>In APA style:</strong> A chi-squared test of association found a significant but small association between ticket type and attendance, <span class="math inline">\(\chi^2(2, N = 200) = 6.09\)</span>, <span class="math inline">\(p = .048\)</span>, Cramér’s <span class="math inline">\(V = .17\)</span>. One of the six expected counts was below 5.</p>
+<p><strong>For the manager:</strong> Attendance rates differ by ticket type. Student holders almost all attended, 44 of 46, and VIP holders stayed away most often, 7 of 30. The association is small, and a few customers either way could move <span class="math inline">\(p\)</span> across .05. The reasons for staying away are unrecorded.</p>
 </div>
 </section>
 </div>
@@ -1290,7 +1353,7 @@ Figure&nbsp;10.3: Contingency table output with expected counts, the chi-squared
 <div class="callout-body-container callout-body">
 <ol type="1">
 <li><span class="math inline">\(\chi^2(1, N = 200) = 2.81\)</span>, <span class="math inline">\(p = .094\)</span>, <span class="math inline">\(V = .12\)</span>. The degrees of freedom are <span class="math inline">\((2 - 1)(2 - 1) = 1\)</span>. The smallest expected count is 13.2, so every cell is above 5.</li>
-<li>We retain the null hypothesis. A chi-squared test found no significant association between gender and attendance, <span class="math inline">\(\chi^2(1, N = 200) = 2.81\)</span>, <span class="math inline">\(p = .094\)</span>, Cramér’s <span class="math inline">\(V = .12\)</span>. For the manager: 91 of 112 female customers and 79 of 88 male customers attended, and a gap this size could be sampling variation.</li>
+<li>We retain the null hypothesis. A chi-squared test of association found no significant association between gender and attendance, <span class="math inline">\(\chi^2(1, N = 200) = 2.81\)</span>, <span class="math inline">\(p = .094\)</span>, Cramér’s <span class="math inline">\(V = .12\)</span>. For the manager: 91 of 112 female customers and 79 of 88 male customers attended, and a gap this size could be sampling variation.</li>
 </ol>
 </div>
 </div>
@@ -1338,7 +1401,7 @@ Figure&nbsp;10.3: Contingency table output with expected counts, the chi-squared
 <div id="tbl-choose-chi" class="tbl-grid quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-choose-chi-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;10.6: Choosing a chi-squared test
+Table&nbsp;10.7: Choosing a chi-squared test
 </figcaption>
 <div aria-describedby="tbl-choose-chi-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="tbl-grid caption-top table">
@@ -1358,7 +1421,7 @@ Table&nbsp;10.6: Choosing a chi-squared test
 <tr class="odd">
 <td>Do the counts match a planned or expected split?</td>
 <td>One categorical variable</td>
-<td>Goodness of fit</td>
+<td>Goodness-of-fit test</td>
 </tr>
 <tr class="even">
 <td>Are two categorical variables related?</td>
@@ -1384,7 +1447,7 @@ Table&nbsp;10.6: Choosing a chi-squared test
 </div>
 <div class="we-solution">
 <ol type="1">
-<li><strong>Goodness of fit,</strong> on <code>Strategic_Choice</code>. <span class="math inline">\(H_0\)</span>: each label takes one third of the customers. The dataset contains 67, 68 and 65, and JASP gives <span class="math inline">\(\chi^2(2, N = 200) = 0.07\)</span>, <span class="math inline">\(p = .966\)</span>. We retain the null hypothesis: the evidence that the shares differ from one third each is insufficient at <span class="math inline">\(\alpha = .05\)</span>.</li>
+<li><strong>Goodness-of-fit test,</strong> on <code>Strategic_Choice</code>. <span class="math inline">\(H_0\)</span>: each label takes one third of the customers. The dataset contains 67, 68 and 65, and JASP gives <span class="math inline">\(\chi^2(2, N = 200) = 0.07\)</span>, <span class="math inline">\(p = .966\)</span>. We retain the null hypothesis: the evidence that the shares differ from one third each is insufficient at <span class="math inline">\(\alpha = .05\)</span>.</li>
 <li><strong>Test of association,</strong> on <code>Gender</code> and <code>Strategic_Choice</code>. <span class="math inline">\(H_0\)</span>: the label is independent of gender. JASP gives <span class="math inline">\(\chi^2(2, N = 200) = 2.19\)</span>, <span class="math inline">\(p = .335\)</span>, <span class="math inline">\(V = .10\)</span>. We retain the null hypothesis: the evidence of an association is insufficient at <span class="math inline">\(\alpha = .05\)</span>.</li>
 </ol>
 </div>
@@ -1422,9 +1485,9 @@ Table&nbsp;10.6: Choosing a chi-squared test
 <div id="callout-12" class="callout-12-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
-<li><strong>Goodness of fit:</strong> one variable, ticket type, against a planned share.</li>
+<li><strong>Goodness-of-fit test:</strong> one variable, ticket type, against a planned share.</li>
 <li><strong>Test of association:</strong> two variables, region and attendance.</li>
-<li><strong>Goodness of fit:</strong> one variable, region, against equal proportions.</li>
+<li><strong>Goodness-of-fit test:</strong> one variable, region, against equal proportions.</li>
 <li><strong>Test of association:</strong> two variables, ticket type and <code>Strategic_Choice</code>.</li>
 </ol>
 </div>
@@ -1442,7 +1505,7 @@ Table&nbsp;10.6: Choosing a chi-squared test
 </section>
 <section id="section-summary" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="section-summary">Section summary</h2>
-<p>With a chi-squared test we compare observed counts with the counts expected under a hypothesis, through <span class="math inline">\(\chi^2 = \sum (O - E)^2 / E\)</span>. We use the goodness-of-fit test for one categorical variable against planned or equal proportions, with <span class="math inline">\(k - 1\)</span> degrees of freedom. We use the test of association to check whether two categorical variables are independent, with expected counts of row total times column total over <span class="math inline">\(N\)</span>, and <span class="math inline">\((r - 1)(c - 1)\)</span> degrees of freedom. At least 80% of the expected counts should be 5 or more, and none below 1. With the cell contributions we find which categories account for most of the statistic, and with Cramér’s V we measure its strength. In the teaching dataset, ticket sales differed from the planned mix, <span class="math inline">\(\chi^2(2, N = 200) = 11.53\)</span>, <span class="math inline">\(p = .003\)</span>, and attendance was associated with ticket type, <span class="math inline">\(\chi^2(2, N = 200) = 6.09\)</span>, <span class="math inline">\(p = .048\)</span>, <span class="math inline">\(V = .17\)</span>, mostly through Student holders attending more often.</p>
+<p>With a chi-squared test we compare observed counts with the counts expected under a hypothesis, through <span class="math inline">\(\chi^2 = \sum (O - E)^2 / E\)</span>. We use the goodness-of-fit test for one categorical variable against planned or equal proportions, with <span class="math inline">\(k - 1\)</span> degrees of freedom. We use the test of association to check whether two categorical variables are independent, with expected counts of row total times column total over <span class="math inline">\(N\)</span>, and <span class="math inline">\((r - 1)(c - 1)\)</span> degrees of freedom. At least 80% of the expected counts should be 5 or more, and none below 1. With the cell contributions we find which categories account for most of the statistic, and with Cramér’s V we measure its strength. In the teaching dataset, ticket sales differed from the planned mix, <span class="math inline">\(\chi^2(2, N = 200) = 11.53\)</span>, <span class="math inline">\(p = .003\)</span>, and attendance was associated with ticket type, <span class="math inline">\(\chi^2(2, N = 200) = 6.09\)</span>, <span class="math inline">\(p = .048\)</span>, <span class="math inline">\(V = .17\)</span>, mostly through Student holders attending more often. In JASP both tests sit under Frequencies, and the Descriptives plot and Distribution plots show each result as a picture.</p>
 </section>
 <section id="references-and-further-reading" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="references-and-further-reading">References and further reading</h2>
