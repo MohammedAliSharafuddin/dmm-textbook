@@ -225,9 +225,11 @@
        Entries are kept in the browser (localStorage) so a reload keeps them. -->
   <style>
     .reveal .af-key { display: none; }
-    .reveal .af-model { display: none; margin-top: 0.3em; padding: 0.2em 0.5em; font-size: 0.72em;
-      border-left: 4px solid #2A7F7F; background: #eef6f5; }
+    .reveal .af-model { display: none; position: absolute; left: 0; right: 0; top: 0; z-index: 30;
+      padding: 0.4em 0.7em; font-size: 0.62em; text-align: left; cursor: pointer;
+      border-left: 6px solid #2A7F7F; background: #eef6f5; box-shadow: 0 3px 10px rgba(0,0,0,0.18); }
     .reveal .af-model.af-show { display: block; }
+    .reveal .af-model.af-inline { position: static; box-shadow: none; margin-top: 0.3em; }
     .reveal .af-model p { margin: 0; }
     .reveal .af-blank.ct-ok { background: #e3f2f1; border-bottom-color: #2A7F7F; }
     .reveal .af-blank.ct-no { background: #fbeaea; border-bottom-color: #b03a2e; }
@@ -237,7 +239,7 @@
     .reveal .check-table select.ct-no { border-color: #b03a2e; background: #fbeaea; }
     .reveal .check-table input.ct-num { width: 2.4em; }
     .reveal .check-table td.ct-left { text-align: left; }
-    .reveal .af-blank { font: inherit; width: 3.4em; padding: 0 0.2em; margin: 0 0.1em; text-align: center;
+    .reveal .af-blank { font: inherit; width: 5em; padding: 0 0.2em; margin: 0 0.1em; text-align: center;
       border: 0; border-bottom: 2px solid #23415A; background: #f3f6f9; border-radius: 4px 4px 0 0; }
     .reveal .af-blank:focus, .reveal .af-manager:focus, .reveal .check-table input:focus { outline: 3px solid #D9A441; }
     .reveal .af-row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4em; margin-top: 0.3em; font-size: 0.72em; }
@@ -297,7 +299,7 @@
         parts.forEach(function (part) {
           if (/^_{3,}$/.test(part)) {
             var inp = document.createElement("input"); inp.className = "af-blank"; inp.setAttribute("aria-label", "answer blank");
-            inp.addEventListener("input", function () { inp.style.width = Math.max(4.2, inp.value.length * 0.62 + 1) + "em"; });
+            // Fixed width: a blank that grows while typing re-wraps the sentence and pushes the slide down.
             frag.appendChild(inp);
           } else if (part) frag.appendChild(document.createTextNode(part));
         });
@@ -317,7 +319,8 @@
       var ck = key ? button("Check") : null, sm = model ? button("Sample decision", "af-alt") : null;
       if (ck) bar.appendChild(ck);
       bar.appendChild(cp); bar.appendChild(cl); if (sm) bar.appendChild(sm); bar.appendChild(msg); box.appendChild(bar);
-      if (model) box.appendChild(model);
+      // The sample sits over the top of the slide (the title), clear of the answer box and its buttons, so opening it never pushes the slide content down.
+      if (model) { model.title = "Click to close"; model.addEventListener("click", function () { model.classList.remove("af-show"); }); }
       var fields = Array.prototype.slice.call(inputs); if (area) fields.push(area);
       fields.forEach(function (f, i) { var k = store.key(p, id + "." + i); f.value = store.get(k); f.dispatchEvent(new Event("input"));
         f.addEventListener("input", function () { store.set(k, f.value); msg.textContent = ""; f.classList.remove("ct-ok", "ct-no"); }); });
@@ -333,7 +336,14 @@
         Array.prototype.forEach.call(inputs, function (el, i) { el.classList.toggle("ct-ok", good[i]); el.classList.toggle("ct-no", !good[i]); if (good[i]) ok++; });
         msg.textContent = ok === inputs.length ? "All " + ok + " correct" : ok + " of " + inputs.length + " correct: fix the red blanks";
       });
-      if (sm) sm.addEventListener("click", function () { model.classList.toggle("af-show"); });
+      if (sm) sm.addEventListener("click", function () {
+        // Slide mode: overlay on the slide stage. Phone scroll view: inline under the box, where scrolling is natural.
+        var scroll = window.Reveal && Reveal.isScrollView && Reveal.isScrollView();
+        var stage = scroll ? box : (document.querySelector(".reveal .slides") || box);
+        if (model.parentNode !== stage) stage.appendChild(model);
+        model.classList.toggle("af-inline", !!scroll);
+        model.classList.toggle("af-show");
+      });
       function text() {
         var c = p.cloneNode(true), src = p.querySelectorAll(".af-blank");
         c.querySelectorAll(".af-blank").forEach(function (inp, i) { inp.replaceWith(document.createTextNode(src[i].value.trim() || "____")); });
@@ -386,6 +396,7 @@
         box.dataset.ctText = lines.join("\n"); copy(box.dataset.ctText, msg);
       });
     });
+    if (window.Reveal && Reveal.on) Reveal.on("slidechanged", function () { document.querySelectorAll(".reveal .af-model.af-show").forEach(function (m) { m.classList.remove("af-show"); }); });
   });
   </script>
 </head>
@@ -683,8 +694,8 @@ Mohammed Ali Sharafuddin
 <div class="callout callout-note no-icon callout-style-simple">
 <div class="callout-body">
 <div class="callout-content">
-<p><strong>Your answer:</strong> rho = ____, a ____ ____ relationship. Events with a higher attendance rank tended to have a ____ satisfaction rank, so the events manager can ____.</p>
-<div class="af-key" data-answers=".60/.6 | strong | positive | higher | *">
+<p><strong>Your answer:</strong> rho = ____, a ____ ____ relationship. Events with a higher attendance rank tended to have a ____ satisfaction rank.</p>
+<div class="af-key" data-answers=".60/.6 | strong | positive | higher">
 
 </div>
 <div class="af-model">
